@@ -1,0 +1,69 @@
+<?php
+
+namespace App\Http\Controllers\MasterhomeManagement;
+
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Slider;
+use Yajra\Datatables\Datatables;
+
+class SliderController extends Controller
+{
+    public function index()
+    {
+        return view('panel.master-home.slider.index');
+    }
+    
+    public function create()
+    {
+        return view('panel.master-home.slider.form-create');
+    }
+
+    public function store(Request $request)
+    {
+        $slider = new slider();
+        $slider->name = $request->name;
+        $slider->save();
+        
+        return redirect()->route('slider.index')->with('toastr', 'slider');
+    }
+
+    public function show(Request $request, $action){
+        $brands = slider::select(['id', 'name', 'created_at']);
+        
+        return Datatables::of($sliders)
+            ->addColumn('action', function ($slider) {
+                return 
+                    '<button class="btn btn-success btn-sm"  data-toggle="modal" data-target="#primaryModal"
+                         onclick="funcModal($(this))" data-link="'.route('slider.edit',['id' => $slider->id]).'">
+                        <i class="fa fa-pencil-square-o"></i>&nbsp;Edit Discount</button>'.
+                    '<form style="display:inline;" method="POST" action="'.
+                        route('slider.destroy',['id' => $slider->id]).'">'.method_field('DELETE').csrf_field().
+                    '<button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-remove"></i>&nbsp;Remove</button></form>';
+            })
+            ->rawColumns(['status', 'action'])
+            ->make(true);
+    }
+    
+    public function edit($id)
+    {
+        $slider = slider::find($id);
+        return view('panel.master-home.slider.form-edit')->with(['slider'=>$slider]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $slider = slider::find($id);
+        $slider->name = $request->name;
+        
+        $discount->save();
+        return redirect()->route('slider.index')->with('update', 'slider');
+    }
+
+    public function destroy($id)
+    {
+        $slider = slider::find($id);
+        $slider->delete();
+        return redirect()->route('slider.index')->with('dlt', 'slider');
+    }
+}
