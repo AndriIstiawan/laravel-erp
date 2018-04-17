@@ -5,11 +5,11 @@
 				<a class="nav-link" href="{{env('APP_URL','/')}}">
 					<i class="icon-speedometer"></i> Dashboard </a>
 			</li>
-			@if(Auth::user()->hasAcc('master-setting'))
+			<!-- @if(Auth::user()->hasAcc('master-setting'))
 			<li class="nav-item">
 				<a class="nav-link nav-link-success" href="{{route('master-setting.index')}}" target="_top"><i class="icon-settings"></i><strong>SETTINGS</strong></a>
 			</li>
-			@endif
+			@endif -->
 			<li class="nav-title">Modules</li>
 			<?php $list_mp = (Auth::user()->email == env('ROOT_USERNAME')?Auth::user()->modPermissions():Auth::user()->modulePermissions); ?>
 				@foreach ($list_mp as $lmp)
