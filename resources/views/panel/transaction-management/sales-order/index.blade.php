@@ -9,27 +9,14 @@
 				<button type="button" class="btn btn-primary" onclick="refresh()">
 					<i class="fa fa-refresh"></i>
 				</button>
-				<a href="{{ route('product.create') }}" class="btn btn-primary ladda-button" data-style="zoom-in">
+				<a href="{{ route('sales-order.create') }}" class="btn btn-primary ladda-button" data-style="zoom-in">
 					<span class="ladda-label">
 						<i class="fa fa-plus">
 						</i>
-							New Products
+							New Order
 					</span>
 				</a>
-                <a href="{{ route('product.index') }}/import" class="btn btn-success ladda-button" data-style="zoom-in">
-					<span class="ladda-label">
-						<i class="fa fa-cloud-download">
-						</i>
-							Import Products
-					</span>
-				</a>
-                <a href="{{ route('product.index') }}/export" class="btn btn-success ladda-button" data-style="zoom-in">
-					<span class="ladda-label">
-						<i class="fa fa-file-excel-o">
-						</i>
-							Export Products
-					</span>
-				</a>
+                
 			</p>
 			</div>
 		</div>
@@ -38,7 +25,7 @@
 			<div class="col-lg-12">
 				<div class="card">
 					<div class="card-header">
-						<i class="fa fa-align-justify"></i> Products Table
+						<i class="fa fa-align-justify"></i> Sales Order Table
                         <div class="card-actions">
                             <a href="#" target="_blank">
                             <small class="text-muted">docs</small>
@@ -50,6 +37,7 @@
 							<thead>
 								<tr>
 									<th>Name</th>
+									<th>Date registered</th>
 									<th></th>
 								</tr>
 							</thead>
@@ -76,14 +64,16 @@
 		$('.datatable').DataTable({
 			processing: true,
 	        serverSide: true,
-	        ajax: "{{ route('product.index') }}/list-data",
+	        ajax: '{{ route('sales-order.index') }}/list-data',
 	        columns: [
-	            {data: 'sku', name: 'sku'},
 	            {data: 'name', name: 'name'},
 	            {data: 'created_at', name: 'created_at'},
 	            {data: 'action', name: 'action', orderable: false, searchable: false, width:'20%'}
 	        ],
-			"order":[[6, 'desc']]
+	        "columnDefs": [
+				{"targets": 1,"className": "text-center"}
+			],
+			"order":[[2, 'desc']]
 		});
 		$('.datatable').attr('style','border-collapse: collapse !important');
 		

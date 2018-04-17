@@ -30,6 +30,10 @@ class ComposerStaticInitd80677642af87e169186fc7d444a9776
         array (
             'phpDocumentor\\Reflection\\' => 25,
         ),
+        'k' => 
+        array (
+            'kartik\\plugins\\fileinput\\' => 25,
+        ),
         'Y' => 
         array (
             'Yajra\\DataTables\\' => 17,
@@ -134,6 +138,10 @@ class ComposerStaticInitd80677642af87e169186fc7d444a9776
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
             1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
             2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+        ),
+        'kartik\\plugins\\fileinput\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/bootstrap-fileinput',
         ),
         'Yajra\\DataTables\\' => 
         array (
@@ -447,6 +455,7 @@ class ComposerStaticInitd80677642af87e169186fc7d444a9776
         'App\\Member' => __DIR__ . '/../..' . '/app/Member.php',
         'App\\OrderStatuses' => __DIR__ . '/../..' . '/app/OrderStatuses.php',
         'App\\Orders' => __DIR__ . '/../..' . '/app/Orders.php',
+        'App\\Packaging' => __DIR__ . '/../..' . '/app/Packaging.php',
         'App\\Payment' => __DIR__ . '/../..' . '/app/Payment.php',
         'App\\PaymentMethod' => __DIR__ . '/../..' . '/app/PaymentMethod.php',
         'App\\Permission' => __DIR__ . '/../..' . '/app/Permission.php',
@@ -460,6 +469,7 @@ class ComposerStaticInitd80677642af87e169186fc7d444a9776
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\Role' => __DIR__ . '/../..' . '/app/Role.php',
+        'App\\SalesOrder' => __DIR__ . '/../..' . '/app/SalesOrder.php',
         'App\\SegmentAttributes' => __DIR__ . '/../..' . '/app/SegmentAttributes.php',
         'App\\Segments' => __DIR__ . '/../..' . '/app/Segments.php',
         'App\\Setting' => __DIR__ . '/../..' . '/app/Setting.php',
@@ -2932,6 +2942,7 @@ class ComposerStaticInitd80677642af87e169186fc7d444a9776
         'PHP_Token_XOR_EQUAL' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_YIELD' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_YIELD_FROM' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
+        'PackagingTableSeeder' => __DIR__ . '/../..' . '/database/seeds/PackagingTableSeeder.php',
         'ParseError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/ParseError.php',
         'Parsedown' => __DIR__ . '/..' . '/erusev/parsedown/Parsedown.php',
         'PaymensMethodsTableSeeder' => __DIR__ . '/../..' . '/database/seeds/PaymensMethodsTableSeeder.php',
