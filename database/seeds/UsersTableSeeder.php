@@ -13,11 +13,11 @@ class UsersTableSeeder extends Seeder
     {
         DB::table('users')->insert([
             [
-        	'name' => env('ROOT_NAME', 'Root Fiture'),
-        	'email' => env('ROOT_USERNAME', 'jx@fiture.id'),
-        	'password' => bcrypt(env('ROOT_PASSWORD', 'fiture123$#')),
-			'created_at' => date("Y-m-d H:i:s"),
-			'updated_at' => date("Y-m-d H:i:s")
+            'name' => env('ROOT_NAME', 'Root Fiture'),
+            'email' => env('ROOT_USERNAME', 'jx@fiture.id'),
+            'password' => bcrypt(env('ROOT_PASSWORD', 'fiture123$#')),
+            'created_at' => date("Y-m-d H:i:s"),
+            'updated_at' => date("Y-m-d H:i:s")
             ],
             [
             'name' => 'Sales',
@@ -79,22 +79,28 @@ class UsersTableSeeder extends Seeder
         
         $parent = DB::table('roles')->whereIn('name',['Sales'])->get();
         DB::table('users')->whereIn('email', ['sales@gmail.com'])
-			->update(['role' => $parent->toArray()]);
+            ->update(['role' => $parent->toArray()]);
+
         $parent = DB::table('roles')->whereIn('name',['Tim Operational'])->get();
         DB::table('users')->whereIn('email', ['Afif@gmail.com'])
             ->update(['role' => $parent->toArray()]);
+
         $parent = DB::table('roles')->whereIn('name',['Tim Operational'])->get();
         DB::table('users')->whereIn('email', ['Anang@gmail.com'])
             ->update(['role' => $parent->toArray()]);
+
         $parent = DB::table('roles')->whereIn('name',['Tim Operational'])->get();
         DB::table('users')->whereIn('email', ['Rohim@gmail.com'])
             ->update(['role' => $parent->toArray()]);
+
         $parent = DB::table('roles')->whereIn('name',['Tim Operational'])->get();
         DB::table('users')->whereIn('email', ['Rudi@gmail.com'])
             ->update(['role' => $parent->toArray()]);
+
         $parent = DB::table('roles')->whereIn('name',['Tim Operational'])->get();
         DB::table('users')->whereIn('email', ['Sarah@gmail.com'])
             ->update(['role' => $parent->toArray()]);
+
         $parent = DB::table('roles')->whereIn('name',['Tim Operational'])->get();
         DB::table('users')->whereIn('email', ['Heru@gmail.com'])
             ->update(['role' => $parent->toArray()]);
