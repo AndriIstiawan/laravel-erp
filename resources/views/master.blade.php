@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Fiture - E-Commerce B2B">
+  <meta name="description" content="Fiture - ERP">
   <meta name="author" content="fiture-dev">
-  <meta name="keyword" content="fiture,e-commerce,e-commerce b2b">
+  <meta name="keyword" content="fiture,erp">
   <link rel="shortcut icon" href="{{ asset('img/fiture-favicon.png') }}">
-  <title>Fiture - E-Commerce B2B</title>
+  <title>Fiture - ERP</title>
 
   <!-- Icons -->
   <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">

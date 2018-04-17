@@ -48,4 +48,50 @@ class ImportProductController extends Controller
         //$file = $excel['full'];
         //return response()->download($file);
     }
+    public function store(Request $request)
+{
+        $upload=$request->file('upload-file');
+        $filePath=$upload->getRealPath();
+        $file=fopen($filePath,'r');
+        $header=fgetcsv($file);
+
+        $escapedHeader=[];
+        foreach ($header as $key => $value) {
+        $header=strtolower($value);
+
+        $escapedItem=preg_replace('/[^a-z]/','', $header);
+        array_push($escapedHeader, $escapedItem);
+
+        }
+        while($columns=fgetcsv($file)){
+          if($columns[0]=="")
+          {
+            continue;
+        }
+            foreach ($columns as $key => $value) {
+            $value=preg_replace('/\D/','', $value);
+        }
+
+        $data=array_combine($escapedHeader, $columns);
+        $id=$data['id'];
+        $details=$data['details'];
+        $postingdate=$data['postingdate'];
+        $description=$data['description'];
+        $amount=$data['amount'];
+        $type=$data['type'];
+        $slip=$data['slip'];
+        $name=$data['name'];
+        $job=$data['job'];
+        $addchecks=Checks::firstOrNew(['id'=>$id,'details'=>$details]);
+        $addchecks->postingdate=$postingdate;
+        $addchecks->description=$description;
+        $addchecks->amount=$amount;
+        $addchecks->type=$type;
+        $addchecks->slip=$slip;
+        $addchecks->name=$name;
+        $addchecks->job=$job;
+        $addchecks->save();
+    }
+             
+    }
 }
