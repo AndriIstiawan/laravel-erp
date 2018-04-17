@@ -23,40 +23,33 @@
 						<small>data </small>
 					</div>
 					<div class="card-body">
-						<!-- <ul class="nav nav-tabs" id="myTab1" role="tablist">
-							<li class="nav-item">
-								<a class="nav-link active show" id="general-tab" data-toggle="tab" href="#general" 
-									role="tab" aria-controls="home" aria-selected="false">General Setting</a>
-							</li>
-						</ul> -->
-						<div class="tab-content" id="myTab1Content">
+						<div class="tab-content">
 						<!-- TAB CONTENT -->
-							
 							<div class="tab-pane fade active show" id="general" role="tabpanel" aria-labelledby="general-tab">
 								<div class="row">
 									<div class="col-md-12">
-											<input type="hidden" class="id" name="id">
+										<input type="hidden" class="id" name="id">
 											<div class="row">
 												<div class="col-md-12">
 												<label class="col-form-label" for="type">*Date</label>
-												<div class="input-group">
-													<input type="text" class="form-control" id="date" name="date" value="{{ date('Y-m-d H:i:s') }}"readonly>
-												</div>
-												<label class="col-form-label" for="phone">*Client</label>
-												<div class="input-group">
-													<input type="text" class="form-control" id="client" name="client" >
-												</div>
+													<div class="input-group">
+														<input type="text" class="form-control" id="date" name="date" value="{{ date('Y-m-d H:i:s') }}"readonly>
+													</div>
+													<label class="col-form-label" for="phone">*Client</label>
+													<div class="input-group">
+														<input type="text" class="form-control" id="client" name="client" >
+													</div>
 												</div>
 											</div>
 											<div class="row">
 												<div class="col-md-12">
-												<div class="form-group">
-													<label class="col-form-label" for="name">*Name Product</label>
-													<select id="product" name="product[]" class="form-control" aria-describedby="product-error" required>
-						                        		<option value=""></option>
-								                        @foreach ($product as $product)
-								                          		<option data-code="{{$product->code}}" data-type="{{$product->type}}" value="{{$product->id}}" >{{$product->name}}</option>
-								                        @endforeach
+													<div class="form-group">
+														<label class="col-form-label" for="name">*Name Product</label>
+															<select id="product" name="product[]" class="form-control" aria-describedby="product-error" required>
+						                        				<option value=""></option>
+										                        @foreach ($product as $product)
+										                          	<option data-code="{{$product->code}}" data-type="{{$product->type}}" value="{{$product->id}}" >{{$product->name}}</option>
+										                        @endforeach
 								                        	</select>
 								                        <em id="member-error" class="error invalid-feedback">Please select product</em>
 
@@ -64,18 +57,17 @@
 														<div class="input-group">
 															<input type="text" class="form-control" id="product-type" readonly>
 														</div>
-														<label class="col-form-label" for="phone">*Code</label>
+															<label class="col-form-label" for="phone">*Code</label>
 														<div class="input-group">
-													<input type="text" class="form-control" id="product-code" readonly>
+															<input type="text" class="form-control" id="product-code" readonly>
+														</div>
 													</div>
-												</div>
 												</div>
 											</div>
 									</div>
 								</div>
 							</div>
 							<!-- end tab 1 -->
-							
 						</div>
 					</div>
 				</div>
@@ -89,56 +81,115 @@
 					</div>
 					<div class="card-body">
 						<div class="row">
-						<div class="col-md-6">
-                        <div class="form-group">
-                          <label class="col-form-label" for="total">*Total (Kg)</label>
-                          <input type="text" onkeyup="findTotal()" class="form-control" id="total" name="total"  aria-describedby="total-error">
-                            <em id="total-error" class="error invalid-feedback">
-                              Please enter a total
-                            </em>
-                        </div>
-                        </div>
-						<div class="col-md-6">
-                        <div class="form-group">
-                          <label class="col-form-label" >*Packaging Option</label>
-                          <select id="packaging" name="packaging" class="form-control" style="width: 100% !important;" aria-describedby="packaging-error" onchange="findTotal()" required>
-                              <option value=""></option>
-						                <option value="0.25" >250 gram</option>
-						                <option value="0.5">500 gram</option>  
-						                <option value="1">1 kg</option>  
-						                <option value="5">5 kg</option>  
-						                <option value="25">25 kg</option>
-						                <option value="30">30 kg</option>
-                          </select>
-                          <em id="tax-error" class="error invalid-feedback">Please select packaging</em>
-                        </div>
-                        </div>
-                        
-                        <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="col-form-label" >*Amount</label>
-                          <input class="form-control" type="text" name="totall" id="totall" readonly/>
-                        </div>
-                        </div>
+							<div class="col-md-6">
+		                       <div class="form-group">
+		                          <label class="col-form-label" for="total">*Total (Kg)</label>
+		                          <input type="text" onkeyup="findTotal()" class="form-control" id="total" name="total"  aria-describedby="total-error">
+		                            <em id="total-error" class="error invalid-feedback">
+		                              Please enter a total
+		                            </em>
+		                        </div>
+		                    </div>
+								<div class="col-md-6">
+				                    <div class="form-group">
+				                        <label class="col-form-label" >*Packaging Option</label>
+				                        <select id="packaging" name="packaging" class="form-control" style="width: 100% !important;" aria-describedby="packaging-error" onchange="findTotal()" required>
+					                        <option value=""></option>
+											<option value="0.25" >250 gram</option>
+											<option value="0.5">500 gram</option>  
+											<option value="1">1 kg</option>  
+											<option value="5">5 kg</option>  
+											<option value="25">25 kg</option>
+											<option value="30">30 kg</option>
+				                        </select>
+				                        <em id="packaging-error" class="error invalid-feedback">Please select packaging</em>
+				                    </div>
+                        		</div>
+		                        <div class="col-md-6">
+			                        <div class="form-group">
+			                          <label class="col-form-label" >*Amount</label>
+			                          <input class="form-control" type="text" name="totall" id="totall" readonly/>
+			                        </div>
+			                    </div>
+			                    <div class="col-md-6">
+			                        <div class="form-group">
+			                          	<label class="col-form-label" >*Package</label>
+			                          	<select id="package" name="package" class="form-control" style="width: 100% !important;" aria-describedby="package-error" required>
+		                              		<option value=""></option>
+								            <option value="drum" >Drum</option>
+								            <option value="Jerigen">Jerigen</option>  
+								            <option value="Aluminium">Aluminium</option>  
+								            <option value="Plastik">Plastik</option>
+		                          		</select>
+		                        		<em id="package-error" class="error invalid-feedback">Please select package</em>
+		                        	</div>
+			                    </div>
+			                    <div class="col-md-6">
+			                        <div class="form-group">
+			                          <label class="col-form-label" >*Realisasi (Kg)</label>
+			                          <input class="form-control" type="text" name="realisasi" id="realisasi"/>
+			                        </div>
+			                    </div>
+			                    <div class="col-md-6">
+			                        <div class="form-group">
+			                          <label class="col-form-label" >*Stock Kapuk</label>
+			                          <input class="form-control" type="text" name="stockk" id="stockk"/>
+			                        </div>
+			                    </div>
+			                    <div class="col-md-6">
+			                        <div class="form-group">
+			                          <label class="col-form-label" >*Pending SO</label>
+			                          <input class="form-control" type="text" name="pending" id="pending"/>
+			                        </div>
+			                    </div>
+			                    <div class="col-md-6">
+			                        <div class="form-group">
+			                          <label class="col-form-label" >*Balance Stock</label>
+			                          <input class="form-control" type="text" name="balance" id="balance"/>
+			                        </div>
+			                    </div>
+			                    <div class="col-md-6">
+			                        <div class="form-group">
+			                          <label class="col-form-label" >*Pending PR</label>
+			                          <input class="form-control" type="text" name="balance" id="balance"/>
+			                        </div>
+			                    </div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="row">
-			<div class="form-group col-md-12">
-				<div class="card">
-					<p>
-					<div class="btn-group"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-			          	<button type="submit" class="btn btn-success">Save</button>&nbsp;
-			        <button type="button" class="btn btn-secondary" onclick="window.history.back()">
-			          <i class="fa fa-times-rectangle"></i>&nbsp; Cancel
-			        </button>
-			    	</div>
-					</p>
-				</div>
-			</div>
-		</div>
+		<div class="card">
+                <div class="card-header">
+                        <i class="fa fa-align-justify"></i> Note
+                </div>
+                <div class="card-body">
+		            <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="name">*Note
+                            <br>
+                            <small class="text-muted"></small>
+                        </label>
+	                    <div class="col-md-9">
+	                        <textarea rows="4" name="description" class="form-control" aria-describedby="description-error"></textarea>
+	                            <em id="description-error" class="error invalid-feedback">Please describe the product</em>
+	                    </div>
+                    </div>
+		            <div class="row">
+						<div class="form-group col-md-12">
+							<div class="card">
+								<p>
+								<div class="btn-group"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+								    <button type="submit" class="btn btn-success">Save</button>&nbsp;
+								    <button type="button" class="btn btn-secondary" onclick="window.history.back()">
+								    <i class="fa fa-times-rectangle"></i>&nbsp; Cancel
+								    </button>
+								</div>
+								</p>
+							</div>
+						</div>
+					</div>
+                </div>
+        	</div>
 	</div>
 </div>
 </form>
@@ -155,13 +206,7 @@
 			$('#product-code').val(element.attr('data-code'));
 		});
 	
-	function readURL(input) {
-		if (input.files && input.files[0]) {
-			var reader = new FileReader();
-			reader.onload = function (e){ $('.picturePrev').attr('src', e.target.result); }
-			reader.readAsDataURL(input.files[0]);
-		}
-	}
+	
 	function findTotal(){
 	    var value = $('#packaging option:selected').attr('value');
 	    var tot = parseInt($('#total').val())/value;
