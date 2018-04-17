@@ -12,6 +12,6 @@ class Product extends Moloquent{
     use SoftDeletes;
     
     protected $fillable = [
-        'name'
+        'code','name','type','500','1','5','25','currency',
     ];
 }
