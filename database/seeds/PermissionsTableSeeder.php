@@ -79,6 +79,39 @@ class PermissionsTableSeeder extends Seeder
 				'updated_at' => date("Y-m-d H:i:s")
 			],
 			[
+	        	'name' => 'Product Management',
+	        	'slug' => null,
+	        	'type' => 'module-menu',
+				'icon' => 'fa fa-bars',
+				'parent' => null,
+				'description' => 'Module Menu',
+				'guard_name' => 'web',
+				'created_at' => date("Y-m-d H:i:s"),
+				'updated_at' => date("Y-m-d H:i:s")
+			],
+			[
+	        	'name' => 'Product',
+	        	'slug' => 'product',
+	        	'type' => 'module-menu',
+				'icon' => 'icon-cursor',
+				'parent' => null,
+				'description' => 'Module Menu',
+				'guard_name' => 'web',
+				'created_at' => date("Y-m-d H:i:s"),
+				'updated_at' => date("Y-m-d H:i:s")
+			],
+			[
+	        	'name' => 'Category',
+	        	'slug' => 'category',
+	        	'type' => 'module-menu',
+				'icon' => 'icon-cursor',
+				'parent' => null,
+				'description' => 'Module Menu',
+				'guard_name' => 'web',
+				'created_at' => date("Y-m-d H:i:s"),
+				'updated_at' => date("Y-m-d H:i:s")
+			],/*,
+			[
 	        	'name' => 'Master-Deal',
 	        	'slug' => null,
 	        	'type' => 'module-menu',
@@ -123,30 +156,8 @@ class PermissionsTableSeeder extends Seeder
 				'updated_at' => date("Y-m-d H:i:s")
 			],
 			[
-	        	'name' => 'Product Management',
-	        	'slug' => null,
-	        	'type' => 'module-menu',
-				'icon' => 'fa fa-bars',
-				'parent' => null,
-				'description' => 'Module Menu',
-				'guard_name' => 'web',
-				'created_at' => date("Y-m-d H:i:s"),
-				'updated_at' => date("Y-m-d H:i:s")
-			],
-			[
 	        	'name' => 'Promo Slider',
 	        	'slug' => 'slider',
-	        	'type' => 'module-menu',
-				'icon' => 'icon-cursor',
-				'parent' => null,
-				'description' => 'Module Menu',
-				'guard_name' => 'web',
-				'created_at' => date("Y-m-d H:i:s"),
-				'updated_at' => date("Y-m-d H:i:s")
-			],
-			[
-	        	'name' => 'Product',
-	        	'slug' => 'product',
 	        	'type' => 'module-menu',
 				'icon' => 'icon-cursor',
 				'parent' => null,
@@ -165,7 +176,7 @@ class PermissionsTableSeeder extends Seeder
 				'guard_name' => 'web',
 				'created_at' => date("Y-m-d H:i:s"),
 				'updated_at' => date("Y-m-d H:i:s")
-			],
+			],*/
 			// [
 	        // 	'name' => 'Attributes',
 	        // 	'slug' => 'attributes',
@@ -188,17 +199,7 @@ class PermissionsTableSeeder extends Seeder
 			// 	'created_at' => date("Y-m-d H:i:s"),
 			// 	'updated_at' => date("Y-m-d H:i:s")
 			// ],
-			[
-	        	'name' => 'Category',
-	        	'slug' => 'category',
-	        	'type' => 'module-menu',
-				'icon' => 'icon-cursor',
-				'parent' => null,
-				'description' => 'Module Menu',
-				'guard_name' => 'web',
-				'created_at' => date("Y-m-d H:i:s"),
-				'updated_at' => date("Y-m-d H:i:s")
-			],
+			/**/
 			// [
 	        // 	'name' => 'Variants',
 	        // 	'slug' => 'variant',
@@ -221,7 +222,7 @@ class PermissionsTableSeeder extends Seeder
 			// 	'created_at' => date("Y-m-d H:i:s"),
 			// 	'updated_at' => date("Y-m-d H:i:s")
 			// ],
-			[
+			/*[
 	        	'name' => 'Orders Management',
 	        	'slug' => null,
 	        	'type' => 'module-menu',
@@ -330,7 +331,7 @@ class PermissionsTableSeeder extends Seeder
 				'guard_name' => 'web',
 				'created_at' => date("Y-m-d H:i:s"),
 				'updated_at' => date("Y-m-d H:i:s")
-			],/*
+			],*//*
 			[
 	        	'name' => 'Archievement',
 	        	'slug' => 'archievement',
@@ -342,7 +343,7 @@ class PermissionsTableSeeder extends Seeder
 				'created_at' => date("Y-m-d H:i:s"),
 				'updated_at' => date("Y-m-d H:i:s")
 			],*/
-			[
+			/*[
 	        	'name' => 'Master Setting',
 	        	'slug' => 'master-setting',
 	        	'type' => 'access',
@@ -473,7 +474,7 @@ class PermissionsTableSeeder extends Seeder
 				'guard_name' => 'web',
 				'created_at' => date("Y-m-d H:i:s"),
 				'updated_at' => date("Y-m-d H:i:s")
-			]
+			]*/
 		]);
 		
 		$parent = DB::table('permissions')->where('name','User Management')->first();
