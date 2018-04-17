@@ -91,87 +91,40 @@
 						<div class="row">
 						<div class="col-md-6">
                         <div class="form-group">
-                          <label class="col-form-label" >*Tax</label>
-                          <select id="tax" name="tax" class="form-control" style="width: 100% !important;" aria-describedby="tax-error" onchange="findTotal()" required>
+                          <label class="col-form-label" for="total">*Total (Kg)</label>
+                          <input type="text" onkeyup="findTotal()" class="form-control" id="total" name="total"  aria-describedby="total-error">
+                            <em id="total-error" class="error invalid-feedback">
+                              Please enter a total
+                            </em>
+                        </div>
+                        </div>
+						<div class="col-md-6">
+                        <div class="form-group">
+                          <label class="col-form-label" >*Packaging Option</label>
+                          <select id="packaging" name="packaging" class="form-control" style="width: 100% !important;" aria-describedby="packaging-error" onchange="findTotal()" required>
                               <option value=""></option>
-						                <option value="0,25" data-value="0,25" id="0,25">250 gram</option>
-						                <option value="0,5">500 gram</option>  
+						                <option value="0.25" >250 gram</option>
+						                <option value="0.5">500 gram</option>  
 						                <option value="1">1 kg</option>  
 						                <option value="5">5 kg</option>  
 						                <option value="25">25 kg</option>
 						                <option value="30">30 kg</option>
                           </select>
-                          <em id="tax-error" class="error invalid-feedback">Please select tax</em>
+                          <em id="tax-error" class="error invalid-feedback">Please select packaging</em>
                         </div>
                         </div>
+                        
                         <div class="col-md-6">
                         <div class="form-group">
-                          <label class="col-form-label" for="price">*Price Rp.</label>
-                          <input type="number" onkeyup="findTotal()" class="form-control" id="price" name="price"  aria-describedby="price-error">
-                            <em id="price-error" class="error invalid-feedback">
-                              Please enter a new price
-                            </em>
+                          <label class="col-form-label" >*Amount</label>
+                          <input class="form-control" type="text" name="totall" id="totall" readonly/>
                         </div>
                         </div>
-                        <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="col-form-label" >*Price with Tax</label>
-                          <input class="form-control" type="text" name="total" id="total" readonly/>
-                        </div>
-                        </div>
-								<div class="col-md-12">
-								
-								<div class="form-group">
-									<label class="col-form-label" for="total">*Total (Kg)</label>
-									<input type="text" class="form-control" id="total" name="total" onchange="findTotal()" placeholder="Total" aria-describedby="name_product-error">
-									<em id="name_product-error" class="error invalid-feedback">Please enter a total</em>
-								</div>
-								<div class="form-group">
-								<label class="col-form-label" for="packaging">*Packaging Option</label>
-									<select id="packaging" name="packaging"  onkeyup="findTotal()" class="form-control" aria-describedby="packaging-error" required>
-						                <option value=""></option>
-						                <option value="0,25" data-value="0,25" id="0,25">250 gram</option>
-						                <option value="0,5">500 gram</option>  
-						                <option value="1">1 kg</option>  
-						                <option value="5">5 kg</option>  
-						                <option value="25">25 kg</option>
-						                <option value="30">30 kg</option>              
-						            </select>
-								</div>
-								<div class="form-group">
-									<label class="col-form-label" for="quantity_product">*Amount of Packaging</label>
-									<input class="form-control" type="text" name="totall" id="totall" readonly/>
-									<em id="quantity_product-error" class="error invalid-feedback">Please enter a quantity product</em>
-								</div>
-								</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<!--/.row-->
-		<!-- <div class="row">
-			<div class="attr-multiselect attr-dropdown form-group col-md-12">
-				<div class="card">
-					<div class="card-body">
-                            <label class="col-form-label" for="comment">*Comment</label>
-						<hr>
-						<div class="option-card">
-							<div class="form-group input_fields_wrap">
-								<div class="option-card">
-									<div class="form-group">
-										<div id="comment" class="control-group input-group" style="margin-top:10px">
-											<textarea id="comment" name="comment" class="form-control" placeholder="Default text area" aria-describedby="comment-error" required></textarea>
-											<em id="comment-error" class="error invalid-feedback">Please enter a comment</em>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>			
-		</div> -->
 		<div class="row">
 			<div class="form-group col-md-12">
 				<div class="card">
@@ -210,16 +163,9 @@
 		}
 	}
 	function findTotal(){
-    // var arr = document.getElementsByName('price');
-    // var tot=0;
-    // for(var i=0;i<arr.length;i++){
-    //     if(parseInt(arr[i].value))
-    //         tot += parseInt(arr[i].value);
-    // }
-    // document.getElementById('total').value = tot;
-    var value = $('#tax option:selected').attr('data-value');
-    var price = parseInt($('#price').val())+($('#price').val()*value/100);
-    $('#total').val(price);
+	    var value = $('#packaging option:selected').attr('value');
+	    var tot = parseInt($('#total').val())/value;
+	    $('#totall').val(tot);
 
     }
 
