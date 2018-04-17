@@ -34,19 +34,12 @@ class RolesTableSeeder extends Seeder
 				'updated_at' => date("Y-m-d H:i:s")
         	],
 			[
-	        	'name' => 'E-Shop 1',
-	        	'description' => 'Admin Shop 1 roles',
+	        	'name' => 'Tim Operational',
+	        	'description' => 'Tim Operational',
 				'guard_name' => 'web',
 				'created_at' => date("Y-m-d H:i:s"),
 				'updated_at' => date("Y-m-d H:i:s")
-        	],
-			[
-	        	'name' => 'E-Shop 2',
-	        	'description' => 'Admin Shop 2 roles',
-				'guard_name' => 'web',
-				'created_at' => date("Y-m-d H:i:s"),
-				'updated_at' => date("Y-m-d H:i:s")
-        	],
+        	]
 		]);
     }
 }
