@@ -47,12 +47,14 @@ class SalesOrderController extends Controller
         date_default_timezone_set('Asia/Jakarta');
         $order=SalesOrder::all();
         $product= Product::all();
+        $products= Product::all();
         $modUser = User::where('role', 'elemMatch', array('name' => 'Sales'))->get();
         $user= User::where('role', 'elemMatch', array('name' => 'Tim Operational'))->get();
         $users= User::where('role', 'elemMatch', array('name' => 'Tim Operational'))->get();
         return view('panel.transaction-management.sales-order.form-create')->with([
             'order' => $order, 
             'product' => $product,
+            'products' => $products,
             'user' => $user,
             'users' => $users,
             'modUser' => $modUser,

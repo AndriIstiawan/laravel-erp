@@ -49,12 +49,12 @@
 						<table class="table table-responsive-sm table-bordered table-striped table-sm datatable">
 							<thead>
 								<tr>
-									<th>SKU</th>
+									<th>Code</th>
 									<th>Name</th>
-									<th>Categories</th>
+									<th>Type</th>
+									<th>Stock</th>
 									<th>Price</th>
-									<th>Stok</th>
-									<th>Variant</th>
+									<th>Curency</th>
 									<th>Date registered</th>
 									<th></th>
 								</tr>
@@ -84,15 +84,18 @@
 	        serverSide: true,
 	        ajax: "{{ route('product.index') }}/list-data",
 	        columns: [
-	            {data: 'sku', name: 'sku'},
+	            {data: 'code', name: 'code'},
 	            {data: 'name', name: 'name'},
-	            {data: 'categories.[,].name', name: 'category'},
-	            {data: 'priceCol', name: 'price'},
+	            {data: 'type', name: 'type'},
 	            {data: 'stock', name: 'stock'},
-	            {data: 'variants', name: 'variant'},
+	            {data: 'price.[<br>].price', name: 'name'},
+	            {data: 'currency', name: 'currency'},
 	            {data: 'created_at', name: 'created_at'},
 	            {data: 'action', name: 'action', orderable: false, searchable: false, width:'20%'}
 	        ],
+			"columnDefs": [
+				{"targets": 7,"className": "text-center"}
+			],
 			"order":[[6, 'desc']]
 		});
 		$('.datatable').attr('style','border-collapse: collapse !important');

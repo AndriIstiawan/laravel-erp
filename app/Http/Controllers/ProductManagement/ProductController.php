@@ -188,13 +188,6 @@ class ProductController extends Controller
                         route('product.destroy',['id' => $products->id]).'">'.method_field('DELETE').csrf_field().
                     '<button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-remove"></i>&nbsp;Remove</button></form>';
             })
-            ->addColumn('priceCol', function ($products) {
-                if($products->price[0]['min'] == $products->price[0]['max']){
-                    return "Rp. ". number_format($products->price[0]['min']);
-                }else{
-                    return "Rp. ". number_format($products->price[0]['min']).' - Rp. '. number_format($products->price[0]['max']);
-                }
-            })
             ->addColumn('variants', function ($products) {
                 if($products->variant){
                     return count($products->variant);
