@@ -102,7 +102,7 @@ class SalesOrderController extends Controller
 
     //for getting datatable at index
     public function show(Request $request, $action){
-        $orders = SalesOrder::all();
+        $orders = SalesOrder::select(['id', 'date', 'client', 'sales','product', 'total', 'packaging', 'amount','package','note','check','produksi','created_at']);
         
         return Datatables::of($orders)
             ->addColumn('action', function ($order) {
@@ -129,9 +129,38 @@ class SalesOrderController extends Controller
     public function update(Request $request, $id)
     {
         $order = SalesOrder::find($id);
-        $order->name = $request->name;
+        $order->sono = $request->sono;
+        $order->date = $request->date;
+        $order->client = $request->client;
+
+        $sales=user::where('_id', $request->sales)->get();
+        $order->sales=$sales->toArray();
+
+        $products=Product::where('_id', $request->product)->get();
+        $order->product=$products->toArray();
+
+        $order->total = $request->total;
+        $order->packaging = $request->packaging;
+        $order->catatan = $request->catatan;
+        $order->tunggu = $request->tunggu;
+
+        $checks=user::where('_id', $request->check)->get();
+        $order->check=$checks->toArray();
+
+        $produksis=user::where('_id', $request->produksi)->get();
+        $order->produksi=$produksis->toArray();
+
+        $order->amount = $request->amount;
+        $order->package = $request->package;
+        $order->realisasi = $request->realisasi;
+        $order->stockk = $request->stockk;
+        $order->pending = $request->pending;
+        $order->balance = $request->balance;
+        $order->pendingpr = $request->pendingpr;
+        $order->note = $request->note;
+
         $order->save();
-        return redirect()->route('discount.index')->with('update', 'discount');
+        return redirect()->route('sales-order.index')->with('update', 'sales-order');
     }
 
     //delete data discount

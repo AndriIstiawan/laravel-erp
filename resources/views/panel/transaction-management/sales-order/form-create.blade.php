@@ -79,7 +79,7 @@
 										<select id="product" name="product" style="width: 100% !important;" class="form-control" aria-describedby="product-error" required>
 	                        				<option value=""></option>
 					                        @foreach ($product as $product)
-					                          	<option data-code="{{$product->code}}" data-type="{{$product->type}}" value="{{$product->name}}" >{{$product->name}}</option>
+					                          	<option data-code="{{$product->code}}" data-type="{{$product->type}}" value="{{$product->id}}" >{{$product->name}}</option>
 					                        @endforeach
 			                        	</select>
 			                        <em id="product-error" class="error invalid-feedback">Please select product</em>
@@ -194,7 +194,7 @@
 									<div class="col-md-12">
 									<div class="form-group">
 										<label class="col-form-label" for="catatan">*Catatan</label>
-										<textarea type="text" rows="5" class="form-control" id="catatan" name="catatan" placeholder="Catatan" aria-describedby="catatan-error" required=""></textarea>
+										<textarea type="text" rows="5" class="form-control" id="note" name="note" placeholder="Catatan" aria-describedby="catatan-error" required=""></textarea>
 										<em id="catatan-error" class="error invalid-feedback">Please enter a name user</em>
 									</div>
 									</div>

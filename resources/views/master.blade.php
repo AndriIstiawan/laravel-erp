@@ -8,7 +8,7 @@
   <meta name="author" content="fiture-dev">
   <meta name="keyword" content="fiture,erp">
   <link rel="shortcut icon" href="{{ asset('img/fiture-favicon.png') }}">
-  <title>Fiture - ERP</title>
+  <title>Backend - Macbrame</title>
 
   <!-- Icons -->
   <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
