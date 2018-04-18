@@ -36,7 +36,13 @@
 						<table class="table table-responsive-sm table-bordered table-striped table-sm datatable">
 							<thead>
 								<tr>
-									<th>Name</th>
+									<th>Date</th>
+									<th>Client</th>
+									<th>Product</th>
+									<th>Total</th>
+									<th>Packaging</th>
+									<th>Amount</th>
+									<th>Package</th>
 									<th>Date registered</th>
 									<th></th>
 								</tr>
@@ -66,14 +72,18 @@
 	        serverSide: true,
 	        ajax: '{{ route('sales-order.index') }}/list-data',
 	        columns: [
-	            {data: 'name', name: 'name'},
+	            {data: 'date', name: 'date'},
+	            {data: 'client', name: 'client'},
+	            {data: 'product', name: 'product'},
+	            {data: 'total', name: 'total'},
+	            {data: 'packaging', name: 'packaging'},
+	            {data: 'amount', name: 'amount'},
+	            {data: 'package', name: 'package'},
 	            {data: 'created_at', name: 'created_at'},
 	            {data: 'action', name: 'action', orderable: false, searchable: false, width:'20%'}
 	        ],
-	        "columnDefs": [
-				{"targets": 1,"className": "text-center"}
-			],
-			"order":[[2, 'desc']]
+	        
+			"order":[[8, 'desc']]
 		});
 		$('.datatable').attr('style','border-collapse: collapse !important');
 		

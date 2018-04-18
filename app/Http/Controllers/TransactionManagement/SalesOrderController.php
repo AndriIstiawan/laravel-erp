@@ -56,7 +56,21 @@ class SalesOrderController extends Controller
     public function store(Request $request)
     {   
         $order = new SalesOrder();
-        $order->name = $request->name;
+        $order->date = $request->date;
+        $order->client = $request->client;
+        $order->product = $request->product;
+        $order->type = $request->type;
+        $order->code = $request->code;
+        $order->total = $request->total;
+        $order->packaging = $request->packaging;
+        $order->amount = $request->amount;
+        $order->package = $request->package;
+        $order->realisasi = $request->realisasi;
+        $order->stockk = $request->stockk;
+        $order->pending = $request->pending;
+        $order->balance = $request->balance;
+        $order->pendingpr = $request->pendingpr;
+        $order->note = $request->note;
         $order->save();
         
         return redirect()->route('sales-order.index')->with('toastr', 'sales-order');
@@ -64,7 +78,7 @@ class SalesOrderController extends Controller
 
     //for getting datatable at index
     public function show(Request $request, $action){
-        $orders = SalesOrder::select(['id', 'name', 'created_at']);
+        $orders = SalesOrder::select(['date', 'client','product','total', 'packaging','amount', 'package','created_at']);
         
         return Datatables::of($orders)
             ->addColumn('action', function ($order) {
