@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Product;
 use App\Variant;
 use App\SalesOrder;
+use App\User;
 use Yajra\Datatables\Datatables;
 use File;
 use Image;
@@ -46,9 +47,15 @@ class SalesOrderController extends Controller
         date_default_timezone_set('Asia/Jakarta');
         $order=SalesOrder::all();
         $product= Product::all();
+        $modUser = User::where('role', 'elemMatch', array('name' => 'Sales'))->get();
+        $user= User::where('role', 'elemMatch', array('name' => 'Tim Operational'))->get();
+        $users= User::where('role', 'elemMatch', array('name' => 'Tim Operational'))->get();
         return view('panel.transaction-management.sales-order.form-create')->with([
             'order' => $order, 
-            'product' => $product
+            'product' => $product,
+            'user' => $user,
+            'users' => $users,
+            'modUser' => $modUser,
         ]);
     }
 
@@ -56,13 +63,27 @@ class SalesOrderController extends Controller
     public function store(Request $request)
     {   
         $order = new SalesOrder();
+        $order->sono = $request->sono;
         $order->date = $request->date;
         $order->client = $request->client;
-        $order->product = $request->product;
-        $order->type = $request->type;
-        $order->code = $request->code;
+
+        $sales=user::where('_id', $request->sales)->get();
+        $order->sales=$sales->toArray();
+
+        $products=Product::where('_id', $request->product)->get();
+        $order->product=$products->toArray();
+
         $order->total = $request->total;
         $order->packaging = $request->packaging;
+        $order->catatan = $request->catatan;
+        $order->tunggu = $request->tunggu;
+
+        $checks=user::where('_id', $request->check)->get();
+        $order->check=$checks->toArray();
+
+        $produksis=user::where('_id', $request->produksi)->get();
+        $order->produksi=$produksis->toArray();
+
         $order->amount = $request->amount;
         $order->package = $request->package;
         $order->realisasi = $request->realisasi;
@@ -71,21 +92,22 @@ class SalesOrderController extends Controller
         $order->balance = $request->balance;
         $order->pendingpr = $request->pendingpr;
         $order->note = $request->note;
+
         $order->save();
         
-        return redirect()->route('sales-order.index')->with('toastr', 'sales-order');
+        return redirect()->route('sales-order.index')->with('toastr', 'new');
     }
 
     //for getting datatable at index
     public function show(Request $request, $action){
-        $orders = SalesOrder::select(['date', 'client','product','total', 'packaging','amount', 'package','created_at']);
+        $orders = SalesOrder::all();
         
         return Datatables::of($orders)
             ->addColumn('action', function ($order) {
                 return 
                     '<button class="btn btn-success btn-sm"  data-toggle="modal" data-target="#primaryModal"
                          onclick="funcModal($(this))" data-link="'.route('sales-order.edit',['id' => $order->id]).'">
-                        <i class="fa fa-pencil-square-o"></i>&nbsp;Edit Sales Order</button>'.
+                        <i class="fa fa-pencil-square-o"></i>&nbsp;Edit</button>'.
                     '<form style="display:inline;" method="POST" action="'.
                         route('sales-order.destroy',['id' => $order->id]).'">'.method_field('DELETE').csrf_field().
                     '<button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-remove"></i>&nbsp;Remove</button></form>';

@@ -3,27 +3,28 @@
 <link href="{{ asset('fiture-style/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 <link href="{{ asset('fiture-style/select2/select2.min.css') }}" rel="stylesheet">
 <div class="container-fluid">
-  	<p>
-		<button type="button" class="btn btn-primary" onclick="window.history.back()">
-  			<i class="fa fa-backward"></i>&nbsp; Back to List
-		</button>
-	</p>
+  	
 </div>
 <form id="jxForm1" novalidate="novalidate" method="POST" action="{{ route('sales-order.store') }}" enctype="multipart/form-data">
 {{ csrf_field() }}
 <div class="container-fluid">
 	<div class="animate fadeIn">
 		<div class="row">
-			<div class="col-md-5">
+		<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<p>
+					<button type="button" class="btn btn-primary" onclick="window.history.back()">
+							<i class="fa fa-backward"></i>&nbsp; Back to List
+					</button>
+				</p>
 				<!--start card -->
 				
 				<div class="card">
 					<div class="card-header">
-						<i class="fa fa-align-justify"></i> Product
+						<i class="fa fa-align-justify"></i> SO
 						<small>data </small>
 					</div>
 					<div class="card-body">
-						<div class="tab-content">
 						<!-- TAB CONTENT -->
 							<div class="tab-pane fade active show" id="general" role="tabpanel" aria-labelledby="general-tab">
 								<div class="row">
@@ -31,56 +32,73 @@
 										<input type="hidden" class="id" name="id">
 											<div class="row">
 												<div class="col-md-12">
-												<label class="col-form-label" for="type">*Date</label>
-													<div class="input-group">
-														<input type="text" class="form-control" id="date" name="date" value="{{ date('Y-m-d') }}"readonly>
-													</div>
-													<label class="col-form-label" for="phone">*Client</label>
-													<div class="input-group">
-														<input type="text" class="form-control" id="client" name="client" >
-													</div>
+												<label class="col-form-label" for="sono">*SO NO</label>
+												<div class="input-group">
+													<input type="text" class="form-control" id="sono" name="sono" placeholder="NO1029ON" aria-describedby="sono-error">
+													<em id="sono-error" class="error invalid-feedback">Please enter a SO NO</em>
 												</div>
-											</div>
-											<div class="row">
-												<div class="col-md-12">
-													<div class="form-group">
-														<label class="col-form-label" for="name">*Name Product</label>
-															<select id="product" name="product" class="form-control" aria-describedby="product-error" required>
-						                        				<option value=""></option>
-										                        @foreach ($product as $product)
-										                          	<option data-code="{{$product->code}}" data-type="{{$product->type}}" value="{{$product->name}}" >{{$product->name}}</option>
-										                        @endforeach
-								                        	</select>
-								                        <em id="member-error" class="error invalid-feedback">Please select product</em>
-
-														<label class="col-form-label" for="type">*Type</label>
-														<div class="input-group">
-															<input type="text" class="form-control" name="type" id="product-type" readonly>
-														</div>
-															<label class="col-form-label" for="code">*Code</label>
-														<div class="input-group">
-															<input type="text" class="form-control" name="code" id="product-code" readonly>
-														</div>
-													</div>
+												<label class="col-form-label" for="type">*SO Date</label>
+												<div class="input-group">
+													<input type="text" class="form-control" id="date" name="date" value="{{ date('Y-m-d H:i:s') }}" readonly>
+												</div>
+												<label class="col-form-label" for="phone">*Client</label>
+												<div class="input-group">
+													<input type="text" class="form-control" id="client" name="client" aria-describedby="client-error" placeholder="Member">
+													<em id="client-error" class="error invalid-feedback">Please enter a client</em>
+												</div>
+												<label class="col-form-label" for="sales">*Sales</label>
+												<div class="input-group">
+													<select id="sales" class="form-control" style="width: 100% !important;" name="sales" aria-describedby="sales-error">
+														<option value=""></option>
+													@foreach($modUser as $modUser)
+														<option value="{{$modUser->id}}">{{$modUser->name}}</option>
+													@endforeach
+													</select>
+													<em id="sales-error" class="error invalid-feedback">Please select a sales</em>
+												</div>
 												</div>
 											</div>
 									</div>
 								</div>
 							</div>
-							<!-- end tab 1 -->
-						</div>
 					</div>
 				</div>
 				<!--end card -->
-			</div>
-			<div class="col-md-7">
 				<div class="card">
 					<div class="card-header">
 						<i class="fa fa-align-justify"></i> Packaging
 						<small>Product </small>
 					</div>
 					<div class="card-body">
+						<button class="btn btn-primary add_field_btn-primary" >Add More</button>
+              			<hr>
 						<div class="row">
+							<div class="col-md-12">
+								<div class="form-group">
+									<label class="col-form-label" for="name">*Name Product</label>
+										<select id="product" name="product" class="form-control" aria-describedby="product-error" required>
+	                        				<option value=""></option>
+					                        @foreach ($product as $product)
+					                          	<option data-code="{{$product->code}}" data-type="{{$product->type}}" value="{{$product->name}}" >{{$product->name}}</option>
+					                        @endforeach
+			                        	</select>
+			                        <em id="product-error" class="error invalid-feedback">Please select product</em>
+			                    </div>
+			                    <div class="row">
+			                    	<div class="col-md-6">
+									<label class="col-form-label" for="type">*Type</label>
+									<div class="input-group">
+										<input type="text" class="form-control" name="type" id="product-type" readonly>
+									</div>
+									</div>
+									<div class="col-md-6">
+										<label class="col-form-label" for="code">*Code</label>
+									<div class="input-group">
+										<input type="text" class="form-control" name="code" id="product-code" readonly>
+									</div>
+									</div>
+								</div>
+							</div>
 							<div class="col-md-6">
 		                       <div class="form-group">
 		                          <label class="col-form-label" for="total">*Total (Kg)</label>
@@ -157,39 +175,70 @@
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-		<div class="card">
-                <div class="card-header">
-                        <i class="fa fa-align-justify"></i> Note
-                </div>
-                <div class="card-body">
-		            <div class="form-group row">
-                        <label class="col-md-3 col-form-label" for="note">*Note
-                            <br>
-                            <small class="text-muted"></small>
-                        </label>
-	                    <div class="col-md-9">
-	                        <textarea rows="6" name="note" class="form-control" aria-describedby="note-error"></textarea>
-	                            <em id="note-error" class="error invalid-feedback">fill the note</em>
-	                    </div>
-                    </div>
-		            <div class="row">
-						<div class="form-group col-md-12">
-							<div class="card">
-								<p>
-								<div class="btn-group"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-								    <button type="submit" class="btn btn-success">Save</button>&nbsp;
-								    <button type="button" class="btn btn-secondary" onclick="window.history.back()">
-								    <i class="fa fa-times-rectangle"></i>&nbsp; Cancel
-								    </button>
+				<div class="card">
+					<div class="card-header">
+						<i class="fa fa-align-justify"></i> Pemeriksaan
+						<small>Product </small>
+					</div>
+					<div class="card-body">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="row">
+									<div class="col-md-12">
+									<div class="form-group">
+										<label class="col-form-label" for="catatan">*Catatan</label>
+										<textarea type="text" rows="5" class="form-control" id="catatan" name="catatan" placeholder="Catatan" aria-describedby="catatan-error" required=""></textarea>
+										<em id="catatan-error" class="error invalid-feedback">Please enter a name user</em>
+									</div>
+									<div class="form-group">
+										<label class="col-form-label" for="tunggu">*Stok tunggu dari bekasi</label>
+										<select id="tunggu" class="form-control" style="width: 48.5% !important;" name="tunggu" aria-describedby="tunggu-error">
+											<option value=""></option>
+											<option value="Ada">Ada</option>
+											<option value="Tidak Ada">Tidak Ada</option>
+										</select>
+										<em id="tunggu-error" class="error invalid-feedback">Please select a status</em>
+									</div>
+									</div>
 								</div>
-								</p>
+								<div class="row">
+									<div class="form-group col-md-6">
+										<label class="col-form-label" for="check">*Dicheck Oleh,</label>
+										<select id="check" class="form-control" style="width: 100% !important;" name="check" aria-describedby="check-error">
+											<option value=""></option>
+										@foreach($user as $user)
+											<option value="{{$user->id}}">{{$user->name}}</option>
+										@endforeach
+										</select>
+										<em id="check-error" class="error invalid-feedback">Please select a check</em>
+									</div>
+									<div class="form-group col-md-6">
+										<label class="col-form-label" for="produksi">*Diproduksi Oleh,</label>
+										<select id="produksi" class="form-control" style="width: 100% !important;" name="produksi" aria-describedby="produksi-error">
+											<option value=""></option>
+										@foreach($users as $users)
+											<option value="{{$users->id}}">{{$users->name}}</option>
+										@endforeach
+										</select>
+										<em id="produksi-error" class="error invalid-feedback">Please select a produksi</em>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
-                </div>
-        	</div>
+				</div>
+				<div class="card">
+					<p>
+					<div class="btn-group"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					    <button type="submit" class="btn btn-success">Save</button>&nbsp;
+					    <button type="button" class="btn btn-secondary" onclick="window.history.back()">
+					    <i class="fa fa-times-rectangle"></i>&nbsp; Cancel
+					    </button>
+					</div>
+					</p>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 </form>
@@ -205,6 +254,13 @@
 			$('#product-type').val(element.attr('data-type'));
 			$('#product-code').val(element.attr('data-code'));
 		});
+
+
+	$('#tunggu').select2({theme:"bootstrap", placeholder:'Please select'});
+	$('#packaging').select2({theme:"bootstrap", placeholder:'Please select'});
+	$('#check').select2({theme:"bootstrap", placeholder:'Please select'});
+	$('#produksi').select2({theme:"bootstrap", placeholder:'Please select'});
+	$('#sales').select2({theme:"bootstrap", placeholder:'Please select'});
 	
 	
 	function findTotal(){
@@ -216,64 +272,63 @@
 
 	$("#picture").change(function (){ readURL(this); });
 
-  	$('#member').on('change', function(){
+  	$('#tunggu').on('change', function(){
+    $(this).addClass('is-valid').removeClass('is-invalid');
+  	});
+
+  	$('#packaging').on('change', function(){
+    $(this).addClass('is-valid').removeClass('is-invalid');
+  	});
+
+  	$('#sales').on('change', function(){
+    $(this).addClass('is-valid').removeClass('is-invalid');
+  	});
+
+  	$('#produksi').on('change', function(){
+    $(this).addClass('is-valid').removeClass('is-invalid');
+  	});
+
+  	$('#check').on('change', function(){
     $(this).addClass('is-valid').removeClass('is-invalid');
   	});
 
 	$("#jxForm1").validate({
 		rules:{
-			name_product:{required:true,minlength:2},
-			description_product:{required:true,minlength:2},
-			quantity_product:{required:true},
-			comment:{required:true,minlength:2},
-			member:{required:true},
-			email:{
-				required:true,
-				email:true,
-				remote:{
-					url: '{{ route('master-user.index') }}/find',
-					type: "post",
-					data:{
-						_token:'{{ csrf_token() }}',
-						id: $('.id').val(),
-						email: function(){
-							return $('#jxForm1 :input[name="email"]').val();
-						}
-					}
-				}
-			}
+			sono:{required:true,minlength:2},
+			client:{required:true,minlength:2},
+			sales:{required:true},
+			product:{required:true},
+			total:{required:true},
+			packaging:{required:true},
+			tunggu:{required:true},
+			check:{required:true},
+			produksi:{required:true}
 		},
 		messages:{
-			name_product:{
-				required:'Please enter a name product',
-				minlength:'Name must consist of at least 2 characters'
+			sono:{
+				required:'Please enter a SO NO',
+				minlength:'SO NO must consist of at least 2 characters'
 			},
-			description_product:{
-				required:'Please enter a description product',
-				minlength:'Name must consist of at least 2 characters'
+			client:{
+				required:'Please enter a client',
+				minlength:'name client must consist of at least 2 characters'
 			},
-			phone:{ required:'Please enter a phone number' 
+			sales:{
+				required:'Please select a sales'
 			},
-			quantity_product:{ required:'Please enter a quantity_product' 
+			product:{
+				required:'Please select a product'
 			},
-			comment:{ 
-				required:'Please enter a comment',
-				minlength:'Name must consist of at least 2 characters'
+			total:{
+				required:'Please enter a total'
 			},
-			member:{ required:'Please select member' 
+			packaging:{ required:'Please select a packaging' 
 			},
-			password:{
-				required:'Please provide a password',
-				minlength:'Password must be at least 5 characters long'
+			tunggu:{ required:'Please select a status' 
 			},
-			confirm_password:{
-				required:'Please provide a password',
-				minlength:'Password must be at least 5 characters long',
-				equalTo:'Please enter the same password'
+			check:{ required:'Please select a checked' 
 			},
-			email: {
-				email:'Please enter a valid email address',
-				remote:'Email address already in use. Please use other email.'
+			produksi:{ required:'Please select a produksi' 
 			}
 		},
 		errorElement:'em',
