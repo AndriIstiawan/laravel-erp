@@ -33,7 +33,7 @@
 												<div class="col-md-12">
 												<label class="col-form-label" for="type">*Date</label>
 													<div class="input-group">
-														<input type="text" class="form-control" id="date" name="date" value="{{ date('Y-m-d H:i:s') }}"readonly>
+														<input type="text" class="form-control" id="date" name="date" value="{{ date('Y-m-d') }}"readonly>
 													</div>
 													<label class="col-form-label" for="phone">*Client</label>
 													<div class="input-group">
@@ -45,21 +45,21 @@
 												<div class="col-md-12">
 													<div class="form-group">
 														<label class="col-form-label" for="name">*Name Product</label>
-															<select id="product" name="product[]" class="form-control" aria-describedby="product-error" required>
+															<select id="product" name="product" class="form-control" aria-describedby="product-error" required>
 						                        				<option value=""></option>
 										                        @foreach ($product as $product)
-										                          	<option data-code="{{$product->code}}" data-type="{{$product->type}}" value="{{$product->id}}" >{{$product->name}}</option>
+										                          	<option data-code="{{$product->code}}" data-type="{{$product->type}}" value="{{$product->name}}" >{{$product->name}}</option>
 										                        @endforeach
 								                        	</select>
 								                        <em id="member-error" class="error invalid-feedback">Please select product</em>
 
-														<label class="col-form-label" for="email">*Type</label>
+														<label class="col-form-label" for="type">*Type</label>
 														<div class="input-group">
-															<input type="text" class="form-control" id="product-type" readonly>
+															<input type="text" class="form-control" name="type" id="product-type" readonly>
 														</div>
-															<label class="col-form-label" for="phone">*Code</label>
+															<label class="col-form-label" for="code">*Code</label>
 														<div class="input-group">
-															<input type="text" class="form-control" id="product-code" readonly>
+															<input type="text" class="form-control" name="code" id="product-code" readonly>
 														</div>
 													</div>
 												</div>
@@ -108,7 +108,7 @@
 		                        <div class="col-md-6">
 			                        <div class="form-group">
 			                          <label class="col-form-label" >*Amount</label>
-			                          <input class="form-control" type="text" name="totall" id="totall" readonly/>
+			                          <input class="form-control" type="text" name="amount" id="amount" readonly/>
 			                        </div>
 			                    </div>
 			                    <div class="col-md-6">
@@ -151,7 +151,7 @@
 			                    <div class="col-md-6">
 			                        <div class="form-group">
 			                          <label class="col-form-label" >*Pending PR</label>
-			                          <input class="form-control" type="text" name="balance" id="balance"/>
+			                          <input class="form-control" type="text" name="pendingpr" id="pendingpr"/>
 			                        </div>
 			                    </div>
 						</div>
@@ -165,13 +165,13 @@
                 </div>
                 <div class="card-body">
 		            <div class="form-group row">
-                        <label class="col-md-3 col-form-label" for="name">*Note
+                        <label class="col-md-3 col-form-label" for="note">*Note
                             <br>
                             <small class="text-muted"></small>
                         </label>
 	                    <div class="col-md-9">
-	                        <textarea rows="4" name="description" class="form-control" aria-describedby="description-error"></textarea>
-	                            <em id="description-error" class="error invalid-feedback">Please describe the product</em>
+	                        <textarea rows="6" name="note" class="form-control" aria-describedby="note-error"></textarea>
+	                            <em id="note-error" class="error invalid-feedback">fill the note</em>
 	                    </div>
                     </div>
 		            <div class="row">
@@ -210,7 +210,7 @@
 	function findTotal(){
 	    var value = $('#packaging option:selected').attr('value');
 	    var tot = parseInt($('#total').val())/value;
-	    $('#totall').val(tot);
+	    $('#amount').val(tot);
 
     }
 
