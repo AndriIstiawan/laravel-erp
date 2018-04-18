@@ -13,9 +13,23 @@ class CreateSalesorderTable extends Migration
      */
     public function up()
     {
-        Schema::create('salesorder', function (Blueprint $table) {
+        Schema::create('sales_order', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->date('date');
+            $table->string('client');
+            $table->string('product');
+            $table->string('type');
+            $table->string('code');
+            $table->string('total');
+            $table->string('packaging');
+            $table->string('amount');
+            $table->string('package');
+            $table->string('realisasi');
+            $table->string('stockk');
+            $table->string('pending');
+            $table->string('balance');
+            $table->string('pendingpr');
+            $table->string('note');
             $table->timestamps();
         });
     }

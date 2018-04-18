@@ -84,6 +84,15 @@ class SalesOrderController extends Controller
         $produksis=user::where('_id', $request->produksi)->get();
         $order->produksi=$produksis->toArray();
 
+        $order->amount = $request->amount;
+        $order->package = $request->package;
+        $order->realisasi = $request->realisasi;
+        $order->stockk = $request->stockk;
+        $order->pending = $request->pending;
+        $order->balance = $request->balance;
+        $order->pendingpr = $request->pendingpr;
+        $order->note = $request->note;
+
         $order->save();
         
         return redirect()->route('sales-order.index')->with('toastr', 'new');
