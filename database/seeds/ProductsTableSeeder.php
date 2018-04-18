@@ -15,10 +15,21 @@ class ProductsTableSeeder extends Seeder
             'code' => '5006',
             'name' => 'EXTREME FORTE',
             'type' => 'BP',
-            '500' => '38.62',
-            '1' => '35.57',
-            '5' => '32.36',
-            '25' => '30.05',
+            'stock' => '120',
+            'price'=> [
+                [
+                'price' => '500 mg $38.62'
+                ],
+                [
+                'price' => '1 kg $35.57'
+                ],
+                [
+                'price' => '5 kg $32.36/kg'
+                ],
+                [
+                'price' => '25 kg $30.05/kg'
+                ]
+            ],
             'currency' => 'USD',
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
