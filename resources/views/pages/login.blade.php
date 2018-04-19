@@ -40,7 +40,8 @@
             <div class="card-group">
                 <div class="card p-4">
                     <div class="card-body">
-                        <h1>Login</h1>
+                        <h1>Login</h1><p class="text-muted">ADMIN<br>
+                            Email : root@fiture.id<br> Pass : asdasd</p>
                         <p class="text-muted">Sign In to your account</p>
                         <form method="POST" action="{{ route('login') }}">
 
@@ -70,8 +71,6 @@
                     <div class="card-body text-center">
                         <h2>Macbrame Backend ERP</h2><br>
                         <div>
-                            ADMIN <br>
-                            Email : root@fiture.id<br> Pass : asdasd<br><p><br>
                             <p>Project development ERP Web. copyright@fiture.id</p>
                         </div>
                     </div>

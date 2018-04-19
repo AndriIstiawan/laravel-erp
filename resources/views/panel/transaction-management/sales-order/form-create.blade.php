@@ -77,7 +77,7 @@
 							<div class="col-md-4">
 								<div class="form-group">
 									<label class="col-form-label" for="name">*Name Product</label>
-										<select id="product" name="product" style="width: 100% !important;" class="form-control" aria-describedby="product-error" required>
+										<select id="product" name="product[]" style="width: 100% !important;" class="form-control" aria-describedby="product-error" required>
 	                        				<option value=""></option>
 					                        @foreach ($product as $product)
 					                          	<option data-code="{{$product->code}}" data-type="{{$product->type}}" value="{{$product->id}}">{{$product->name}}</option>

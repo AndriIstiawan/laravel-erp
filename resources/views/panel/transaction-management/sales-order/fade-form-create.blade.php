@@ -6,13 +6,13 @@
         </button>
         <div class="form-group">
           <label class="col-form-label" for="name">*Name Product</label>
-            <select id="products" name="products" style="width: 100% !important;" class="form-control" aria-describedby="products-error">
+            <select id="product" name="product[]" style="width: 100% !important;" class="form-control" aria-describedby="products-error">
               <option value=""></option>
               @foreach ($products as $products)
                   <option datas-code="{{$products->code}}" datas-type="{{$products->type}}" value="{{$products->name}}" >{{$products->name}}</option>
               @endforeach
             </select>
-          <em id="products-error" class="error invalid-feedback">Please select product</em>
+          <em id="product-error" class="error invalid-feedback">Please select product</em>
       </div>
       </div>
       <div class="col-md-4">
@@ -30,7 +30,7 @@
       <div class="col-md-4">
         <div class="form-group">
           <label class="col-form-label" for="total">*Total (Kg)</label>
-          <input type="text" onkeyup="findTotal()" class="form-control" id="total" name="total" placeholder="00" aria-describedby="total-error">
+          <input type="text" onkeyup="findTotals()" class="form-control" id="totals" name="total" placeholder="00" aria-describedby="total-error">
             <em id="total-error" class="error invalid-feedback">
               Please enter a total
             </em>
@@ -39,7 +39,7 @@
       <div class="col-md-4">
         <div class="form-group">
           <label class="col-form-label" >*Packaging Option</label>
-          <select id="packaging" name="packaging" class="form-control" style="width: 100% !important;" aria-describedby="packaging-error" onchange="findTotal()" required>
+          <select id="packagings" name="packaging" class="form-control" style="width: 100% !important;" aria-describedby="packaging-error" onchange="findTotals()" required>
             <option value=""></option>
             <option value="0.25" >250 gram</option>
             <option value="0.5">500 gram</option>  
@@ -54,7 +54,7 @@
       <div class="col-md-4">
         <div class="form-group">
           <label class="col-form-label" >*Amount</label>
-          <input class="form-control" type="text" name="amount" id="amount" readonly/>
+          <input class="form-control" type="text" name="amount" id="amounts" readonly/>
         </div>
       </div>
       <div class="col-md-4">
