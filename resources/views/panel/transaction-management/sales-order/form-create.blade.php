@@ -22,7 +22,6 @@
 						<small>data </small>
 					</div>
 					<div class="card-body">
-						<!-- TAB CONTENT -->
 							<div class="tab-pane fade active show" id="general" role="tabpanel" aria-labelledby="general-tab">
 								<div class="row">
 									<div class="col-md-12">
@@ -67,7 +66,7 @@
 						<small>Product </small>
 					</div>
 					<div class="card-body">
-						<button  type="button" class="btn btn-primary" id="addMe" onclick="$('.type-attr_3 .option-card').append($('.optt').html())"> Add More</button>
+						<button  type="button" class="btn btn-primary" id="addMe" onclick="$('.type-attr_3 .option-card1').append($('.optt').html())"> Add More</button>
               			<hr>
               			<div type="hidden" id="theCount" value="0"></div>
               		<div class="option-card type-attr_3">
@@ -89,28 +88,28 @@
 							<div class="col-md-4">
 							<label class="col-form-label" for="type">*Type</label>
 								<div class="form-group">
-									<input type="text" class="form-control" name="type" id="product-type" readonly>
+									<input type="text" class="form-control" name="type[]" id="product-type" readonly>
 								</div>
 							</div>
 							<div class="col-md-4">
 								<label class="col-form-label" for="code">*Code</label>
 							<div class="form-group">
-								<input type="text" class="form-control" name="code" id="product-code" readonly>
+								<input type="text" class="form-control" name="code[]" id="product-code" readonly>
 							</div>
 							</div>
 							<div class="col-md-4">
 		                       <div class="form-group">
 		                          <label class="col-form-label" for="total">*Total (Kg)</label>
-		                          <input type="text" onkeyup="findTotal()" class="form-control" id="total" name="total" placeholder="00" aria-describedby="total-error">
-		                            <em id="total-error" class="error invalid-feedback">
-		                              Please enter a total
+		                          <input type="number" onkeyup="findTotal()" class="form-control" id="total" name="total[]" placeholder="00" aria-describedby="totals-error" required="">
+		                            <em id="totals-error" class="error invalid-feedback">
+		                              Please enter a totals
 		                            </em>
 		                        </div>
 		                    </div>
 							<div class="col-md-4">
 			                    <div class="form-group">
 			                        <label class="col-form-label" >*Packaging Option</label>
-			                        <select id="packaging" name="packaging" class="form-control" style="width: 100% !important;" aria-describedby="packaging-error" onchange="findTotal()" required>
+			                        <select id="packaging" name="packaging[]" class="form-control" style="width: 100% !important;" aria-describedby="packaging-error" onchange="findTotal()" required>
 				                        <option value=""></option>
 										<option value="0.25" >250 gram</option>
 										<option value="0.5">500 gram</option>  
@@ -125,13 +124,13 @@
 	                        <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="col-form-label" >*Amount</label>
-		                          <input class="form-control" type="text" name="amount" id="amount" placeholder="00" readonly/>
+		                          <input class="form-control" type="text" name="amount[]" id="amount" placeholder="00" readonly/>
 		                        </div>
 		                    </div>
-		                    <div class="col-md-4">
+		                    <!-- <div class="col-md-4">
 		                        <div class="form-group">
 		                          	<label class="col-form-label" >*Package</label>
-		                          	<select id="package" name="package" class="form-control" style="width: 100% !important;" aria-describedby="package-error" required>
+		                          	<select id="package" name="package[]" class="form-control" style="width: 100% !important;" aria-describedby="package-error" required>
 	                              		<option value=""></option>
 							            <option value="drum" >Drum</option>
 							            <option value="Jerigen">Jerigen</option>  
@@ -144,40 +143,42 @@
 		                    <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="col-form-label" >*Realisasi (Kg)</label>
-		                          <input class="form-control" type="text" name="realisasi" id="realisasi" aria-describedby="realisasi-error"/>
+		                          <input class="form-control" type="text" name="realisasi[]" id="realisasi" aria-describedby="realisasi-error" required="" />
 		                        <em id="realisasi-error" class="error invalid-feedback">Please enter a realisasi</em>
 		                        </div>
 		                    </div>
 		                    <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="col-form-label" >*Stock Kapuk</label>
-		                          <input class="form-control" type="text" name="stockk" id="stockk" aria-describedby="stockk-error" />
+		                          <input class="form-control" type="text" name="stockk[]" id="stockk" aria-describedby="stockk-error" required="" />
 		                        <em id="stockk-error" class="error invalid-feedback">Please enter a stockk</em>
 		                        </div>
 		                    </div>
 		                    <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="col-form-label" >*Pending SO</label>
-		                          <input class="form-control" type="text" name="pending" id="pending" aria-describedby="pending-error"/>
+		                          <input class="form-control" type="text" name="pending[]" id="pending" aria-describedby="pending-error" required="" />
 		                        <em id="pending-error" class="error invalid-feedback">Please enter a pending</em>
 		                        </div>
 		                    </div>
 		                    <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="col-form-label" >*Balance Stock</label>
-		                          <input class="form-control" type="text" name="balance" id="balance" aria-describedby="balance-error"/>
+		                          <input class="form-control" type="text" name="balance[]" id="balance" aria-describedby="balance-error" required="" />
 		                        <em id="balance-error" class="error invalid-feedback">Please enter a balance</em>
 		                        </div>
 		                    </div>
 		                    <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="col-form-label" >*Pending PR</label>
-		                          <input class="form-control" type="text" name="pendingpr" id="pendingpr" aria-describedby="pendingpr-error"/>
+		                          <input class="form-control" type="text" name="pendingpr[]" id="pendingpr" aria-describedby="pendingpr-error" required="" />
 		                        <em id="pendingpr-error" class="error invalid-feedback">Please enter a pendingpr</em>
 		                        </div>
-		                    </div>
+		                    </div> -->
 						</div>
 						<hr style="position:relative; width: 95%; right: 2.5%;">
+					</div>
+					<div class="option-card1">
 					</div>
 					</div>
 					</div>
@@ -195,7 +196,7 @@
 									<div class="col-md-12">
 									<div class="form-group">
 										<label class="col-form-label" for="catatan">*Catatan</label>
-										<textarea type="text" rows="5" class="form-control" id="note" name="note" placeholder="Catatan" aria-describedby="catatan-error" required=""></textarea>
+										<textarea type="text" rows="5" class="form-control" id="catatan" name="catatan" placeholder="Catatan" aria-describedby="catatan-error" required=""></textarea>
 										<em id="catatan-error" class="error invalid-feedback">Please enter a name user</em>
 									</div>
 									</div>

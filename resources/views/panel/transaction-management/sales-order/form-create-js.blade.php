@@ -4,29 +4,37 @@
     var counter = 0;
       $("#addMe").click(function(){
           counter++;
-          if (counter=='1') {
+          if (counter=='10') {
             $("#addMe").prop('disabled', true);
-            alert('You Can Only 1 Click Add More');
+            alert('You Can Only 10 Click Add More');
           }else{
             $("#addMe").prop('disabled', false);
           }
       });
   });
       
-  $('#product').select2({theme:"bootstrap", placeholder:'Please select'})
+  $('#product')/*.select2({theme:"bootstrap", placeholder:'Please select'})*/
     .change(function(){
       var element= $(this).find('option:selected');
       $('#product-type').val(element.attr('data-type'));
       $('#product-code').val(element.attr('data-code'));
     });
 
+  $('#products')/*.select2({theme:"bootstrap", placeholder:'Please select'})*/
+    .change(function(){
+      var element= $(this).find('option:selected');
+      $('#products-type').val(element.attr('data1-type'));
+      $('#products-code').val(element.attr('data1-code'));
+    });
 
-  $('#tunggu').select2({theme:"bootstrap", placeholder:'Please select'});
-  $('#packaging').select2({theme:"bootstrap", placeholder:'Please select'});
+
+  $('#tunggu').select2({theme:"bootstrap", placeholder:'Please select'});/*
+  $('#packaging').select2({theme:"bootstrap", placeholder:'Please select'});*/
   $('#check').select2({theme:"bootstrap", placeholder:'Please select'});
   $('#produksi').select2({theme:"bootstrap", placeholder:'Please select'});
-  $('#sales').select2({theme:"bootstrap", placeholder:'Please select'});
-  $('#package').select2({theme:"bootstrap", placeholder:'Please select'});  
+  $('#sales').select2({theme:"bootstrap", placeholder:'Please select'});/*
+  $('#package').select2({theme:"bootstrap", placeholder:'Please select'}); 
+  $('#packages').select2({theme:"bootstrap", placeholder:'Please select'});  */
   
   function findTotal(){
       var value = $('#packaging option:selected').attr('value');

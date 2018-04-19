@@ -53,6 +53,7 @@
 									<th>Name</th>
 									<th>Type</th>
 									<th>Stock</th>
+									<th>Value</th>
 									<th>Price</th>
 									<th>Curency</th>
 									<th>Date registered</th>
@@ -88,6 +89,7 @@
 	            {data: 'name', name: 'name'},
 	            {data: 'type', name: 'type'},
 	            {data: 'stock', name: 'stock'},
+	            {data: 'price.[<br>].value', name: 'name'},
 	            {data: 'price.[<br>].price', name: 'name'},
 	            {data: 'currency', name: 'currency'},
 	            {data: 'created_at', name: 'created_at'},

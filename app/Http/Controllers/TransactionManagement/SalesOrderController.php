@@ -72,17 +72,25 @@ class SalesOrderController extends Controller
         $sales=user::where('_id', $request->sales)->get();
         $order->sales=$sales->toArray();
 
-        $products=Product::where('_id', $request->product)->get();
+        $products=Product::whereIn('_id', $request->product)->get();
         $order->product=$products->toArray();
 
-        $arrLeft =[];
+        $productss =[];
         for($i=0; $i < count($request->total); $i++){
-            $arrLeft[] =[
-                'total' => $request->total[$i]
+            $productss[] =[
+                'total' => $request->total[$i],
+                'packaging' => $request->packaging[$i],
+                'amount' => $request->amount[$i],
+                'package' => $request->package[$i],
+                'realisasi' => $request->realisasi[$i],
+                'stockk' => $request->stockk[$i],
+                'pending' => $request->pending[$i],
+                'balance' => $request->balance[$i],
+                'pendingpr' => $request->pendingpr[$i]
             ];
         }
-        $order->total = $arrLeft;
-        $order->packaging = $request->packaging;
+        $order->productattr=$productss;
+
         $order->catatan = $request->catatan;
         $order->tunggu = $request->tunggu;
 
@@ -92,15 +100,9 @@ class SalesOrderController extends Controller
         $produksis=user::where('_id', $request->produksi)->get();
         $order->produksi=$produksis->toArray();
 
-        $order->amount = $request->amount;
-        $order->package = $request->package;
-        $order->realisasi = $request->realisasi;
-        $order->stockk = $request->stockk;
-        $order->pending = $request->pending;
-        $order->balance = $request->balance;
-        $order->pendingpr = $request->pendingpr;
-        
-        return dd($order);
+        $order->save();
+
+        return redirect()->route('sales-order.index')->with('toastr', 'new');
     }
 
     //for getting datatable at index
@@ -112,10 +114,10 @@ class SalesOrderController extends Controller
                 return 
                     '<button class="btn btn-success btn-sm"  data-toggle="modal" data-target="#primaryModal"
                          onclick="funcModal($(this))" data-link="'.route('sales-order.edit',['id' => $order->id]).'">
-                        <i class="fa fa-pencil-square-o"></i>&nbsp;Edit</button>'.
+                        <i class="fa fa-pencil-square-o"></i></button>'.
                     '<form style="display:inline;" method="POST" action="'.
                         route('sales-order.destroy',['id' => $order->id]).'">'.method_field('DELETE').csrf_field().
-                    '<button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-remove"></i>&nbsp;Remove</button></form>';
+                    '<button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-remove"></button></form>';
             })
             ->rawColumns(['status', 'action'])
             ->make(true);
