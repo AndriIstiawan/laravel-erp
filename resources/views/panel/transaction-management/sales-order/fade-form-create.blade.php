@@ -1,49 +1,18 @@
 <div class="fade" style="display:none">
-  <div class="opt">
-    <div class="row">
-      <div class="pull-left col-md-4">
-        <div class="text-center">
-          <a class="btn vars-btn" style="cursor:default;margin:0 auto;padding:0;">
-            <img class="rounded mediaPrev" src="{{ asset('img/add-photo.png') }}" style="width: 110px; height: 110px;">
-          </a>
-          <br>
-          <a class="btn btn-warning btn-sm" style="position: relative;top:-105px;right:-20px;" onclick="$(this).siblings('.fade').click()">
-              <i class="fa fa-pencil"></i>
-          </a>
-          <a class="btn btn-danger btn-sm" style="position: relative;top:-105px;right:-20px;" onclick="$(this).siblings('.fade').val('');$(this).siblings('.vars-btn').find('.mediaPrev').attr('src','{{ asset('img/add-photo.png') }}');">
-              <i class="fa fa-trash"></i>
-          </a>
-          <input class="fade media" type="file" name="image[]" onchange="readURL(this)" accept="image/jpg, image/jpeg, image/png" aria-describedby="image-error" style="width: 110px; height: 1px;">
-          <em id="image-error" class="error invalid-feedback">Please enter a image</em>
-        </div>
-      </div>
-      <div class="form-group col-md-8">
-        <label class="col-form-label" for="linkimg">*Link</label>
-        <div class="input-group">
-          <input type="text" name="linkimg[]" class="form-control" placeholder="Ex Option value">
-          <span class="input-group-append">
-            <button type="button" class="btn btn-danger" onclick="$(this).closest('.row').remove()">
-              <i class="fa fa-close"></i>
-            </button>
-          </span>
-        </div>
-      </div>
-    </div>
-  </div>
   <div class="optt">
     <div class="row">
       <div class="col-md-4">
-        <a class="btn btn-danger rounded btn-sm pull-right" onclick="$(this).closest('.row').remove()" style="position:relative;top:-30px;right:-450px;"><i class="fa fa-trash"></i>
-        </a>
+        <button class="btn btn-danger rounded btn-sm pull-right" id="minmore" onclick="$(this).closest('.row').remove()" style="position:relative;top:-30px;right:-450px;"><i class="fa fa-trash"></i>
+        </button>
         <div class="form-group">
           <label class="col-form-label" for="name">*Name Product</label>
-            <select id="product" name="product" style="width: 100% !important;" class="form-control" aria-describedby="product-error" required>
+            <select id="products" name="products" style="width: 100% !important;" class="form-control" aria-describedby="products-error">
               <option value=""></option>
               @foreach ($products as $products)
-                  <option data-code="{{$products->code}}" data-type="{{$products->type}}" value="{{$products->name}}" >{{$products->name}}</option>
+                  <option datas-code="{{$products->code}}" datas-type="{{$products->type}}" value="{{$products->name}}" >{{$products->name}}</option>
               @endforeach
             </select>
-          <em id="product-error" class="error invalid-feedback">Please select product</em>
+          <em id="products-error" class="error invalid-feedback">Please select product</em>
       </div>
       </div>
       <div class="col-md-4">
@@ -136,7 +105,6 @@
         <em id="pendingpr-error" class="error invalid-feedback">Please enter a pendingpr</em>
         </div>
       </div>
-      <hr>
     </div>
   </div>
 </div>

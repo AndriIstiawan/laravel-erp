@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Fiture - E-Commerce B2B">
+    <meta name="description" content="Macbrame Backend">
     <meta name="author" content="fiture-dev">
-    <meta name="keyword" content="fiture,e-commerce,e-commerce b2b">
-    <link rel="shortcut icon" href="{{ asset('img/fiture-favicon.png') }}">
+    <meta name="keyword" content="fiture,e-rp,e-erp macbrame">
+    <link rel="shortcut icon" href="{{ asset('img/logo.png') }}">
 
-    <title>Fiture - E-Commerce B2B</title>
+    <title>Macbrame Backend</title>
 
     <!-- Icons -->
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
@@ -68,8 +68,10 @@
                 </div>
                 <div class="card text-white bg-primary py-5 d-md-down-none" style="width:44%">
                     <div class="card-body text-center">
+                        <h2>Macbrame Backend ERP</h2><br>
                         <div>
-                            <h2>Fiture ERP</h2>
+                            ADMIN <br>
+                            Email : root@fiture.id<br> Pass : asdasd<br><p><br>
                             <p>Project development ERP Web. copyright@fiture.id</p>
                         </div>
                     </div>

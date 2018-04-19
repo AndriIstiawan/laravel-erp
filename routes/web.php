@@ -15,7 +15,7 @@ Auth::routes();
 /* CoreUI templates */
 
 Route::middleware('auth')->group(function() {
-	Route::view('/', 'panel.dashboard');
+	Route::view('/', 'panel.transaction-management.sales-order.index');
 	
 	Route::get('profile/reset-password', 'ProfileController@resetPass');
 	Route::post('profile/change-password', 'ProfileController@changePassword');

@@ -99,7 +99,7 @@ class PermissionsTableSeeder extends Seeder
 				'guard_name' => 'web',
 				'created_at' => date("Y-m-d H:i:s"),
 				'updated_at' => date("Y-m-d H:i:s")
-			],
+			]/*,
 			[
 	        	'name' => 'Category',
 	        	'slug' => 'category',
@@ -110,7 +110,7 @@ class PermissionsTableSeeder extends Seeder
 				'guard_name' => 'web',
 				'created_at' => date("Y-m-d H:i:s"),
 				'updated_at' => date("Y-m-d H:i:s")
-			],/*,
+			],*//*,
 			[
 	        	'name' => 'Master-Deal',
 	        	'slug' => null,
