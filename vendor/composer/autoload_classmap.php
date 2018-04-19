@@ -6,7 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'App\\Archievement' => $baseDir . '/app/Archievement.php',
     'App\\AttributeSets' => $baseDir . '/app/AttributeSets.php',
     'App\\Attributes' => $baseDir . '/app/Attributes.php',
     'App\\Brand' => $baseDir . '/app/Brand.php',
@@ -60,6 +59,7 @@ return array(
     'App\\Http\\Controllers\\UserManagement\\PermissionController' => $baseDir . '/app/Http/Controllers/UserManagement/PermissionController.php',
     'App\\Http\\Controllers\\UserManagement\\RoleController' => $baseDir . '/app/Http/Controllers/UserManagement/RoleController.php',
     'App\\Http\\Controllers\\mailManagement\\mailController' => $baseDir . '/app/Http/Controllers/MailManagement/MailController.php',
+    'App\\Http\\Controllers\\transactionmanagement\\InvoiceController' => $baseDir . '/app/Http/Controllers/TransactionManagement/InvoiceController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\EncryptCookies' => $baseDir . '/app/Http/Middleware/EncryptCookies.php',
     'App\\Http\\Middleware\\PermissionAccess' => $baseDir . '/app/Http/Middleware/PermissionAccess.php',
@@ -68,11 +68,11 @@ return array(
     'App\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\Images' => $baseDir . '/app/Images.php',
+    'App\\Invoice' => $baseDir . '/app/Invoice.php',
     'App\\Levels' => $baseDir . '/app/Levels.php',
     'App\\Member' => $baseDir . '/app/Member.php',
     'App\\OrderStatuses' => $baseDir . '/app/OrderStatuses.php',
     'App\\Orders' => $baseDir . '/app/Orders.php',
-    'App\\Packaging' => $baseDir . '/app/Packaging.php',
     'App\\Payment' => $baseDir . '/app/Payment.php',
     'App\\PaymentMethod' => $baseDir . '/app/PaymentMethod.php',
     'App\\Permission' => $baseDir . '/app/Permission.php',
@@ -2559,7 +2559,6 @@ return array(
     'PHP_Token_XOR_EQUAL' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
     'PHP_Token_YIELD' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
     'PHP_Token_YIELD_FROM' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
-    'PackagingTableSeeder' => $baseDir . '/database/seeds/PackagingTableSeeder.php',
     'ParseError' => $vendorDir . '/symfony/polyfill-php70/Resources/stubs/ParseError.php',
     'Parsedown' => $vendorDir . '/erusev/parsedown/Parsedown.php',
     'PaymensMethodsTableSeeder' => $baseDir . '/database/seeds/PaymensMethodsTableSeeder.php',
