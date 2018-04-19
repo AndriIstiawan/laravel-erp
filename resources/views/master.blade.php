@@ -7,8 +7,8 @@
   <meta name="description" content="Fiture - ERP">
   <meta name="author" content="fiture-dev">
   <meta name="keyword" content="fiture,erp">
-  <link rel="shortcut icon" href="{{ asset('img/fiture-favicon.png') }}">
-  <title>Backend - Macbrame</title>
+  <link rel="shortcut icon" href="{{ asset('img/logo.png') }}">
+  <title>Macbrame Backend</title>
 
   <!-- Icons -->
   <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
@@ -53,7 +53,7 @@
 			<a class="btn" href="#"><i class="icon-speech"></i></a>
 			<a class="btn" href="./"><i class="icon-graph"></i> &nbsp;Dashboard</a>
       @if(Auth::user()->hasAcc('master-setting'))
-			<a class="btn" href="{{route('master-setting.index')}}"><i class="icon-settings"></i> &nbsp;Settings</a>
+			<a class="btn" href=""><i class="icon-settings"></i> &nbsp;Settings</a>
       @endif
 			</div>
 			</li>

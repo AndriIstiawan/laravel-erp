@@ -67,8 +67,9 @@
 						<small>Product </small>
 					</div>
 					<div class="card-body">
-						<button type="button" class="btn btn-primary" onclick="$('.type-attr_3 .option-card').append($('.optt').html())"> Add More</button>
+						<button  type="button" class="btn btn-primary" id="addMe" onclick="$('.type-attr_3 .option-card').append($('.optt').html())"> Add More</button>
               			<hr>
+              			<div type="hidden" id="theCount" value="0"></div>
               		<div class="option-card type-attr_3">
                 	<div class="form-group input_">
                   	<div class="option-card">
@@ -79,7 +80,7 @@
 										<select id="product" name="product" style="width: 100% !important;" class="form-control" aria-describedby="product-error" required>
 	                        				<option value=""></option>
 					                        @foreach ($product as $product)
-					                          	<option data-code="{{$product->code}}" data-type="{{$product->type}}" value="{{$product->id}}" >{{$product->name}}</option>
+					                          	<option data-code="{{$product->code}}" data-type="{{$product->type}}" value="{{$product->id}}">{{$product->name}}</option>
 					                        @endforeach
 			                        	</select>
 			                        <em id="product-error" class="error invalid-feedback">Please select product</em>
@@ -124,7 +125,7 @@
 	                        <div class="col-md-4">
 		                        <div class="form-group">
 		                          <label class="col-form-label" >*Amount</label>
-		                          <input class="form-control" type="text" name="amount" id="amount" readonly/>
+		                          <input class="form-control" type="text" name="amount" id="amount" placeholder="00" readonly/>
 		                        </div>
 		                    </div>
 		                    <div class="col-md-4">

@@ -1,10 +1,10 @@
 <div class="sidebar">
 	<nav class="sidebar-nav">
 		<ul class="nav">
-			<li class="nav-item">
+			<!-- <li class="nav-item">
 				<a class="nav-link" href="{{env('APP_URL','/')}}">
 					<i class="icon-speedometer"></i> Dashboard </a>
-			</li>
+			</li> -->
 			<!-- @if(Auth::user()->hasAcc('master-setting'))
 			<li class="nav-item">
 				<a class="nav-link nav-link-success" href="{{route('master-setting.index')}}" target="_top"><i class="icon-settings"></i><strong>SETTINGS</strong></a>
