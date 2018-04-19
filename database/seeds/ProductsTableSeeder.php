@@ -12,27 +12,60 @@ class ProductsTableSeeder extends Seeder
     public function run()
     {
         DB::table('products')->insert([
+            [
             'code' => '5006',
             'name' => 'EXTREME FORTE',
             'type' => 'BP',
             'stock' => '120',
             'price'=> [
                 [
-                'price' => '500 mg $38.62'
+                'value' => '500',
+                'price' => '38.62'
                 ],
                 [
-                'price' => '1 kg $35.57'
+                'value' => '1',
+                'price' => '35.57'
                 ],
                 [
-                'price' => '5 kg $32.36/kg'
+                'value' => '5',
+                'price' => '32.36'
                 ],
                 [
-                'price' => '25 kg $30.05/kg'
+                'value' => '25',
+                'price' => '30.05'
                 ]
             ],
             'currency' => 'USD',
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
-    ]);
+            ],
+            [
+            'code' => '5007',
+            'name' => 'EXTREME FORTE 2',
+            'type' => 'BPK',
+            'stock' => '100',
+            'price'=> [
+                [
+                'value' => '500',
+                'price' => '38.62'
+                ],
+                [
+                'value' => '1',
+                'price' => '35.57'
+                ],
+                [
+                'value' => '5',
+                'price' => '32.36'
+                ],
+                [
+                'value' => '25',
+                'price' => '30.05'
+                ]
+            ],
+            'currency' => 'USD',
+            'created_at' => date("Y-m-d H:i:s"),
+            'updated_at' => date("Y-m-d H:i:s")
+            ]
+        ]);
     }
 }
