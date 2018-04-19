@@ -93,7 +93,6 @@ class SalesOrderController extends Controller
         $order->pending = $request->pending;
         $order->balance = $request->balance;
         $order->pendingpr = $request->pendingpr;
-        $order->note = $request->note;
 
         $order->save();
         
@@ -102,7 +101,7 @@ class SalesOrderController extends Controller
 
     //for getting datatable at index
     public function show(Request $request, $action){
-        $orders = SalesOrder::select(['id', 'date', 'client', 'sales','product', 'total', 'packaging', 'amount','package','note','check','produksi','created_at']);
+        $orders = SalesOrder::all();
         
         return Datatables::of($orders)
             ->addColumn('action', function ($order) {
