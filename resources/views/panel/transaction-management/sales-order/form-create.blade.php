@@ -195,7 +195,7 @@
 									<div class="col-md-12">
 									<div class="form-group">
 										<label class="col-form-label" for="catatan">*Catatan</label>
-										<textarea type="text" rows="5" class="form-control" id="catatan" name="catatan" placeholder="Catatan" aria-describedby="catatan-error" required=""></textarea>
+										<textarea type="text" rows="5" class="form-control" id="note" name="note" placeholder="Catatan" aria-describedby="catatan-error" required=""></textarea>
 										<em id="catatan-error" class="error invalid-feedback">Please enter a name user</em>
 									</div>
 									</div>

@@ -36,17 +36,14 @@
 						<table class="table table-responsive-sm table-bordered table-striped table-sm datatable" style="width: 100%;" >
 							<thead>
 								<tr>
-									<th>SO NO</th>
 									<th>SO Date</th>
 									<th>Client</th>
-									<th>Sales</th>
 									<th>Product</th>
 									<th>Total</th>
 									<th>Packaging</th>
 									<th>Amount</th>
 									<th>Package</th>
 									<th>Catatan</th>
-									<th>Stok Tunggu</th>
 									<th>Checker</th>
 									<th>Produser</th>
 									<th>Date registered</th>
@@ -78,26 +75,23 @@
 	        serverSide: true,
 	        ajax: '{{ route('sales-order.index') }}/list-data',
 	        columns: [
-	            {data: 'sono', name: 'sono'},
 	            {data: 'date', name: 'date'},
 	            {data: 'client', name: 'client'},
-	            {data: 'sales.[].name', name: 'sales'},
 	            {data: 'product.[].name', name: 'product'},
 	            {data: 'total', name: 'total'},
 	            {data: 'packaging', name: 'packaging'},	            
 	            {data: 'amount', name: 'amount'},
 	            {data: 'package', name: 'package'},
-	            {data: 'catatan', name: 'catatan'},
-	            {data: 'tunggu', name: 'tunggu'},
+	            {data: 'note', name: 'note'},
 	            {data: 'check.[].name', name: 'check'},
 	            {data: 'produksi.[].name', name: 'produksi'},
 	            {data: 'created_at', name: 'created_at'},
-	            {data: 'action', name: 'action', orderable: false, searchable: false, width:'10%'}
+	            {data: 'action', name: 'action', orderable: false, searchable: false, width:'20%'}
 	        ],
-	        "columnDefs": [
-				{"targets": 14,"className": "text-center"}
+			"columnDefs": [
+				{"targets": 11,"className": "text-center"}
 			],
-			"order":[[13, 'desc']]
+			"order":[[10, 'desc']]
 		});
 		$('.datatable').attr('style','border-collapse: collapse !important');
 		
