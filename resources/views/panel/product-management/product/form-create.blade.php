@@ -242,7 +242,7 @@
                                     <a class="dropdown-item" href="javascript:void(0)" onclick="save('exit')">Save and Exit</a>
                                 </div>
                             </div>
-                            <a class="btn btn-secondary" href="{{route('variant.index')}}">
+                            <a class="btn btn-secondary" href="{{route('product.index')}}">
                                 <i class="fa fa-times-rectangle"></i>&nbsp; Cancel
                             </a>
                         </div>

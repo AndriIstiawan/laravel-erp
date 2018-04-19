@@ -1,38 +1,23 @@
 <script>  
-  var counter = 0;
+  
   $(document).ready(function() {
+    var counter = 0;
       $("#addMe").click(function(){
           counter++;
           if (counter=='1') {
-            $('.btn-primary').prop('disabled', true);
-            /*alert('You Can Only 1 Click Add More');*/
+            $("#addMe").prop('disabled', true);
+            alert('You Can Only 1 Click Add More');
           }else{
-            $('.btn-primary').prop('disabled', false);
+            $("#addMe").prop('disabled', false);
           }
       });
-      $("#minmore").on('click',function(){
-          counter++;
-          if (counter=='6') {
-            $('.btn-primary').prop('disabled', true);
-            /*alert('You Can Only 1 Click Add More');*/
-          }else{
-            $('.btn-primary').prop('disabled', false);
-          }
-      });
-
   });
+      
   $('#product').select2({theme:"bootstrap", placeholder:'Please select'})
     .change(function(){
       var element= $(this).find('option:selected');
       $('#product-type').val(element.attr('data-type'));
       $('#product-code').val(element.attr('data-code'));
-    });
-
-  $('#products').select2({theme:"bootstrap", placeholder:'Please select'})
-    .change(function(){
-      var element= $(this).find('option:selected');
-      $('#products-type').val(element.attr('datas-type'));
-      $('#products-code').val(element.attr('datas-code'));
     });
 
 
@@ -41,21 +26,21 @@
   $('#check').select2({theme:"bootstrap", placeholder:'Please select'});
   $('#produksi').select2({theme:"bootstrap", placeholder:'Please select'});
   $('#sales').select2({theme:"bootstrap", placeholder:'Please select'});
-  $('#package').select2({theme:"bootstrap", placeholder:'Please select'});
-
-  $('#tunggus').select2({theme:"bootstrap", placeholder:'Please select'});
-  $('#packagings').select2({theme:"bootstrap", placeholder:'Please select'});
-  $('#checks').select2({theme:"bootstrap", placeholder:'Please select'});
-  $('#produksis').select2({theme:"bootstrap", placeholder:'Please select'});
-  $('#saless').select2({theme:"bootstrap", placeholder:'Please select'});
-  $('#packages').select2({theme:"bootstrap", placeholder:'Please select'});
-  
+  $('#package').select2({theme:"bootstrap", placeholder:'Please select'});  
   
   function findTotal(){
       var value = $('#packaging option:selected').attr('value');
       var tot = parseInt($('#total').val())/value;
       var total = parseInt(tot);
       $('#amount').val(total);
+
+    }
+
+  function findTotals(){
+      var value = $('#packagings option:selected').attr('value');
+      var tot = parseInt($('#totals').val())/value;
+      var total = parseInt(tot);
+      $('#amounts').val(total);
 
     }
 

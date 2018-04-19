@@ -75,7 +75,13 @@ class SalesOrderController extends Controller
         $products=Product::where('_id', $request->product)->get();
         $order->product=$products->toArray();
 
-        $order->total = $request->total;
+        $arrLeft =[];
+        for($i=0; $i < count($request->total); $i++){
+            $arrLeft[] =[
+                'total' => $request->total[$i]
+            ];
+        }
+        $order->total = $arrLeft;
         $order->packaging = $request->packaging;
         $order->catatan = $request->catatan;
         $order->tunggu = $request->tunggu;
@@ -93,10 +99,8 @@ class SalesOrderController extends Controller
         $order->pending = $request->pending;
         $order->balance = $request->balance;
         $order->pendingpr = $request->pendingpr;
-
-        $order->save();
         
-        return redirect()->route('sales-order.index')->with('toastr', 'new');
+        return dd($order);
     }
 
     //for getting datatable at index
