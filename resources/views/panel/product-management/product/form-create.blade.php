@@ -27,7 +27,7 @@
                             <small>Information </small>
                         </div>
                         <div class="card-body">
-                            <div class="form-group row">
+                            <!-- <div class="form-group row">
                                 <label class="col-md-3 col-form-label" for="">*Product Image
                                     <br>
                                     <small class="text-muted">Recommendations: 3-5 Product Images. Use the 5 best photos for this product. (format
@@ -41,7 +41,7 @@
                                         <button type="button" class="fade btn btn-sm"><i class="fa fa-pencil"></i></button>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="form-group row">
                                 <label class="col-md-3 col-form-label" for="name">*Product Name
                                     <br>
@@ -53,59 +53,44 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-md-3 col-form-label" for="hf-email">*Category
+                                <label class="col-md-3 col-form-label" for="hf-email">*Type
                                     <br>
                                 </label>
                                 <div class="col-md-9">
                                     <div class="form-group row">
-                                        <?php
-                                    function nested($listArr, $categories, $parent){
-                                        $parentKey = explode(' ',$parent);
-                                        $parentKey = $parentKey[count($parentKey)-1];
-                                        ?>
-                                            <div class="col-md-4 {{$parent}} {{ ($parent != 'cat-null'?'d-none':'') }}">
-                                                <select name="category[]" data-parent="{{$parentKey}}" class="form-control category" style="width: 100% !important;" aria-describedby="category[]-error">
+                                            <div class="col-md-4">
+                                                <select id="packaging" name="packaging" class="form-control" style="width: 100% !important;" aria-describedby="packaging-error" required>
                                                     <option value=""></option>
-                                                    <?php
-                                                foreach($listArr as $la){
-                                                    echo '<option value="'.$la['slug'].'">'.$la['name'].'</option>';
-                                                }
-                                                ?>
+                                                    <option value="BP" >BP</option>
+                                                    <option value="LC">LC</option>  
+                                                    <option value="AC">AC</option>  
+                                                    <option value="CM">CM</option>  
+                                                    <option value="PK">PK</option>
                                                 </select>
                                                 <em id="category[]-error" class="error invalid-feedback">Please select category</em>
                                             </div>
-                                            <?php
-                                        foreach($listArr as $la){
-                                            $like = $la['slug'];
-                                            $result = array_filter($categories, function ($item) use ($like){
-                                                foreach($item['parent'] as $parList){
-                                                    // echo '<pre>';
-                                                    // print_r($parList['slug']); echo "=>".$like;
-                                                    if($parList['slug'] == $like){
-                                                        return true;
-                                                    }
-                                                }
-                                                return false;
-                                            });
-                                            if(count($result) > 0){
-                                                $parent .= '-child cat-'.$la['slug'];
-                                                nested($result, $categories, $parent);
-                                                // echo '<pre>';
-                                                // print_r($result); echo "=>".$like;
-                                            }
-                                        }
-                                    }
-                                    $like = null;
-                                    $result = array_filter($categories, function ($item) use ($like){
-                                        if ($item['parent'] == $like) {
-                                            return true;
-                                        }
-                                        return false;
-                                    });
-                                    nested($result, $categories, 'cat-null');
-                                    ?>
+                                            
                                     </div>
+
                                 </div>
+                                <label class="col-md-3 col-form-label" for="hf-email">*Code
+                                    <br>
+                                </label>
+                                <div class="col-md-9">
+                                    <div class="form-group row">
+                                            <div class="col-md-4">
+                                                <select id="packaging" name="packaging" class="form-control" style="width: 100% !important;" aria-describedby="packaging-error" required>
+                                                    <option value=""></option>
+                                                    <option value="BP" >BP</option>
+                                                    <option value="LC">LC</option>  
+                                                    <option value="AC">AC</option>  
+                                                    <option value="CM">CM</option>  
+                                                    <option value="PK">PK</option>
+                                                </select>
+                                                <em id="category[]-error" class="error invalid-feedback">Please select category</em>
+                                            </div>
+                                            
+                                    </div>
                             </div>
                         </div>
                     </div>
