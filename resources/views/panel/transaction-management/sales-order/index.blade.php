@@ -82,7 +82,7 @@
 	            {data: 'packaging', name: 'packaging'},	            
 	            {data: 'amount', name: 'amount'},
 	            {data: 'package', name: 'package'},
-	            {data: 'note', name: 'note'},
+	            {data: 'catatan', name: 'catatan'},
 	            {data: 'check.[].name', name: 'check'},
 	            {data: 'produksi.[].name', name: 'produksi'},
 	            {data: 'created_at', name: 'created_at'},
