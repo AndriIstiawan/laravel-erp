@@ -70,58 +70,46 @@
 	                	<div class="form-group input_">
 								<div class="row">
 									<div class="col-md-2">
-										<div class="input-group">
-											<label class="col-form-label" for="name">*Name Product</label>
-												<select id="product" name="product[]" style="width: 100% !important;" class="form-control form-control-sm" aria-describedby="product-error" required>
-			                        				<option value=""></option>
-							                        @foreach ($product as $product)
-							                          	<option data-code="{{$product->code}}" data-type="{{$product->type}}" value="{{$product->name}}">{{$product->name}}</option>
-							                        @endforeach
-					                        	</select>
-					                        <em id="product-error" class="error invalid-feedback">Please select product</em>
-					                    </div>
+										<label class="col-form-label" for="name">*Name Product</label>
+											<select id="product" name="product[]" style="width: 100% !important;" class="form-control form-control-sm" aria-describedby="product-error" required>
+		                        				<option value=""></option>
+						                        @foreach ($product as $product)
+						                          	<option data-code="{{$product->code}}" data-type="{{$product->type}}" value="{{$product->name}}">{{$product->name}}</option>
+						                        @endforeach
+				                        	</select>
+				                        <em id="product-error" class="error invalid-feedback">Please select product</em>
 									</div>
 									<div class="col-md-2">
 									<label class="col-form-label" for="type">*Type</label>
-										<div class="input-group">
-											<input type="text" class="form-control form-control-sm" name="type[]" id="product-type" readonly>
-										</div>
+										<input type="text" class="form-control form-control-sm" name="type[]" id="product-type" readonly>
 									</div>
 									<div class="col-md-2">
 										<label class="col-form-label" for="code">*Code</label>
-									<div class="input-group">
 										<input type="text" class="form-control form-control-sm" name="code[]" id="product-code" readonly>
 									</div>
-									</div>
 									<div class="col-md-2">
-				                       <div class="form-group">
-				                          <label class="col-form-label" for="total">*Total (Kg)</label>
-				                          <input type="number" onkeyup="findTotal()" class="form-control form-control-sm" id="total" name="total[]" placeholder="00" aria-describedby="totals-error" required="">
-				                            <em id="totals-error" class="error invalid-feedback">
-				                              Please enter a totals
-				                            </em>
-				                        </div>
+			                            <label class="col-form-label" for="total">*Total (Kg)</label>
+			                            <input type="number" onkeyup="findTotal()" class="form-control form-control-sm" id="total" name="total[]" placeholder="00" aria-describedby="totals-error" required="">
+			                            <em id="totals-error" class="error invalid-feedback">
+			                              Please enter a totals
+			                            </em>
 				                    </div>
 									<div class="col-md-2">
-					                    <div class="form-group">
-					                        <label class="col-form-label" >*Packaging Option</label>
-					                        <select id="packaging" name="packaging[]" class="form-control form-control-sm" style="width: 100% !important;" aria-describedby="packaging-error" onchange="findTotal()" required>
-						                        <option value=""></option>
-												<option value="0.25" >250 gram</option>
-												<option value="0.5">500 gram</option>  
-												<option value="1">1 kg</option>  
-												<option value="5">5 kg</option>  
-												<option value="25">25 kg</option>
-												<option value="30">30 kg</option>
-					                        </select>
-					                        <em id="packaging-error" class="error invalid-feedback">Please select packaging</em>
-					                    </div>
+				                        <label class="col-form-label" >*Packaging Option</label>
+				                        <select id="packaging" name="packaging[]" class="form-control form-control-sm" style="width: 100% !important;" aria-describedby="packaging-error" onchange="findTotal()" required>
+					                        <option value=""></option>
+											<option value="0.25" >250 gram</option>
+											<option value="0.5">500 gram</option>  
+											<option value="1">1 kg</option>  
+											<option value="5">5 kg</option>  
+											<option value="25">25 kg</option>
+											<option value="30">30 kg</option>
+				                        </select>
+				                        <em id="packaging-error" class="error invalid-feedback">Please select packaging</em>
 		                    		</div>
 			                        <div class="col-md-2">
-				                        <div class="form-group">
-				                          <label class="col-form-label" >*Amount</label>
-				                          <input class="form-control form-control-sm" type="text" name="amount[]" id="amount" placeholder="00" readonly/>
-				                        </div>
+				                        <label class="col-form-label" >*Amount</label>
+				                        <input class="form-control form-control-sm" type="text" name="amount[]" id="amount" placeholder="00" readonly/>
 				                    </div>
 				                    <div style="display: none;" class="col-md-4">
 				                        <div class="form-group">
@@ -172,7 +160,7 @@
 				                        </div>
 				                    </div>
 								</div>
-								<hr style="position:relative; width: 95%; right: 2.5%; color: #FFFF00; ">
+								<hr style="border-top: 4px solid #20a8d8; ">
 							<div class="option-card1">
 							</div>
 						<button  type="button" class="btn btn-primary" id="addMe" onclick="$('.input_ .option-card1').append($('.optt').html())"> Add More</button>
@@ -253,6 +241,7 @@
 	</div>
 </div>
 </form>
+
 @include('panel.transaction-management.sales-order.fade-form-create')
 @endsection
 <!-- /.container-fluid -->

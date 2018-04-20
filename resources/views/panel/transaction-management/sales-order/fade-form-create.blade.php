@@ -1,42 +1,33 @@
-<div class="fade" style="display:none">
+<div class="fade">
   <div class="optt">
     <div class="optts">
       <div class="row">
         <div class="col-md-2">
-          <div class="form-group">
-            <label class="col-form-label" for="name">*Name Product</label>
-              <select id="products" name="product[]" style="width: 100% !important;" class="form-control form-control-sm" aria-describedby="product-error" required>
-                <option value=""></option>
-                @foreach ($products as $products)
-                    <option data-code="{{$products->code}}" data-type="{{$products->type}}" value="{{$products->name}}" >{{$products->name}}</option>
-                @endforeach
-              </select>
-            <em id="product-error" class="error invalid-feedback">Please select product</em>
-          </div>
+          <label class="col-form-label" for="name">*Name Product</label>
+            <select id="products" name="product[]" style="width: 100% !important;" class="form-control form-control-sm" aria-describedby="product-error" required>
+              <option value=""></option>
+              @foreach ($products as $productss)
+                  <option data-code="{{$productss->code}}" data-type="{{$productss->type}}" value="{{$productss->name}}" >{{$productss->name}}</option>
+              @endforeach
+            </select>
+          <em id="product-error" class="error invalid-feedback">Please select product</em>
         </div>
         <div class="col-md-2">
         <label class="col-form-label" for="type">*Type</label>
-          <div class="form-group">
-            <input type="text" class="form-control form-control-sm" name="type[]" id="products-type" readonly>
-          </div>
+          <input type="text" class="form-control form-control-sm" name="type[]" id="products-type" readonly>
         </div>
         <div class="col-md-2">
           <label class="col-form-label" for="code">*Code</label>
-          <div class="form-group">
             <input type="text" class="form-control form-control-sm" name="code[]" id="products-code" readonly>
-          </div>
         </div>
         <div class="col-md-2">
-          <div class="form-group">
             <label class="col-form-label" for="total">*Total (Kg)</label>
             <input type="number" onkeyup="findTotals()" class="form-control form-control-sm" id="totals" name="total[]" placeholder="00" aria-describedby="totals-error">
               <em id="totals-error" class="error invalid-feedback">
                 Please enter a total
               </em>
-          </div>
         </div>
         <div class="col-md-2">
-          <div class="form-group">
             <label class="col-form-label" >*Packaging Option</label>
             <select id="packagings" name="packaging[]" class="form-control form-control-sm" style="width: 100% !important;" aria-describedby="packaging-error" onchange="findTotals()" required>
               <option value=""></option>
@@ -48,13 +39,10 @@
               <option value="30">30 kg</option>
             </select>
             <em id="packaging-error" class="error invalid-feedback">Please select packaging</em>
-          </div>
         </div>
         <div class="col-md-2">
-          <div class="form-group">
             <label class="col-form-label" >*Amount</label>
             <input class="form-control form-control-sm" type="text" name="amount[]" id="amounts" placeholder="00" readonly/>
-          </div>
         </div>
         <div class="col-md-4" style="display: none;">
           <div class="form-group">
@@ -109,7 +97,7 @@
         <button class="btn btn-danger rounded btn-sm pull-right" id="minmore" onclick="$(this).closest('.option-card1 .optts').remove()" ><i class="fa fa-trash"></i>
           </button>
       </div>
-            <hr style="position:relative; width: 95%; right: 2.5%;">
+            <hr style="border-top: 4px solid #20a8d8">
     </div>
   </div>
 </div>
