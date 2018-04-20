@@ -28,10 +28,11 @@
       $('#product-code').val(element.attr('data-code'));
     });
 
-  $('#producta').select2({theme:"bootstrap", placeholder:'Please select'})
+  $('#products')/*.select2({theme:"bootstrap", placeholder:'Please select'})*/
     .change(function(){
       var element= $(this).find('option:selected');
-      alert('adsadsdasS');
+      $('#products-type').val(element.attr('data-type'));
+      $('#products-code').val(element.attr('data-code'));
     });
 
 
