@@ -42,7 +42,12 @@
         </div>
         <div class="col-md-2">
             <label class="col-form-label" >*Amount</label>
+            <div class="control-group input-group">
             <input class="form-control form-control-sm" type="text" name="amount[]" id="amounts" placeholder="00" readonly/>
+          <span class="input-group-append">
+            <button class="btn btn-danger rounded btn-sm pull-right" id="minmore" onclick="$(this).closest('.option-card1 .optts').remove()"><i class="fa fa-trash"></i>
+            </button></span>
+          </div>
         </div>
         <div class="col-md-4" style="display: none;">
           <div class="form-group">
@@ -93,10 +98,7 @@
           </div>
         </div>
       </div>
-      <div>
-        <button class="btn btn-danger rounded btn-sm pull-right" id="minmore" onclick="$(this).closest('.option-card1 .optts').remove()" ><i class="fa fa-trash"></i>
-          </button>
-      </div>
+      
             <hr style="border-top: 4px solid #20a8d8">
     </div>
   </div>

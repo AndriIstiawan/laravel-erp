@@ -163,7 +163,7 @@
 								<hr style="border-top: 4px solid #20a8d8; ">
 							<div class="option-card1">
 							</div>
-						<button  type="button" class="btn btn-primary" id="addMe" onclick="$('.input_ .option-card1').append($('.optt').html())"> Add More</button>
+						<button  type="button" class="btn btn-primary pull-right" id="addMe" onclick="$('.input_ .option-card1').append($('.optt').html())"> Add More</button>
 						</div>
 					</div>
 				</div>
