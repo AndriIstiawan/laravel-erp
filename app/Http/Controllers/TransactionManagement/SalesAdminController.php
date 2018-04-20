@@ -13,7 +13,7 @@ use File;
 use Image;
 use datetime;
 
-class SalesOrderController extends Controller
+class SalesAdminController extends Controller
 {
     //Protected module product by slug
     public function __construct()
@@ -38,14 +38,13 @@ class SalesOrderController extends Controller
     //public index sales order
     public function index()
     {
-        return view('panel.transaction-management.sales-order.index');
+        return view('panel.transaction-management.sales-admin.index');
     }
 
     //view form create
     public function create()
     {
         date_default_timezone_set('Asia/Jakarta');
-        $order=SalesOrder::all();
         $product= Product::all();
         $products= Product::all();
         $modUser = User::where('role', 'elemMatch', array('name' => 'Sales'))->get();
@@ -72,12 +71,12 @@ class SalesOrderController extends Controller
         $sales=user::where('_id', $request->sales)->get();
         $order->sales=$sales->toArray();
 
+        $products=Product::whereIn('_id', $request->product)->get();
+        $order->product=$products->toArray();
+
         $productss =[];
         for($i=0; $i < count($request->total); $i++){
             $productss[] =[
-                'product'=>$request->product[$i],
-                'code'=>$request->code[$i],
-                'type'=>$request->type[$i],
                 'total' => $request->total[$i],
                 'packaging' => $request->packaging[$i],
                 'amount' => $request->amount[$i],
@@ -100,9 +99,9 @@ class SalesOrderController extends Controller
         $produksis=user::where('_id', $request->produksi)->get();
         $order->produksi=$produksis->toArray();
 
-        $order->status = $request->status;
+        $order->save();
 
-        return dd($order);
+        return redirect()->route('sales-order.index')->with('toastr', 'new');
     }
 
     //for getting datatable at index
@@ -167,7 +166,7 @@ class SalesOrderController extends Controller
         $order->pending = $request->pending;
         $order->balance = $request->balance;
         $order->pendingpr = $request->pendingpr;
-        $order->status = $request->status;
+        $order->note = $request->note;
 
         $order->save();
         return redirect()->route('sales-order.index')->with('update', 'sales-order');

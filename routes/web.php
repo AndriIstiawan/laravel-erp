@@ -44,6 +44,12 @@ Route::middleware('auth')->group(function() {
 	/* Sales order */
 	Route::resource('sales-order', 'TransactionManagement\SalesOrderController');
 	Route::post('sales-order/find', 'TransactionManagement\SalesOrderController@find');
+
+	Route::resource('sales-admin', 'TransactionManagement\SalesAdminController');
+	Route::post('sales-admin/find', 'TransactionManagement\SalesAdminController@find');
+
+	Route::resource('production', 'TransactionManagement\ProductionController');
+	Route::post('production/find', 'TransactionManagement\ProductionController@find');
 	/* END Sales order */
 
 	/* Master home */

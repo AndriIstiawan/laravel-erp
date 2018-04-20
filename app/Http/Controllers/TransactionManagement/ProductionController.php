@@ -13,12 +13,12 @@ use File;
 use Image;
 use datetime;
 
-class SalesOrderController extends Controller
+class ProductionController extends Controller
 {
     //Protected module product by slug
     public function __construct()
     {
-        $this->middleware('perm.acc:sales-order');
+        $this->middleware('perm.acc:production');
     }
     //find sales order
     public function find(Request $request){
@@ -38,7 +38,7 @@ class SalesOrderController extends Controller
     //public index sales order
     public function index()
     {
-        return view('panel.transaction-management.sales-order.index');
+        return view('panel.transaction-management.production.index');
     }
 
     //view form create
@@ -72,24 +72,80 @@ class SalesOrderController extends Controller
         $sales=user::where('_id', $request->sales)->get();
         $order->sales=$sales->toArray();
 
-        $productss =[];
+        $products=Product::whereIn('_id', $request->product)->get();
+        $order->product=$products->toArray();
+
+        $totals =[];
         for($i=0; $i < count($request->total); $i++){
-            $productss[] =[
-                'product'=>$request->product[$i],
-                'code'=>$request->code[$i],
-                'type'=>$request->type[$i],
+            $totals[] =[
                 'total' => $request->total[$i],
+            ];
+        }
+        $order->total=$totals;
+
+        $packagings =[];
+        for($i=0; $i < count($request->packaging); $i++){
+            $packagings[] =[
                 'packaging' => $request->packaging[$i],
+            ];
+        }
+        $order->packaging=$packagings;
+
+        $amounts =[];
+        for($i=0; $i < count($request->amount); $i++){
+            $amounts[] =[
                 'amount' => $request->amount[$i],
+            ];
+        }
+        $order->amount=$amounts;
+
+        $packages =[];
+        for($i=0; $i < count($request->package); $i++){
+            $packages[] =[
                 'package' => $request->package[$i],
+            ];
+        }
+        $order->package=$packages;
+
+        $realisasis =[];
+        for($i=0; $i < count($request->realisasi); $i++){
+            $realisasis[] =[
                 'realisasi' => $request->realisasi[$i],
+            ];
+        }
+        $order->realisasi=$realisasis;
+
+        $stockks =[];
+        for($i=0; $i < count($request->stockk); $i++){
+            $stockks[] =[
                 'stockk' => $request->stockk[$i],
+            ];
+        }
+        $order->stockk=$stockks;
+
+        $pendings =[];
+        for($i=0; $i < count($request->pending); $i++){
+            $pendings[] =[
                 'pending' => $request->pending[$i],
+            ];
+        }
+        $order->pending=$pendings;
+
+        $balances =[];
+        for($i=0; $i < count($request->balance); $i++){
+            $balances[] =[
                 'balance' => $request->balance[$i],
+            ];
+        }
+        $order->balance=$balances;
+
+        $pendingprs =[];
+        for($i=0; $i < count($request->pendingpr); $i++){
+            $pendingprs[] =[
                 'pendingpr' => $request->pendingpr[$i]
             ];
         }
-        $order->productattr=$productss;
+        $order->pendingpr=$pendingprs;
 
         $order->catatan = $request->catatan;
         $order->tunggu = $request->tunggu;
@@ -100,9 +156,9 @@ class SalesOrderController extends Controller
         $produksis=user::where('_id', $request->produksi)->get();
         $order->produksi=$produksis->toArray();
 
-        $order->status = $request->status;
+        $order->save();
 
-        return dd($order);
+        return redirect()->route('sales-order.index')->with('toastr', 'new');
     }
 
     //for getting datatable at index
@@ -117,12 +173,8 @@ class SalesOrderController extends Controller
             })
             ->addColumn('action', function ($order) {
                 return 
-                    '<button class="btn btn-success btn-sm"  data-toggle="modal" data-target="#primaryModal"
-                         onclick="funcModal($(this))" data-link="'.route('sales-order.edit',['id' => $order->id]).'">
-                        <i class="fa fa-pencil-square-o"></i>&nbsp;Edit</button>'.
-                    '<form style="display:inline;" method="POST" action="'.
-                        route('sales-order.destroy',['id' => $order->id]).'">'.method_field('DELETE').csrf_field().
-                    '<button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-remove"></i>&nbsp;Remove</button></form>';
+                    '<a class="btn btn-success btn-sm" href="'.route('production.edit',['id' => $order->id]).'">
+                        <i class="fa fa-pencil-square-o"></i>&nbsp;Edit</a>';
             })
             ->rawColumns(['status', 'action'])
             ->make(true);
@@ -132,7 +184,20 @@ class SalesOrderController extends Controller
     public function edit($id)
     {
         $order = SalesOrder::find($id);
-        return view('panel.transaction-management.sales-order.form-edit')->with(['order'=>$order]);
+        $product = Product::whereNotIn('id', array_column($order->product,'id'))->get();
+        $total = SalesOrder::whereIn('total', array_column($order->total,'total'))->get();
+        $packaging = SalesOrder::whereIn('packaging', array_column($order->packaging,'packaging'))->get();
+        $package = SalesOrder::whereIn('package', array_column($order->package,'package'))->get();
+        $amounts = SalesOrder::whereIn('packaging', array_column($order->amount,'packaging'))->get();
+        $user= User::where('role', 'elemMatch', array('name' => 'Tim Operational'))->get();
+        $users= User::where('role', 'elemMatch', array('name' => 'Tim Operational'))->get();
+        return view('panel.transaction-management.production.form-edit')->with([
+            'order'=>$order,
+            'order' => $order, 
+            'product' => $product,
+            'user' => $user,
+            'users' => $users
+        ]);
     }
 
     //update data
@@ -167,7 +232,7 @@ class SalesOrderController extends Controller
         $order->pending = $request->pending;
         $order->balance = $request->balance;
         $order->pendingpr = $request->pendingpr;
-        $order->status = $request->status;
+        $order->note = $request->note;
 
         $order->save();
         return redirect()->route('sales-order.index')->with('update', 'sales-order');

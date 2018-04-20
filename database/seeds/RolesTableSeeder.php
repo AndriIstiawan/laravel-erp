@@ -34,8 +34,15 @@ class RolesTableSeeder extends Seeder
 				'updated_at' => date("Y-m-d H:i:s")
         	],
 			[
-	        	'name' => 'Tim Operational',
-	        	'description' => 'Tim Operational',
+	        	'name' => 'Production',
+	        	'description' => 'Production',
+				'guard_name' => 'web',
+				'created_at' => date("Y-m-d H:i:s"),
+				'updated_at' => date("Y-m-d H:i:s")
+        	],
+			[
+	        	'name' => 'QC',
+	        	'description' => 'QC',
 				'guard_name' => 'web',
 				'created_at' => date("Y-m-d H:i:s"),
 				'updated_at' => date("Y-m-d H:i:s")

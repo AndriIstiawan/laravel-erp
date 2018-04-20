@@ -38,10 +38,7 @@
 								<tr>
 									<th>SO No</th>
 									<th>SO Date</th>
-									<th>Client</th>
-									<th>Product</th>
-									<th>Total</th>
-									<th>Packaging</th>
+									<th>Sales</th>
 									<th>Amount</th>
 									<th>Catatan</th>
 									<th>Status</th>
@@ -72,25 +69,22 @@
 		$('.datatable').DataTable({
 			processing: true,
 	        serverSide: true,
-	        ajax: '{{ route('sales-order.index') }}/list-data',
+	        ajax: '{{ route('sales-admin.index') }}/list-data',
 	        columns: [
 	            {data: 'sono', name: 'sono'},
 	            {data: 'date', name: 'date'},
-	            {data: 'client', name: 'client'},
+	            {data: 'sales.[].name', name: 'client'},
 	            {data: 'product.[<br>].name', name: 'name'},
-	            {data: 'total.[<br>].total', name: 'total'},
-	            {data: 'packaging.[<br>].packaging', name: 'packaging'},	            
-	            {data: 'amount.[<br>].amount', name: 'amount'},
 	            {data: 'catatan', name: 'catatan'},
 	            {data: 'status', name: 'status', orderable: false},
 	            {data: 'created_at', name: 'created_at'},
 	            {data: 'action', name: 'action', orderable: false, searchable: false, width:'20%'}
 	        ],
 			"columnDefs": [
-				{"targets": 10,"className": "text-center"},
-				{"targets": 8,"className": "text-center"}
+				{"targets": 7,"className": "text-center"},
+				{"targets": 5,"className": "text-center"}
 			],
-			"order":[[9, 'desc']]
+			"order":[[6, 'desc']]
 		});
 		$('.datatable').attr('style','border-collapse: collapse !important');
 		
