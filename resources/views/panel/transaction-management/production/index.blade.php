@@ -9,13 +9,6 @@
 				<button type="button" class="btn btn-primary" onclick="refresh()">
 					<i class="fa fa-refresh"></i>
 				</button>
-				<a href="{{ route('sales-order.create') }}" class="btn btn-primary ladda-button" data-style="zoom-in">
-					<span class="ladda-label">
-						<i class="fa fa-plus">
-						</i>
-							New Order
-					</span>
-				</a>
                 
 			</p>
 			</div>
@@ -38,12 +31,12 @@
 								<tr>
 									<th>SO No</th>
 									<th>SO Date</th>
-									<th>Client</th>
+									<th>Sales</th>
 									<th>Product</th>
-									<th>Total</th>
-									<th>Packaging</th>
-									<th>Amount</th>
+									<th>Package</th>
 									<th>Catatan</th>
+									<th>Checker</th>
+									<th>Produser</th>
 									<th>Status</th>
 									<th>Date registered</th>
 									<th></th>
@@ -72,16 +65,16 @@
 		$('.datatable').DataTable({
 			processing: true,
 	        serverSide: true,
-	        ajax: '{{ route('sales-order.index') }}/list-data',
+	        ajax: '{{ route('production.index') }}/list-data',
 	        columns: [
 	            {data: 'sono', name: 'sono'},
 	            {data: 'date', name: 'date'},
-	            {data: 'client', name: 'client'},
+	            {data: 'sales.[].name', name: 'client'},	            
 	            {data: 'product.[<br>].name', name: 'name'},
-	            {data: 'total.[<br>].total', name: 'total'},
-	            {data: 'packaging.[<br>].packaging', name: 'packaging'},	            
-	            {data: 'amount.[<br>].amount', name: 'amount'},
+	            {data: 'package.[<br>].package', name: 'package'},
 	            {data: 'catatan', name: 'catatan'},
+	            {data: 'check.[].name', name: 'check'},
+	            {data: 'produksi.[].name', name: 'produksi'},
 	            {data: 'status', name: 'status', orderable: false},
 	            {data: 'created_at', name: 'created_at'},
 	            {data: 'action', name: 'action', orderable: false, searchable: false, width:'20%'}
