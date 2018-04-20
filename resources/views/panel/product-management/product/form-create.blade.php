@@ -1,5 +1,7 @@
 @extends('master') @section('content')
 <link href="{{ asset('fiture-style/select2/select2.min.css') }}" rel="stylesheet">
+<form id="jxForm1" novalidate="novalidate" method="POST" action="{{ route('product.store') }}" enctype="multipart/form-data">
+{{ csrf_field() }}
 <div class="container-fluid">
     <div class="animate fadeIn">
         <div class="row">
@@ -7,8 +9,7 @@
             <div class="col-lg-10">
                 <div class="alert alert-success" role="alert">
                     <h4 class="alert-heading">New product!</h4>
-                    <p>Before adding the product, make sure the product is in accordance with {{env('APP_NAME','FITURE')}} terms
-                        and conditions.</p>
+                    
                 </div>
                 <p>
                     <a class="btn btn-primary" href="{{route('product.index')}}">
@@ -18,8 +19,7 @@
                         &nbsp; Save all and Exit
                     </button>
                 </p>
-                <form id="jxForm" onsubmit="return false;" enctype="multipart/form-data">
-                    <input type="hidden" name="id"> {{ csrf_field() }}
+                
                     <!--start card general -->
                     <div class="card">
                         <div class="card-header">
@@ -53,13 +53,13 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-md-3 col-form-label" for="hf-email">*Type
+                                <label class="col-md-3 col-form-label" for="type">*Type
                                     <br>
                                 </label>
                                 <div class="col-md-9">
                                     <div class="form-group row">
                                             <div class="col-md-4">
-                                                <select id="packaging" name="packaging" class="form-control" style="width: 100% !important;" aria-describedby="packaging-error" required>
+                                                <select id="type" name="type" class="form-control" style="width: 100% !important;" aria-describedby="packaging-error" required>
                                                     <option value=""></option>
                                                     <option value="BP" >BP</option>
                                                     <option value="LC">LC</option>  
@@ -67,30 +67,34 @@
                                                     <option value="CM">CM</option>  
                                                     <option value="PK">PK</option>
                                                 </select>
-                                                <em id="category[]-error" class="error invalid-feedback">Please select category</em>
+                                                <em id="type-error" class="error invalid-feedback">Please select type</em>
                                             </div>
                                             
                                     </div>
 
                                 </div>
-                                <label class="col-md-3 col-form-label" for="hf-email">*Code
+                                <label class="col-md-3 col-form-label" for="Code">*Code
                                     <br>
                                 </label>
                                 <div class="col-md-9">
                                     <div class="form-group row">
                                             <div class="col-md-4">
-                                                <select id="packaging" name="packaging" class="form-control" style="width: 100% !important;" aria-describedby="packaging-error" required>
-                                                    <option value=""></option>
-                                                    <option value="BP" >BP</option>
-                                                    <option value="LC">LC</option>  
-                                                    <option value="AC">AC</option>  
-                                                    <option value="CM">CM</option>  
-                                                    <option value="PK">PK</option>
-                                                </select>
-                                                <em id="category[]-error" class="error invalid-feedback">Please select category</em>
+                                                <input type="text" class="form-control" name="code" id="code" >
                                             </div>
                                             
                                     </div>
+                                </div>
+                                <label class="col-md-3 col-form-label" for="Stock">*Stock
+                                    <br>
+                                </label>
+                                <div class="col-md-9">
+                                    <div class="form-group row">
+                                            <div class="col-md-4">
+                                                <input type="text" class="form-control" name="stock" id="stock" >
+                                            </div>
+                                            
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -103,143 +107,104 @@
                         </div>
                         <div class="card-body">
                             <div class="form-group row">
-                                <label class="col-md-3 col-form-label" for="name">*Price
-                                </label>
-                                <div class="col-md-9">
-                                    <div class="form-group row price-col">
-                                        <div class="col-md-5">
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">Rp. </span>
-                                                </div>
-                                                <input type="text" class="form-control idr-currency prodPrice" name="prodPrice" placeholder="00" aria-describedby="prodPrice-error">
-                                                <em id="prodPrice-error" class="error invalid-feedback"></em>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-md-3 col-form-label" for="name">Product Stock
+                                <label class="col-md-3 col-form-label" >*Price 250 gr
                                     <br>
-                                    <small class="text-muted">Stock will be reduced automatically when entered in cart or product by buyer has been
-                                        verified.
-                                    </small>
                                 </label>
                                 <div class="col-md-9">
                                     <div class="form-group row">
-                                        <div class="col-md-2">
-                                            <input type="text" name="stock" class="form-control text-right input-number stock" placeholder="00">
-                                        </div>
+                                    <div class="col-md-4">
+                                        <input type="text" name="satu" class="form-control" placeholder="250 gr" style="width:200px;" aria-describedby="250-error">
+                                    </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-md-3 col-form-label" for="name">Product Variant
+                                <label class="col-md-3 col-form-label" for="Stockl">*Price 500 gr
+                                    <br>
                                 </label>
                                 <div class="col-md-9">
                                     <div class="form-group row">
-                                        <div class="col-md-5 variant-btn">
-                                            <button type="button" class="btn btn-secondary btn-block varBtn" onclick="funcVariant('add')">
-                                                <i class="fa fa-plus"></i>Add variant</button>
-                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" name="dua" class="form-control" placeholder="500 gr" style="width:200px;" aria-describedby="500-error">
+                                        </div> 
                                     </div>
                                 </div>
-                                <div class="col-md-12 variant-col"></div>
                             </div>
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label" for="Stockl">*Price 1 Kg
+                                    <br>
+                                </label>
+                                <div class="col-md-9">
+                                    <div class="form-group row">
+                                            <div class="col-md-4">
+                                                <input type="text" name="tiga" class="form-control" placeholder="1 Kg" style="width:200px;" aria-describedby="1-error">
+                                            </div>
+                                            
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label" for="price">*Price 5 Kg
+                                    <br>
+                                </label>
+                                <div class="col-md-9">
+                                    <div class="form-group row">
+                                            <div class="col-md-4">
+                                                <input type="text" name="empat" class="form-control" placeholder="5 Kg" style="width:200px;" aria-describedby="5-error">
+                                            </div>
+                                            
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label" for="price">*Price 25 Kg
+                                    <br>
+                                </label>
+                                <div class="col-md-9">
+                                    <div class="form-group row">
+                                            <div class="col-md-4">
+                                                <input type="text" name="lima" class="form-control" placeholder="25 Kg" style="width:200px;" aria-describedby="25-error">
+                                            </div>
+                                            
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label" for="price">*Price 30 Kg
+                                    <br>
+                                </label>
+                                <div class="col-md-9">
+                                    <div class="form-group row">
+                                            <div class="col-md-4">
+                                                <input type="text" name="enam" class="form-control" placeholder="30 Kg" style="width:200px;" aria-describedby="30-error">
+                                            </div>
+                                            
+                                    </div>
+                                </div>
+                            </div>
+                            
                         </div>
                     </div>
                     <!--end card price-->
-
-                    <!--start card management -->
-                    <div class="card">
-                        <div class="card-header">
-                            <i class="fa fa-align-justify"></i> Management
-                        </div>
-                        <div class="card-body">
-                            <div class="form-group row">
-                                <label class="col-md-3 col-form-label" for="name">SKU (Stock Keeping Unit)
-                                    <br>
-                                    <small class="text-muted">Use SKU to add unique code to this product.</small>
-                                </label>
-                                <div class="col-md-9">
-                                    <div class="form-group row">
-                                        <div class="col-md-5">
-                                            <input type="text" name="sku" class="form-control sku" placeholder="Insert sku" aria-describedby="sku-error">
-                                            <em id="sku-error" class="error invalid-feedback"></em>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-md-3 col-form-label" for="name">*Product description
-                                    <br>
-                                    <small class="text-muted">Describe the product completely & clearly. Long recommendation:> = 200 characters.</small>
-                                </label>
-                                <div class="col-md-9">
-                                    <textarea rows="4" name="description" class="form-control" aria-describedby="description-error"></textarea>
-                                    <em id="description-error" class="error invalid-feedback">Please describe the product</em>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--end card management-->
-
-                    <!--start card management -->
-                    <div class="card">
-                        <div class="card-header">
-                            <i class="fa fa-align-justify"></i> Delivery
-                        </div>
-                        <div class="card-body">
-                            <div class="form-group row">
-                                <label class="col-md-3 col-form-label" for="name">Weight
-                                    <br>
-                                    <small class="text-muted">count with Volume Weight.</small>
-                                </label>
-                                <div class="col-md-9">
-                                    <div class="form-group row">
-                                        <div class="col-md-3">
-                                            <select name="weightUnit" class="form-control weight-unit">
-                                                <option value="g">Gram</option>
-                                                <option value="Kg">Kilogram</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="text" name="weight" class="form-control text-right input-number" placeholder="00">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--end card management-->
-
                     <!--start action -->
                     <div class="card">
-                        <div class="card-footer">
-                            <div class="btn-group">
-                                <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                <button type="button" class="btn btn-success" onclick="save('continue')">Save and Continue</button>
-                                <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false"></button>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item" href="javascript:void(0)" onclick="save('new')">Save and Add New</a>
-                                    <a class="dropdown-item" href="javascript:void(0)" onclick="save('exit')">Save and Exit</a>
-                                </div>
-                            </div>
-                            <a class="btn btn-secondary" href="{{route('product.index')}}">
+                        <div class="card">
+                            <p>
+                            <div class="btn-group"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                <button type="submit" class="btn btn-success">Save</button>&nbsp;
+                                <button type="button" class="btn btn-secondary" onclick="window.history.back()">
                                 <i class="fa fa-times-rectangle"></i>&nbsp; Cancel
-                            </a>
+                                </button>
+                            </div>
+                            </p>
                         </div>
                     </div>
                     <!--end card action -->
-
-                </form>
             </div>
         </div>
     </div>
 </div>
-@include('panel.product-management.product.fade-form-create')
+</form>
 @endsection
 <!-- /.container-fluid -->
 

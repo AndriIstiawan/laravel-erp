@@ -49,15 +49,22 @@
 						<table class="table table-responsive-sm table-bordered table-striped table-sm datatable">
 							<thead>
 								<tr>
-									<th>Code</th>
-									<th>Name</th>
-									<th>Type</th>
-									<th>Stock</th>
-									<th>Value</th>
-									<th>Price</th>
-									<th>Curency</th>
-									<th>Date registered</th>
-									<th></th>
+									<th rowspan="2">Code</th>
+									<th rowspan="2">Name</th>
+									<th rowspan="2">Type</th>
+									<th rowspan="2">Stock</th>
+									<th colspan="6">Value</th>
+									<th rowspan="2">Currency</th>
+									<th rowspan="2">Date registered</th>
+									<th rowspan="2"></th>
+								</tr>
+								<tr>
+									<th>250 Gr</th>
+									<th>500 Gr</th>
+									<th>1 Kg</th>
+									<th>5 Kg</th>
+									<th>25 Kg</th>
+									<th>30 Kg</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -89,16 +96,18 @@
 	            {data: 'name', name: 'name'},
 	            {data: 'type', name: 'type'},
 	            {data: 'stock', name: 'stock'},
-	            {data: 'price.[<br>].value', name: 'name'},
-	            {data: 'price.[<br>].price', name: 'name'},
+	            {data: 'price.[0].price', name: 'prices'},
+	            {data: 'price.[1].price', name: 'price'},
+	            {data: 'price.[2].price', name: 'price'},
+	            {data: 'price.[3].price', name: 'price'},
+	            {data: 'price.[4].price', name: 'price'},
+	            {data: 'price.[5].price', name: 'price'},
 	            {data: 'currency', name: 'currency'},
 	            {data: 'created_at', name: 'created_at'},
 	            {data: 'action', name: 'action', orderable: false, searchable: false, width:'20%'}
 	        ],
-			"columnDefs": [
-				{"targets": 7,"className": "text-center"}
-			],
-			"order":[[6, 'desc']]
+			
+			"order":[[11, 'desc']]
 		});
 		$('.datatable').attr('style','border-collapse: collapse !important');
 		
