@@ -19,6 +19,10 @@ class ProductsTableSeeder extends Seeder
             'stock' => '120',
             'price'=> [
                 [
+                'value' => '250',
+                'price' => '38.62'
+                ],
+                [
                 'value' => '500',
                 'price' => '38.62'
                 ],
@@ -33,6 +37,10 @@ class ProductsTableSeeder extends Seeder
                 [
                 'value' => '25',
                 'price' => '30.05'
+                ],
+                [
+                'value' => '30',
+                'price' => '29.05'
                 ]
             ],
             'currency' => 'USD',

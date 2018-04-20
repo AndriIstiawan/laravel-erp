@@ -52,127 +52,41 @@ class ProductController extends Controller
     //store data product
     public function store(Request $request)
     {   
-        //for edit product
-        $arrPic = [];
-        $i = 0;
-        
-        //detect if create or edit product
-        if($request->id != ''){ 
-            $product = Product::find($request->id);
-            foreach($product->image as $prodImage){
-                if(isset($request->fileImage)){
-                    if(in_array($prodImage['filename'],$request->fileImage)){
-                        $prodImg = explode('.',$prodImage['filename']);
-                        $prodImg = "[".$i."]".$product->id.'.'.$prodImg[count($prodImg)-1];
-                        $arrPic[] = [
-                            'filename' => $prodImg,
-                            'size' => $prodImage['size']
-                        ];
-                        $i++;
-                        File::move(public_path('/img/products/' . $prodImage['filename']), public_path('/img/products/' . $prodImg));
-                    }else{
-                        File::delete(public_path('/img/products/' . $prodImage['filename']));
-                    }
-                }else{
-                    File::delete(public_path('/img/products/' . $prodImage['filename']));
-                }
-            }
-            if(isset($product->variant)){
-                foreach($product->variant as $prodvariant){
-                    if(isset($request->fileVars)){
-                        if(!in_array($prodvariant['image'],$request->fileVars)){
-                            File::delete(public_path('/img/products/' . $prodvariant['image']));
-                        }
-                    }else{
-                        File::delete(public_path('/img/products/' . $prodvariant['image']));
-                    }
-                }
-            }
-        }else{
-            $product = new Product();
-        }
-        
+        $product = new Product();
         $product->name = $request->name;
-        $product->categories = Categories::whereIn('slug', $request->category)->get()->toArray();
-        $product->description = $request->description;
-        $product->weight = [
+        $product->type = $request->type;
+        $product->code = $request->code;
+        $product->stock = $request->stock;
+        $product->price = [
             [
-                "unit" => $request->weightUnit,
-                "weight" => (double)$request->weight
+                "value" => '250',
+                "price" => $request->satu
+            ], 
+            [
+                "value" => '500',
+                "price" => $request->dua
+            ],
+            [
+                "value" => '1',
+                "price" => $request->tiga
+            ],
+            [
+                "value" => '5',
+                "price" => $request->empat
+            ],
+            [
+                "value" => '25',
+                "price" => (double)$request->lima
+            ],
+            [
+                "value" => '30',
+                "price" => (double)$request->enam
             ]
         ];
-        $product->stock = (double)$request->stock;
-        $product->sku = $request->sku;
         $product->save();
 
-        //add picture product
-        $j = count($arrPic);
-        if ($request->hasFile('image')) {
-            $pictureFiles = $request->file('image');
-            for($i=0; $i < count($pictureFiles); $i++){
-                $extension = $pictureFiles[$i]->getClientOriginalExtension();
-                $destinationPath = public_path('/img/products/['. $j . ']'.$product->id . '.' . $extension);
-                //$pictureFiles[$i]->move($destinationPath, '['. $j . ']' . $product->id . '.' . $extension);
-                Image::make($pictureFiles[$i]->getRealPath())->resize(300, 300)->save($destinationPath);
-                $arrPic[] = [
-                    'filename' => '['. $j . ']' . $product->id . '.' . $extension,
-                    'size' => $pictureFiles[$i]->getClientSize()
-                ];
-                $j++;
-            }
-        }
-        $product->image = $arrPic;
-        $product->save();
+        return redirect()->route('product.index')->with('toastr', 'new');
 
-        //if detect add variant
-        if($request->variants && count($request->variants) > 0){
-            $arrVar = [];
-            for($i=0; $i < count($request->variants); $i++){
-                $varImage = null;
-                
-                if(isset($request->varsPicture[$i])){
-                    $extension = $request->varsPicture[$i]->getClientOriginalExtension();
-                    $destinationPath = public_path('/img/products/'.$request->variants[$i] . '.' . $extension);
-                    //$request->varsPicture[$i]->move($destinationPath, $request->variants[$i] . '.' . $extension);
-                    Image::make($request->varsPicture[$i]->getRealPath())->resize(300, 300)->save($destinationPath);
-                    $varImage = $request->variants[$i] . '.' . $extension;
-                }
-                if(isset($request->fileVars)){
-                    if($request->fileVars[$i] != ''){
-                        $varExt = explode('.',$request->fileVars[$i]);
-                        $varExt = $varExt[count($varExt)-1];
-                        $varImage = $request->variants[$i] . '.' . $varExt;
-                        File::move(public_path('/img/products/' . $request->fileVars[$i]), public_path('/img/products/' . $varImage));
-                    }
-                }
-                $arrVar[] = [
-                    'key' => $request->variants[$i],
-                    'image' => $varImage,
-                    'price' => (double)str_replace(',', '.',str_replace('.', '',$request->varPrice[$i])),
-                    'sku' => $request->varSku[$i],
-                    'varStock' => (double)$request->varStock[$i]
-                ];
-            }
-            $product->variant = $arrVar;
-            $product->price = [
-                [
-                    "min" => (double)str_replace(',', '.',str_replace('.', '',$request->minPrice)),
-                    "max" => (double)str_replace(',', '.',str_replace('.', '',$request->maxPrice)),
-                ]
-            ];
-            $product->save();
-        }else{
-            $product->unset('variant');
-            $product->price = [
-                [
-                    "min" => (double)str_replace(',', '.',str_replace('.', '',$request->prodPrice)),
-                    "max" => (double)str_replace(',', '.',str_replace('.', '',$request->prodPrice)),
-                ]
-            ];
-            $product->save();
-        }
-
-        return $product->id;
     }
 
     //for getting datatable at index
