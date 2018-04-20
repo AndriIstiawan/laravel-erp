@@ -389,7 +389,6 @@ class ComposerStaticInitd80677642af87e169186fc7d444a9776
     );
 
     public static $classMap = array (
-        'App\\Archievement' => __DIR__ . '/../..' . '/app/Archievement.php',
         'App\\AttributeSets' => __DIR__ . '/../..' . '/app/AttributeSets.php',
         'App\\Attributes' => __DIR__ . '/../..' . '/app/Attributes.php',
         'App\\Brand' => __DIR__ . '/../..' . '/app/Brand.php',
@@ -443,6 +442,7 @@ class ComposerStaticInitd80677642af87e169186fc7d444a9776
         'App\\Http\\Controllers\\UserManagement\\PermissionController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserManagement/PermissionController.php',
         'App\\Http\\Controllers\\UserManagement\\RoleController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserManagement/RoleController.php',
         'App\\Http\\Controllers\\mailManagement\\mailController' => __DIR__ . '/../..' . '/app/Http/Controllers/MailManagement/MailController.php',
+        'App\\Http\\Controllers\\transactionmanagement\\InvoiceController' => __DIR__ . '/../..' . '/app/Http/Controllers/TransactionManagement/InvoiceController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
         'App\\Http\\Middleware\\PermissionAccess' => __DIR__ . '/../..' . '/app/Http/Middleware/PermissionAccess.php',
@@ -451,11 +451,11 @@ class ComposerStaticInitd80677642af87e169186fc7d444a9776
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Images' => __DIR__ . '/../..' . '/app/Images.php',
+        'App\\Invoice' => __DIR__ . '/../..' . '/app/Invoice.php',
         'App\\Levels' => __DIR__ . '/../..' . '/app/Levels.php',
         'App\\Member' => __DIR__ . '/../..' . '/app/Member.php',
         'App\\OrderStatuses' => __DIR__ . '/../..' . '/app/OrderStatuses.php',
         'App\\Orders' => __DIR__ . '/../..' . '/app/Orders.php',
-        'App\\Packaging' => __DIR__ . '/../..' . '/app/Packaging.php',
         'App\\Payment' => __DIR__ . '/../..' . '/app/Payment.php',
         'App\\PaymentMethod' => __DIR__ . '/../..' . '/app/PaymentMethod.php',
         'App\\Permission' => __DIR__ . '/../..' . '/app/Permission.php',
@@ -2942,7 +2942,6 @@ class ComposerStaticInitd80677642af87e169186fc7d444a9776
         'PHP_Token_XOR_EQUAL' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_YIELD' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_YIELD_FROM' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
-        'PackagingTableSeeder' => __DIR__ . '/../..' . '/database/seeds/PackagingTableSeeder.php',
         'ParseError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/ParseError.php',
         'Parsedown' => __DIR__ . '/..' . '/erusev/parsedown/Parsedown.php',
         'PaymensMethodsTableSeeder' => __DIR__ . '/../..' . '/database/seeds/PaymensMethodsTableSeeder.php',
