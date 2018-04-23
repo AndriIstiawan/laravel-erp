@@ -1,4 +1,5 @@
-@extends('master') @section('content')
+@extends('master')
+@section('content')
 <link href="{{ asset('fiture-style/select2/select2.min.css') }}" rel="stylesheet">
 <form id="jxForm1" novalidate="novalidate" method="POST" action="{{ route('product.store') }}" enctype="multipart/form-data">
 {{ csrf_field() }}
@@ -27,21 +28,6 @@
                             <small>Information </small>
                         </div>
                         <div class="card-body">
-                            <!-- <div class="form-group row">
-                                <label class="col-md-3 col-form-label" for="">*Product Image
-                                    <br>
-                                    <small class="text-muted">Recommendations: 3-5 Product Images. Use the 5 best photos for this product. (format
-                                        .JPG .JPEG .PNG max 10 MB)</small>
-                                </label>
-                                <div class="col-md-9">
-                                    <div class="image-add">
-                                        <a class="btn btn-add-picture" onclick="$('.fade .picture-card .fade').click();">
-                                            <img src="{{ asset('img/add-photo.png') }}" style="width: 150px; height: 150px;">
-                                        </a><br>
-                                        <button type="button" class="fade btn btn-sm"><i class="fa fa-pencil"></i></button>
-                                    </div>
-                                </div>
-                            </div> -->
                             <div class="form-group row">
                                 <label class="col-md-3 col-form-label" for="name">*Product Name
                                     <br>
@@ -177,6 +163,23 @@
                                     <div class="form-group row">
                                             <div class="col-md-4">
                                                 <input type="text" name="enam" class="form-control" placeholder="30 Kg" style="width:200px;" aria-describedby="30-error">
+                                            </div>
+                                            
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label" for="price">*Currency
+                                    <br>
+                                </label>
+                                <div class="col-md-9">
+                                    <div class="form-group row">
+                                            <div class="col-md-4">
+                                                <select id="type" name="type" class="form-control" style="width: 100% !important;" aria-describedby="packaging-error" required>
+                                                    <option value=""></option>
+                                                    <option value="USD">USD</option>
+                                                    <option value="Rp">USD</option>  
+                                                    </select>
                                             </div>
                                             
                                     </div>
