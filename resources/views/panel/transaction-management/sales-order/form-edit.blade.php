@@ -5,6 +5,11 @@
 <form id="jxForm1" novalidate="novalidate" method="POST" action="{{ route('sales-order.update',['id' => $order->id]) }}" enctype="multipart/form-data">
 		{{ method_field('PUT') }}
 {{ csrf_field() }}
+<ul class="breadcrumb">
+  <li><a href="{{ url('/') }}">Dashboard&nbsp;&nbsp;</a>/</li>
+  <li><a href="{{ url('/sales-order') }}">&nbsp;&nbsp;Data SO&nbsp;&nbsp;</a>/</li>
+  <li class="active">&nbsp;&nbsp;Edit Data SO</li> 
+</ul>
 <div class="container-fluid">
 	<div class="animate fadeIn">
 		<div class="row">
@@ -30,16 +35,16 @@
 												<div class="col-md-12">
 												<label class="col-form-label" for="sono">*SO NO</label>
 												<div class="input-group">
-													<input type="text" class="form-control form-control-sm" id="sono" name="sono" placeholder="NO1029ON" aria-describedby="sono-error" value="{{$order->sono}}" readonly="">
+													<input type="text" class="form-control" id="sono" name="sono" placeholder="NO1029ON" aria-describedby="sono-error" value="{{$order->sono}}" readonly="">
 													<em id="sono-error" class="error invalid-feedback">Please enter a SO NO</em>
 												</div>
 												<label class="col-form-label" for="type">*SO Date</label>
 												<div class="input-group">
-													<input type="text" class="form-control form-control-sm" id="date" name="date" value="{{$order->date}}" readonly>
+													<input type="text" class="form-control" id="date" name="date" value="{{$order->date}}" readonly>
 												</div>
 												<label class="col-form-label" for="phone">*Client</label>
 												<div class="input-group">
-													<input type="text" class="form-control form-control-sm" id="client" name="client" aria-describedby="client-error" value="{{$order->client}}" placeholder="Member" >
+													<input type="text" class="form-control" id="client" name="client" aria-describedby="client-error" value="{{$order->client}}" placeholder="Member" >
 													<em id="client-error" class="error invalid-feedback">Please enter a client</em>
 												</div>
 												<label class="col-form-label" for="sales">*Sales</label>
@@ -78,36 +83,36 @@
 					    @foreach ($order->productattr as $productsss)
 					    <div class="option-card1">
 					    <div class="optts">
-						<div class="row">
+						<div class="row product-list">
 							<div class="col-md-2">
 								<label class="col-form-label" for="name">Name Product</label>
-								<select id="product[]" name="product[]" style="width: 100% !important;" class="form-control form-control-sm products" aria-describedby="product[]-error" required>
+								<select name="product[]" style="width: 100% !important;" class="form-control form-control-sm products" aria-describedby="product[]-error">
 									<option value=""></option>
-									<option value="{{$productsss['name']}}" data-code="{{$productsss['code']}}" data-type="{{$productsss['type']}}" selected="">{{$productsss['name']}}</option>
+									<option value="{{$productsss['id']}}" data-code="{{$productsss['code']}}" data-type="{{$productsss['type']}}" selected="">{{$productsss['name']}}</option>
 									@foreach ($product as $produ)
-					                  <option data-code="{{$produ->code}}" data-type="{{$produ->type}}" value="{{$produ->id}}" >{{$produ->name}}</option>
+					                  <option data-code="{{$produ->code}}" data-type="{{$produ->type}}" value="{{$produ->id}}">{{$produ->name}}</option>
 					              	@endforeach
 								</select>
           					<em id="product[]-error" class="error invalid-feedback">Please select product</em>
 							</div>
 							<div class="col-md-2">
 							<label class="col-form-label" for="type">Type</label>
-									<input type="text" class="form-control form-control-sm" value={{$productsss['type']}} name="type[]" id="product-type" readonly>
+									<input type="text" class="form-control" value="{{$productsss['type']}}" name="type[]" id="product-type" readonly>
 							</div>
 							<div class="col-md-2">
 								<label class="col-form-label" for="code">Code</label>
-								<input type="text" value="{{$productsss['code']}}" class="form-control form-control-sm" name="code[]" id="product-code" readonly>
+								<input type="text" value="{{$productsss['code']}}" class="form-control" name="code[]" id="product-code" readonly>
 							</div>
 							<div class="col-md-2">
 		                          <label class="col-form-label" for="total">Total(Kg)</label>
-		                          <input type="number" onkeyup="findTotal()" class="form-control form-control-sm" id="total" name="total[]" value="{{$productsss['total']}}" placeholder="00" aria-describedby="totals-error" >
+		                          <input type="number" onkeyup="findTotal()" class="form-control" id="total" name="total[]" value="{{$productsss['total']}}" placeholder="00" aria-describedby="totals-error" >
 		                            <em id="totals-error" class="error invalid-feedback">
 		                              Please enter a totals
 		                            </em>
 		                        </div>
 							<div class="col-md-2">
 			                        <label class="col-form-label" >*Packaging (Kg)</label>
-			                        <select id="packaging" name="packaging[]" class="form-control form-control-sm" style="width: 100% !important;" aria-describedby="packaging-error" onchange="findTotal()" required>
+			                        <select name="packaging[]" class="form-control packaging" style="width: 100% !important;" aria-describedby="packaging-error" onchange="findTotal($(this))">
 				                        <option value=""></option>
 										<option value="0.25" {{($productsss['packaging'] == '0.25'?'selected':'')}}>250 gram</option>
 										<option value="0.5" {{($productsss['packaging'] == '0.5'?'selected':'')}}>500 gram</option>  
@@ -120,63 +125,13 @@
 							<div class="col-md-2">
 		                        <label class="col-form-label" >Amount</label>
             					<div class="control-group input-group">
-		                        <input class="form-control form-control-sm" value="{{$productsss['amount']}}" type="text" name="amount[]" id="amount" placeholder="00" readonly/>
+		                        <input class="form-control" value="{{$productsss['amount']}}" type="text" name="amount[]" id="amount" placeholder="00" readonly/>
          						<span class="input-group-append">
-         						 	<button class="btn btn-danger rounded btn-sm pull-right" id="minmore" onclick="$(this).closest('.option-card1 .optts').remove()"><i class="fa fa-trash"></i>
+         						 	<button class="btn btn-danger rounded pull-right" id="minmore" onclick="$(this).closest('.option-card1 .optts').remove()"><i class="fa fa-trash"></i>
             						</button>
             					</span>
 		                        </div>
 		                    </div>
-							<!-- <div class="col-md-2">
-		                          	<label class="col-form-label" >*Package</label>
-		                          	<select id="package" name="package[]" class="form-control form-control-sm" style="width: 100% !important;" aria-describedby="package-error" required>
-	                              		<option value=""></option>
-							            <option value="drum" >Drum</option>
-							            <option value="Jerigen">Jerigen</option>  
-							            <option value="Aluminium">Aluminium</option>  
-							            <option value="Plastik">Plastik</option>
-	                          		</select>
-	                        		<em id="package-error" class="error invalid-feedback">Please select package</em>
-	                        	</div>
-		                    <div class="col-md-2">
-		                        <div class="form-group">
-		                          <label class="col-form-label" >*Realisasi (Kg)</label>
-		                          <input class="form-control form-control-sm" type="text" name="realisasi[]" id="realisasi" aria-describedby="realisasi-error" required="" />
-		                        <em id="realisasi-error" class="error invalid-feedback">Please enter a realisasi</em>
-		                        </div>
-		                    </div>
-		                    <div class="col-md-2">
-		                        <div class="form-group">
-		                          <label class="col-form-label" >*Stock Kapuk</label>
-		                          <input class="form-control form-control-sm" type="text" name="stockk[]" id="stockk" aria-describedby="stockk-error" required="" />
-		                        <em id="stockk-error" class="error invalid-feedback">Please enter a stockk</em>
-		                        </div>
-		                    </div>
-		                    <div class="col-md-2">
-		                        <div class="form-group">
-		                          <label class="col-form-label" >*Pending SO</label>
-		                          <input class="form-control form-control-sm" type="text" name="pending[]" id="pending" aria-describedby="pending-error" required="" />
-		                        <em id="pending-error" class="error invalid-feedback">Please enter a pending</em>
-		                        </div>
-		                    </div>
-		                    <div class="col-md-2">
-		                        <div class="form-group">
-		                          <label class="col-form-label" >*Balance Stock</label>
-		                          <input class="form-control form-control-sm" type="text" name="balance[]" id="balance" aria-describedby="balance-error" required="" />
-		                        <em id="balance-error" class="error invalid-feedback">Please enter a balance</em>
-		                        </div>
-		                    </div>
-		                    <div class="col-md-2">
-		                        <label class="col-form-label" >*Pending PR</label>
-		                        <div class="control-group input-group">
-		                        <input class="form-control form-control-sm" type="text" name="pendingpr[]" id="pendingpr" aria-describedby="pendingpr-error" required="" />
-		                        <span class="input-group-append">
-							        <button class="btn btn-danger rounded btn-sm pull-right" id="minmore" onclick="$(this).closest('.option-card1 .optts').remove()"><i class="fa fa-trash"></i>
-							        </button>
-							    </span>
-		                        <em id="pendingpr-error" class="error invalid-feedback">Please enter a pendingpr</em>
-		                        </div>
-		                    </div> -->
 						</div>
 						<hr style="border-top: 4px solid #20a8d8; ">
 						</div>
@@ -205,50 +160,12 @@
 									<div class="col-md-12">
 									<div class="form-group">
 										<label class="col-form-label" for="catatan">*Catatan</label>
-										<textarea type="text" rows="5" class="form-control" id="catatan" name="catatan" placeholder="Catatan" aria-describedby="catatan-error" required=""></textarea>
+										<textarea type="text" rows="5" class="form-control" id="catatan" name="catatan" placeholder="Catatan" aria-describedby="catatan-error" required="">{{$order->catatan}}</textarea>
 										<em id="catatan-error" class="error invalid-feedback">Please enter a name user</em>
 									</div>
 									</div>
-									<div class="col-md-12" style="display: none;">
-									<div class="form-group">
-										<label class="col-form-label" for="status">*Status</label>
-										<input type="text" rows="5" class="form-control" id="status" name="status" >
-									</div>
-									</div>
-									<div class="col-md-6">
-									<div class="form-group ">
-										<label class="col-form-label" for="tunggu">*Stok tunggu dari bekasi</label>
-										<select id="tunggu" class="form-control" style="width: 100% !important;" name="tunggu" aria-describedby="tunggu-error">
-											<option value=""></option>
-											<option value="Ada">Ada</option>
-											<option value="Tidak Ada">Tidak Ada</option>
-										</select>
-										<em id="tunggu-error" class="error invalid-feedback">Please select a status</em>
-									</div>
-									</div>
+									<input class="form-control" type="hidden" value="1" name="status" >
 								</div>
-								<div class="row">
-									<div class="form-group col-md-6">
-										<label class="col-form-label" for="check">*Dicheck Oleh,</label>
-										<select id="check" class="form-control" style="width: 100% !important;" name="check" aria-describedby="check-error">
-											<option value=""></option>
-										@foreach($user as $user)
-											<option value="{{$user->id}}">{{$user->name}}</option>
-										@endforeach
-										</select>
-										<em id="check-error" class="error invalid-feedback">Please select a check</em>
-									</div>
-									<div class="form-group col-md-6">
-										<label class="col-form-label" for="produksi">*Diproduksi Oleh,</label>
-										<select id="produksi" class="form-control" style="width: 100% !important;" name="produksi" aria-describedby="produksi-error">
-											<option value=""></option>
-										@foreach($users as $users)
-											<option value="{{$users->id}}">{{$users->name}}</option>
-										@endforeach
-										</select>
-										<em id="produksi-error" class="error invalid-feedback">Please select a produksi</em>
-									</div>
-								</div>	
 							</div>
 						</div>
 					</div>

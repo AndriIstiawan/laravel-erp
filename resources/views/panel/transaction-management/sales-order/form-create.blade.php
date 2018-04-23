@@ -4,6 +4,11 @@
 <link href="{{ asset('fiture-style/select2/select2.min.css') }}" rel="stylesheet">
 <form id="jxForm1" novalidate="novalidate" method="POST" action="{{ route('sales-order.store') }}" onsubmit="return submitForm(this);" enctype="multipart/form-data">
 {{ csrf_field() }}
+<ul class="breadcrumb">
+  <li><a href="{{ url('/') }}">Dashboard&nbsp;&nbsp;</a>/</li>
+  <li><a href="{{ url('/sales-order') }}">&nbsp;&nbsp;Data SO&nbsp;&nbsp;</a>/</li>
+  <li class="active">&nbsp;&nbsp;Tambah Data SO</li> 
+</ul>
 <div class="container-fluid">
 	<div class="animate fadeIn">
 		<div class="row">
@@ -29,16 +34,16 @@
 												<div class="col-md-12">
 												<label class="col-form-label" for="sono">*SO NO</label>
 												<div class="input-group">
-													<input type="text" class="form-control form-control-sm" id="sono" name="sono" aria-describedby="sono-error" value="{{$so_id}}" readonly>
+													<input type="text" class="form-control" id="sono" name="sono" aria-describedby="sono-error" value="{{$so_id}}" readonly>
 													<em id="sono-error" class="error invalid-feedback">Please enter a SO NO</em>
 												</div>
 												<label class="col-form-label" for="type">*SO Date</label>
 												<div class="input-group">
-													<input type="text" class="form-control form-control-sm" id="date" name="date" value="{{ date('Y-m-d H:i:s') }}" readonly>
+													<input type="text" class="form-control" id="date" name="date" value="{{ date('Y-m-d H:i:s') }}" readonly>
 												</div>
 												<label class="col-form-label" for="phone">*Client</label>
 												<div class="input-group">
-													<input type="text" class="form-control form-control-sm" id="client" name="client" aria-describedby="client-error" placeholder="Member">
+													<input type="text" class="form-control" id="client" name="client" aria-describedby="client-error" placeholder="Member">
 													<em id="client-error" class="error invalid-feedback">Please enter a client</em>
 												</div>
 												<label class="col-form-label" for="sales">*Sales</label>
