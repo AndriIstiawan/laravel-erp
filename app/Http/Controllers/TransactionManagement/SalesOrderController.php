@@ -168,11 +168,27 @@ class SalesOrderController extends Controller
         $sales=user::where('_id', $request->sales)->get();
         $order->sales=$sales->toArray();
 
-        $products=Product::where('_id', $request->product)->get();
-        $order->product=$products->toArray();
+        $productss =[];
+        for($i=0; $i < count($request->total); $i++){
+            $products=Product::where('_id', $request->product[$i])->first();
+            $productss[] =[
+                'id'=> $products['id'],
+                'name'=>$products['name'],
+                'type'=>$products['type'],
+                'code'=>$products['code'],
+                'total' => $request->total[$i],
+                'packaging' => $request->packaging[$i],
+                'amount' => $request->amount[$i],
+                'package' => $request->package[$i],
+                'realisasi' => $request->realisasi[$i],
+                'stockk' => $request->stockk[$i],
+                'pending' => $request->pending[$i],
+                'balance' => $request->balance[$i],
+                'pendingpr' => $request->pendingpr[$i]
+            ];
+        }
+        $order->productattr=$productss;
 
-        $order->total = $request->total;
-        $order->packaging = $request->packaging;
         $order->catatan = $request->catatan;
         $order->tunggu = $request->tunggu;
 
@@ -182,15 +198,8 @@ class SalesOrderController extends Controller
         $produksis=user::where('_id', $request->produksi)->get();
         $order->produksi=$produksis->toArray();
 
-        $order->amount = $request->amount;
-        $order->package = $request->package;
-        $order->realisasi = $request->realisasi;
-        $order->stockk = $request->stockk;
-        $order->pending = $request->pending;
-        $order->balance = $request->balance;
-        $order->pendingpr = $request->pendingpr;
         $order->status = $request->status;
-
+        
         $order->save();
         return redirect()->route('sales-order.index')->with('update', 'sales-order');
     }
