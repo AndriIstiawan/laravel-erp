@@ -121,6 +121,7 @@ class SalesOrderController extends Controller
                     '<span class="badge badge-success">Sales Executive</span>' :
                     '<span class="badge badge-success">Production</span>');
             })
+            
             ->addColumn('action', function ($order) {
                 return 
                     '<a class="btn btn-success btn-sm"  href="'.route('sales-order.edit',['id' => $order->id]).'">

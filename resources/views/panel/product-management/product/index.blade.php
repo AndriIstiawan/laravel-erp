@@ -16,7 +16,8 @@
 							New Products
 					</span>
 				</a>
-                <a href="{{ route('product.index') }}/import" class="btn btn-success ladda-button" data-style="zoom-in">
+				
+                <!-- <a href="{{ route('product.index') }}/import" class="btn btn-success ladda-button" data-style="zoom-in">
 					<span class="ladda-label">
 						<i class="fa fa-cloud-download">
 						</i>
@@ -29,7 +30,7 @@
 						</i>
 							Export Products
 					</span>
-				</a>
+				</a> -->
 			</p>
 			</div>
 		</div>
@@ -96,12 +97,12 @@
 	            {data: 'name', name: 'name'},
 	            {data: 'type', name: 'type'},
 	            {data: 'stock', name: 'stock'},
-	            {data: 'price.[0].price', name: 'prices'},
-	            {data: 'price.[1].price', name: 'price'},
-	            {data: 'price.[2].price', name: 'price'},
-	            {data: 'price.[3].price', name: 'price'},
-	            {data: 'price.[4].price', name: 'price'},
-	            {data: 'price.[5].price', name: 'price'},
+	            {data: 'satu', name: 'satu'},
+	            {data: 'dua', name: 'dua'},
+	            {data: 'tiga', name: 'tiga'},
+	            {data: 'empat', name: 'empat'},
+	            {data: 'lima', name: 'lima'},
+	            {data: 'enam', name: 'enam'},
 	            {data: 'currency', name: 'currency'},
 	            {data: 'created_at', name: 'created_at'},
 	            {data: 'action', name: 'action', orderable: false, searchable: false, width:'20%'}
