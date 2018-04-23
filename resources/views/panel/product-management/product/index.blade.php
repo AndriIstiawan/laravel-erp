@@ -16,7 +16,8 @@
 							New Products
 					</span>
 				</a>
-                <a href="{{ route('product.index') }}/import" class="btn btn-success ladda-button" data-style="zoom-in">
+				
+                <!-- <a href="{{ route('product.index') }}/import" class="btn btn-success ladda-button" data-style="zoom-in">
 					<span class="ladda-label">
 						<i class="fa fa-cloud-download">
 						</i>
@@ -29,7 +30,7 @@
 						</i>
 							Export Products
 					</span>
-				</a>
+				</a> -->
 			</p>
 			</div>
 		</div>

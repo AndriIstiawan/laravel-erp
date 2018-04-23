@@ -175,7 +175,7 @@
                                 <div class="col-md-9">
                                     <div class="form-group row">
                                             <div class="col-md-4">
-                                                <select id="type" name="type" class="form-control" style="width: 100% !important;" aria-describedby="packaging-error" required>
+                                                <select id="type" name="currency" class="form-control" style="width: 100% !important;" aria-describedby="packaging-error" required>
                                                     <option value=""></option>
                                                     <option value="USD">USD</option>
                                                     <option value="Rp">USD</option>  
