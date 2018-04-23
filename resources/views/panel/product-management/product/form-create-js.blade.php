@@ -26,12 +26,51 @@
 
   $("#jxForm1").validate({
     rules:{
-      name:{required:true,minlength:2}
+      name:{required:true},
+      type:{required:true},
+      code:{required:true},
+      stock:{required:true},
+      satu:{required:true},
+      ndua:{required:true},
+      tiga:{required:true},
+      emapt:{required:true},
+      lima:{required:true},
+      enam:{required:true},
+      currency:{required:true}
     },
     messages:{
       name:{
-        required:'Please enter a SO NO',
-        minlength:'SO NO must consist of at least 2 characters'
+        required:'Please enter a SO NO'
+      },
+      type:{
+        required:'Please enter a SO NO'
+      },
+      code:{
+        required:'Please enter a SO NO'
+      },
+      name:{
+        required:'Please enter a SO NO'
+      },
+      name:{
+        required:'Please enter a SO NO'
+      },
+      name:{
+        required:'Please enter a SO NO'
+      },
+      name:{
+        required:'Please enter a SO NO'
+      },
+      name:{
+        required:'Please enter a SO NO'
+      },
+      name:{
+        required:'Please enter a SO NO'
+      },
+      name:{
+        required:'Please enter a SO NO'
+      },
+      name:{
+        required:'Please enter a SO NO'
       }
     },
     errorElement:'em',
