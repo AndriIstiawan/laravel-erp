@@ -132,6 +132,54 @@
             					</span>
 		                        </div>
 		                    </div>
+		                    <div style="display: none;" class="col-md-4">
+		                        <div class="form-group">
+		                          	<label class="col-form-label" >*Package</label>
+		                          	<select id="package" name="package[]" class="form-control" style="width: 100% !important;" aria-describedby="package-error">
+	                              		<option value=""></option>
+							            <option value="drum" selected>Drum</option>
+							            <option value="Jerigen">Jerigen</option>  
+							            <option value="Aluminium">Aluminium</option>  
+							            <option value="Plastik">Plastik</option>
+	                          		</select>
+	                        		<em id="package-error" class="error invalid-feedback">Please select package</em>
+	                        	</div>
+		                    </div>
+		                    <div class="col-md-4" style="display: none;"> 
+		                        <div class="form-group">
+		                          <label class="col-form-label" >*Realisasi (Kg)</label>
+		                          <input class="form-control" type="text" value="1" name="realisasi[]" id="realisasi" aria-describedby="realisasi-error"/>
+		                        <em id="realisasi-error" class="error invalid-feedback">Please enter a realisasi</em>
+		                        </div>
+		                    </div>
+		                    <div class="col-md-4" style="display: none;">
+		                        <div class="form-group">
+		                          <label class="col-form-label" >*Stock Kapuk</label>
+		                          <input class="form-control" type="text" value="1" name="stockk[]" id="stockk" aria-describedby="stockk-error"/>
+		                        <em id="stockk-error" class="error invalid-feedback">Please enter a stockk</em>
+		                        </div>
+		                    </div>
+		                    <div class="col-md-4" style="display: none;">
+		                        <div class="form-group">
+		                          <label class="col-form-label" >*Pending SO</label>
+		                          <input class="form-control" type="text" value="1" name="pending[]" id="pending" aria-describedby="pending-error"/>
+		                        <em id="pending-error" class="error invalid-feedback">Please enter a pending</em>
+		                        </div>
+		                    </div>
+		                    <div class="col-md-4" style="display: none;">
+		                        <div class="form-group">
+		                          <label class="col-form-label" >*Balance Stock</label>
+		                          <input class="form-control" type="text" value="1" name="balance[]" id="balance" aria-describedby="balance-error"/>
+		                        <em id="balance-error" class="error invalid-feedback">Please enter a balance</em>
+		                        </div>
+		                    </div>
+		                    <div class="col-md-4" style="display: none;">
+		                        <div class="form-group">
+		                          <label class="col-form-label" >*Pending PR</label>
+		                          <input class="form-control" type="text" value="1" name="pendingpr[]" id="pendingpr" aria-describedby="pendingpr-error"/>
+		                        <em id="pendingpr-error" class="error invalid-feedback">Please enter a pendingpr</em>
+		                        </div>
+		                    </div>
 						</div>
 						<hr style="border-top: 4px solid #20a8d8; ">
 						</div>
