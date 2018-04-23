@@ -45,6 +45,7 @@ class SalesOrderController extends Controller
     public function create()
     {
         date_default_timezone_set('Asia/Jakarta');
+
         $order=SalesOrder::all();
         $product= Product::all();
         $products= Product::all();
@@ -52,6 +53,7 @@ class SalesOrderController extends Controller
         $user= User::where('role', 'elemMatch', array('name' => 'Tim Operational'))->get();
         $users= User::where('role', 'elemMatch', array('name' => 'Tim Operational'))->get();
         return view('panel.transaction-management.sales-order.form-create')->with([
+            'so_id' => $this->generateSO(),
             'order' => $order, 
             'product' => $product,
             'products' => $products,
@@ -199,5 +201,9 @@ class SalesOrderController extends Controller
         $order = SalesOrder::find($id);
         $order->delete();
         return redirect()->route('sales-order.index')->with('dlt', 'sales-order');
+    }
+
+    public function generateSO(){
+        return "SO-".date('H:i:s-d-m-Y');
     }
 }

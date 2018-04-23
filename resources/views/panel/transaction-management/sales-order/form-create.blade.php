@@ -2,7 +2,7 @@
 @section('content')
 <link href="{{ asset('fiture-style/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 <link href="{{ asset('fiture-style/select2/select2.min.css') }}" rel="stylesheet">
-<form id="jxForm1" novalidate="novalidate" method="POST" action="{{ route('sales-order.store') }}" enctype="multipart/form-data">
+<form id="jxForm1" novalidate="novalidate" method="POST" action="{{ route('sales-order.store') }}" onsubmit="return submitForm(this);" enctype="multipart/form-data">
 {{ csrf_field() }}
 <div class="container-fluid">
 	<div class="animate fadeIn">
@@ -29,7 +29,7 @@
 												<div class="col-md-12">
 												<label class="col-form-label" for="sono">*SO NO</label>
 												<div class="input-group">
-													<input type="text" class="form-control form-control-sm" id="sono" name="sono" placeholder="NO1029ON" aria-describedby="sono-error">
+													<input type="text" class="form-control form-control-sm" id="sono" name="sono" aria-describedby="sono-error" value="{{$so_id}}" readonly>
 													<em id="sono-error" class="error invalid-feedback">Please enter a SO NO</em>
 												</div>
 												<label class="col-form-label" for="type">*SO Date</label>
@@ -68,7 +68,7 @@
 					</div>
 					<div class="card-body">
 	                	<div class="form-group input_">
-								<div class="row">
+								<div class="row product-list">
 									<div class="col-md-2">
 										<label class="col-form-label" for="name">*Name Product</label>
 											<select name="product[]" style="width: 100% !important;" class="form-control form-control-sm products" aria-describedby="product[]-error" required>
@@ -81,22 +81,22 @@
 									</div>
 									<div class="col-md-2">
 									<label class="col-form-label" for="type">*Type</label>
-										<input type="text" class="form-control form-control-sm product-type" name="type[]" readonly>
+										<input type="text" class="form-control product-type" name="type[]" readonly>
 									</div>
 									<div class="col-md-2">
 										<label class="col-form-label" for="code">*Code</label>
-										<input type="text" class="form-control form-control-sm" name="code[]" id="product-code" readonly>
+										<input type="text" class="form-control" name="code[]" id="product-code" readonly>
 									</div>
 									<div class="col-md-2">
 			                            <label class="col-form-label" for="total">*Total (Kg)</label>
-			                            <input type="number" onkeyup="findTotal()" class="form-control form-control-sm total" id="total" name="total[]" placeholder="00" aria-describedby="total-error" required="">
+			                            <input type="number" onkeyup="findTotal()" class="form-control total" id="total" name="total[]" placeholder="00" aria-describedby="total-error" required="">
 			                            <em id="total-error" class="error invalid-feedback">
 			                              Please enter a total
 			                            </em>
 				                    </div>
 									<div class="col-md-2">
 				                        <label class="col-form-label" >*Packaging Option</label>
-				                        <select id="packaging" name="packaging[]" class="form-control form-control-sm packaging" style="width: 100% !important;" aria-describedby="packaging-error" onchange="findTotal()" required>
+				                        <select id="packaging" name="packaging[]" class="form-control packaging" style="width: 100% !important;" aria-describedby="packaging-error" onchange="findTotal()" required>
 					                        <option value=""></option>
 											<option value="0.25" >250 gram</option>
 											<option value="0.5">500 gram</option>  
@@ -110,7 +110,10 @@
 			                        <div class="col-md-2">
 				                        <label class="col-form-label" >*Amount</label>
 				                        <div class="control-group input-group">
-				                        <input class="form-control form-control-sm" type="text" name="amount[]" id="amount" placeholder="00" readonly/>
+				                        <input class="form-control" type="text" name="amount[]" id="amount" placeholder="00" aria-describedby="amount-error" readonly/>
+				                        <em id="amount-error" class="error invalid-feedback">
+			                              Please enter a amount
+			                            </em>
 				                    	</div>
 				                    </div>
 				                    <div style="display: none;" class="col-md-4">
