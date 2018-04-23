@@ -14,22 +14,22 @@
         </div>
         <div class="col-md-2">
         <label class="col-form-label" for="type">*Type</label>
-          <input type="text" class="form-control form-control-sm" name="type[]" id="products-type" readonly>
+          <input type="text" class="form-control" name="type[]" id="products-type" readonly>
         </div>
         <div class="col-md-2">
           <label class="col-form-label" for="code">*Code</label>
-            <input type="text" class="form-control form-control-sm" name="code[]" id="products-code" readonly>
+            <input type="text" class="form-control" name="code[]" id="products-code" readonly>
         </div>
         <div class="col-md-2">
             <label class="col-form-label" for="total">*Total (Kg)</label>
-            <input type="number" onkeyup="findTotal()" class="form-control form-control-sm total" id="total" name="total[]" placeholder="00" aria-describedby="total-error" required="">
+            <input type="number" onkeyup="findTotal()" class="form-control total" id="total" name="total[]" placeholder="00" aria-describedby="total-error" required="">
               <em id="total-error" class="error invalid-feedback">
                 Please enter a total
               </em>
         </div>
         <div class="col-md-2">
             <label class="col-form-label" >*Packaging Option</label>
-            <select id="packaging" name="packaging[]" class="form-control form-control-sm packaging" style="width: 100% !important;" aria-describedby="packaging-error" onchange="findTotal()" required>
+            <select id="packaging" name="packaging[]" class="form-control packaging" style="width: 100% !important;" aria-describedby="packaging-error" onchange="findTotal()" required>
               <option value=""></option>
               <option value="0.25" >250 gram</option>
               <option value="0.5">500 gram</option>  
@@ -43,7 +43,7 @@
         <div class="col-md-2">
             <label class="col-form-label" >*Amount</label>
             <div class="control-group input-group">
-            <input class="form-control form-control-sm" type="text" name="amount[]" id="amount" placeholder="00" readonly/>
+            <input class="form-control" type="text" name="amount[]" id="amount" placeholder="00" readonly/>
           <span class="input-group-append">
             <button class="btn btn-danger rounded btn-sm pull-right" id="minmore" onclick="$(this).closest('.option-card1 .optts').remove()"><i class="fa fa-trash"></i>
             </button></span>

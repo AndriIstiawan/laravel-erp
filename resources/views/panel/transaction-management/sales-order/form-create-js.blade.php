@@ -1,5 +1,8 @@
 <script>  
-  
+  function submitForm() {
+  return confirm('Are you sure want to submit the form? Please make sure all data inputted correctly');
+  }
+
   $(document).ready(function() {
     var counter = 0;
       $("#addMe").click(function(){
@@ -21,7 +24,16 @@
   //   });
 
   function refProductChange(){
-    $('.products').change(function(){
+    $('.input_ .option-card1 .products').select2({theme:"bootstrap", placeholder:'Please select'})
+    .change(function(){
+      var element= $(this).find('option:selected');
+      var productType = element.attr('data-type');
+      var productCode = element.attr('data-code');
+      $(this).parent().parent().find('input[name="type[]"]').val(productType);
+      $(this).parent().parent().find('input[name="code[]"]').val(productCode);
+    });
+    $('.product-list .products').select2({theme:"bootstrap", placeholder:'Please select'})
+    .change(function(){
       var element= $(this).find('option:selected');
       var productType = element.attr('data-type');
       var productCode = element.attr('data-code');
@@ -31,78 +43,53 @@
   }
   refProductChange();
 
-
   $('#tunggu').select2({theme:"bootstrap", placeholder:'Please select'});/*
   $('#packaging').select2({theme:"bootstrap", placeholder:'Please select'});*/
   $('#check').select2({theme:"bootstrap", placeholder:'Please select'});
   $('#produksi').select2({theme:"bootstrap", placeholder:'Please select'});
-  $('#sales').select2({theme:"bootstrap", placeholder:'Please select'});/*
-  $('#package').select2({theme:"bootstrap", placeholder:'Please select'}); 
-  $('#packages').select2({theme:"bootstrap", placeholder:'Please select'});  */
-  
-  /*function findTotal(){
-      var value = $('#packaging option:selected').attr('value');
-      var tot = parseInt($('#total').val())/value;
-      var total = parseInt(tot);
-      $('#amount').val(total);
-
-    }*/
+  $('#saless').select2({theme:"bootstrap", placeholder:'Please select'});
 
   function findTotal(){
-    $('.packaging').change(function(){
+    $('.product-list .packaging').select2({theme:"bootstrap", placeholder:'Please select'}).change(function(){
       var values = $(this).find('option:selected');
       var value = values.attr('value');
       var tot = parseInt($('.total').val())/value;
       var total = parseInt(tot);
       $(this).parent().parent().parent().find('input[name="amount[]"]').val(total);
-        });
-    }
-    findTotal();
+    });
+  }
+  findTotal();
 
-    $('#tunggu').on('change', function(){
+  $('#tunggu').on('change', function(){
     $(this).addClass('is-valid').removeClass('is-invalid');
-    });
+  });
 
-    $('#packaging').on('change', function(){
+  $('#packaging').on('change', function(){
     $(this).addClass('is-valid').removeClass('is-invalid');
-    });
+  });
 
-    $('#sales').on('change', function(){
+  $('#sales').on('change', function(){
     $(this).addClass('is-valid').removeClass('is-invalid');
-    });
+  });
 
-    $('#produksi').on('change', function(){
+  $('#produksi').on('change', function(){
+      $(this).addClass('is-valid').removeClass('is-invalid');
+  });
+
+  $('#check').on('change', function(){
     $(this).addClass('is-valid').removeClass('is-invalid');
-    });
+  });
 
-    $('#check').on('change', function(){
+  $('#package').on('change', function(){
     $(this).addClass('is-valid').removeClass('is-invalid');
-    });
-
-    $('#package').on('change', function(){
-    $(this).addClass('is-valid').removeClass('is-invalid');
-    });
-
-    //add method validate "allRequired"
-    jQuery.validator.addMethod("allRequired", function (value, elem) {
-        // Use the name to get all the inputs and verify them
-        var name = elem.name;
-        return $('#jxForm1 input[name="' + name + '"]').map(function (i, obj) {
-            return $(obj).val();
-        }).get().every(function (v) {
-            return v;
-        });
-    });
+  });
 
   $("#jxForm1").validate({
     rules:{
       sono:{required:true,minlength:2},
       client:{required:true,minlength:2},
       sales:{required:true},
-      'product[]':{
-        "allRequired": true,
-        "allUnique": true
-      },
+      product:{required:true},
       total:{required:true},
       packaging:{required:true},
       tunggu:{required:true},
@@ -127,8 +114,8 @@
       sales:{
         required:'Please select a sales'
       },
-      'product[]]':{
-        "allRequired": 'Please select a product',
+      product:{
+        required:'Please select a product'
       },
       total:{
         required:'Please enter a total'
@@ -159,10 +146,7 @@
       error.addClass('invalid-feedback');
     },
     highlight:function(element,errorClass,validClass){
-      $('#jxForm1 input[name="' + $(element).attr('name') + '"]').addClass('is-invalid').removeClass(
-                    'is-valid');
-      $('#jxForm1 select[name="' + $(element).attr('name') + '"]').addClass('is-invalid').removeClass(
-                    'is-valid');
+      $(element).addClass('is-invalid').removeClass('is-valid');
     },
     unhighlight:function(element,errorClass,validClass){
       $(element).addClass('is-valid').removeClass('is-invalid');
