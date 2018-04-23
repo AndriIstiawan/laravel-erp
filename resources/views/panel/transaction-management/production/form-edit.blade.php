@@ -8,7 +8,7 @@
 <div class="container-fluid">
 	<div class="animate fadeIn">
 		<div class="row">
-			<div class="col-md-8">
+			<div class="col-md-6">
 				<p>
 					<button type="button" class="btn btn-primary" onclick="window.history.back()">
 							<i class="fa fa-backward"></i>&nbsp; Back to List
@@ -70,61 +70,45 @@
               		<div class="option-card type-attr_3">
                 	<div class="form-group input_">
                   	<div class="option-card">
+					    @foreach ($order->productattr as $product)
 						<div class="row">
-							<div style="width: 13%;">
-					        @foreach ($order->product as $product)
-							<div style="width: 100%;">
+							<div class="col-md-2">
 									<label class="col-form-label" for="name">Name Product</label>
-										<input type="hidden" id="product" value="{{$product['_id']}}" name="product[]" class="form-control form-control-sm" aria-describedby="product-error">
+										<input type="hidden" id="product" value="{{$product['name']}}" name="product[]" class="form-control form-control-sm" aria-describedby="product-error">
 										<input value="{{$product['name']}}" class="form-control form-control-sm" aria-describedby="product-error" readonly="">
 			                        <em id="product-error" class="error invalid-feedback">Please select product</em>
 							</div>
-							@endforeach
-							</div>
-							<div style="width: 4%;">
-							@foreach ($order->product as $product)
-							<div style="width: 100%;">
+							<div class="col-md-2">
 							<label class="col-form-label" for="type">Type</label>
-									<input type="text" class="form-control form-control-sm" value={{$product['type']}} name="type[]" id="product-type" readonly>
-							</div>
-							@endforeach
-							</div>
-							<div style="width: 4.4%;">
-							@foreach ($order->product as $product)
-							<div style="width: 100%;">
+									<input type="text" class="form-control form-control-sm" 
+									value="" name="type[]" id="product-type" readonly>
+							</div><div class="col-md-2">
 								<label class="col-form-label" for="code">Code</label>
-								<input type="text" value="{{$product['code']}}" class="form-control form-control-sm" name="code[]" id="product-code" readonly>
-							</div>
-							@endforeach
+								<input type="text" value="" class="form-control form-control-sm" name="code[]" id="product-code" readonly>
 							</div>
 							<div class="col-md-1">
-							@foreach($order->total as $totals)
 		                       <div style="width: 100%;">
 		                          <label class="col-form-label" for="total">Total(Kg)</label>
-		                          <input type="number" onkeyup="findTotal()" class="form-control form-control-sm" id="total" name="total[]" value="{{$totals['total']}}" placeholder="00" aria-describedby="totals-error" readonly="">
+		                          <input type="number" onkeyup="findTotal()" class="form-control form-control-sm" id="total" name="total[]" value="" placeholder="00" aria-describedby="totals-error" readonly="">
 		                            <em id="totals-error" class="error invalid-feedback">
 		                              Please enter a totals
 		                            </em>
 		                        </div>
-		                    @endforeach
 		                    </div>
 							<div style="width: 10%">
-							@foreach($order->packaging as $packagings)
 			                    <div style="width: 100%;">
 			                        <label class="col-form-label" >*Packaging (Kg)</label>
-			                        <input id="packaging" value="{{$packagings['packaging']}}" name="packaging[]" class="form-control form-control-sm" style="width: 100% !important;" aria-describedby="packaging-error" onchange="findTotal()" readonly="">
+			                        <input id="packaging" value="" name="packaging[]" class="form-control form-control-sm" style="width: 100% !important;" aria-describedby="packaging-error" onchange="findTotal()" readonly="">
 			                    </div>
-                    		@endforeach
                     		</div>
 	                        <div style="width: 4%">
-                    		@foreach($order->amount as $amounts)
 		                        <div style="width: 100%;">
 		                          <label class="col-form-label" >Amount</label>
-		                          <input class="form-control form-control-sm" value="{{$amounts['amount']}}" type="text" name="amount[]" id="amount" placeholder="00" readonly/>
+		                          <input class="form-control form-control-sm" value="" type="text" name="amount[]" id="amount" placeholder="00" readonly/>
 		                        </div>
-		                    @endforeach
 		                    </div>
-		                    @foreach($order->package as $packages)
+
+							
 		                    <div class="col-md-2">
 		                        <div style="width: 100%;">
 		                          	<label class="col-form-label" >*Package</label>
@@ -138,7 +122,6 @@
 	                        		<em id="package-error" class="error invalid-feedback">Please select package</em>
 	                        	</div>
 		                    </div>
-		                    @endforeach
 		                    <div class="col-md-2">
 		                        <div class="form-group">
 		                          <label class="col-form-label" >*Realisasi (Kg)</label>
@@ -175,6 +158,7 @@
 		                        </div>
 		                    </div>
 						</div>
+						@endforeach
 					</div>
 					<div class="option-card1">
 					</div>

@@ -49,8 +49,8 @@ class ProductionController extends Controller
         $product= Product::all();
         $products= Product::all();
         $modUser = User::where('role', 'elemMatch', array('name' => 'Sales'))->get();
-        $user= User::where('role', 'elemMatch', array('name' => 'Tim Operational'))->get();
-        $users= User::where('role', 'elemMatch', array('name' => 'Tim Operational'))->get();
+        $user= User::where('role', 'elemMatch', array('name' => 'Production'))->get();
+        $users= User::where('role', 'elemMatch', array('name' => 'Production'))->get();
         return view('panel.transaction-management.sales-order.form-create')->with([
             'order' => $order, 
             'product' => $product,
@@ -183,18 +183,13 @@ class ProductionController extends Controller
     //view form edit
     public function edit($id)
     {
-        $order = SalesOrder::find($id);
-        $product = Product::whereNotIn('id', array_column($order->product,'id'))->get();
-        $total = SalesOrder::whereIn('total', array_column($order->total,'total'))->get();
-        $packaging = SalesOrder::whereIn('packaging', array_column($order->packaging,'packaging'))->get();
-        $package = SalesOrder::whereIn('package', array_column($order->package,'package'))->get();
-        $amounts = SalesOrder::whereIn('packaging', array_column($order->amount,'packaging'))->get();
-        $user= User::where('role', 'elemMatch', array('name' => 'Tim Operational'))->get();
-        $users= User::where('role', 'elemMatch', array('name' => 'Tim Operational'))->get();
+        $order = SalesOrder::find($id); 
+        $att = SalesOrder::whereIn('name', array_column($order->productattr,'name'))->get();
+        $user= User::where('role', 'elemMatch', array('name' => 'Production'))->get();
+        $users= User::where('role', 'elemMatch', array('name' => 'Production'))->get();
         return view('panel.transaction-management.production.form-edit')->with([
             'order'=>$order,
             'order' => $order, 
-            'product' => $product,
             'user' => $user,
             'users' => $users
         ]);

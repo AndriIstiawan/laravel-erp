@@ -71,17 +71,17 @@
 								<div class="row">
 									<div class="col-md-2">
 										<label class="col-form-label" for="name">*Name Product</label>
-											<select id="product" name="product[]" style="width: 100% !important;" class="form-control form-control-sm" aria-describedby="product-error" required>
+											<select name="product[]" style="width: 100% !important;" class="form-control form-control-sm products" aria-describedby="product[]-error" required>
 		                        				<option value=""></option>
 						                        @foreach ($product as $product)
-						                          	<option data-code="{{$product->code}}" data-type="{{$product->type}}" value="{{$product->name}}">{{$product->name}}</option>
+						                          	<option data-code="{{$product->code}}" data-type="{{$product->type}}" value="{{$product->id}}">{{$product->name}}</option>
 						                        @endforeach
 				                        	</select>
-				                        <em id="product-error" class="error invalid-feedback">Please select product</em>
+				                        <em id="product[]-error" class="error invalid-feedback">Please select product</em>
 									</div>
 									<div class="col-md-2">
 									<label class="col-form-label" for="type">*Type</label>
-										<input type="text" class="form-control form-control-sm" name="type[]" id="product-type" readonly>
+										<input type="text" class="form-control form-control-sm product-type" name="type[]" readonly>
 									</div>
 									<div class="col-md-2">
 										<label class="col-form-label" for="code">*Code</label>
@@ -89,14 +89,14 @@
 									</div>
 									<div class="col-md-2">
 			                            <label class="col-form-label" for="total">*Total (Kg)</label>
-			                            <input type="number" onkeyup="findTotal()" class="form-control form-control-sm" id="total" name="total[]" placeholder="00" aria-describedby="totals-error" required="">
-			                            <em id="totals-error" class="error invalid-feedback">
-			                              Please enter a totals
+			                            <input type="number" onkeyup="findTotal()" class="form-control form-control-sm total" id="total" name="total[]" placeholder="00" aria-describedby="total-error" required="">
+			                            <em id="total-error" class="error invalid-feedback">
+			                              Please enter a total
 			                            </em>
 				                    </div>
 									<div class="col-md-2">
 				                        <label class="col-form-label" >*Packaging Option</label>
-				                        <select id="packaging" name="packaging[]" class="form-control form-control-sm" style="width: 100% !important;" aria-describedby="packaging-error" onchange="findTotal()" required>
+				                        <select id="packaging" name="packaging[]" class="form-control form-control-sm packaging" style="width: 100% !important;" aria-describedby="packaging-error" onchange="findTotal()" required>
 					                        <option value=""></option>
 											<option value="0.25" >250 gram</option>
 											<option value="0.5">500 gram</option>  
@@ -109,7 +109,9 @@
 		                    		</div>
 			                        <div class="col-md-2">
 				                        <label class="col-form-label" >*Amount</label>
+				                        <div class="control-group input-group">
 				                        <input class="form-control form-control-sm" type="text" name="amount[]" id="amount" placeholder="00" readonly/>
+				                    	</div>
 				                    </div>
 				                    <div style="display: none;" class="col-md-4">
 				                        <div class="form-group">
@@ -163,7 +165,7 @@
 								<hr style="border-top: 4px solid #20a8d8; ">
 							<div class="option-card1">
 							</div>
-						<button  type="button" class="btn btn-primary pull-right" id="addMe" onclick="$('.input_ .option-card1').append($('.optt').html())"> Add More</button>
+						<button  type="button" class="btn btn-primary pull-right" id="addMe" onclick="$('.input_ .option-card1').append($('.optt').html());refProductChange();"> Add More</button>
 						</div>
 					</div>
 				</div>
