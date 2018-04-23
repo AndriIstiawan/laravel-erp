@@ -115,6 +115,7 @@ class SalesOrderController extends Controller
                     '<span class="badge badge-success">Sales Executive</span>' :
                     '<span class="badge badge-success">Production</span>');
             })
+            
             ->addColumn('action', function ($order) {
                 return 
                     '<button class="btn btn-success btn-sm"  data-toggle="modal" data-target="#primaryModal"

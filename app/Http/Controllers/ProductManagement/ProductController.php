@@ -59,30 +59,25 @@ class ProductController extends Controller
         $product->stock = $request->stock;
         $product->price = [
             [
-                "value" => '250',
                 "price" => $request->satu
             ], 
             [
-                "value" => '500',
                 "price" => $request->dua
             ],
             [
-                "value" => '1',
                 "price" => $request->tiga
             ],
             [
-                "value" => '5',
                 "price" => $request->empat
             ],
             [
-                "value" => '25',
-                "price" => (double)$request->lima
+                "price" => $request->lima
             ],
             [
-                "value" => '30',
-                "price" => (double)$request->enam
+                "price" => $request->enam
             ]
         ];
+        $product->currency = $request->currency;
         $product->save();
 
         return redirect()->route('product.index')->with('toastr', 'new');
@@ -108,6 +103,24 @@ class ProductController extends Controller
                 }else{
                     return "0";
                 }
+            })
+            ->addColumn('satu', function ($products) {
+                return $products->price[0]['price'];
+            })
+            ->addColumn('dua', function ($products) {
+                return $products->price[1]['price'];
+            })
+            ->addColumn('tiga', function ($products) {
+                return $products->price[2]['price'];
+            })
+            ->addColumn('empat', function ($products) {
+                return $products->price[3]['price'];
+            })
+            ->addColumn('lima', function ($products) {
+                return $products->price[4]['price'];
+            })
+            ->addColumn('enam', function ($products) {
+                return $products->price[5]['price'];
             })
             ->make(true);
     }
@@ -139,7 +152,35 @@ class ProductController extends Controller
     //update data product
     public function update(Request $request, $id)
     {
-        
+        $product = Product::find($id);
+        $product->name = $request->name;
+        $product->type = $request->type;
+        $product->code = $request->code;
+        $product->stock = $request->stock;
+        $product->price = [
+            [
+                "price" => $request->satu
+            ], 
+            [
+                "price" => $request->dua
+            ],
+            [
+                "price" => $request->tiga
+            ],
+            [
+                "price" => $request->empat
+            ],
+            [
+                "price" => $request->lima
+            ],
+            [
+                "price" => $request->enam
+            ]
+        ];
+        $product->currency = $request->currency;
+        $product->save();
+
+        return redirect()->route('product.index')->with('toastr', 'new');
     }
 
     //delete data product
