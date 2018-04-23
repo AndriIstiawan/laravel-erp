@@ -33,7 +33,6 @@
 									<th>SO Date</th>
 									<th>Sales</th>
 									<th>Product</th>
-									<th>Package</th>
 									<th>Catatan</th>
 									<th>Checker</th>
 									<th>Produser</th>
@@ -70,8 +69,7 @@
 	            {data: 'sono', name: 'sono'},
 	            {data: 'date', name: 'date'},
 	            {data: 'sales.[].name', name: 'client'},	            
-	            {data: 'product.[<br>].name', name: 'name'},
-	            {data: 'package.[<br>].package', name: 'package'},
+	            {data: 'productattr.[<br>].product', name: 'name'},
 	            {data: 'catatan', name: 'catatan'},
 	            {data: 'check.[].name', name: 'check'},
 	            {data: 'produksi.[].name', name: 'produksi'},
@@ -80,10 +78,10 @@
 	            {data: 'action', name: 'action', orderable: false, searchable: false, width:'20%'}
 	        ],
 			"columnDefs": [
-				{"targets": 10,"className": "text-center"},
-				{"targets": 8,"className": "text-center"}
+				{"targets": 9,"className": "text-center"},
+				{"targets": 7,"className": "text-center"}
 			],
-			"order":[[9, 'desc']]
+			"order":[[8, 'desc']]
 		});
 		$('.datatable').attr('style','border-collapse: collapse !important');
 		

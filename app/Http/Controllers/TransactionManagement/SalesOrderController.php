@@ -72,12 +72,16 @@ class SalesOrderController extends Controller
         $sales=user::where('_id', $request->sales)->get();
         $order->sales=$sales->toArray();
 
+        
+
         $productss =[];
         for($i=0; $i < count($request->total); $i++){
+            $products=Product::where('_id', $request->product[$i])->first();
             $productss[] =[
-                'product'=>$request->product[$i],
-                'code'=>$request->code[$i],
-                'type'=>$request->type[$i],
+                'id'=> $products['id'],
+                'name'=>$products['name'],
+                'type'=>$products['type'],
+                'code'=>$products['code'],
                 'total' => $request->total[$i],
                 'packaging' => $request->packaging[$i],
                 'amount' => $request->amount[$i],
@@ -102,7 +106,9 @@ class SalesOrderController extends Controller
 
         $order->status = $request->status;
 
-        return dd($order);
+        $order->save();
+
+        return redirect()->route('sales-order.index')->with('toastr', 'new');
     }
 
     //for getting datatable at index
@@ -118,9 +124,8 @@ class SalesOrderController extends Controller
             
             ->addColumn('action', function ($order) {
                 return 
-                    '<button class="btn btn-success btn-sm"  data-toggle="modal" data-target="#primaryModal"
-                         onclick="funcModal($(this))" data-link="'.route('sales-order.edit',['id' => $order->id]).'">
-                        <i class="fa fa-pencil-square-o"></i>&nbsp;Edit</button>'.
+                    '<a class="btn btn-success btn-sm"  href="'.route('sales-order.edit',['id' => $order->id]).'">
+                        <i class="fa fa-pencil-square-o"></i>&nbsp;Edit</a>'.
                     '<form style="display:inline;" method="POST" action="'.
                         route('sales-order.destroy',['id' => $order->id]).'">'.method_field('DELETE').csrf_field().
                     '<button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-remove"></i>&nbsp;Remove</button></form>';
@@ -133,7 +138,21 @@ class SalesOrderController extends Controller
     public function edit($id)
     {
         $order = SalesOrder::find($id);
-        return view('panel.transaction-management.sales-order.form-edit')->with(['order'=>$order]);
+        $product= Product::whereNotIn('name', array_column($order->productattr,'name'))->get(); 
+        $products= Product::all(); 
+        $modUser = User::where('role', 'elemMatch', array('name' => 'Sales'))->whereNotIn('role', array_column($order->sales,'role'))->get(); ;
+        $att = SalesOrder::whereIn('name', array_column($order->productattr,'name'))->get();
+        $user= User::where('role', 'elemMatch', array('name' => 'Production'))->get();
+        $users= User::where('role', 'elemMatch', array('name' => 'Production'))->get();
+        return view('panel.transaction-management.sales-order.form-edit')->with([
+            'order'=>$order,
+            'order' => $order, 
+            'product' => $product,
+            'products' => $products,
+            'user' => $user,
+            'modUser' => $modUser,
+            'users' => $users
+        ]);
     }
 
     //update data
