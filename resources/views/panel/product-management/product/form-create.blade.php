@@ -183,7 +183,7 @@
                                                 <select id="type" name="currency" class="form-control" style="width: 100% !important;" aria-describedby="packaging-error" required>
                                                     <option value=""></option>
                                                     <option value="USD">USD</option>
-                                                    <option value="Rp">USD</option>  
+                                                    <option value="Rp">Rp</option>  
                                                     </select>
                                             </div>
                                             
