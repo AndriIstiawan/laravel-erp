@@ -23,8 +23,8 @@
         <div class="col-md-2">
             <label class="col-form-label" for="total">*Total (Kg)</label>
             <input type="number" onkeyup="findTotal($(this))" class="form-control total" id="total" name="total[]" placeholder="00" aria-describedby="total-error">
-              <em id="total-error" class="error invalid-feedback">
-                Please enter a total
+              <em id="total-error" class="invalid-feedback">
+                each field are required
               </em>
         </div>
         <div class="col-md-2">
@@ -41,16 +41,18 @@
             <em id="packaging-error" class="error invalid-feedback">Please select packaging</em>
         </div>
         <div class="col-md-2">
-            <label class="col-form-label" >*Amount</label>
-            <div class="control-group input-group">
-            <input class="form-control" type="text" name="amount[]" id="amount" placeholder="00" readonly/>
-          <span class="input-group-append">
-            <button class="btn btn-danger rounded pull-right" id="minmore" onclick="$(this).closest('.option-card2 .optts').remove()"><i class="fa fa-trash"></i>
-            </button></span>
-          </div>
+        <label class="col-form-label" >Amount</label>
+        <div class="control-group input-group">
+          <input class="form-control" type="number" min="1" name="amount[]" id="amount" placeholder="00" 
+          aria-describedby="amount-error" required="" readonly/>
+        <span class="input-group-append">
+          <button class="btn btn-danger rounded pull-right" id="minmore" onclick="$(this).closest('.option-card2 .optts').remove()"><i class="fa fa-trash"></i>
+          </button>
+        </span>
           <em id="amount-error" class="invalid-feedback">
             Please select a valid packaging amount
           </em>
+        </div>
         </div>
         <div class="col-md-4" style="display: none;">
           <div class="form-group">
