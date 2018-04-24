@@ -2,6 +2,10 @@
 @section('content')
 <link href="{{ asset('fiture-style/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 <link href="{{ asset('fiture-style/select2/select2.min.css') }}" rel="stylesheet">
+<ul class="breadcrumb">
+  <li><a href="{{ url('/') }}">Dashboard&nbsp;&nbsp;</a>/</li>
+  <li class="active">&nbsp;&nbsp;Data Permission</li> 
+</ul>
 <div class="container-fluid">
 	<div class="animate fadeIn">
 		<div class="row">

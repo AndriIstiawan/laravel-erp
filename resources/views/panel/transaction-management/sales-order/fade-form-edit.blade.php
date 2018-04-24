@@ -45,7 +45,7 @@
             <div class="control-group input-group">
             <input class="form-control" type="text" name="amount[]" id="amount" placeholder="00" readonly/>
           <span class="input-group-append">
-            <button class="btn btn-danger rounded pull-right" id="minmore" onclick="$(this).closest('.option-card1 .optts').remove()"><i class="fa fa-trash"></i>
+            <button class="btn btn-danger rounded pull-right" id="minmore" onclick="$(this).closest('.option-card2 .optts').remove()"><i class="fa fa-trash"></i>
             </button></span>
           </div>
         </div>
