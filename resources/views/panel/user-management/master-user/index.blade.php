@@ -1,6 +1,10 @@
 @extends('master')
 @section('content')
 <link href="{{ asset('fiture-style/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+<ul class="breadcrumb">
+  <li><a href="{{ url('/') }}">Dashboard&nbsp;&nbsp;</a>/</li>
+  <li class="active">&nbsp;&nbsp;Data Master User</li> 
+</ul>
 <div class="container-fluid">
 	<div class="animate fadeIn">
 		<div class="row">
