@@ -7,7 +7,6 @@
 <div class="container-fluid">
 	<div class="animate fadeIn">
 		<div class="row">
-            <?php print_r(Route::current()->getName()); ?>
 			<div class="col-md-6">
 				<p>
 					<button type="button" class="btn btn-primary" onclick="window.history.back()">

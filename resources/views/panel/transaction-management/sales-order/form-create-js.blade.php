@@ -15,13 +15,15 @@
         //submit button
         $(document).on('click', '#save', function(e) {
             e.preventDefault();
-            swal({
-                title: "Are you sure want to submit the form?",
-                text: "Please make sure all data inputted correctly",
-                buttons: true,
-            }).then((confirm) => {
-                if(confirm){ $('#jxForm1').submit(); }
-            });
+            if($('#jxForm1').valid()){
+                swal({
+                    title: "Are you sure want to submit the form?",
+                    text: "Please make sure all data inputted correctly",
+                    buttons: true,
+                }).then((confirm) => {
+                    if(confirm){ $('#jxForm1').submit(); }
+                });
+            }
         });
     });
 
