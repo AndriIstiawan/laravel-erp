@@ -48,6 +48,9 @@
             <button class="btn btn-danger rounded pull-right" id="minmore" onclick="$(this).closest('.option-card2 .optts').remove()"><i class="fa fa-trash"></i>
             </button></span>
           </div>
+          <em id="amount-error" class="invalid-feedback">
+            Please select a valid packaging amount
+          </em>
         </div>
         <div class="col-md-4" style="display: none;">
           <div class="form-group">
