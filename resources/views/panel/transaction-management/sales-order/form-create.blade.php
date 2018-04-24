@@ -115,9 +115,9 @@
 			                        <div class="col-md-2">
 				                        <label class="col-form-label" >*Amount</label>
 				                        <div class="control-group input-group">
-				                        <input class="form-control" type="text" name="amount[]" id="amount" placeholder="00" aria-describedby="amount-error" readonly/>
-				                        <em id="amount-error" class="error invalid-feedback">
-			                              Please enter a amount
+				                        <input class="form-control" type="number" min="1" name="amount[]" id="amount" placeholder="00" aria-describedby="amount-error" required="" onclick="IsEmpty();" readonly/>
+				                        <em id="amount-error" class="invalid-feedback">
+			                              Please select a valid packaging amount
 			                            </em>
 				                    	</div>
 				                    </div>
@@ -191,7 +191,7 @@
 									<div class="col-md-12">
 									<div class="form-group">
 										<label class="col-form-label" for="catatan">*Catatan</label>
-										<textarea type="text" rows="5" class="form-control" id="catatan" name="catatan" placeholder="Catatan" aria-describedby="catatan-error"></textarea>
+										<textarea type="text" rows="5" class="form-control" id="catatan" name="catatan" placeholder="Catatan" aria-describedby="catatan-error" required=""></textarea>
 										<em id="catatan-error" class="error invalid-feedback">Please enter a name user</em>
 									</div>
 									</div>
