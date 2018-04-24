@@ -115,10 +115,8 @@
 			                        <div class="col-md-2">
 				                        <label class="col-form-label" >*Amount</label>
 				                        <div class="control-group input-group">
-				                        <input class="form-control" type="number" min="1" name="amount[]" id="amount" placeholder="00" aria-describedby="amount-error" required="" onclick="IsEmpty();" readonly/>
-				                        <em id="amount-error" class="invalid-feedback">
-			                              Please select a valid packaging amount
-			                            </em>
+				                        <input class="form-control" type="number" name="amount[]" id="amount" placeholder="00" aria-describedby="amount-error" readonly/>
+				                        <em id="amount-error" class="error invalid-feedback"></em>
 				                    	</div>
 				                    </div>
 				                    <div style="display: none;" class="col-md-4">
