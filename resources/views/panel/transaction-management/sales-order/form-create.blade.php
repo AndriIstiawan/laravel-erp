@@ -4,11 +4,6 @@
 <link href="{{ asset('fiture-style/select2/select2.min.css') }}" rel="stylesheet">
 <form id="jxForm1" novalidate="novalidate" method="POST" action="{{ route('sales-order.store') }}" enctype="multipart/form-data">
 {{ csrf_field() }}
-<ul class="breadcrumb">
-  <li><a href="{{ url('/') }}">Dashboard&nbsp;&nbsp;</a>/</li>
-  <li><a href="{{ url('/sales-order') }}">&nbsp;&nbsp;Data SO&nbsp;&nbsp;</a>/</li>
-  <li class="active">&nbsp;&nbsp;Tambah Data SO</li> 
-</ul>
 <div class="container-fluid">
 	<div class="animate fadeIn">
 		<div class="row">
@@ -189,45 +184,12 @@
 									<div class="col-md-12">
 									<div class="form-group">
 										<label class="col-form-label" for="catatan">*Catatan</label>
-										<textarea type="text" rows="5" class="form-control" id="catatan" name="catatan" placeholder="Catatan" aria-describedby="catatan-error" required=""></textarea>
+										<textarea type="text" rows="5" class="form-control" id="catatan" name="catatan" placeholder="Catatan" aria-describedby="catatan-error"></textarea>
 										<em id="catatan-error" class="error invalid-feedback">Please enter a name user</em>
 									</div>
 									</div>
 										<input class="form-control" type="hidden" value="1" name="status" >
-									<!-- <div class="col-md-6">
-									<div class="form-group ">
-										<label class="col-form-label" for="tunggu">*Stok tunggu dari bekasi</label>
-										<select id="tunggu" class="form-control" style="width: 100% !important;" name="tunggu" aria-describedby="tunggu-error">
-											<option value=""></option>
-											<option value="Ada">Ada</option>
-											<option value="Tidak Ada">Tidak Ada</option>
-										</select>
-										<em id="tunggu-error" class="error invalid-feedback">Please select a status</em>
-									</div>
-									</div> -->
 								</div>
-								<!-- <div class="row">
-									<div class="form-group col-md-6">
-										<label class="col-form-label" for="check">*Dicheck Oleh,</label>
-										<select id="check" class="form-control" style="width: 100% !important;" name="check" aria-describedby="check-error">
-											<option value=""></option>
-										@foreach($user as $user)
-											<option value="{{$user->id}}">{{$user->name}}</option>
-										@endforeach
-										</select>
-										<em id="check-error" class="error invalid-feedback">Please select a check</em>
-									</div>
-									<div class="form-group col-md-6">
-										<label class="col-form-label" for="produksi">*Diproduksi Oleh,</label>
-										<select id="produksi" class="form-control" style="width: 100% !important;" name="produksi" aria-describedby="produksi-error">
-											<option value=""></option>
-										@foreach($users as $users)
-											<option value="{{$users->id}}">{{$users->name}}</option>
-										@endforeach
-										</select>
-										<em id="produksi-error" class="error invalid-feedback">Please select a produksi</em>
-									</div>
-								</div>	 -->
 							</div>
 						</div>
 					</div>
