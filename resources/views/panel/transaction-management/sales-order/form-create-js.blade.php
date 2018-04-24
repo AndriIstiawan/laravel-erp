@@ -1,7 +1,4 @@
 <script>
-    function submitForm() {
-        return confirm('Are you sure want to submit the form? Please make sure all data inputted correctly');
-    }
 
     $(document).ready(function () {
         var counter = 0;
@@ -13,6 +10,18 @@
             } else {
                 $("#addMe").prop('disabled', false);
             }
+        });
+
+        //submit button
+        $(document).on('click', '#save', function(e) {
+            e.preventDefault();
+            swal({
+                title: "Are you sure want to submit the form?",
+                text: "Please make sure all data inputted correctly",
+                buttons: true,
+            }).then((confirm) => {
+                if(confirm){ $('#jxForm1').submit(); }
+            });
         });
     });
 
@@ -93,6 +102,7 @@
         }
         valueAmount = parseInt(valueAmount);
         elemAmount.val(valueAmount);
+        elemAmount.valid();
     }
 
     $('#tunggu').on('change', function () {
@@ -141,6 +151,21 @@
         });
     });
 
+    //add method validate "allRequired"
+    jQuery.validator.addMethod("allMinNumber", function (value, elem) {
+        // Use the name to get all the inputs and verify them
+        var name = elem.name;
+        var status = true;
+        $('#jxForm1 input[name="' + name + '"]').each(function () {
+            if(!parseInt($(this).val())){ 
+                status = false; 
+            }else if(parseInt($(this).val()) < 1){
+                status = false;
+            }
+        });
+        return status;
+    });
+
     $("#jxForm1").validate({
         rules: {
             client: {
@@ -159,6 +184,9 @@
             'packaging[]': {
                 "allRequiredSelect": true
             },
+            'amount[]': {
+                "allMinNumber": true
+            },
         },
         messages: {
             client: {
@@ -176,6 +204,9 @@
             },
             'packaging[]': {
                 "allRequiredSelect": 'each field are required'
+            },
+            'amount[]': {
+                "allMinNumber": 'each amount are required and value min 1'
             },
         },
         errorElement: 'em',

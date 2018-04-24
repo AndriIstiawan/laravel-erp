@@ -2,7 +2,7 @@
 @section('content')
 <link href="{{ asset('fiture-style/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 <link href="{{ asset('fiture-style/select2/select2.min.css') }}" rel="stylesheet">
-<form id="jxForm1" novalidate="novalidate" method="POST" action="{{ route('sales-order.store') }}" onsubmit="return submitForm(this);" enctype="multipart/form-data">
+<form id="jxForm1" novalidate="novalidate" method="POST" action="{{ route('sales-order.store') }}" enctype="multipart/form-data">
 {{ csrf_field() }}
 <ul class="breadcrumb">
   <li><a href="{{ url('/') }}">Dashboard&nbsp;&nbsp;</a>/</li>
@@ -115,10 +115,8 @@
 			                        <div class="col-md-2">
 				                        <label class="col-form-label" >*Amount</label>
 				                        <div class="control-group input-group">
-				                        <input class="form-control" type="number" min="1" name="amount[]" id="amount" placeholder="00" aria-describedby="amount-error" required="" readonly/>
-				                        <em id="amount-error" class="invalid-feedback">
-			                              Please select a valid packaging amount
-			                            </em>
+				                        <input class="form-control" type="number" name="amount[]" id="amount" placeholder="00" aria-describedby="amount-error" readonly/>
+				                        <em id="amount-error" class="error invalid-feedback"></em>
 				                    	</div>
 				                    </div>
 				                    <div style="display: none;" class="col-md-4">
@@ -239,7 +237,7 @@
 				<div class="card">
 					<p>
 					<div class="btn-group"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-					    <button type="submit" name="signup" id="code" class="btn btn-success">Save</button>&nbsp;
+					    <button type="submit" name="save" id="save" class="btn btn-success">Save</button>&nbsp;
 					    <button type="button" class="btn btn-secondary" onclick="window.history.back()">
 					    <i class="fa fa-times-rectangle"></i>&nbsp; Cancel
 					    </button>
