@@ -4,11 +4,6 @@
 <form id="jxForm1" novalidate="novalidate" method="POST" action="{{ route('product.update',['id' => $product->id]) }}" enctype="multipart/form-data">
 {{ method_field('PUT') }}
 {{ csrf_field() }}
-<ul class="breadcrumb">
-  <li><a href="{{ url('/') }}">Dashboard&nbsp;&nbsp;</a>/</li>
-  <li><a href="{{ url('/product') }}">&nbsp;&nbsp;Data Product&nbsp;&nbsp;</a>/</li>
-  <li class="active">&nbsp;&nbsp;Edit Data Product</li> 
-</ul>
 <div class="container-fluid">
     <div class="animate fadeIn">
         <div class="row">
