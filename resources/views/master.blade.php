@@ -47,11 +47,11 @@
 	?>
     <main class="main">
 		<ol class="breadcrumb">
-            <li class="breadcrumb-item active"><a href="/">Home</a></li>
+            <li class="breadcrumb-item active"><a href="{{url('/')}}">Home</a></li>
             <?php
                 if(count($uriLists) > 1){
                     for($countUri=0; $countUri < count($uriLists); $countUri++){
-                        $valUrl = '<a href="/'.$uriLists[$countUri].'">'.$uriLists[$countUri].'</a>';
+                        $valUrl = '<a href="'.url($uriLists[$countUri]).'">'.$uriLists[$countUri].'</a>';
                         $statusUrl = "";
                         if($countUri == count($uriLists)-1){
                             $valUrl = $uriLists[$countUri];
