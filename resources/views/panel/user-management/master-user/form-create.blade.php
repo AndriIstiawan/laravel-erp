@@ -1,11 +1,6 @@
 @extends('master')
 @section('content')
 <link href="{{ asset('fiture-style/select2/select2.min.css') }}" rel="stylesheet">
-<ul class="breadcrumb">
-  <li><a href="{{ url('/') }}">Dashboard&nbsp;&nbsp;</a>/</li>
-  <li><a href="{{ url('/master-user') }}">&nbsp;&nbsp;Data Master User&nbsp;&nbsp;</a>/</li>
-  <li class="active">&nbsp;&nbsp;Tambah Data Master User</li> 
-</ul>
 <div class="container-fluid">
 	<div class="animate fadeIn">
 		<div class="row">
