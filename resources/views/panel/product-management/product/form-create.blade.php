@@ -3,11 +3,6 @@
 <link href="{{ asset('fiture-style/select2/select2.min.css') }}" rel="stylesheet">
 <form id="jxForm1" novalidate="novalidate" method="POST" action="{{ route('product.store') }}" enctype="multipart/form-data">
 {{ csrf_field() }}
-<ul class="breadcrumb">
-  <li><a href="{{ url('/') }}">Dashboard&nbsp;&nbsp;</a>/</li>
-  <li><a href="{{ url('/product') }}">&nbsp;&nbsp;Data Product&nbsp;&nbsp;</a>/</li>
-  <li class="active">&nbsp;&nbsp;Tambah Data Product</li> 
-</ul>
 <div class="container-fluid">
     <div class="animate fadeIn">
         <div class="row">
@@ -183,7 +178,7 @@
                                                 <select id="type" name="currency" class="form-control" style="width: 100% !important;" aria-describedby="packaging-error" required>
                                                     <option value=""></option>
                                                     <option value="USD">USD</option>
-                                                    <option value="Rp">USD</option>  
+                                                    <option value="Rp">Rp</option>  
                                                     </select>
                                             </div>
                                             

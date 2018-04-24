@@ -42,12 +42,27 @@
     @include('panel.sidebar')
     <!-- Main content -->
 	<?php
-		$uri = env('APP_URL','http://localhost:8000');
-		$uriLists = str_replace($uri, '', url()->current());
-		$uriLists = explode("/", $uriLists);
+		$uriLists = Route::current()->getName();
+        $uriLists = explode(".", $uriLists);
 	?>
     <main class="main">
 		<ol class="breadcrumb">
+            <li class="breadcrumb-item active"><a href="/">Home</a></li>
+            <?php
+                if(count($uriLists) > 1){
+                    for($countUri=0; $countUri < count($uriLists); $countUri++){
+                        $valUrl = '<a href="/'.$uriLists[$countUri].'">'.$uriLists[$countUri].'</a>';
+                        $statusUrl = "";
+                        if($countUri == count($uriLists)-1){
+                            $valUrl = $uriLists[$countUri];
+                            $statusUrl = "active";
+                        }
+                        ?>
+                        <li class="breadcrumb-item {{$statusUrl}}"><?php echo $valUrl; ?></li>
+                        <?php
+                    }
+                }
+            ?>
 			<li class="breadcrumb-menu d-md-down-none">
 			<div class="btn-group" role="group" aria-label="Button group">
 			<a class="btn" href="#"><i class="icon-speech"></i></a>
