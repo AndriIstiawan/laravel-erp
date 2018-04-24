@@ -125,7 +125,7 @@
 							<div class="col-md-2">
 		                        <label class="col-form-label" >Amount</label>
             					<div class="control-group input-group">
-		                        <input class="form-control" value="{{$productsss['amount']}}" min="1" type="number" name="amount[]" placeholder="00" required="" aria-describedby="amount-error" readonly/>
+		                        <input class="form-control" id="amount" value="{{$productsss['amount']}}" min="1" type="number" name="amount[]" placeholder="00" aria-describedby="amount-error" required=""  readonly/>
          						<span class="input-group-append">
          						 	<button class="btn btn-danger rounded pull-right" id="minmore" onclick="$(this).closest('.option-card1 .optts').remove()"><i class="fa fa-trash"></i>
             						</button>
