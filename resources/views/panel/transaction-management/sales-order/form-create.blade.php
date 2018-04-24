@@ -4,14 +4,10 @@
 <link href="{{ asset('fiture-style/select2/select2.min.css') }}" rel="stylesheet">
 <form id="jxForm1" novalidate="novalidate" method="POST" action="{{ route('sales-order.store') }}" enctype="multipart/form-data">
 {{ csrf_field() }}
-<ul class="breadcrumb">
-  <li><a href="{{ url('/') }}">Dashboard&nbsp;&nbsp;</a>/</li>
-  <li><a href="{{ url('/sales-order') }}">&nbsp;&nbsp;Data SO&nbsp;&nbsp;</a>/</li>
-  <li class="active">&nbsp;&nbsp;Tambah Data SO</li> 
-</ul>
 <div class="container-fluid">
 	<div class="animate fadeIn">
 		<div class="row">
+            <?php print_r(Route::current()->getName()); ?>
 			<div class="col-md-6">
 				<p>
 					<button type="button" class="btn btn-primary" onclick="window.history.back()">
