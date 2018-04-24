@@ -1,28 +1,18 @@
 <script>  
   
-  $(document).ready(function() {
-    var counter = 0;
-      $("#addMe").click(function(){
-          counter++;
-          if (counter=='10') {
-            $("#addMe").prop('disabled', true);
-            alert('You Can Only 10 Click Add More');
-          }else{
-            $("#addMe").prop('disabled', false);
-          }
-      });
-  });
-      
-  /*
-  $('#tunggu').select2({theme:"bootstrap", placeholder:'Please select'});/*
-  $('#packaging').select2({theme:"bootstrap", placeholder:'Please select'});
-  $('#check').select2({theme:"bootstrap", placeholder:'Please select'});
-  $('#produksi').select2({theme:"bootstrap", placeholder:'Please select'});
-  $('#sales').select2({theme:"bootstrap", placeholder:'Please select'});
-  $('#package').select2({theme:"bootstrap", placeholder:'Please select'}); 
-  $('#packages').select2({theme:"bootstrap", placeholder:'Please select'});*/
-  
-
+  //submit button
+        $(document).on('click', '#save', function(e) {
+            e.preventDefault();
+            if($('#jxForm1').valid()){
+                swal({
+                    title: "Are you sure want to submit the form?",
+                    text: "Please make sure all data inputted correctly",
+                    buttons: true,
+                }).then((confirm) => {
+                    if(confirm){ $('#jxForm1').submit(); }
+                });
+            }
+        });
 
   $("#jxForm1").validate({
     rules:{
@@ -43,34 +33,34 @@
         required:'Please enter a SO NO'
       },
       type:{
-        required:'Please enter a SO NO'
+        required:'Please fill this type'
       },
       code:{
-        required:'Please enter a SO NO'
+        required:'Please fill this code'
       },
-      name:{
-        required:'Please enter a SO NO'
+      stock:{
+        required:'Please fill this stock'
       },
-      name:{
-        required:'Please enter a SO NO'
+      satu:{
+        required:'Please fill the blank'
       },
-      name:{
-        required:'Please enter a SO NO'
+      dua:{
+        required:'Please fill the blank'
       },
-      name:{
-        required:'Please enter a SO NO'
+      tiga:{
+        required:'Please fill the blank'
       },
-      name:{
-        required:'Please enter a SO NO'
+      empat:{
+        required:'Please fill the blank'
       },
-      name:{
-        required:'Please enter a SO NO'
+      lima:{
+        required:'Please fill the blank'
       },
-      name:{
-        required:'Please enter a SO NO'
+      enam:{
+        required:'Please fill the blank'
       },
-      name:{
-        required:'Please enter a SO NO'
+      currency:{
+        required:'Please fill the blank'
       }
     },
     errorElement:'em',

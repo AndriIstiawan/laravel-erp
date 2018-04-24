@@ -192,7 +192,7 @@
                         <div class="card">
                             <p>
                             <div class="btn-group"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                <button type="submit" class="btn btn-success">Save</button>&nbsp;
+                                <button type="submit" name="save" id="save" class="btn btn-success">Save</button>&nbsp;
                                 <button type="button" class="btn btn-secondary" onclick="window.history.back()">
                                 <i class="fa fa-times-rectangle"></i>&nbsp; Cancel
                                 </button>
