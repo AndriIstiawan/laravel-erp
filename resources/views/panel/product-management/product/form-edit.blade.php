@@ -17,9 +17,6 @@
                     <a class="btn btn-primary" href="{{route('product.index')}}">
                         <i class="fa fa-backward"></i>&nbsp; Back to List
                     </a>
-                    <button type="button" class="btn btn-success" onclick="save('exit')">
-                        &nbsp; Save all and Exit
-                    </button>
                 </p>
                 
                     <!--start card general -->
@@ -176,7 +173,7 @@
                                 <div class="col-md-9">
                                     <div class="form-group row">
                                             <div class="col-md-4">
-                                                <select id="type" name="type" class="form-control" style="width: 100% !important;" aria-describedby="packaging-error" required>
+                                                <select id="type" name="currency" class="form-control" style="width: 100% !important;" aria-describedby="packaging-error" required>
                                                     <option value="{{$product->currency}}">{{$product->currency}}</option>
                                                     <option value="USD">USD</option>
                                                     <option value="Rp">Rp</option>  
@@ -195,7 +192,7 @@
                         <div class="card">
                             <p>
                             <div class="btn-group"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                <button type="submit" class="btn btn-success">Save</button>&nbsp;
+                                <button type="submit" name="save" id="save" class="btn btn-success">Save</button>&nbsp;
                                 <button type="button" class="btn btn-secondary" onclick="window.history.back()">
                                 <i class="fa fa-times-rectangle"></i>&nbsp; Cancel
                                 </button>

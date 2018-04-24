@@ -180,7 +180,7 @@ class ProductController extends Controller
         $product->currency = $request->currency;
         $product->save();
 
-        return redirect()->route('product.index')->with('toastr', 'new');
+        return redirect()->route('product.index')->with('update',  'product');
     }
 
     //delete data product

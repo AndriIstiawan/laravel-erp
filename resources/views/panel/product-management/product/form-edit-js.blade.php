@@ -1,4 +1,17 @@
 <script>
+$(document).on('click', '#save', function(e) {
+            e.preventDefault();
+            if($('#jxForm1').valid()){
+                swal({
+                    title: "Are you sure want to submit the form?",
+                    text: "Please make sure all data inputted correctly",
+                    buttons: true,
+                }).then((confirm) => {
+                    if(confirm){ $('#jxForm1').submit(); }
+                });
+            }
+        });
+        
      $("#jxForm1").validate({
     rules:{
       name:{required:true,minlength:2}
