@@ -31,9 +31,9 @@
       code:{required:true},
       stock:{required:true},
       satu:{required:true},
-      ndua:{required:true},
+      dua:{required:true},
       tiga:{required:true},
-      emapt:{required:true},
+      empat:{required:true},
       lima:{required:true},
       enam:{required:true},
       currency:{required:true}
