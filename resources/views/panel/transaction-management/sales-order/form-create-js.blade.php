@@ -93,6 +93,7 @@
         }
         valueAmount = parseInt(valueAmount);
         elemAmount.val(valueAmount);
+        elemAmount.valid();
     }
 
     $('#tunggu').on('change', function () {
@@ -141,6 +142,21 @@
         });
     });
 
+    //add method validate "allRequired"
+    jQuery.validator.addMethod("allMinNumber", function (value, elem) {
+        // Use the name to get all the inputs and verify them
+        var name = elem.name;
+        var status = true;
+        $('#jxForm1 input[name="' + name + '"]').each(function () {
+            if(!parseInt($(this).val())){ 
+                status = false; 
+            }else if(parseInt($(this).val()) < 1){
+                status = false;
+            }
+        });
+        return status;
+    });
+
     $("#jxForm1").validate({
         rules: {
             client: {
@@ -159,6 +175,9 @@
             'packaging[]': {
                 "allRequiredSelect": true
             },
+            'amount[]': {
+                "allMinNumber": true
+            },
         },
         messages: {
             client: {
@@ -176,6 +195,9 @@
             },
             'packaging[]': {
                 "allRequiredSelect": 'each field are required'
+            },
+            'amount[]': {
+                "allMinNumber": 'each amount are required and value min 1'
             },
         },
         errorElement: 'em',
