@@ -2,7 +2,7 @@
 @section('content')
 <link href="{{ asset('fiture-style/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 <link href="{{ asset('fiture-style/select2/select2.min.css') }}" rel="stylesheet">
-<form id="jxForm1" novalidate="novalidate" method="POST" action="{{ route('sales-order.update',['id' => $order->id]) }}" enctype="multipart/form-data" onsubmit="return submitForm(this);">
+<form id="jxForm1" novalidate="novalidate" method="POST" action="{{ route('sales-order.update',['id' => $order->id]) }}" enctype="multipart/form-data">
 		{{ method_field('PUT') }}
 {{ csrf_field() }}
 <div class="container-fluid">
@@ -120,15 +120,13 @@
 							<div class="col-md-2">
 		                        <label class="col-form-label" >Amount</label>
             					<div class="control-group input-group">
-		                        <input class="form-control" id="amount" value="{{$productsss['amount']}}" min="1" type="number" name="amount[]" placeholder="00" aria-describedby="amount-error" required=""  readonly/>
-         						<span class="input-group-append">
-         						 	<button class="btn btn-danger rounded pull-right" id="minmore" onclick="$(this).closest('.option-card1 .optts').remove()"><i class="fa fa-trash"></i>
-            						</button>
-            					</span>
-            					<em id="amount-error" class="invalid-feedback">
-	                              Please select a valid packaging amount
-	                            </em>
+		                        	<input class="form-control" id="amount" value="{{$productsss['amount']}}" min="1" type="number" name="amount[]" placeholder="00" aria-describedby="amount-error" required=""  readonly/>
+	         						<span class="input-group-append">
+	         						 	<button class="btn btn-danger rounded pull-right" id="minmore" onclick="$(this).closest('.option-card1 .optts').remove()"><i class="fa fa-trash"></i>
+	            						</button>
+	            					</span>
 		                        </div>
+            					<em id="amount-error" class="error invalid-feedback"></em>
 		                    </div>
 		                    <div style="display: none;" class="col-md-4">
 		                        <div class="form-group">
@@ -206,7 +204,7 @@
 									<div class="col-md-12">
 									<div class="form-group">
 										<label class="col-form-label" for="catatan">*Catatan</label>
-										<textarea type="text" rows="5" class="form-control" id="catatan" name="catatan" placeholder="Catatan" aria-describedby="catatan-error" required="">{{$order->catatan}}</textarea>
+										<textarea type="text" rows="5" class="form-control" id="catatan" name="catatan" placeholder="Catatan" aria-describedby="catatan-error">{{$order->catatan}}</textarea>
 										<em id="catatan-error" class="error invalid-feedback">Please enter a name user</em>
 									</div>
 									</div>
@@ -221,7 +219,7 @@
 				<div class="card">
 					<p>
 					<div class="btn-group"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-					    <button type="submit" id="save" class="btn btn-success">Save</button>&nbsp;
+					    <button type="submit" name="save" id="save" class="btn btn-success">Save</button>&nbsp;
 					    <button type="button" class="btn btn-secondary" onclick="window.history.back()">
 					    <i class="fa fa-times-rectangle"></i>&nbsp; Cancel
 					    </button>
