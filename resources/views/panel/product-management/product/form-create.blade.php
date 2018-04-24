@@ -16,9 +16,7 @@
                     <a class="btn btn-primary" href="{{route('product.index')}}">
                         <i class="fa fa-backward"></i>&nbsp; Back to List
                     </a>
-                    <button type="button" class="btn btn-success" onclick="save('exit')">
-                        &nbsp; Save all and Exit
-                    </button>
+                    
                 </p>
                 
                     <!--start card general -->
