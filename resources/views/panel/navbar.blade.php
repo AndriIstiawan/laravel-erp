@@ -12,7 +12,7 @@
 		</li>
 		<li class="nav-item dropdown">
 			<a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-				<img src="{{ (Auth::user()->picture? asset('img/avatars/'.Auth::user()->picture) : asset('img/avatars/1.jpg') ) }}" class="img-avatar"
+				<img src="{{ (Auth::user()->picture? asset('img/avatars/'.Auth::user()->picture) : asset('img/avatars/admin.jpg') ) }}" class="img-avatar"
 				    alt="{{ Auth::user()->email }}">
 			</a>
 			<div class="dropdown-menu dropdown-menu-right">

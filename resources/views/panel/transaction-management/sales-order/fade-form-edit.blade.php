@@ -42,17 +42,15 @@
         </div>
         <div class="col-md-2">
         <label class="col-form-label" >Amount</label>
-        <div class="control-group input-group">
-          <input class="form-control" type="number" min="1" name="amount[]" id="amount" placeholder="00" 
-          aria-describedby="amount-error" required="" readonly/>
-        <span class="input-group-append">
-          <button class="btn btn-danger rounded pull-right" id="minmore" onclick="$(this).closest('.option-card2 .optts').remove()"><i class="fa fa-trash"></i>
-          </button>
-        </span>
-          <em id="amount-error" class="invalid-feedback">
-            Please select a valid packaging amount
-          </em>
-        </div>
+          <div class="control-group input-group">
+            <input class="form-control" type="number" min="1" name="amount[]" id="amount" placeholder="00" 
+            aria-describedby="amount-error" required="" readonly/>
+            <span class="input-group-append">
+              <button class="btn btn-danger rounded pull-right" id="minmore" onclick="$(this).closest('.option-card2 .optts').remove()"><i class="fa fa-trash"></i>
+              </button>
+            </span>
+          </div>
+          <em id="amount-error" class="error invalid-feedback"></em>
         </div>
         <div class="col-md-4" style="display: none;">
           <div class="form-group">
