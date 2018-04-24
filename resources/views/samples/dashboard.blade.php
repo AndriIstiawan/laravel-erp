@@ -643,7 +643,7 @@
                 <tr>
                   <td class="text-center">
                     <div class="avatar">
-                      <img src="{{ asset('img/avatars/1.jpg') }}" class="img-avatar" alt="admin@bootstrapmaster.com">
+                      <img src="{{ asset('img/avatars/admin.jpg') }}" class="img-avatar" alt="admin@bootstrapmaster.com">
                       <span class="avatar-status badge-success"></span>
                     </div>
                   </td>
