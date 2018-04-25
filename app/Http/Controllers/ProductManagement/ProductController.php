@@ -48,6 +48,11 @@ class ProductController extends Controller
         $categories = $categories->toArray();
         return view('panel.product-management.product.form-create',['categories' => $categories]);
     }
+    public function form()
+    {
+        return view('panel.product-management.product.form');
+    }
+
 
     //store data product
     public function store(Request $request)

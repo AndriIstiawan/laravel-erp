@@ -17,20 +17,6 @@ class ImportProductController extends Controller
     //public index import product
     public function index()
     {
-        // $file = public_path(). "/files/product/product-form-import.xlsx";
-        // // $productsImportData = Excel::selectSheetsByIndex(0)->load($file)->all();
-        // // foreach ($productsImportData->toArray() as $row) {
-        // //     print_r($row);
-        // //     echo "<hr>";
-        // // }
-        // $productsImportData = Excel::selectSheetsByIndex(0)->load($file, function($reader) {
-        //     $results = $reader->all();
-        // })->get();
-        // foreach ($productsImportData as $row) {
-        //     print_r($row);
-        //     echo "<hr>";
-        // }
-        // return $productsImportData->select(array('SKU', 'Category'))->dd();
         return view('panel.product-management.product.import-panel.index');
     }
 
