@@ -69,24 +69,24 @@
 					<div class="card-body">
 	                	<div class="form-group input_">
 								<div class="row product-list">
-									<div class="col-md-2">
+									<div class="col-md-5">
 										<label class="col-form-label" for="name">*Name Product</label>
 											<select name="product[]" style="width: 100% !important;" class="form-control form-control-sm products" aria-describedby="product[]-error">
 		                        				<option value=""></option>
 						                        @foreach ($product as $product)
-						                          	<option data-code="{{$product->code}}" data-type="{{$product->type}}" value="{{$product->id}}">{{$product->name}}</option>
+						                          	<option data-code="{{$product->code}}" data-type="{{$product->type}}" value="{{$product->id}}">{{$product->code}}-{{$product->type}}-{{$product->name}}</option>
 						                        @endforeach
 				                        	</select>
 				                        <em id="product[]-error" class="error invalid-feedback"></em>
 									</div>
-									<div class="col-md-2">
-									<label class="col-form-label" for="type">*Type</label>
-										<input type="text" class="form-control product-type" name="type[]" readonly>
-									</div>
-									<div class="col-md-2">
-										<label class="col-form-label" for="code">*Code</label>
-										<input type="text" class="form-control" name="code[]" id="product-code" readonly>
-									</div>
+									<!-- <div class="col-md-2"> -->
+									<!-- <label class="col-form-label" for="type">*Type</label> -->
+										<input type="hidden" class="form-control product-type" name="type[]" readonly>
+									<!-- </div> -->
+									<!-- <div class="col-md-2"> -->
+										<!-- <label class="col-form-label" for="code">*Code</label> -->
+										<input type="hidden" class="form-control" name="code[]" id="product-code" readonly>
+									<!-- </div> -->
 									<div class="col-md-2">
 			                            <label class="col-form-label" for="total">*Total (Kg)</label>
 			                            <input type="number" onkeyup="findTotal($(this))" class="form-control total" id="total" name="total[]" placeholder="00" aria-describedby="total-error">
