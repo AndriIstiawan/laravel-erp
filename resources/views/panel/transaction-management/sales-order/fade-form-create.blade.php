@@ -2,7 +2,7 @@
     <div class="optt">
         <div class="optts">
             <div class="row">
-                <div class="col-md-5">
+                <div class="col-md-4">
                     <label class="col-form-label" for="name">*Name Product</label>
                     <select name="product[]" style="width: 100% !important;" class="form-control form-control-sm products" aria-describedby="product[]-error">
                         <option value=""></option>
@@ -12,14 +12,14 @@
                     </select>
                     <em id="product[]-error" class="error invalid-feedback"></em>
                 </div>
-                <!-- <div class="col-md-2"> -->
-                    <!-- <label class="col-form-label" for="type">*Type</label> -->
-                    <input type="hidden" class="form-control" name="type[]" id="products-type" readonly>
-                <!-- </div> -->
-                <!-- <div class="col-md-2">
-                    <label class="col-form-label" for="code">*Code</label> -->
-                    <input type="hidden" class="form-control" name="code[]" id="products-code" readonly>
-                <!-- </div> -->
+                <div style="display: none;" class="col-md-2">
+                    <label class="col-form-label" for="type">*Type</label>
+                    <input type="text" class="form-control" name="type[]" id="products-type" readonly>
+                </div>
+                <div style="display: none;" class="col-md-2">
+                    <label class="col-form-label" for="code">*Code</label>
+                    <input type="text" class="form-control" name="code[]" id="products-code" readonly>
+                </div>
                 <div class="col-md-2">
                     <label class="col-form-label" for="total">*Total (Kg)</label>
                     <input type="number" onkeyup="findTotal($(this))" class="form-control total" id="total" name="total[]" placeholder="00" aria-describedby="total-error">
@@ -27,17 +27,21 @@
                         Please enter a total
                     </em>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-4">
                     <label class="col-form-label">*Packaging Option</label>
                     <select id="packaging" name="packaging[]" class="form-control packaging" style="width: 100% !important;" aria-describedby="packaging-error"
                         onchange="findTotal($(this))">
                         <option value=""></option>
-                        <option value="0.25">250 gram</option>
-                        <option value="0.5">500 gram</option>
-                        <option value="1">1 kg</option>
-                        <option value="5">5 kg</option>
-                        <option value="25">25 kg</option>
-                        <option value="30">30 kg</option>
+                        <option value="0.25" >250 gram - Plastik</option>
+                        <option value="0.5">500 gram - Plastik</option>  
+                        <option value="1">1 kg - Plastik</option> 
+                        <option value="0.25" >250 gram - Aluminium</option>
+                        <option value="0.5">500 gram - Aluminium</option>  
+                        <option value="1">1 kg - Aluminium</option>   
+                        <option value="5">5 kg - Jerigen</option>  
+                        <option value="25">25 kg - Jerigen</option>
+                        <option value="30">30 kg - Jerigen</option>
+                        <option value="25">25 kg - Drum</option>
                     </select>
                     <em id="packaging-error" class="error invalid-feedback">Please select packaging</em>
                 </div>
@@ -54,18 +58,9 @@
                     <em id="amount-error" class="error invalid-feedback"></em>
                 </div>
                 <div class="col-md-4" style="display: none;">
-                    <div class="form-group">
-                        <label class="col-form-label">*Package</label>
-                        <select id="package" name="package[]" value="1" class="form-control" style="width: 100% !important;" aria-describedby="package-error">
-                            <option value=""></option>
-                            <option value="drum" selected>Drum</option>
-                            <option value="Jerigen">Jerigen</option>
-                            <option value="Aluminium">Aluminium</option>
-                            <option value="Plastik">Plastik</option>
-                        </select>
-                        <em id="package-error" class="error invalid-feedback">Please select package</em>
-                    </div>
-                </div>
+                    <label class="col-form-label" for="type">*Package</label>
+                    <input type="text" class="form-control packages" name="package[]" readonly>
+                 </div>
                 <div class="col-md-4" style="display: none;">
                     <div class="form-group">
                         <label class="col-form-label">*Realisasi (Kg)</label>

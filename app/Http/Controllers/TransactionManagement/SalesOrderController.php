@@ -11,6 +11,7 @@ use App\User;
 use Yajra\Datatables\Datatables;
 use File;
 use Image;
+use Excel;
 use datetime;
 
 class SalesOrderController extends Controller
@@ -142,7 +143,7 @@ class SalesOrderController extends Controller
         $order = SalesOrder::find($id);
         $product= Product::whereNotIn('name', array_column($order->productattr,'name'))->get(); 
         $products= Product::all(); 
-        $modUser = User::where('role', 'elemMatch', array('name' => 'Sales'))->whereNotIn('role', array_column($order->sales,'role'))->get(); ;
+        $modUser = User::where('role', 'elemMatch', array('name' => 'Sales'))->whereNotIn('role', array_column($order->sales,'role'))->get();
         $att = SalesOrder::whereIn('name', array_column($order->productattr,'name'))->get();
         $user= User::where('role', 'elemMatch', array('name' => 'Production'))->get();
         $users= User::where('role', 'elemMatch', array('name' => 'Production'))->get();
@@ -214,5 +215,16 @@ class SalesOrderController extends Controller
 
     public function generateSO(){
         return "SO-".date('H:i:s-d-m-Y');
+    }
+
+    public function orderExport(){
+        $sales=SalesOrder::all();
+       $order=SalesOrder::select('sono','client','productattr')->get();
+        return Excel::create('data_order', function($excel) use ($order){
+            $excel->sheet('sales order', function($sheet) use ($order){
+                $sheet->fromArray($order);
+            });
+        })->download('xls');
+        
     }
 }
