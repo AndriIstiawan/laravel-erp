@@ -16,7 +16,13 @@
 							New Order
 					</span>
 				</a>
-                
+                <a href="{{ route('product.index') }}/export" class="btn btn-success ladda-button" data-style="zoom-in">
+					<span class="ladda-label">
+						<i class="fa fa-file-excel-o">
+						</i>
+							Export Sales Order
+					</span>
+				</a>
 			</p>
 			</div>
 		</div>
