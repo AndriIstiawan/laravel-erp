@@ -11,14 +11,12 @@
             <div class="col-lg-10">
                 <div class="alert alert-success" role="alert">
                     <h4 class="alert-heading">New product!</h4>
-                    
                 </div>
                 <p>
                     <a class="btn btn-primary" href="{{route('product.index')}}">
                         <i class="fa fa-backward"></i>&nbsp; Back to List
                     </a>
                 </p>
-                
                     <!--start card general -->
                     <div class="card">
                         <div class="card-header">
@@ -42,30 +40,28 @@
                                 </label>
                                 <div class="col-md-9">
                                     <div class="form-group row">
-                                            <div class="col-md-4">
-                                                <select id="type" name="type" class="form-control" style="width: 100% !important;" aria-describedby="packaging-error" required>
-                                                    <option value="{{$product->type}}">{{$product->type}}</option>
-                                                    <option value="BP" >BP</option>
-                                                    <option value="LC">LC</option>  
-                                                    <option value="AC">AC</option>  
-                                                    <option value="CM">CM</option>  
-                                                    <option value="PK">PK</option>
-                                                </select>
-                                                <em id="type-error" class="error invalid-feedback">Please select type</em>
-                                            </div>
-                                            
+                                        <div class="col-md-4">
+                                            <select id="type" name="type" class="form-control" style="width: 100% !important;" aria-describedby="type-error" required>
+                                                <option value="{{$product->type}}">{{$product->type}}</option>
+                                                <option value="BP" >BP</option>
+                                                <option value="LC">LC</option>  
+                                                <option value="AC">AC</option>  
+                                                <option value="CM">CM</option>  
+                                                <option value="PK">PK</option>
+                                            </select>
+                                            <em id="type-error" class="error invalid-feedback">Please select type</em>
+                                        </div>
                                     </div>
-
                                 </div>
                                 <label class="col-md-3 col-form-label" for="Code">*Code
                                     <br>
                                 </label>
                                 <div class="col-md-9">
                                     <div class="form-group row">
-                                            <div class="col-md-4">
-                                                <input type="text" class="form-control" name="code" id="code" value="{{$product->code}}">
-                                            </div>
-                                            
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control" name="code" id="code" value="{{$product->code}}" aria-describedby="code-error">
+                                             <em id="code-error" class="error invalid-feedback">Please select type</em>
+                                        </div>
                                     </div>
                                 </div>
                                 <label class="col-md-3 col-form-label" for="Stock">*Stock
@@ -73,10 +69,10 @@
                                 </label>
                                 <div class="col-md-9">
                                     <div class="form-group row">
-                                            <div class="col-md-4">
-                                                <input type="text" class="form-control" name="stock" id="stock" value="{{$product->stock}}">
-                                            </div>
-                                            
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control" name="stock" id="stock" value="{{$product->stock}}" aria-describedby="stock-error">
+                                            <em id="stock-error" class="error invalid-feedback">Please select type</em>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -97,7 +93,8 @@
                                 <div class="col-md-9">
                                     <div class="form-group row">
                                     <div class="col-md-4">
-                                        <input type="text" name="satu" class="form-control" placeholder="250 gr" style="width:200px;" aria-describedby="250-error" value="{{$product->price[0]['price']}}">
+                                        <input type="text" name="satu" class="form-control" placeholder="250 gr" style="width:200px;" aria-describedby="satu-error" value="{{$product->price[0]['price']}}">
+                                        <em id="satu-error" class="error invalid-feedback">Please select type</em>
                                     </div>
                                     </div>
                                 </div>
@@ -109,7 +106,8 @@
                                 <div class="col-md-9">
                                     <div class="form-group row">
                                         <div class="col-md-4">
-                                            <input type="text" name="dua" class="form-control" placeholder="500 gr" style="width:200px;" aria-describedby="500-error" value="{{$product->price[1]['price']}}">
+                                            <input type="text" name="dua" class="form-control" placeholder="500 gr" style="width:200px;" aria-describedby="dua-error" value="{{$product->price[1]['price']}}">
+                                        <em id="dua-error" class="error invalid-feedback">Please select type</em>
                                         </div> 
                                     </div>
                                 </div>
@@ -120,10 +118,10 @@
                                 </label>
                                 <div class="col-md-9">
                                     <div class="form-group row">
-                                            <div class="col-md-4">
-                                                <input type="text" name="tiga" class="form-control" placeholder="1 Kg" style="width:200px;" aria-describedby="1-error" value="{{$product->price[2]['price']}}">
-                                            </div>
-                                            
+                                        <div class="col-md-4">
+                                            <input type="text" name="tiga" class="form-control" placeholder="1 Kg" style="width:200px;" aria-describedby="tiga-error" value="{{$product->price[2]['price']}}">
+                                        <em id="tiga-error" class="error invalid-feedback">Please select type</em>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -133,10 +131,10 @@
                                 </label>
                                 <div class="col-md-9">
                                     <div class="form-group row">
-                                            <div class="col-md-4">
-                                                <input type="text" name="empat" class="form-control" placeholder="5 Kg" style="width:200px;" aria-describedby="5-error" value="{{$product->price[3]['price']}}">
-                                            </div>
-                                            
+                                        <div class="col-md-4">
+                                            <input type="text" name="empat" class="form-control" placeholder="5 Kg" style="width:200px;" aria-describedby="empat-error" value="{{$product->price[3]['price']}}">
+                                        <em id="empat-error" class="error invalid-feedback">Please select type</em>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -146,10 +144,10 @@
                                 </label>
                                 <div class="col-md-9">
                                     <div class="form-group row">
-                                            <div class="col-md-4">
-                                                <input type="text" name="lima" class="form-control" placeholder="25 Kg" style="width:200px;" aria-describedby="25-error" value="{{$product->price[4]['price']}}">
-                                            </div>
-                                            
+                                        <div class="col-md-4">
+                                            <input type="text" name="lima" class="form-control" placeholder="25 Kg" style="width:200px;" aria-describedby="lima-error" value="{{$product->price[4]['price']}}">
+                                        <em id="lima-error" class="error invalid-feedback">Please select type</em>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -159,10 +157,10 @@
                                 </label>
                                 <div class="col-md-9">
                                     <div class="form-group row">
-                                            <div class="col-md-4">
-                                                <input type="text" name="enam" class="form-control" placeholder="30 Kg" style="width:200px;" aria-describedby="30-error" value="{{$product->price[5]['price']}}">
-                                            </div>
-                                            
+                                        <div class="col-md-4">
+                                            <input type="text" name="enam" class="form-control" placeholder="30 Kg" style="width:200px;" aria-describedby="30-error" value="{{$product->price[5]['price']}}">
+                                        <em id="enam-error" class="error invalid-feedback">Please select type</em>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -172,18 +170,17 @@
                                 </label>
                                 <div class="col-md-9">
                                     <div class="form-group row">
-                                            <div class="col-md-4">
-                                                <select id="type" name="currency" class="form-control" style="width: 100% !important;" aria-describedby="packaging-error" required>
-                                                    <option value="{{$product->currency}}">{{$product->currency}}</option>
-                                                    <option value="USD">USD</option>
-                                                    <option value="Rp">Rp</option>  
-                                                    </select>
-                                            </div>
-                                            
+                                        <div class="col-md-4">
+                                            <select id="currency" name="currency" class="form-control" style="width: 100% !important;" aria-describedby="currency-error" required>
+                                                <option value=""></option>
+                                                <option value="USD" {{($product->currency == 'USD'?'selected':'')}}>USD</option>
+                                                <option value="Rp" {{($product->currency == 'Rp'?'selected':'')}}>Rp</option>  
+                                            </select>
+                                        <em id="currency-error" class="error invalid-feedback">Please select type</em>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            
                         </div>
                     </div>
                     <!--end card price-->

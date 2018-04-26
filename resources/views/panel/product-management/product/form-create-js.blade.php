@@ -14,6 +14,11 @@
             }
         });
 
+    $('#type').select2({theme: "bootstrap",placeholder: 'Please select'})
+              .change(function () {$(this).valid();});
+    $('#currency').select2({theme: "bootstrap",placeholder: 'Please select'})
+              .change(function () {$(this).valid();});
+
   $("#jxForm1").validate({
     rules:{
       name:{required:true},
@@ -30,16 +35,16 @@
     },
     messages:{
       name:{
-        required:'Please enter a SO NO'
+        required:'Please enter a name product'
       },
       type:{
-        required:'Please fill this type'
+        required:'Please select a type'
       },
       code:{
-        required:'Please fill this code'
+        required:'Please enter a code'
       },
       stock:{
-        required:'Please fill this stock'
+        required:'Please enter a stock'
       },
       satu:{
         required:'Please fill the blank'
@@ -60,7 +65,7 @@
         required:'Please fill the blank'
       },
       currency:{
-        required:'Please fill the blank'
+        required:'Please select a currency'
       }
     },
     errorElement:'em',
