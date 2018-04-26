@@ -121,7 +121,7 @@ class SalesOrderController extends Controller
         return Datatables::of($orders)
             ->addColumn('status', function ($order) {
                 return ($order->status == 1 ?
-                    '<span class="badge badge-success">Sales Executive</span>' :
+                    '<span class="badge badge-success">Sales Executive ('.$order->sales[0]['name'].')</span>' :
                     '<span class="badge badge-success">Production</span>');
             })
             
@@ -133,6 +133,7 @@ class SalesOrderController extends Controller
                         route('sales-order.destroy',['id' => $order->id]).'">'.method_field('DELETE').csrf_field().
                     '<button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-remove"></i>&nbsp;Remove</button></form>';
             })
+            
             ->rawColumns(['status', 'action'])
             ->make(true);
     }
