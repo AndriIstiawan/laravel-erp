@@ -51,7 +51,7 @@
 									<th>Packaging</th>
 									<th>Amount</th>
 									<th>Catatan</th>
-									<th>Status</th>
+									<th>Commiter</th>
 									<th>Date registered</th>
 									<th></th>
 								</tr>
@@ -76,8 +76,8 @@
 				
 			</div>
 
-			<div class="modal-body">
-				<div class="form-group">
+				<div class="modal-body">
+					<div class="form-group">
 						<label for="file" class="col-md-3 control-label">Export</label>
 						<div class="col-md-6">
 							<a href="{{route('sales-order.export')}}" class="btn btn-success">Export</a>
@@ -92,7 +92,7 @@
 			</form>
 		</div>
 	</div>
-</div>
+	</div>
 	</div>
 </div>
 @endsection
