@@ -121,7 +121,7 @@ class SalesOrderController extends Controller
         return Datatables::of($orders)
             ->addColumn('status', function ($order) {
                 return ($order->status == 1 ?
-                    '<span class="badge badge-success">Sales Executive ('.$order->sales[0]['name'].')</span>' :
+                    '<span class="badge badge-success">'.$order->sales[0]['name'].'&nbsp;(Sales Executive)</span>' :
                     '<span class="badge badge-success">Production</span>');
             })
             
