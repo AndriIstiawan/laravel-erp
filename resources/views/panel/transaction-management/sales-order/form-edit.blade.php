@@ -79,25 +79,25 @@
 					    <div class="option-card1">
 					    <div class="optts">
 						<div class="row product-list">
-							<div class="col-md-2">
+							<div class="col-md-6">
 								<label class="col-form-label" for="name">Name Product</label>
 								<select name="product[]" style="width: 100% !important;" class="form-control form-control-sm products" aria-describedby="product[]-error">
 									<option value=""></option>
-									<option value="{{$productsss['id']}}" data-code="{{$productsss['code']}}" data-type="{{$productsss['type']}}" selected="">{{$productsss['name']}}</option>
+									<option value="{{$productsss['id']}}" data-code="{{$productsss['code']}}" data-type="{{$productsss['type']}}" selected="">{{$productsss['code']}}-{{$productsss['type']}}-{{$productsss['name']}}</option>
 									@foreach ($product as $produ)
 					                  <option data-code="{{$produ->code}}" data-type="{{$produ->type}}" value="{{$produ->id}}">{{$produ->name}}</option>
 					              	@endforeach
 								</select>
           					<em id="product[]-error" class="error invalid-feedback">Please select product</em>
-							</div>
+							</div><!-- 
 							<div class="col-md-2">
-							<label class="col-form-label" for="type">Type</label>
-									<input type="text" class="form-control" value="{{$productsss['type']}}" name="type[]" id="product-type" readonly>
-							</div>
+							<label class="col-form-label" for="type">Type</label> -->
+									<input type="hidden" class="form-control" value="{{$productsss['type']}}" name="type[]" id="product-type" readonly>
+							<!-- </div>
 							<div class="col-md-2">
-								<label class="col-form-label" for="code">Code</label>
-								<input type="text" value="{{$productsss['code']}}" class="form-control" name="code[]" id="product-code" readonly>
-							</div>
+								<label class="col-form-label" for="code">Code</label> -->
+								<input type="hidden" value="{{$productsss['code']}}" class="form-control" name="code[]" id="product-code" readonly><!-- 
+							</div> -->
 							<div class="col-md-2">
 		                          <label class="col-form-label" for="total">Total(Kg)</label>
 		                          <input type="number" onkeyup="findTotal()" class="form-control" id="total" name="total[]" value="{{$productsss['total']}}" placeholder="00" aria-describedby="totals-error" >

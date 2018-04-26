@@ -1,5 +1,7 @@
-<script>
-$(document).on('click', '#save', function(e) {
+<script>  
+  
+  //submit button
+        $(document).on('click', '#save', function(e) {
             e.preventDefault();
             if($('#jxForm1').valid()){
                 swal({
@@ -11,15 +13,59 @@ $(document).on('click', '#save', function(e) {
                 });
             }
         });
-        
-     $("#jxForm1").validate({
+
+    $('#type').select2({theme: "bootstrap",placeholder: 'Please select'})
+              .change(function () {$(this).valid();});
+    $('#currency').select2({theme: "bootstrap",placeholder: 'Please select'})
+              .change(function () {$(this).valid();});
+
+  $("#jxForm1").validate({
     rules:{
-      name:{required:true,minlength:2}
+      name:{required:true},
+      type:{required:true},
+      code:{required:true},
+      stock:{required:true},
+      satu:{required:true},
+      dua:{required:true},
+      tiga:{required:true},
+      empat:{required:true},
+      lima:{required:true},
+      enam:{required:true},
+      currency:{required:true}
     },
     messages:{
       name:{
-        required:'Please enter a SO NO',
-        minlength:'SO NO must consist of at least 2 characters'
+        required:'Please enter a name product'
+      },
+      type:{
+        required:'Please select a type'
+      },
+      code:{
+        required:'Please enter a code'
+      },
+      stock:{
+        required:'Please enter a stock'
+      },
+      satu:{
+        required:'Please fill the blank'
+      },
+      dua:{
+        required:'Please fill the blank'
+      },
+      tiga:{
+        required:'Please fill the blank'
+      },
+      empat:{
+        required:'Please fill the blank'
+      },
+      lima:{
+        required:'Please fill the blank'
+      },
+      enam:{
+        required:'Please fill the blank'
+      },
+      currency:{
+        required:'Please select a currency'
       }
     },
     errorElement:'em',
