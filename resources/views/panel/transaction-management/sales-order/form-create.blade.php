@@ -69,7 +69,7 @@
 					<div class="card-body">
 	                	<div class="form-group input_">
 								<div class="row product-list">
-									<div class="col-md-5">
+									<div class="col-md-6">
 										<label class="col-form-label" for="name">*Name Product</label>
 											<select name="product[]" style="width: 100% !important;" class="form-control form-control-sm products" aria-describedby="product[]-error">
 		                        				<option value=""></option>
