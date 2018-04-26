@@ -221,7 +221,7 @@ class SalesOrderController extends Controller
     }
 
     public function orderExport(){
-       $order=SalesOrder::select('sono','client','sale[]','productattr')->get();
+       $order=SalesOrder::select('sono','client')->get();
         return Excel::create('data_order', function($excel) use ($order){
             $excel->sheet('sales order', function($sheet) use ($order){
                 $sheet->fromArray($order);
