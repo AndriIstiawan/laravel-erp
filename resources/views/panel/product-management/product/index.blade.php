@@ -25,21 +25,6 @@
 							Import/Export Products
 					</span>
 				</button>
-				<!-- 
-				<button type="button" class="btn btn-primary" data-toggle="modal"
-						 data-target="#primaryModal" data-link="{{ route('product.index') }}/import"
-						 onclick="funcModal($(this))">
-						 <i class="fa fa-cloud-download">
-						</i>
-							Import/Export Products
-					</button> -->
-                <!-- <a href="{{ route('product.index') }}/export" class="btn btn-success ladda-button" data-style="zoom-in">
-					<span class="ladda-label">
-						<i class="fa fa-file-excel-o">
-						</i>
-							Export Products
-					</span>
-				</a> -->
 				</p>
 			</div>
 		</div>
@@ -87,27 +72,30 @@
 		
 	</div>
 </div>
+
 <div class="modal" id="modal-exim" tabindex="1" role="dialog" aria-hidden="true" data-backdrop="static">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
-			<form method="post" action="" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
+			<form method="post" action="{{route('product.import')}}" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
 			{{ csrf_field() }}
-			<div class="modal-header">
-			<h3 class="modal-title">Export/Import Product</h3>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times; </span>
-				</button>
-				
-			</div>
+				<div class="modal-header">
+				<h3 class="modal-title">Export/Import Product</h3>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times; </span>
+					</button>
+					
+				</div>
 
-			<div class="modal-body">
-				<div class="form-group">
-						<label for="file" class="col-md-3 control-label">Export</label>
+				<div class="modal-body">
+
+					<div class="form-group">
+						<label for="export" class="col-md-3 control-label">Export</label>
 						<div class="col-md-6">
-							<a href="" class="btn btn-success">Export</a>
+							<a href="{{route('product.export')}}" class="btn btn-success">Export</a>
 							<span class="help-block with-errors"></span>
 						</div>
 					</div>
+
 					<div class="form-group">
 						<label for="file" class="col-md-3 control-label">Import</label>
 						<div class="col-md-6">

@@ -12,6 +12,7 @@ use App\Brand;
 use Yajra\Datatables\Datatables;
 use File;
 use Image;
+use Excel;
 
 class ProductController extends Controller
 {
@@ -195,5 +196,34 @@ class ProductController extends Controller
         $product->delete();
         
         return redirect()->route('product.index')->with('dlt', 'Products updated!');
+    }
+
+    public function productExport(){
+       $product=Product::select('code','name','type','stock','currency')->get();
+        return Excel::create('product-list', function($excel) use ($product){
+            $excel->sheet('product list', function($sheet) use ($product){
+                $sheet->fromArray($product);
+            });
+        })->download('xls');
+        
+    }
+
+    public function productImport(Request $request){
+        if($request->hasFile('file')) {
+            $path = $request->file('file')->getRealPath();
+            $data = Excel::load($path, function($reader){})->get();
+            if(!empty($data) && $data->count()){
+                foreach($data as $key => $value){
+                    $product = new Product();
+                    $product->code=$value->code;
+                    $product->name=$value->name;
+                    $product->type = $value->type;
+                    $product->stock = $value->stock;
+                }echo $data;
+            }else{
+                echo "empty";
+            }
+        }
+        
     }
 }
