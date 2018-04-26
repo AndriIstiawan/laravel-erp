@@ -52,17 +52,25 @@
                 $(this).parent().parent().find('input[name="code[]"]').val(productCode);
                 $(this).valid();
             });
+
         $('.product-list .packaging').select2({
             theme: "bootstrap",
             placeholder: 'Please select'
         }).change(function () {
-            $(this).valid();
+            var element = $(this).find('option:selected');
+                var productType = element.attr('data-package');
+                $(this).parent().parent().find('input[name="package[]"]').val(productType);
+                $(this).valid();
         });
+        
         $('.option-card1 .packaging').select2({
             theme: "bootstrap",
             placeholder: 'Please select'
         }).change(function () {
-            $(this).valid();
+            var element = $(this).find('option:selected');
+                var productType = element.attr('data-package');
+                $(this).parent().parent().find('input[name="package[]"]').val(productType);
+                $(this).valid();
         });
     }
     refProductChange();

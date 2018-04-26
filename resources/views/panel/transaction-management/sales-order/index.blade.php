@@ -16,13 +16,14 @@
 							New Order
 					</span>
 				</a>
-                <a href="{{ route('product.index') }}/export" class="btn btn-success ladda-button" data-style="zoom-in">
+                <button class="btn btn-success ladda-button"  data-toggle="modal"
+						 data-target="#modal-exim" >
 					<span class="ladda-label">
-						<i class="fa fa-file-excel-o">
+						<i class="fa fa-cloud-download">
 						</i>
 							Export Sales Order
 					</span>
-				</a>
+				</button>
 			</p>
 			</div>
 		</div>
@@ -50,7 +51,7 @@
 									<th>Packaging</th>
 									<th>Amount</th>
 									<th>Catatan</th>
-									<th>Status</th>
+									<th>Commiter</th>
 									<th>Date registered</th>
 									<th></th>
 								</tr>
@@ -62,7 +63,36 @@
 				</div>
 			</div>
 		</div>
-		
+	<div class="modal" id="modal-exim" tabindex="1" role="dialog" aria-hidden="true" data-backdrop="static">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<form method="post" action="" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
+			{{ csrf_field() }}
+			<div class="modal-header">
+			<h3 class="modal-title">Export Sales Order</h3>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times; </span>
+				</button>
+				
+			</div>
+
+				<div class="modal-body">
+					<div class="form-group">
+						<label for="file" class="col-md-3 control-label">Export</label>
+						<div class="col-md-6">
+							<a href="{{route('sales-order.export')}}" class="btn btn-success">Export</a>
+							<span class="help-block with-errors"></span>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-primary btn-save">Submit</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	</div>
 	</div>
 </div>
 @endsection

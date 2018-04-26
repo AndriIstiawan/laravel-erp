@@ -17,21 +17,30 @@
 					</span>
 				</a>
 				
-                <!-- <a href="{{ route('product.index') }}/import" class="btn btn-success ladda-button" data-style="zoom-in">
+                <button class="btn btn-success ladda-button"  data-toggle="modal"
+						 data-target="#modal-exim" >
 					<span class="ladda-label">
 						<i class="fa fa-cloud-download">
 						</i>
-							Import Products
+							Import/Export Products
 					</span>
-				</a>
-                <a href="{{ route('product.index') }}/export" class="btn btn-success ladda-button" data-style="zoom-in">
+				</button>
+				<!-- 
+				<button type="button" class="btn btn-primary" data-toggle="modal"
+						 data-target="#primaryModal" data-link="{{ route('product.index') }}/import"
+						 onclick="funcModal($(this))">
+						 <i class="fa fa-cloud-download">
+						</i>
+							Import/Export Products
+					</button> -->
+                <!-- <a href="{{ route('product.index') }}/export" class="btn btn-success ladda-button" data-style="zoom-in">
 					<span class="ladda-label">
 						<i class="fa fa-file-excel-o">
 						</i>
 							Export Products
 					</span>
 				</a> -->
-			</p>
+				</p>
 			</div>
 		</div>
 		
@@ -78,6 +87,44 @@
 		
 	</div>
 </div>
+<div class="modal" id="modal-exim" tabindex="1" role="dialog" aria-hidden="true" data-backdrop="static">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<form method="post" action="" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
+			{{ csrf_field() }}
+			<div class="modal-header">
+			<h3 class="modal-title">Export/Import Product</h3>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times; </span>
+				</button>
+				
+			</div>
+
+			<div class="modal-body">
+				<div class="form-group">
+						<label for="file" class="col-md-3 control-label">Export</label>
+						<div class="col-md-6">
+							<a href="" class="btn btn-success">Export</a>
+							<span class="help-block with-errors"></span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="file" class="col-md-3 control-label">Import</label>
+						<div class="col-md-6">
+							<input type="file" id="file" name="file" class="form-control" autofocus required>
+							<span class="help-block with-errors"></span>
+						</div>
+					</div>
+
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-primary btn-save">Submit</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
 @endsection
 <!-- /.container-fluid -->
 
@@ -88,6 +135,7 @@
 
 <script>
 	//DATATABLES
+	
 		$('.datatable').DataTable({
 			processing: true,
 	        serverSide: true,
@@ -112,6 +160,13 @@
 		});
 		$('.datatable').attr('style','border-collapse: collapse !important');
 		
+		
 </script>
+<script type="text/javascript">
+	function eximForm(){
+			$('#modal-exim').modal('show');
+			$('#modal-exim form')[0].reset();
+		}
 
+</script>
 @endsection

@@ -11,6 +11,7 @@ use App\User;
 use Yajra\Datatables\Datatables;
 use File;
 use Image;
+use Excel;
 use datetime;
 
 class SalesOrderController extends Controller
@@ -120,7 +121,7 @@ class SalesOrderController extends Controller
         return Datatables::of($orders)
             ->addColumn('status', function ($order) {
                 return ($order->status == 1 ?
-                    '<span class="badge badge-success">Sales Executive</span>' :
+                    '<span class="badge badge-success">'.$order->sales[0]['name'].'&nbsp;(Sales Executive)</span>' :
                     '<span class="badge badge-success">Production</span>');
             })
             
@@ -132,6 +133,7 @@ class SalesOrderController extends Controller
                         route('sales-order.destroy',['id' => $order->id]).'">'.method_field('DELETE').csrf_field().
                     '<button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-remove"></i>&nbsp;Remove</button></form>';
             })
+            
             ->rawColumns(['status', 'action'])
             ->make(true);
     }
@@ -142,7 +144,7 @@ class SalesOrderController extends Controller
         $order = SalesOrder::find($id);
         $product= Product::whereNotIn('name', array_column($order->productattr,'name'))->get(); 
         $products= Product::all(); 
-        $modUser = User::where('role', 'elemMatch', array('name' => 'Sales'))->whereNotIn('role', array_column($order->sales,'role'))->get(); ;
+        $modUser = User::where('role', 'elemMatch', array('name' => 'Sales'))->whereNotIn('role', array_column($order->sales,'role'))->get();
         $att = SalesOrder::whereIn('name', array_column($order->productattr,'name'))->get();
         $user= User::where('role', 'elemMatch', array('name' => 'Production'))->get();
         $users= User::where('role', 'elemMatch', array('name' => 'Production'))->get();
@@ -214,5 +216,16 @@ class SalesOrderController extends Controller
 
     public function generateSO(){
         return "SO-".date('H:i:s-d-m-Y');
+    }
+
+    public function orderExport(){
+        $sales=SalesOrder::all();
+       $order=SalesOrder::select('sono','client','productattr')->get();
+        return Excel::create('data_order', function($excel) use ($order){
+            $excel->sheet('sales order', function($sheet) use ($order){
+                $sheet->fromArray($order);
+            });
+        })->download('xls');
+        
     }
 }
