@@ -127,6 +127,8 @@ class SalesOrderController extends Controller
             
             ->addColumn('action', function ($order) {
                 return 
+                    // '<a class="btn btn-success btn-sm"  href="'.route('sales-order.edit',['id' => $order->id]).'">
+                    //     <i class="fa fa-pencil-square-o"></i>&nbsp;Edit</a>'.
                     '<a class="btn btn-success btn-sm"  href="'.route('sales-order.edit',['id' => $order->id]).'">
                         <i class="fa fa-pencil-square-o"></i>&nbsp;Edit</a>'.
                     '<form style="display:inline;" method="POST" action="'.
@@ -219,8 +221,7 @@ class SalesOrderController extends Controller
     }
 
     public function orderExport(){
-        $sales=SalesOrder::all();
-       $order=SalesOrder::select('sono','client','productattr')->get();
+       $order=SalesOrder::select('sono','client')->get();
         return Excel::create('data_order', function($excel) use ($order){
             $excel->sheet('sales order', function($sheet) use ($order){
                 $sheet->fromArray($order);

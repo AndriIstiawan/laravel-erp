@@ -50,7 +50,7 @@ Route::middleware('auth')->group(function() {
 
 	Route::resource('production', 'TransactionManagement\ProductionController');
 	Route::post('production/find', 'TransactionManagement\ProductionController@find');
-	Route::get('export', 'TransactionManagement\SalesOrderController@orderExport')->name('sales-order.export');
+	Route::get('exportt', 'TransactionManagement\SalesOrderController@orderExport')->name('sales-order.export');
 	/* END Sales order */
 
 	/* Master home */
@@ -74,10 +74,12 @@ Route::middleware('auth')->group(function() {
 	/* Product Management */
 	Route::resource('attributes', 'ProductManagement\AttributesController');
     Route::post('attributes/find', 'ProductManagement\AttributesController@find');
+    // export
+    Route::get('export', 'ProductManagement\ProductController@productExport')->name('product.export');
+    // import
+    Route::post('import', 'ProductManagement\ProductController@productImport')->name('product.import');
+    // end export import
     
-    Route::get('product/export', 'ProductManagement\ExportProductController@index');
-    Route::get('product/import', 'ProductManagement\ImportProductController@index');
-    Route::post('product/import', 'ProductManagement\ImportProductController@importData');
 	Route::resource('product', 'ProductManagement\ProductController');
     Route::post('product/find', 'ProductManagement\ProductController@find');
 
