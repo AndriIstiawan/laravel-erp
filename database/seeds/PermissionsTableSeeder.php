@@ -34,17 +34,17 @@ class PermissionsTableSeeder extends Seeder
 				'created_at' => date("Y-m-d H:i:s"),
 				'updated_at' => date("Y-m-d H:i:s")
 			],
-			// [
-	  //       	'name' => 'Production',
-	  //       	'slug' => 'production',
-	  //       	'type' => 'module-menu',
-			// 	'icon' => 'icon-cursor',
-			// 	'parent' => null,
-			// 	'description' => 'Module Menu',
-			// 	'guard_name' => 'web',
-			// 	'created_at' => date("Y-m-d H:i:s"),
-			// 	'updated_at' => date("Y-m-d H:i:s")
-			// ],
+			[
+	        	'name' => 'Production',
+	        	'slug' => 'production',
+	        	'type' => 'module-menu',
+				'icon' => 'icon-cursor',
+				'parent' => null,
+				'description' => 'Module Menu',
+				'guard_name' => 'web',
+				'created_at' => date("Y-m-d H:i:s"),
+				'updated_at' => date("Y-m-d H:i:s")
+			],
 			[
 	        	'name' => 'User Management',
 	        	'slug' => null,
@@ -493,7 +493,7 @@ class PermissionsTableSeeder extends Seeder
 			->update(['parent' => (string)$parent['_id']]);
 
 		$parent = DB::table('permissions')->where('name','Transaction')->first();
-		DB::table('permissions')->whereIn('slug', ['sales-order'/*,'production'*/])
+		DB::table('permissions')->whereIn('slug', ['sales-order','production'])
 			->update(['parent' => (string)$parent['_id']]);
 
 		$parent = DB::table('permissions')->where('name','Master-Deal')->first();

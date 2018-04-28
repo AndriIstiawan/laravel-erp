@@ -79,7 +79,7 @@
 					    <div class="option-card1">
 					    <div class="optts">
 						<div class="row product-list">
-							<div class="col-md-6">
+							<div class="col-md-4">
 								<label class="col-form-label" for="name">Name Product</label>
 								<select name="product[]" style="width: 100% !important;" class="form-control form-control-sm products" aria-describedby="product[]-error">
 									<option value=""></option>
@@ -105,16 +105,20 @@
 		                              Please enter a totals
 		                            </em>
 		                        </div>
-							<div class="col-md-2">
+							<div class="col-md-4">
 			                        <label class="col-form-label" >*Packaging (Kg)</label>
 			                        <select name="packaging[]" class="form-control packaging" style="width: 100% !important;" aria-describedby="packaging-error" onchange="findTotal($(this))">
 				                        <option value=""></option>
-										<option value="0.25" {{($productsss['packaging'] == '0.25'?'selected':'')}}>250 gram</option>
-										<option value="0.5" {{($productsss['packaging'] == '0.5'?'selected':'')}}>500 gram</option>  
-										<option value="1" {{($productsss['packaging'] == '1'?'selected':'')}}>1 kg</option>  
-										<option value="5" {{($productsss['packaging'] == '5'?'selected':'')}}>5 kg</option>  
-										<option value="25" {{($productsss['packaging'] == '25'?'selected':'')}}>25 kg</option>
-										<option value="30" {{($productsss['packaging'] == '30'?'selected':'')}}>30 kg</option>
+										<option data-package="Plastik" value="0.25" {{($productsss['packaging'] == '0.25' && $productsss['package'] == 'Plastik'?'selected':'')}} >250 gram - Plastik</option>
+										<option data-package="Plastik" value="0.5" {{($productsss['packaging'] == '0.5' && $productsss['package'] == 'Plastik'?'selected':'')}}>500 gram - Plastik</option>  
+										<option data-package="Plastik" value="1" {{($productsss['packaging'] == '1' && $productsss['package'] == 'Plastik'?'selected':'')}}>1 kg - Plastik</option> 
+										<option data-package="Aluminium" value="0.25" {{($productsss['packaging'] == '0.25' && $productsss['package'] == 'Aluminium'?'selected':'')}}>250 gram - Aluminium</option>
+										<option data-package="Aluminium" value="0.5" {{($productsss['packaging'] == '0.25' && $productsss['package'] == 'Plastik'?'selected':'')}}>500 gram - Aluminium</option>  
+										<option data-package="Aluminium" value="1" {{($productsss['packaging'] == '1' && $productsss['package'] == 'Aluminium'?'selected':'')}}>1 kg - Aluminium</option>   
+										<option data-package="Jerigen" value="5" {{($productsss['packaging'] == '5' && $productsss['package'] == 'Jerigen'?'selected':'')}}>5 kg - Jerigen</option>  
+										<option data-package="Jerigen" value="25" {{($productsss['packaging'] == '25' && $productsss['package'] == 'Jerigen'?'selected':'')}}>25 kg - Jerigen</option>
+										<option data-package="Jerigen" value="30" {{($productsss['packaging'] == '30' && $productsss['package'] == 'Jerigen'?'selected':'')}}>30 kg - Jerigen</option>
+										<option data-package="Drum" value="25" {{($productsss['packaging'] == '25' || $productsss['package'] == 'Drum'?'selected':'')}}>25 kg - Drum</option>
 				                    </select>
 			                    </div>
 							<div class="col-md-2">
@@ -128,19 +132,10 @@
 		                        </div>
             					<em id="amount-error" class="error invalid-feedback"></em>
 		                    </div>
-		                    <div style="display: none;" class="col-md-4">
-		                        <div class="form-group">
-		                          	<label class="col-form-label" >*Package</label>
-		                          	<select id="package" name="package[]" class="form-control" style="width: 100% !important;" aria-describedby="package-error">
-	                              		<option value=""></option>
-							            <option value="drum" selected>Drum</option>
-							            <option value="Jerigen">Jerigen</option>  
-							            <option value="Aluminium">Aluminium</option>  
-							            <option value="Plastik">Plastik</option>
-	                          		</select>
-	                        		<em id="package-error" class="error invalid-feedback">Please select package</em>
-	                        	</div>
-		                    </div>
+		                    <div class="col-md-4" style="display: none;">
+								<label class="col-form-label" for="type">*Package</label>
+									<input type="text" value="{{$productsss['package']}}" class="form-control packages" name="package[]" readonly>
+							</div>
 		                    <div class="col-md-4" style="display: none;"> 
 		                        <div class="form-group">
 		                          <label class="col-form-label" >*Realisasi (Kg)</label>
@@ -203,9 +198,8 @@
 								<div class="row">
 									<div class="col-md-12">
 									<div class="form-group">
-										<label class="col-form-label" for="catatan">*Catatan</label>
+										<label class="col-form-label" for="catatan">Catatan(optional)</label>
 										<textarea type="text" rows="5" class="form-control" id="catatan" name="catatan" placeholder="Catatan" aria-describedby="catatan-error">{{$order->catatan}}</textarea>
-										<em id="catatan-error" class="error invalid-feedback">Please enter a name user</em>
 									</div>
 									</div>
 									<input class="form-control" type="hidden" value="1" name="status" >
