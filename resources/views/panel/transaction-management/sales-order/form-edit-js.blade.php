@@ -15,13 +15,15 @@
         //submit button
         $(document).on('click', '#save', function(e) {
             e.preventDefault();
-            swal({
-                title: "Are you sure want to submit the form?",
-                text: "Please make sure all data inputted correctly",
-                buttons: true,
-            }).then((confirm) => {
-                if(confirm){ $('#jxForm1').submit(); }
-            });
+            if($('#jxForm1').valid()){
+                swal({
+                    title: "Are you sure want to submit the form?",
+                    text: "Please make sure all data inputted correctly",
+                    buttons: true,
+                }).then((confirm) => {
+                    if(confirm){ $('#jxForm1').submit(); }
+                });
+            }
         });
     });
 
@@ -50,17 +52,25 @@
                 $(this).parent().parent().find('input[name="code[]"]').val(productCode);
                 $(this).valid();
             });
+
         $('.product-list .packaging').select2({
             theme: "bootstrap",
             placeholder: 'Please select'
         }).change(function () {
-            $(this).valid();
+            var element = $(this).find('option:selected');
+                var productType = element.attr('data-package');
+                $(this).parent().parent().find('input[name="package[]"]').val(productType);
+                $(this).valid();
         });
+        
         $('.option-card2 .packaging').select2({
             theme: "bootstrap",
             placeholder: 'Please select'
         }).change(function () {
-            $(this).valid();
+            var element = $(this).find('option:selected');
+                var productType = element.attr('data-package');
+                $(this).parent().parent().find('input[name="package[]"]').val(productType);
+                $(this).valid();
         });
     }
     refProductChange();
