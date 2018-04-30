@@ -72,80 +72,28 @@ class ProductionController extends Controller
         $sales=user::where('_id', $request->sales)->get();
         $order->sales=$sales->toArray();
 
-        $products=Product::whereIn('_id', $request->product)->get();
-        $order->product=$products->toArray();
+        
 
-        $totals =[];
+        $productss =[];
         for($i=0; $i < count($request->total); $i++){
-            $totals[] =[
+            $products=Product::where('_id', $request->product[$i])->first();
+            $productss[] =[
+                'id'=> $products['id'],
+                'name'=>$products['name'],
+                'type'=>$products['type'],
+                'code'=>$products['code'],
                 'total' => $request->total[$i],
-            ];
-        }
-        $order->total=$totals;
-
-        $packagings =[];
-        for($i=0; $i < count($request->packaging); $i++){
-            $packagings[] =[
                 'packaging' => $request->packaging[$i],
-            ];
-        }
-        $order->packaging=$packagings;
-
-        $amounts =[];
-        for($i=0; $i < count($request->amount); $i++){
-            $amounts[] =[
                 'amount' => $request->amount[$i],
-            ];
-        }
-        $order->amount=$amounts;
-
-        $packages =[];
-        for($i=0; $i < count($request->package); $i++){
-            $packages[] =[
                 'package' => $request->package[$i],
-            ];
-        }
-        $order->package=$packages;
-
-        $realisasis =[];
-        for($i=0; $i < count($request->realisasi); $i++){
-            $realisasis[] =[
                 'realisasi' => $request->realisasi[$i],
-            ];
-        }
-        $order->realisasi=$realisasis;
-
-        $stockks =[];
-        for($i=0; $i < count($request->stockk); $i++){
-            $stockks[] =[
                 'stockk' => $request->stockk[$i],
-            ];
-        }
-        $order->stockk=$stockks;
-
-        $pendings =[];
-        for($i=0; $i < count($request->pending); $i++){
-            $pendings[] =[
                 'pending' => $request->pending[$i],
-            ];
-        }
-        $order->pending=$pendings;
-
-        $balances =[];
-        for($i=0; $i < count($request->balance); $i++){
-            $balances[] =[
                 'balance' => $request->balance[$i],
-            ];
-        }
-        $order->balance=$balances;
-
-        $pendingprs =[];
-        for($i=0; $i < count($request->pendingpr); $i++){
-            $pendingprs[] =[
                 'pendingpr' => $request->pendingpr[$i]
             ];
         }
-        $order->pendingpr=$pendingprs;
+        $order->productattr=$productss;
 
         $order->catatan = $request->catatan;
         $order->tunggu = $request->tunggu;
@@ -156,9 +104,9 @@ class ProductionController extends Controller
         $produksis=user::where('_id', $request->produksi)->get();
         $order->produksi=$produksis->toArray();
 
-        $order->save();
+        $order->status = $request->status;
 
-        return redirect()->route('sales-order.index')->with('toastr', 'new');
+        return dd($order);
     }
 
     //for getting datatable at index
@@ -167,9 +115,9 @@ class ProductionController extends Controller
         
         return Datatables::of($orders)
             ->addColumn('status', function ($order) {
-                return ($order->status == 1 ?
-                    '<span class="badge badge-success">Sales Executive</span>' :
-                    '<span class="badge badge-success">Production</span>');
+                return ($order->status == 2 ?
+                    '<span class="badge badge-success">'.$order->produksi[0]['name'].'&nbsp;(Production)</span>':
+                    '<span class="badge badge-success">'.$order->sales[0]['name'].'&nbsp;(Sales Executive)</span>');
             })
             ->addColumn('action', function ($order) {
                 return 
@@ -206,11 +154,27 @@ class ProductionController extends Controller
         $sales=user::where('_id', $request->sales)->get();
         $order->sales=$sales->toArray();
 
-        $products=Product::where('_id', $request->product)->get();
-        $order->product=$products->toArray();
+        $productss =[];
+        for($i=0; $i < count($request->total); $i++){
+            $products=Product::where('_id', $request->product[$i])->first();
+            $productss[] =[
+                'id'=> $products['id'],
+                'name'=>$products['name'],
+                'type'=>$products['type'],
+                'code'=>$products['code'],
+                'total' => $request->total[$i],
+                'packaging' => $request->packaging[$i],
+                'amount' => $request->amount[$i],
+                'package' => $request->package[$i],
+                'realisasi' => $request->realisasi[$i],
+                'stockk' => $request->stockk[$i],
+                'pending' => $request->pending[$i],
+                'balance' => $request->balance[$i],
+                'pendingpr' => $request->pendingpr[$i]
+            ];
+        }
+        $order->productattr=$productss;
 
-        $order->total = $request->total;
-        $order->packaging = $request->packaging;
         $order->catatan = $request->catatan;
         $order->tunggu = $request->tunggu;
 
@@ -220,17 +184,11 @@ class ProductionController extends Controller
         $produksis=user::where('_id', $request->produksi)->get();
         $order->produksi=$produksis->toArray();
 
-        $order->amount = $request->amount;
-        $order->package = $request->package;
-        $order->realisasi = $request->realisasi;
-        $order->stockk = $request->stockk;
-        $order->pending = $request->pending;
-        $order->balance = $request->balance;
-        $order->pendingpr = $request->pendingpr;
-        $order->note = $request->note;
+        $order->status = $request->status;
 
         $order->save();
-        return redirect()->route('sales-order.index')->with('update', 'sales-order');
+        
+        return redirect()->route('production.index')->with('update', 'sales-order');
     }
 
     //delete data discount
@@ -238,6 +196,6 @@ class ProductionController extends Controller
     {
         $order = SalesOrder::find($id);
         $order->delete();
-        return redirect()->route('sales-order.index')->with('dlt', 'sales-order');
+        return redirect()->route('production.index')->with('dlt', 'sales-order');
     }
 }

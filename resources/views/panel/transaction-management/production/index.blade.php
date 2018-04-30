@@ -69,7 +69,7 @@
 	            {data: 'sono', name: 'sono'},
 	            {data: 'date', name: 'date'},
 	            {data: 'sales.[].name', name: 'client'},	            
-	            {data: 'productattr.[<br>].product', name: 'name'},
+	            {data: 'productattr.[<br>].name', name: 'name'},
 	            {data: 'catatan', name: 'catatan'},
 	            {data: 'check.[].name', name: 'check'},
 	            {data: 'produksi.[].name', name: 'produksi'},

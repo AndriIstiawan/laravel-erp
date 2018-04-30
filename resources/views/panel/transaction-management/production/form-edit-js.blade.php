@@ -11,14 +11,19 @@
             $("#addMe").prop('disabled', false);
           }
       });
-  });
-
-  $(document).ready(function() {
-    var counter = 1;
-      $("#save").click(function(){
-          counter++;
-          $('#status').val(counter);
-      });
+      //submit button
+        $(document).on('click', '#save', function(e) {
+            e.preventDefault();
+            if($('#jxForm1').valid()){
+                swal({
+                    title: "Are you sure want to submit the form?",
+                    text: "Please make sure all data inputted correctly",
+                    buttons: true,
+                }).then((confirm) => {
+                    if(confirm){ $('#jxForm1').submit(); }
+                });
+            }
+        });
   });
       
   $('#product')/*.select2({theme:"bootstrap", placeholder:'Please select'})*/

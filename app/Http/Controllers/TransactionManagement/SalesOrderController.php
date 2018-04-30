@@ -122,7 +122,7 @@ class SalesOrderController extends Controller
             ->addColumn('status', function ($order) {
                 return ($order->status == 1 ?
                     '<span class="badge badge-success">'.$order->sales[0]['name'].'&nbsp;(Sales Executive)</span>' :
-                    '<span class="badge badge-success">Production</span>');
+                    '<span class="badge badge-success">'.$order->produksi[0]['name'].'&nbsp;(Production)</span>');
             })
             
             ->addColumn('action', function ($order) {
