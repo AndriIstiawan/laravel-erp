@@ -2,6 +2,19 @@
 
 All notable changes to `laravel-permission` will be documented in this file
 
+## 2.12.1 - 2018-04-23
+- Reverted 2.12.0. REVERTS: "Add ability to pass guard name to gate methods like can()". Requires reworking of guard handling if we're going to add this feature. 
+
+## 2.12.0 - 2018-04-22
+- Add ability to pass guard name to gate methods like can()
+
+## 2.11.0 - 2018-04-16
+- Improve speed of permission lookups with findByName, findById, findOrCreate
+
+## 2.10.0 - 2018-04-15
+- changes the type-hinted Authenticatable to Authorizable in the PermissionRegistrar.
+(Previously it was expecting models to implement the Authenticatable contract; but really that should have been Authorizable, since that's where the Gate functionality really is.)
+
 ## 2.9.2 - 2018-03-12
 - Now findOrCreate() exists for both Roles and Permissions
 - Internal code refactoring for future dev work
