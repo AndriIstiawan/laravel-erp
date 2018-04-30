@@ -13,6 +13,7 @@ use Yajra\Datatables\Datatables;
 use File;
 use Image;
 use Excel;
+use Illuminate\Support\Facades\Input;
 
 class ProductController extends Controller
 {
