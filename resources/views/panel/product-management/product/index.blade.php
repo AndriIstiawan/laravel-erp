@@ -72,12 +72,11 @@
 		
 	</div>
 </div>
-
 <div class="modal" id="modal-exim" tabindex="1" role="dialog" aria-hidden="true" data-backdrop="static">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<form method="post" action="{{route('product.import')}}" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
-			{{ csrf_field() }}
+			{{ csrf_field() }}{{ csrf_token() }}
 				<div class="modal-header">
 				<h3 class="modal-title">Export/Import Product</h3>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">

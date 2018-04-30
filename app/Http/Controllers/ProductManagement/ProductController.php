@@ -11,6 +11,7 @@ use File;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Yajra\Datatables\Datatables;
+use Illuminate\Support\Facades\Input;
 
 class ProductController extends Controller
 {
