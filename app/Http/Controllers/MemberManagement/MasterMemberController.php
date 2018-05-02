@@ -136,7 +136,7 @@ class MasterMemberController extends Controller
 
 		$member->save();
 
-		return redirect()->route('master-client.index')->with('update', 'member');
+		return redirect()->route('master-client.index')->with('update', 'client');
     }
 
     //Delete data setting
@@ -144,6 +144,6 @@ class MasterMemberController extends Controller
 		$member = Member::find($id);
 		$member->delete();
 		
-		return redirect()->route('master-client.index')->with('dlt', 'member');
+		return redirect()->route('master-client.index')->with('dlt', 'client');
     }
 }
