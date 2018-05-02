@@ -12,6 +12,7 @@ use App\User;
 use Yajra\Datatables\Datatables;
 use File;
 use Image;
+use Auth;
 use Excel;
 use datetime;
 
@@ -55,6 +56,7 @@ class SalesOrderController extends Controller
         $order=SalesOrder::all();
         $product= Product::all();
         $member= Member::all();
+        $sales = User::where('name', Auth::user()->name)->get();
         $products= Product::all();
         $modUser = User::where('role', 'elemMatch', array('name' => 'Sales'))->get();
         $user= User::where('role', 'elemMatch', array('name' => 'Tim Operational'))->get();
@@ -67,6 +69,7 @@ class SalesOrderController extends Controller
             'products' => $products,
             'user' => $user,
             'users' => $users,
+            'sales' => $sales,
             'modUser' => $modUser,
         ]);
     }
@@ -80,9 +83,9 @@ class SalesOrderController extends Controller
 
         $clients=Member::where('_id', $request->client)->get();
         $order->client = $clients->toArray();
-/*
+
         $sales=user::where('_id', $request->sales)->get();
-        $order->sales=$sales->toArray();*/
+        $order->sales=$sales->toArray();
 
         $productss =[];
         for($i=0; $i < count($request->total); $i++){
@@ -152,7 +155,8 @@ class SalesOrderController extends Controller
     {
         $order = SalesOrder::find($id);
         $product= Product::whereNotIn('name', array_column($order->productattr,'name'))->get();
-        $member= Member::whereNotIn('name', array_column($order->client,'name'))->get(); 
+        $member= Member::whereNotIn('name', array_column($order->client,'name'))->get();
+        $modUser = User::where('role', 'elemMatch', array('name' => 'Sales'))->whereNotIn('name', array_column($order->sales,'name'))->get(); 
         $products= Product::all(); 
         $att = SalesOrder::whereIn('name', array_column($order->productattr,'name'))->get();
         $user= User::where('role', 'elemMatch', array('name' => 'Production'))->get();
@@ -178,8 +182,8 @@ class SalesOrderController extends Controller
         $clients=Member::where('_id', $request->client)->get();
         $order->client = $clients->toArray();
 
-        /*$sales=user::where('_id', $request->sales)->get();
-        $order->sales=$sales->toArray();*/
+        $sales=user::where('_id', $request->sales)->get();
+        $order->sales=$sales->toArray();
 
         $productss =[];
         for($i=0; $i < count($request->total); $i++){

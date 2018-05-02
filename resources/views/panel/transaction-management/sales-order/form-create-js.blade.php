@@ -60,6 +60,7 @@
             var element = $(this).find('option:selected');
                 var productType = element.attr('data-package');
                 $(this).parent().parent().find('input[name="package[]"]').val(productType);
+                $(this).parent().parent().find('input[name="amount[]"]').val(productType);
                 $(this).valid();
         });
         
@@ -113,13 +114,14 @@
         var elemPackaging = elm.parent().parent().find('select[name="packaging[]"]');
         var elemAmount = elm.parent().parent().find('input[name="amount[]"]');
         var valueTotal = parseInt(elemTotal.val());
+        var valuePack = (elempack.val());
         var valuePackaging = parseFloat(elemPackaging.find('option:selected').val());
         var valueAmount = valueTotal / valuePackaging;
         if (isNaN(valueTotal) || isNaN(valuePackaging)) {
             valueAmount = 0;
         }
         valueAmount = parseInt(valueAmount);
-        elemAmount.val(valueAmount);
+        elemAmount.val(valueAmount)/*.val("x").val(valuePack)*/;
         elemAmount.valid();
     }
 

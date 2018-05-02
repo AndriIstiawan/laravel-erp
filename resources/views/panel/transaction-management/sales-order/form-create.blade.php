@@ -39,6 +39,9 @@
 													</select>
 													<em id="client-error" class="error invalid-feedback">Please enter a client</em>
 												</div>
+												@foreach($sales as $sales)
+												<input type="hidden" class="form-control" id="sales" name="sales" aria-describedby="sono-error" value="{{$sales->id}}" readonly>
+												@endforeach
 												</div>
 											</div>
 									</div>
@@ -103,7 +106,7 @@
 			                        <div class="col-md-2">
 			                        	<label class="col-form-label" for="type"></label>
 				                        <div class="control-group input-group">
-				                        <input class="form-control" type="number" name="amount[]" id="amount" placeholder="Amount" aria-describedby="amount-error" readonly/>
+				                        <input class="form-control" type="text" name="amount[]" id="amount" placeholder="Amount" aria-describedby="amount-error" readonly/>
 				                        <em id="amount-error" class="error invalid-feedback"></em>
 				                    	</div>
 				                    </div>
