@@ -112,7 +112,7 @@ class PermissionsTableSeeder extends Seeder
 				'updated_at' => date("Y-m-d H:i:s")
 			],
 			[
-	        	'name' => 'Master Member',
+	        	'name' => 'Master Client',
 	        	'slug' => null,
 	        	'type' => 'module-menu',
 				'icon' => 'fa fa-users',
@@ -123,8 +123,8 @@ class PermissionsTableSeeder extends Seeder
 				'updated_at' => date("Y-m-d H:i:s")
 			],
 			[
-	        	'name' => 'Member',
-	        	'slug' => 'master-member',
+	        	'name' => 'Client',
+	        	'slug' => 'master-client',
 	        	'type' => 'module-menu',
 				'icon' => 'icon-cursor',
 				'parent' => null,
@@ -509,8 +509,8 @@ class PermissionsTableSeeder extends Seeder
 		DB::table('permissions')->whereIn('slug', ['deliveries','courier'])
 			->update(['parent' => (string)$parent['_id']]);
 
-		$parent = DB::table('permissions')->where('name','Master Member')->first();
-		DB::table('permissions')->whereIn('slug', ['master-member','level'/*,'archievement'*/])
+		$parent = DB::table('permissions')->where('name','Master Client')->first();
+		DB::table('permissions')->whereIn('slug', ['master-client'/*,'level'*//*,'archievement'*/])
 			->update(['parent' => (string)$parent['_id']]);
 
 		$parent = DB::table('permissions')->where('name','Footer Management')->first();

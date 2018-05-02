@@ -151,9 +151,9 @@
 	        ],
 			"columnDefs": [
 				{"targets": 9,"className": "text-center"},
-				{"targets": 8,"className": "text-center"}
+				{"targets": 7,"className": "text-center"}
 			],
-			"order":[[9, 'desc']]
+			"order":[[8, 'desc']]
 		});
 		$('.datatable').attr('style','border-collapse: collapse !important');
 		

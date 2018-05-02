@@ -133,8 +133,8 @@ class ProductionController extends Controller
     {
         $order = SalesOrder::find($id); 
         $att = SalesOrder::whereIn('name', array_column($order->productattr,'name'))->get();
-        $user= User::where('role', 'elemMatch', array('name' => 'Production'))->get();
-        $users= User::where('role', 'elemMatch', array('name' => 'Production'))->get();
+        $user= User::where('role', 'elemMatch', array('name' => 'Production'))->whereNotIn('name', array_column($order->check,'name'))->get();
+        $users= User::where('role', 'elemMatch', array('name' => 'Production'))->whereNotIn('name', array_column($order->produksi,'name'))->get();
         return view('panel.transaction-management.production.form-edit')->with([
             'order'=>$order,
             'order' => $order, 
@@ -149,7 +149,6 @@ class ProductionController extends Controller
         $order = SalesOrder::find($id);
         $order->sono = $request->sono;
         $order->date = $request->date;
-        $order->client = $request->client;
 
         $sales=user::where('_id', $request->sales)->get();
         $order->sales=$sales->toArray();

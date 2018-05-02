@@ -96,11 +96,11 @@ class SalesOrderController extends Controller
                 'packaging' => $request->packaging[$i],
                 'amount' => $request->amount[$i],
                 'package' => $request->package[$i],
-                'realisasi' => $request->realisasi[$i],
-                'stockk' => $request->stockk[$i],
-                'pending' => $request->pending[$i],
-                'balance' => $request->balance[$i],
-                'pendingpr' => $request->pendingpr[$i]
+                'realisasi' => null[$i],
+                'stockk' => null[$i],
+                'pending' => null[$i],
+                'balance' => null[$i],
+                'pendingpr' => null[$i]
             ];
         }
         $order->productattr=$productss;
@@ -193,11 +193,11 @@ class SalesOrderController extends Controller
                 'packaging' => $request->packaging[$i],
                 'amount' => $request->amount[$i],
                 'package' => $request->package[$i],
-                'realisasi' => $request->realisasi[$i],
-                'stockk' => $request->stockk[$i],
-                'pending' => $request->pending[$i],
-                'balance' => $request->balance[$i],
-                'pendingpr' => $request->pendingpr[$i]
+                'realisasi' => null[$i],
+                'stockk' => null[$i],
+                'pending' => null[$i],
+                'balance' => null[$i],
+                'pendingpr' => null[$i]
             ];
         }
         $order->productattr=$productss;

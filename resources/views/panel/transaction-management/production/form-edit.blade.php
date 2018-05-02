@@ -83,35 +83,35 @@
 		                    <div class="col-md-3">
 		                        <div class="form-group">
 		                          <label class="col-form-label" ></label>
-		                          <input class="form-control number" type="text" name="realisasi[]" id="realisasi" aria-describedby="realisasi-error" placeholder="Realisasi (Kg)" required="" />
+		                          <input class="form-control number" type="text" name="realisasi[]" id="realisasi" aria-describedby="realisasi-error" value="{{$product['realisasi']}}" placeholder="Realisasi (Kg)" required="" />
 		                        <em id="realisasi-error" class="error invalid-feedback">Please enter a realisasi</em>
 		                        </div>
 		                    </div>
 		                    <div class="col-md-3">
 		                        <div class="form-group">
 		                          <label class="col-form-label" ></label>
-		                          <input class="form-control number" type="text" name="stockk[]" id="stockk" aria-describedby="stockk-error" placeholder="Stock Kapuk" required="" />
+		                          <input class="form-control number" type="text" name="stockk[]" id="stockk" aria-describedby="stockk-error" value="{{$product['stockk']}}" placeholder="Stock Kapuk" required="" />
 		                        <em id="stockk-error" class="error invalid-feedback">Please enter a stockk</em>
 		                        </div>
 		                    </div>
 		                    <div class="col-md-2">
 		                        <div class="form-group">
 		                          <label class="col-form-label" ></label>
-		                          <input class="form-control number" type="text" name="pending[]" id="pending" aria-describedby="pending-error" placeholder="Pending SO" required="" />
+		                          <input class="form-control number" type="text" name="pending[]" id="pending" aria-describedby="pending-error" value="{{$product['pending']}}" placeholder="Pending SO" required="" />
 		                        <em id="pending-error" class="error invalid-feedback">Please enter a pending</em>
 		                        </div>
 		                    </div>
 		                    <div class="col-md-2">
 		                        <div class="form-group">
 		                          <label class="col-form-label" ></label>
-		                          <input class="form-control number" type="text" name="balance[]" id="balance" aria-describedby="balance-error" placeholder="Balance Stock" required="" />
+		                          <input class="form-control number" type="text" name="balance[]" id="balance" aria-describedby="balance-error" value="{{$product['balance']}}" placeholder="Balance Stock" required="" />
 		                        <em id="balance-error" class="error invalid-feedback">Please enter a balance</em>
 		                        </div>
 		                    </div>
 		                    <div class="col-md-2">
 		                        <div class="form-group">
 		                          <label class="col-form-label" ></label>
-		                          <input class="form-control number" type="text" name="pendingpr[]" id="pendingpr" aria-describedby="pendingpr-error" placeholder="Pending PR" required="" />
+		                          <input class="form-control number" type="text" name="pendingpr[]" id="pendingpr" aria-describedby="pendingpr-error" value="{{$product['pendingpr']}}" placeholder="Pending PR" required="" />
 		                        <em id="pendingpr-error" class="error invalid-feedback">Please enter a pendingpr</em>
 		                        </div>
 		                    </div>
@@ -153,8 +153,8 @@
 										<label class="col-form-label" for="tunggu">*Stok tunggu dari bekasi</label>
 										<select id="tunggu" class="form-control" style="width: 100% !important;" name="tunggu" aria-describedby="tunggu-error">
 											<option value=""></option>
-											<option value="Ada">Ada</option>
-											<option value="Tidak Ada">Tidak Ada</option>
+											<option value="Ada" {{($order->tunggu == 'Ada'?'selected':'')}}>Ada</option>
+											<option value="Tidak Ada" {{($order->tunggu == 'Tidak Ada'?'selected':'')}}>Tidak Ada</option>
 										</select>
 										<em id="tunggu-error" class="error invalid-feedback">Please select a status</em>
 									</div>
@@ -165,6 +165,9 @@
 										<label class="col-form-label" for="check">*Dicheck Oleh,</label>
 										<select id="check" class="form-control" style="width: 100% !important;" name="check" aria-describedby="check-error">
 											<option value=""></option>
+										@foreach($order->check as $check)
+											<option value="{{$check['_id']}}" selected="">{{$check['name']}}</option>
+										@endforeach
 										@foreach($user as $user)
 											<option value="{{$user->id}}">{{$user->name}}</option>
 										@endforeach
@@ -175,6 +178,9 @@
 										<label class="col-form-label" for="produksi">*Diproduksi Oleh,</label>
 										<select id="produksi" class="form-control" style="width: 100% !important;" name="produksi" aria-describedby="produksi-error">
 											<option value=""></option>
+										@foreach($order->produksi as $produksi)
+											<option value="{{$produksi['_id']}}" selected="">{{$produksi['name']}}</option>
+										@endforeach
 										@foreach($users as $users)
 											<option value="{{$users->id}}">{{$users->name}}</option>
 										@endforeach

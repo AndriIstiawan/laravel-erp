@@ -9,7 +9,7 @@
 		</button>
 	</p>
 </div>
-<form id="jxForm1" novalidate="novalidate" method="POST" action="{{ route('master-member.store') }}" enctype="multipart/form-data">
+<form id="jxForm1" novalidate="novalidate" method="POST" action="{{ route('master-client.store') }}" enctype="multipart/form-data">
 {{ csrf_field() }}
 <div class="container-fluid">
 	<div class="animate fadeIn">
@@ -264,7 +264,7 @@
 				required:true,
 				email:true,
 				remote:{
-					url: '{{ route('master-member.index') }}/find',
+					url: '{{ route('master-client.index') }}/find',
 					type: "post",
 					data:{
 						_token:'{{ csrf_token() }}',

@@ -114,7 +114,7 @@
 				                    <div class="col-md-4" style="display: none;"> 
 				                        <div class="form-group">
 				                          <label class="col-form-label" >*Realisasi (Kg)</label>
-				                          <input class="form-control" type="text" value="1" name="realisasi[]" id="realisasi" aria-describedby="realisasi-error"/>
+				                          <input class="form-control" type="text" value="" name="realisasi[]" id="realisasi" aria-describedby="realisasi-error"/>
 				                        <em id="realisasi-error" class="error invalid-feedback">Please enter a realisasi</em>
 				                        </div>
 				                    </div>
