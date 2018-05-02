@@ -27,16 +27,9 @@
 										<input type="hidden" class="id" name="id">
 											<div class="row">
 												<div class="col-md-12">
-												<label class="col-form-label" for="sono">*SO NO</label>
-												<div class="input-group">
-													<input type="text" class="form-control" id="sono" name="sono" aria-describedby="sono-error" value="{{$so_id}}" readonly>
+													<input type="hidden" class="form-control" id="sono" name="sono" aria-describedby="sono-error" value="{{$so_id}}" readonly>
 													<em id="sono-error" class="error invalid-feedback">Please enter a SO NO</em>
-												</div>
-												<label class="col-form-label" for="type">*SO Date</label>
-												<div class="input-group">
-													<input type="text" class="form-control" id="date" name="date" value="{{ date('Y-m-d H:i:s') }}" readonly>
-												</div>
-												<br>
+													<input type="hidden" class="form-control" id="date" name="date" value="{{ date('Y-m-d H:i:s') }}" readonly>
 												<div class="input-group">
 													<input type="text" class="form-control" id="client" name="client" aria-describedby="client-error" placeholder="Client">
 													<em id="client-error" class="error invalid-feedback">Please enter a client</em>
