@@ -257,7 +257,39 @@ class ProductController extends Controller
                         || trim($price_1_kg) == "" || trim($price_5_kg) == "" || trim($price_25_kg) == ""|| trim($price_30_kg) == "" ){
                             $data[] = array('error import => data value not valid');
                         }else{
-                            $data[] = array('next steep');
+                            $product = Product::where('code', $code)->first();
+                            if($product){
+                                $product['name'] = $name;
+                                $product['type'] = $type;
+                                $product['stock'] = $stock;
+                                $product['currency'] = $currency;
+                                $product['price'] = [
+                                    ['price' => $price_250_gr],
+                                    ['price' => $price_500_gr],
+                                    ['price' => $price_1_kg],
+                                    ['price' => $price_5_kg],
+                                    ['price' => $price_25_kg],
+                                    ['price' => $price_30_kg],                                 
+                                ];
+                                $product->save();
+                                $data[] = array('product edit successfuly');
+                            }else{
+                                $product = new Product();
+                                $product['name'] = $name;
+                                $product['type'] = $type;
+                                $product['stock'] = $stock;
+                                $product['currency'] = $currency;
+                                $product['price'] = [
+                                    ['price' => $price_250_gr],
+                                    ['price' => $price_500_gr],
+                                    ['price' => $price_1_kg],
+                                    ['price' => $price_5_kg],
+                                    ['price' => $price_25_kg],
+                                    ['price' => $price_30_kg],                                 
+                                ];
+                                $product->save();
+                                $data[] = array('product create successfuly');
+                            }
                         }
                     }
                 }
