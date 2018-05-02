@@ -32,20 +32,16 @@
 													<em id="sono-error" class="error invalid-feedback">Please enter a SO NO</em>
 													<input type="hidden" class="form-control" id="date" name="date" value="{{$order->date}}" readonly>
 												<div class="form-group">
-													<input type="text" class="form-control" id="client" name="client" aria-describedby="client-error" value="{{$order->client}}" placeholder="Member" >
-													<em id="client-error" class="error invalid-feedback">Please enter a client</em>
-												</div>
-												<div class="form-group">
-													<select id="saless" class="form-control form-control-sm" style="width: 100% !important;" name="sales" aria-describedby="sales-error">
+													<select id="client" class="form-control" style="width: 100% !important;" name="client" aria-describedby="client-error">
 														<option value=""></option>
-													@foreach($modUser as $modUser)
-														<option value="{{$modUser->id}}">{{$modUser->name}}</option>
-													@endforeach
-													@foreach($order->sales as $sales)
-														<option value="{{$sales['_id']}}" selected="">{{$sales['name']}}</option>
-													@endforeach
+														@foreach($order->client as $memberattr)
+														<option value="{{$memberattr['_id']}}" selected="">{{$memberattr['name']}}</option>
+														@endforeach
+														@foreach($member as $member)
+														<option value="{{$member->id}}">{{$member->name}}</option>
+														@endforeach
 													</select>
-													<em id="sales-error" class="error invalid-feedback">Please select a sales</em>
+													<em id="client-error" class="error invalid-feedback">Please enter a client</em>
 												</div>
 												</div>
 											</div>
