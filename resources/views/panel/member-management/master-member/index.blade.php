@@ -9,8 +9,8 @@
 				<button type="button" class="btn btn-primary" onclick="refresh()">
 					<i class="fa fa-refresh"></i>
 				</button>
-				<a class="btn btn-primary" href="{{route('master-member.create')}}">
-					 <i class="fa fa-plus"></i>&nbsp; New Member
+				<a class="btn btn-primary" href="{{route('master-client.create')}}">
+					 <i class="fa fa-plus"></i>&nbsp; New Client
 				</a>
 				</p>
 			</div>
@@ -20,7 +20,7 @@
 			<div class="col-lg-12">
 				<div class="card">
 					<div class="card-header">
-						<i class="fa fa-align-justify"></i> Master Member Table
+						<i class="fa fa-align-justify"></i> Master Client Table
 					</div>
 					<div class="card-body">
 						<table class="table table-responsive-sm table-bordered table-striped table-sm datatable">
@@ -56,7 +56,7 @@
 		$('.datatable').DataTable({
 			processing: true,
 	        serverSide: true,
-	        ajax: '{{route('master-member.index')}}/list-data',
+	        ajax: '{{route('master-client.index')}}/list-data',
 	        columns: [
 	            {data: 'name', name: 'name'},
 	            {data: 'email', name: 'email'},

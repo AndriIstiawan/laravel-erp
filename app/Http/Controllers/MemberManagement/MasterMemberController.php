@@ -21,6 +21,22 @@ class MasterMemberController extends Controller
     public function index(){
         return view('panel.member-management.master-member.index');
     }
+
+    //find data email
+    public function find(Request $request)
+    {
+
+        if ($request->id) {
+            $email = Member::where('email', $request->email)->first();
+            if (count($email) > 0) {
+                return ($request->id == $email->id ? 'true' : 'false');
+            } else {
+                return 'true';
+            }
+        } else {
+            return (Member::where('email', $request->email)->first() ? 'false' : 'true');
+        }
+    }
 	
     //View Form create
     public function create(){
@@ -59,7 +75,7 @@ class MasterMemberController extends Controller
 
 		$member->save();
 
-		return redirect()->route('master-member.index')->with('toastr', 'new');
+		return redirect()->route('master-client.index')->with('toastr', 'new');
     }
 
     //For getting datatable at index
@@ -69,10 +85,10 @@ class MasterMemberController extends Controller
 		return Datatables::of($members)
 			->addColumn('action', function ($member) {
 				return 
-					'<a class="btn btn-success btn-sm" href="'.route('master-member.edit',['id' => $member->id]).'">
+					'<a class="btn btn-success btn-sm" href="'.route('master-client.edit',['id' => $member->id]).'">
 						<i class="fa fa-pencil-square-o"></i>&nbsp;Edit member</a>'.
 					'<form style="display:inline;" method="POST" action="'.
-						route('master-member.destroy',['id' => $member->id]).'">'.method_field('DELETE').csrf_field().
+						route('master-client.destroy',['id' => $member->id]).'">'.method_field('DELETE').csrf_field().
 					'<button type="button" class="btn btn-danger btn-sm" onclick="removeList($(this))"><i class="fa fa-remove"></i>&nbsp;Remove</button></form>';
 			})
 			->rawColumns(['status', 'action'])
@@ -120,7 +136,7 @@ class MasterMemberController extends Controller
 
 		$member->save();
 
-		return redirect()->route('master-member.index')->with('update', 'member');
+		return redirect()->route('master-client.index')->with('update', 'member');
     }
 
     //Delete data setting
@@ -128,6 +144,6 @@ class MasterMemberController extends Controller
 		$member = Member::find($id);
 		$member->delete();
 		
-		return redirect()->route('master-member.index')->with('dlt', 'member');
+		return redirect()->route('master-client.index')->with('dlt', 'member');
     }
 }

@@ -9,7 +9,7 @@
 		</button>
 	</p>
 </div>
-<form id="jxForm1" novalidate="novalidate" method="POST" action="{{ route('master-member.update',['id' => $member->id]) }}"" enctype="multipart/form-data">			
+<form id="jxForm1" novalidate="novalidate" method="POST" action="{{ route('master-client.update',['id' => $member->id]) }}"" enctype="multipart/form-data">			
 {{ method_field('PUT') }}
 {{ csrf_field() }}
 <div class="container-fluid">
