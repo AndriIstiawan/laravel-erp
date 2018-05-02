@@ -22,17 +22,16 @@ class ProductController extends Controller
     }
 
     //find product sku
-    public function find(Request $request)
-    {
+    public function find(Request $request){
 
-        if ($request->id) {
+        if($request->id){
             $product = Product::where('_id', '<>', $request->id)->where('sku', $request->slug)->count();
             $variant = Product::where('_id', '<>', $request->id)->where('variant', 'elemMatch', array('sku' => $request->slug))->count();
-        } else {
+        }else{
             $product = Product::where('sku', $request->slug)->count();
             $variant = Product::where('variant', 'elemMatch', array('sku' => $request->slug))->count();
         }
-
+        
         return ($product > 0 || $variant > 0 ? 'false' : 'true');
     }
 
@@ -221,7 +220,7 @@ class ProductController extends Controller
         return dd($product);
 
     }
-
+    
     public function productImport(Request $request)
     {
         if ($request->hasFile('file')) {
