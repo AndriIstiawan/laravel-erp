@@ -29,7 +29,7 @@
                 </div>
                 <div class="col-md-4">
                     <label class="col-form-label" for="type"></label>
-                    <select id="packaging" name="packaging[]" class="form-control packaging" style="width: 100% !important;" aria-describedby="packaging-error"
+                    <select name="packaging[]" class="form-control packaging" style="width: 100% !important;" aria-describedby="packaging-error"
                         onchange="findTotal($(this))">
                         <option value=""></option>
                         <option data-package="Plastik" value="0.25" >250 gram - Plastik</option>

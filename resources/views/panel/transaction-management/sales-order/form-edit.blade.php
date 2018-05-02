@@ -43,6 +43,9 @@
 													</select>
 													<em id="client-error" class="error invalid-feedback">Please enter a client</em>
 												</div>
+												@foreach($order->sales as $sales)
+												<input type="hidden" class="form-control" id="sales" name="sales" aria-describedby="sono-error" value="{{$sales['_id']}}" readonly>
+												@endforeach
 												</div>
 											</div>
 									</div>
