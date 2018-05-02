@@ -98,7 +98,7 @@
 					<div class="form-group">
 						<label for="file" class="col-md-3 control-label">Import</label>
 						<div class="col-md-6">
-							<input type="file" id="file" name="file" class="form-control" autofocus required>
+							<input type="file" id="file" name="file" class="form-control" accept=".xlsx" autofocus required>
 							<span class="help-block with-errors"></span>
 						</div>
 					</div>

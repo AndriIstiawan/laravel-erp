@@ -16,7 +16,17 @@
 				<li id='{{$lmp['_id']}}' class="nav-item nav-dropdown">
 					<a class="nav-link {{(count($lmp['child'])>0?'nav-dropdown-toggle':'')}}" @if($lmp['slug'] !='' && Route::has($lmp[
 					    'slug']. '.index')) href="{{route($lmp['slug'].'.index')}}" @else href="#" @endif>
-						<i class="{{$lmp['icon']}}"></i>{{$lmp['name']}}</a>
+						<i class="{{$lmp['icon']}}"></i>{{$lmp['name']}}
+						<?php
+                        if($lmp['name'] == "Transaction"){
+                            echo '<span id="notif-erp">';
+                            if(Auth::user()->countPOPending() > 0){
+                                echo '<span class="badge badge-pill badge-warning"><i class="fa fa-info"></i></span>';
+                            }
+                            echo '</span>';
+                        }
+                        ?>
+					</a>
 					<ul class="nav-dropdown-items">
 						@foreach($lmp['child'] as $lmp2)
 						<li class="nav-item">
@@ -26,7 +36,17 @@
                                 @else 
                                 href="#" 
                                 @endif>
-								<i class="{{$lmp2['icon']}}"></i> {{$lmp2['name']}}</a>
+								<i class="{{$lmp2['icon']}}"></i> {{$lmp2['name']}}
+								<?php
+                                if($lmp2['slug'] == "production"){
+                                    echo '<span id="notif-erp-pending">';
+                                    if(Auth::user()->countPOPending() > 0){
+                                        echo '<span class="badge badge-pill badge-warning" style="margin-right: 15px;">'.Auth::user()->countPOPending().'</span>';
+                                    }
+                                    echo '</span>';
+                                }
+                                ?>
+							</a>
 						</li>
 
 						@if(Request::is($lmp2['slug'].'/*'))

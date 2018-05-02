@@ -52,7 +52,7 @@
 													<input type="number" class="form-control" id="phone" name="phone" placeholder="Phone" aria-describedby="phone-error">
 													<em id="phone-error" class="error invalid-feedback">Please enter a valid phone</em>
 												</div>
-												<div class="form-group">
+												<!-- <div class="form-group">
 													<label class="col-form-label" for="point">*Point</label>
 													<input type="number" class="form-control" name="point" placeholder="0" aria-describedby="point-error" readonly>
 												</div>
@@ -60,7 +60,7 @@
 													<label class="col-form-label" for="level">*Level</label>
 													<input type="hidden" name="level" value="{{$level['_id']}}">
 													<input type="number" class="form-control" placeholder="{{$level['name']}}" readonly>
-												</div>
+												</div> -->
 												<div class="form-group">
 									              	<label class="col-form-label" for="status">*Status</label> <p>
 									                	<label class="switch switch-text switch-pill switch-info">
@@ -81,7 +81,7 @@
 												</div>
 												</div>
 											</div>
-											<div class="row">
+											<!-- <div class="row">
 												<div class="form-group col-md-6">
 													<label class="col-form-label" for="password">*Password</label>
 													<input type="password" class="form-control" id="password" name="password"
@@ -94,7 +94,7 @@
 														placeholder="Confirm password" aria-describedby="confirm_password-error">
 													<em id="confirm_password-error" class="error invalid-feedback">Please provide a password</em>
 												</div>
-											</div>
+											</div> -->
 									</div>
 								</div>
 							</div>
@@ -106,7 +106,7 @@
 				<!--end card -->
 			</div>
 			<div class="col-md-5">
-				<div class="card">
+				<!-- <div class="card">
 					<div class="card-header">
 						<i class="fa fa-align-justify"></i> Saldo
 						<small>management </small>
@@ -129,8 +129,8 @@
 		                  	</div>
 						</div>
 					</div>
-				</div>
-				<div class="card">
+				</div> -->
+				<!-- <div class="card">
 					<div class="card-header">
 						<i class="fa fa-align-justify"></i> Sales
 						<small>management </small>
@@ -157,7 +157,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 		<!--/.row-->
@@ -165,15 +165,15 @@
 			<div class="attr-multiselect attr-dropdown form-group col-md-12">
 				<div class="card">
 					<div class="card-body">
-                            <button class="btn btn-primary add_field_btn-primary" >Add Address</button>
-						<hr>
+                            <!-- <button class="btn btn-primary add_field_btn-primary" >Add Address</button>
+						<hr> -->
 						<div class="option-card">
 							<div class="form-group input_fields_wrap">
 								<div class="option-card">
 									<div class="form-group">
 										<label class="col-form-label" for="address">*Address</label>
 										<div id="address" class="control-group input-group" style="margin-top:10px">
-											<input type="text" name="address[]" class="form-control" placeholder="Address" aria-describedby="address-error" required>
+											<textarea type="text" rows="3" name="address[]" class="form-control" placeholder="Address" aria-describedby="address-error" required></textarea>
 											<em id="address-error" class="error invalid-feedback">Please enter a address</em>
 										</div>
 									</div>

@@ -143,6 +143,11 @@ Route::middleware('auth')->group(function() {
 	Route::resource('point', 'ProductManagement\PointsController');
 	Route::post('point/find', 'ProductManagement\PointsController@find');
 
+	//notif-change-route
+    Route::get('notif-erp', function () {
+        return Auth::user()->countPOPending();
+    });
+
 	// Section CoreUI elements
 	Route::view('/sample/dashboard','samples.dashboard');
 	Route::view('/sample/buttons','samples.buttons');

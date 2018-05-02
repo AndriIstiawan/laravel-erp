@@ -137,7 +137,7 @@ class SalesOrderController extends Controller
                         <i class="fa fa-pencil-square-o"></i>&nbsp;Edit</a>'.
                     '<form style="display:inline;" method="POST" action="'.
                         route('sales-order.destroy',['id' => $order->id]).'">'.method_field('DELETE').csrf_field().
-                    '<button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-remove"></i>&nbsp;Remove</button></form>';
+                    '<button type="submit" class="btn btn-danger btn-sm" onclick="removeList($(this))"><i class="fa fa-remove"></i>&nbsp;Remove</button></form>';
             })
             
             ->rawColumns(['status', 'action'])

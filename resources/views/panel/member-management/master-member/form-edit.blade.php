@@ -54,18 +54,7 @@
 													<input type="number" class="form-control" id="phone" name="phone" placeholder="Phone" value="{{$member->phone}}" aria-describedby="phone-error">
 													<em id="phone-error" class="error invalid-feedback">Please enter a valid phone</em>
 												</div>
-												<div class="form-group">
-													<label class="col-form-label" for="point">*Point</label>
-													@foreach ($member->level as $atts)
-													<input type="number" class="form-control" id="point" name="point" placeholder="{{$atts['point']}}" value="{{$atts['point']}}" aria-describedby="point-error" readonly>
-													<em id="point-error" class="error invalid-feedback">Please enter a valid point</em>
-												</div>
-												<div class="form-group">
-													<label class="col-form-label" for="level">*Level</label>
-													<input type="hidden" name="level" value="{{$atts['_id']}}">
-													<input type="number" class="form-control" placeholder="{{$atts['name']}}" readonly>
-													@endforeach
-												</div>
+												
 												<div class="form-group">
 									              	<label class="col-form-label" for="status">*Status</label> <p>
 									                	<label class="switch switch-text switch-pill switch-info">
@@ -87,20 +76,7 @@
 												</div>
 												</div>
 											</div>
-											<!-- <div class="row">
-												<div class="form-group col-md-6">
-													<label class="col-form-label" for="password">*Password</label>
-													<input type="password" class="form-control" id="password" name="password"
-														placeholder="Password" aria-describedby="password-error">
-													<em id="password-error" class="error invalid-feedback">Please provide a password</em>
-												</div>
-												<div class="form-group col-md-6">
-													<label class="col-form-label" for="confirm_password">*Confirm password</label>
-													<input type="password" class="form-control" id="confirm_password" name="confirm_password"
-														placeholder="Confirm password" aria-describedby="confirm_password-error">
-													<em id="confirm_password-error" class="error invalid-feedback">Please provide a password</em>
-												</div>
-											</div> -->
+											
 											
 									</div>
 								</div>
@@ -112,78 +88,22 @@
 				</div>
 				<!--end card -->
 			</div>
-			<div class="col-lg-5">
-				<div class="card">
-					<div class="card-header">
-						<i class="fa fa-align-justify"></i> Saldo
-						<small>management </small>
-					</div>
-					<div class="card-body">
-						<div class="row">
-							<div class="form-group col-md-12">
-		                      	<i class="fa fa fa-money"></i> <label class="col-form-label" for="dompet">Dompet</label>
-		                        	<div class="input-group">
-				                          	<span class="input-group-text">Rp</span>
-				                          	<input type="number" class="form-control" id="dompet" name="dompet" placeholder="00.00" value="{{$member->dompet}}" aria-describedby="api-error" readonly="">
-				                      <em id="dompet-error" class="error invalid-feedback">Please enter a api</em>
-				                  	</div>
-		                      	<i class="fa fa fa-copyright"></i> <label class="col-form-label" for="koin">Koin</label>
-		                        	<div class="input-group">
-				                          	<span class="input-group-text">Rp</span>
-				                          	<input type="number" class="form-control" value="{{$member->koin}}" id="koin" name="koin" placeholder="00.00" aria-describedby="koin-error" readonly="">
-				                      <em id="koin-error" class="error invalid-feedback">Please enter a koin</em>
-				                  	</div>
-		                  	</div>
-						</div>
-					</div>
-				</div>
-				<div class="card">
-					<div class="card-header">
-						<i class="fa fa-align-justify"></i> Sales Member
-						<small>Data</small>
-					</div>
-					<div class="card-body">
-						<div class="row">
-							<div class="form-group col-md-12">
-		                      	<label class="col-form-label" for="sales">*Sales</label>
-		                        	<select id="sales" name="sales[]" class="form-control" aria-describedby="sales-error" required>
-		                        	@foreach ($member->sales as $atts)
-		                          		<option data-name="{{$atts['name']}}" data-email="{{$atts['email']}}" value="{{$atts['_id']}}" selected>{{$atts['name']}}</option>
-		                        	@endforeach
-		                        	@foreach ($modUser as $modUser)
-		                          		<option data-name="{{$modUser->name}}" data-email="{{$modUser->email}}" value="{{$modUser->id}}">{{$modUser->name}}</option>
-		                        	@endforeach
-		                        	</select>
-		                      <em id="sales-error" class="error invalid-feedback">Please enter a new sales</em>
-		                  	</div>
-		                    <div class="input-group col-md-12">
-								<span class="input-group-text"><i class="fa fa-user-circle-o" ></i></span>
-									<input type="text" class="form-control" value="{{$atts['name']}}" id="sales-name" readonly>
-							</div>
-							<div class="input-group col-md-12" style="padding-top: 16px">
-								<span class="input-group-text"><i class="fa fa-envelope" ></i></span>
-									<input type="text" class="form-control" id="sales-email" value="{{$atts['email']}}" readonly>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
 
 		<!--/.row-->
 		<div class="row">
 			<div class="attr-multiselect attr-dropdown form-group col-md-12">
 				<div class="card">
-					<div class="card-body">
+					<div class="card-body"><!-- 
 							<button class="btn btn-primary add_field_btn-primary" >Add Address</button>
-						<hr>
+						<hr> -->
 						<div class="option-card">	
 							<div class="form-group">
 
 							@foreach($member->address as $address)
 								<label class="col-form-label" for="address">*Address</label>
 						    	<div class="input-group">
-						        	<input type="text" name="address[]" id="address" class="form-control" placeholder="Address" value="{{$address}}" aria-describedby="address-error" required>
+						        	<textarea type="text" name="address[]" id="address" class="form-control" placeholder="Address" rows="3" value="{{$address}}" aria-describedby="address-error" required>{{$address}}</textarea>
 						        	<em id="address-error" class="error invalid-feedback">Please enter a address</em>
 						      	</div>
 						    @endforeach
@@ -201,7 +121,7 @@
 				<div class="card">
 					<p>
 					<div class="btn-group"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-			          	<button type="submit" class="btn btn-success">Save and Continue</button>
+			          	<button type="submit" class="btn btn-success">Save</button>&nbsp;
 			        <button type="button" class="btn btn-secondary" onclick="window.history.back()">
 			          <i class="fa fa-times-rectangle"></i>&nbsp; Cancel
 			        </button>
