@@ -3,6 +3,7 @@
         <div class="optts">
             <div class="row">
                 <div class="col-md-4">
+                    <label class="col-form-label" for="type"></label>
                     <select name="product[]" style="width: 100% !important;" class="form-control form-control-sm products" aria-describedby="product[]-error">
                         <option value=""></option>
                         @foreach ($products as $productss)
@@ -20,12 +21,14 @@
                     <input type="text" class="form-control" name="code[]" id="products-code" readonly>
                 </div>
                 <div class="col-md-2">
+                    <label class="col-form-label" for="type"></label>
                     <input type="number" onkeyup="findTotal($(this))" class="form-control total" id="total" name="total[]" placeholder="00" aria-describedby="total-error">
                     <em id="total-error" class="error invalid-feedback">
                         Please enter a total
                     </em>
                 </div>
                 <div class="col-md-4">
+                    <label class="col-form-label" for="type"></label>
                     <select id="packaging" name="packaging[]" class="form-control packaging" style="width: 100% !important;" aria-describedby="packaging-error"
                         onchange="findTotal($(this))">
                         <option value=""></option>
@@ -43,6 +46,7 @@
                     <em id="packaging-error" class="error invalid-feedback">Please select packaging</em>
                 </div>
                 <div class="col-md-2">
+                    <label class="col-form-label" for="type"></label>
                     <div class="control-group input-group">
                         <input class="form-control" type="text" name="amount[]" id="amount" placeholder="00" aria-describedby="amount-error" readonly/>
                         <span class="input-group-append">

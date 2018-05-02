@@ -70,6 +70,7 @@
 	                	<div class="form-group input_">
 								<div class="row product-list">
 									<div class="col-md-4">
+										<label class="col-form-label" for="type"></label>
 											<select name="product[]" style="width: 100% !important;" class="form-control form-control-sm products" aria-describedby="product[]-error">
 		                        				<option value=""></option>
 						                        @foreach ($product as $product)
@@ -86,13 +87,16 @@
 										<label class="col-form-label" for="code">*Code</label>										
 										<input type="text" class="form-control" name="code[]" id="product-code" readonly>
 									</div>
+
 									<div class="col-md-2">
+										<label class="col-form-label" for="type"></label>
 			                            <input type="number" onkeyup="findTotal($(this))" class="form-control total" id="total" name="total[]" placeholder="00" aria-describedby="total-error" placeholder="00 Kg">
 			                            <em id="total-error" class="error invalid-feedback">
 			                              Please enter a total
 			                            </em>
 				                    </div>
 									<div class="col-md-4">
+										<label class="col-form-label" for="type"></label>
 				                        <select name="packaging[]" style="width: 100% !important;" class="form-control form-control-sm packaging" aria-describedby="packaging-error" onchange="findTotal($(this))">
 					                        <option value=""></option>
 											<option data-package="Plastik" value="0.25" >250 gram - Plastik</option>
@@ -109,6 +113,7 @@
 				                        <em id="packaging-error" class="error invalid-feedback">Please select packaging</em>
 		                    		</div>
 			                        <div class="col-md-2">
+			                        	<label class="col-form-label" for="type"></label>
 				                        <div class="control-group input-group">
 				                        <input class="form-control" type="number" name="amount[]" id="amount" placeholder="00" aria-describedby="amount-error" readonly/>
 				                        <em id="amount-error" class="error invalid-feedback"></em>
