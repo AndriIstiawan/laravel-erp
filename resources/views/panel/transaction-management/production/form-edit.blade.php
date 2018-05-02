@@ -28,23 +28,16 @@
 										<input type="hidden" class="id" name="id">
 											<div class="row">
 												<div class="col-md-12">
-												<label class="col-form-label" for="sono">SO NO</label>
 												<div class="input-group">
-													<input type="text" class="form-control " id="sono" name="sono" value="{{$order->sono}}" readonly="">
+													<input type="hidden" class="form-control " id="sono" name="sono" value="{{$order->sono}}" readonly="">
 												</div>
-												<label class="col-form-label" for="type">SO Date</label>
 												<div class="input-group">
-													<input type="text" class="form-control " id="date" name="date" value="{{$order->date}}" readonly>
+													<input type="hidden" class="form-control " id="date" name="date" value="{{$order->date}}" readonly>
 												</div>
-												<label class="col-form-label" for="phone">Client</label>
 												<div class="input-group">
-													<input type="text" class="form-control " id="client" name="client" value="{{$order->client}}" readonly="">
-												</div>
-												<label class="col-form-label" for="sales">Sales</label>
-												<div class="input-group">
-													@foreach($order->sales as $sales)
-													<input type="hidden" id="saless" class="form-control" value="{{$sales['_id']}}" placeholder="{{$sales['name']}}" name="sales" aria-describedby="sales-error">
-													<input class="form-control" placeholder="{{$sales['name']}}" aria-describedby="sales-error" readonly="">
+													@foreach($order->client as $client)
+													<input type="hidden" class="form-control " id="client" name="client" value="{{$client['_id']}}" readonly="">
+													<input class="form-control" placeholder="{{$client['name']}}" aria-describedby="sales-error" readonly="">
 													@endforeach
 												</div>
 												</div>
@@ -70,20 +63,17 @@
 					    @foreach ($order->productattr as $product)
 						<div class="row">
 							<div class="col-md-4">
-								<label class="col-form-label" for="name">Name Product</label>
 									<input type="hidden" id="product" value="{{$product['id']}}" name="product[]" class="form-control form-control-sm" aria-describedby="product-error">
 									<input placeholder="{{$product['code']}}-{{$product['type']}}-{{$product['name']}}" class="form-control" aria-describedby="product-error" readonly="">
 							</div>
 							<div class="col-md-2">
-	                          	<label class="col-form-label" for="total">Total(Kg)</label>
 	                          		<input type="number" class="form-control" id="total" name="total[]" value="{{$product['total']}}" placeholder="00" aria-describedby="totals-error" readonly="">
 		                    </div>
 							<div class="col-md-4">
-			                    <label class="col-form-label" >Packaging (Kg)</label>
-			                        <input type="number" id="packaging" name="packaging[]" class="form-control" aria-describedby="packaging-error" value="{{$product['packaging']}}" placeholder="{{$product['packaging']}} - {{$product['package']}}" readonly="">
+			                        <input type="hidden" id="packaging" name="packaging[]" class="form-control" aria-describedby="packaging-error" value="{{$product['packaging']}}" readonly="">
+			                        <input class="form-control" aria-describedby="packaging-error" value="{{$product['packaging']}} - {{$product['package']}}" readonly="">
                     		</div>
 	                        <div class="col-md-2">
-		                          <label class="col-form-label" >Amount</label>
 		                          <input class="form-control" placeholder="{{$product['amount']}}" value="{{$product['amount']}}" type="text" name="amount[]" id="amount" placeholder="00" readonly/>
 		                    </div>
 		                    <div class="col-md-4" style="display: none;">
@@ -92,36 +82,36 @@
 							</div>
 		                    <div class="col-md-3">
 		                        <div class="form-group">
-		                          <label class="col-form-label" >*Realisasi (Kg)</label>
-		                          <input class="form-control number" type="text" name="realisasi[]" id="realisasi" aria-describedby="realisasi-error" required="" />
+		                          <label class="col-form-label" ></label>
+		                          <input class="form-control number" type="text" name="realisasi[]" id="realisasi" aria-describedby="realisasi-error" placeholder="Realisasi (Kg)" required="" />
 		                        <em id="realisasi-error" class="error invalid-feedback">Please enter a realisasi</em>
 		                        </div>
 		                    </div>
 		                    <div class="col-md-3">
 		                        <div class="form-group">
-		                          <label class="col-form-label" >*Stock Kapuk</label>
-		                          <input class="form-control number" type="text" name="stockk[]" id="stockk" aria-describedby="stockk-error" required="" />
+		                          <label class="col-form-label" ></label>
+		                          <input class="form-control number" type="text" name="stockk[]" id="stockk" aria-describedby="stockk-error" placeholder="Stock Kapuk" required="" />
 		                        <em id="stockk-error" class="error invalid-feedback">Please enter a stockk</em>
 		                        </div>
 		                    </div>
 		                    <div class="col-md-2">
 		                        <div class="form-group">
-		                          <label class="col-form-label" >*Pending SO</label>
-		                          <input class="form-control number" type="text" name="pending[]" id="pending" aria-describedby="pending-error" required="" />
+		                          <label class="col-form-label" ></label>
+		                          <input class="form-control number" type="text" name="pending[]" id="pending" aria-describedby="pending-error" placeholder="Pending SO" required="" />
 		                        <em id="pending-error" class="error invalid-feedback">Please enter a pending</em>
 		                        </div>
 		                    </div>
 		                    <div class="col-md-2">
 		                        <div class="form-group">
-		                          <label class="col-form-label" >*Balance Stock</label>
-		                          <input class="form-control number" type="text" name="balance[]" id="balance" aria-describedby="balance-error" required="" />
+		                          <label class="col-form-label" ></label>
+		                          <input class="form-control number" type="text" name="balance[]" id="balance" aria-describedby="balance-error" placeholder="Balance Stock" required="" />
 		                        <em id="balance-error" class="error invalid-feedback">Please enter a balance</em>
 		                        </div>
 		                    </div>
 		                    <div class="col-md-2">
 		                        <div class="form-group">
-		                          <label class="col-form-label" >*Pending PR</label>
-		                          <input class="form-control number" type="text" name="pendingpr[]" id="pendingpr" aria-describedby="pendingpr-error" required="" />
+		                          <label class="col-form-label" ></label>
+		                          <input class="form-control number" type="text" name="pendingpr[]" id="pendingpr" aria-describedby="pendingpr-error" placeholder="Pending PR" required="" />
 		                        <em id="pendingpr-error" class="error invalid-feedback">Please enter a pendingpr</em>
 		                        </div>
 		                    </div>

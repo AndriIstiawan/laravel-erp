@@ -139,7 +139,7 @@
 	        ajax: '{{ route('sales-order.index') }}/list-data',
 	        columns: [
 	            {data: 'sono', name: 'sono'},
-	            {data: 'client', name: 'client'},
+	            {data: 'client.[].name', name: 'client'},
 	            {data: 'productattr.[<br>].name', name: 'name'},
 	            {data: 'productattr.[<br>].total', name: 'total'},
 	            {data: 'productattr.[<br>].packaging', name: 'packaging'},	            

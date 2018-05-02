@@ -92,7 +92,7 @@
 		                            </em>
 		                        </div>
 							<div class="col-md-4">
-			                        <select name="packaging[]" class="form-control packaging" style="width: 100% !important;" aria-describedby="packaging-error" onchange="findTotal($(this))">
+			                        <select name="packaging[]" id="packaging" class="form-control packaging" style="width: 100% !important;" aria-describedby="packaging-error" onchange="findTotal($(this))">
 				                        <option value=""></option>
 										<option data-package="Plastik" value="0.25" {{($productsss['packaging'] == '0.25' && $productsss['package'] == 'Plastik'?'selected':'')}} >250 gram - Plastik</option>
 										<option data-package="Plastik" value="0.5" {{($productsss['packaging'] == '0.5' && $productsss['package'] == 'Plastik'?'selected':'')}}>500 gram - Plastik</option>  
@@ -105,6 +105,7 @@
 										<option data-package="Jerigen" value="30" {{($productsss['packaging'] == '30' && $productsss['package'] == 'Jerigen'?'selected':'')}}>30 kg - Jerigen</option>
 										<option data-package="Drum" value="25" {{($productsss['packaging'] == '25' || $productsss['package'] == 'Drum'?'selected':'')}}>25 kg - Drum</option>
 				                    </select>
+				                    <em id="packaging-error" class="error invalid-feedback">Please select packaging</em>
 			                    </div>
 							<div class="col-md-2">
             					<div class="control-group input-group">
