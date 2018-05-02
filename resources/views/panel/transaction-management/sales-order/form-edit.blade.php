@@ -31,11 +31,11 @@
 													<input type="hidden" class="form-control" id="sono" name="sono" placeholder="NO1029ON" aria-describedby="sono-error" value="{{$order->sono}}" readonly="">
 													<em id="sono-error" class="error invalid-feedback">Please enter a SO NO</em>
 													<input type="hidden" class="form-control" id="date" name="date" value="{{$order->date}}" readonly>
-												<div class="input-group">
+												<div class="form-group">
 													<input type="text" class="form-control" id="client" name="client" aria-describedby="client-error" value="{{$order->client}}" placeholder="Member" >
 													<em id="client-error" class="error invalid-feedback">Please enter a client</em>
 												</div>
-												<div class="input-group">
+												<div class="form-group">
 													<select id="saless" class="form-control form-control-sm" style="width: 100% !important;" name="sales" aria-describedby="sales-error">
 														<option value=""></option>
 													@foreach($modUser as $modUser)
