@@ -225,14 +225,14 @@ class SalesOrderController extends Controller
     }
 
     public function orderExport(){
-       $order=SalesOrder::select('sono','date','client','catatan','sales','product')->get();
+       $order=SalesOrder::select('sono','date','client','catatan','sales','productattr')->get();
        for($i=0; $i < count($order); $i++){
             $order[$i]['nama produk'] = $order[$i]['productattr'][$i]['name'];
             $order[$i]['type'] = $order[$i]['productattr'][$i]['type'];
             $order[$i]['code'] = $order[$i]['productattr'][$i]['name'];
             $order[$i]['total'] = $order[$i]['productattr'][$i]['total'];
             
-             unset($order[$i]['_id']);
+             unset($order[$i]['productattr']);
         }
         for($i=0; $i < count($order); $i++){
             $order[$i]['sales'] = $order[$i]['sales'][0]['name'];
