@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Product;
 use App\Variant;
+use App\Member;
 use App\SalesOrder;
 use App\User;
 use Yajra\Datatables\Datatables;
@@ -53,6 +54,7 @@ class SalesOrderController extends Controller
 
         $order=SalesOrder::all();
         $product= Product::all();
+        $member= Member::all();
         $products= Product::all();
         $modUser = User::where('role', 'elemMatch', array('name' => 'Sales'))->get();
         $user= User::where('role', 'elemMatch', array('name' => 'Tim Operational'))->get();
@@ -61,6 +63,7 @@ class SalesOrderController extends Controller
             'so_id' => $this->generateSO(),
             'order' => $order, 
             'product' => $product,
+            'member' => $member,
             'products' => $products,
             'user' => $user,
             'users' => $users,
@@ -74,12 +77,12 @@ class SalesOrderController extends Controller
         $order = new SalesOrder();
         $order->sono = $request->sono;
         $order->date = $request->date;
-        $order->client = $request->client;
 
+        $clients=Member::where('_id', $request->client)->get();
+        $order->client = $clients->toArray();
+/*
         $sales=user::where('_id', $request->sales)->get();
-        $order->sales=$sales->toArray();
-
-        
+        $order->sales=$sales->toArray();*/
 
         $productss =[];
         for($i=0; $i < count($request->total); $i++){
@@ -148,19 +151,19 @@ class SalesOrderController extends Controller
     public function edit($id)
     {
         $order = SalesOrder::find($id);
-        $product= Product::whereNotIn('name', array_column($order->productattr,'name'))->get(); 
+        $product= Product::whereNotIn('name', array_column($order->productattr,'name'))->get();
+        $member= Member::whereNotIn('name', array_column($order->client,'name'))->get(); 
         $products= Product::all(); 
-        $modUser = User::where('role', 'elemMatch', array('name' => 'Sales'))->whereNotIn('role', array_column($order->sales,'role'))->get();
         $att = SalesOrder::whereIn('name', array_column($order->productattr,'name'))->get();
         $user= User::where('role', 'elemMatch', array('name' => 'Production'))->get();
         $users= User::where('role', 'elemMatch', array('name' => 'Production'))->get();
         return view('panel.transaction-management.sales-order.form-edit')->with([
             'order'=>$order,
-            'order' => $order, 
+            'order' => $order,
+            'member' => $member, 
             'product' => $product,
             'products' => $products,
             'user' => $user,
-            'modUser' => $modUser,
             'users' => $users
         ]);
     }
@@ -171,10 +174,12 @@ class SalesOrderController extends Controller
         $order = SalesOrder::find($id);
         $order->sono = $request->sono;
         $order->date = $request->date;
-        $order->client = $request->client;
 
-        $sales=user::where('_id', $request->sales)->get();
-        $order->sales=$sales->toArray();
+        $clients=Member::where('_id', $request->client)->get();
+        $order->client = $clients->toArray();
+
+        /*$sales=user::where('_id', $request->sales)->get();
+        $order->sales=$sales->toArray();*/
 
         $productss =[];
         for($i=0; $i < count($request->total); $i++){

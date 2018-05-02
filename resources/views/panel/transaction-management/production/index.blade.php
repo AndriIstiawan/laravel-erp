@@ -30,8 +30,6 @@
 							<thead>
 								<tr>
 									<th>SO No</th>
-									<th>SO Date</th>
-									<th>Sales</th>
 									<th>Product</th>
 									<th>Catatan</th>
 									<th>Checker</th>
@@ -66,9 +64,7 @@
 	        serverSide: true,
 	        ajax: '{{ route('production.index') }}/list-data',
 	        columns: [
-	            {data: 'sono', name: 'sono'},
-	            {data: 'date', name: 'date'},
-	            {data: 'sales.[].name', name: 'client'},	            
+	            {data: 'sono', name: 'sono'},	            
 	            {data: 'productattr.[<br>].name', name: 'name'},
 	            {data: 'catatan', name: 'catatan'},
 	            {data: 'check.[].name', name: 'check'},
@@ -78,10 +74,10 @@
 	            {data: 'action', name: 'action', orderable: false, searchable: false, width:'20%'}
 	        ],
 			"columnDefs": [
-				{"targets": 9,"className": "text-center"},
-				{"targets": 7,"className": "text-center"}
+				{"targets": 7,"className": "text-center"},
+				{"targets": 5,"className": "text-center"}
 			],
-			"order":[[8, 'desc']]
+			"order":[[6, 'desc']]
 		});
 		$('.datatable').attr('style','border-collapse: collapse !important');
 		
