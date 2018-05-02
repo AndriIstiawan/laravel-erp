@@ -8,6 +8,7 @@ use Jenssegers\Mongodb\Eloquent\SoftDeletes;
 use Illuminate\Auth\Authenticatable;
 use Moloquent;
 use App\User;
+use App\SalesOrder;
 use App\Permission;
 use Auth;
 
@@ -59,4 +60,8 @@ class User extends Moloquent implements \Illuminate\Contracts\Auth\Authenticatab
         }
 		return $status;
 	}
+
+    public function countPOPending(){
+        return SalesOrder::where('status','1')->count();
+    }
 }

@@ -28,19 +28,19 @@
 										<input type="hidden" class="id" name="id">
 											<div class="row">
 												<div class="col-md-12">
-												<label class="col-form-label" for="sono">*SO NO</label>
+												<label class="col-form-label" for="sono">SO NO</label>
 												<div class="input-group">
 													<input type="text" class="form-control " id="sono" name="sono" value="{{$order->sono}}" readonly="">
 												</div>
-												<label class="col-form-label" for="type">*SO Date</label>
+												<label class="col-form-label" for="type">SO Date</label>
 												<div class="input-group">
 													<input type="text" class="form-control " id="date" name="date" value="{{$order->date}}" readonly>
 												</div>
-												<label class="col-form-label" for="phone">*Client</label>
+												<label class="col-form-label" for="phone">Client</label>
 												<div class="input-group">
 													<input type="text" class="form-control " id="client" name="client" value="{{$order->client}}" readonly="">
 												</div>
-												<label class="col-form-label" for="sales">*Sales</label>
+												<label class="col-form-label" for="sales">Sales</label>
 												<div class="input-group">
 													@foreach($order->sales as $sales)
 													<input type="hidden" id="saless" class="form-control" value="{{$sales['_id']}}" placeholder="{{$sales['name']}}" name="sales" aria-describedby="sales-error">
@@ -79,7 +79,7 @@
 	                          		<input type="number" class="form-control" id="total" name="total[]" value="{{$product['total']}}" placeholder="00" aria-describedby="totals-error" readonly="">
 		                    </div>
 							<div class="col-md-4">
-			                    <label class="col-form-label" >*Packaging (Kg)</label>
+			                    <label class="col-form-label" >Packaging (Kg)</label>
 			                        <input type="number" id="packaging" name="packaging[]" class="form-control" aria-describedby="packaging-error" value="{{$product['packaging']}}" placeholder="{{$product['packaging']}} - {{$product['package']}}" readonly="">
                     		</div>
 	                        <div class="col-md-2">
@@ -148,7 +148,7 @@
 								<div class="row">
 									<div class="col-md-12">
 									<div class="form-group">
-										<label class="col-form-label" for="catatan">*Catatan</label>
+										<label class="col-form-label" for="catatan">Catatan</label>
 										<textarea type="text" rows="5" class="form-control" id="catatan" name="catatan" placeholder="Catatan" value="{{$order->catatan}}" aria-describedby="catatan-error" readonly=""> {{$order->catatan}}</textarea>
 									</div>
 									</div>

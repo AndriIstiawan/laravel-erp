@@ -76,7 +76,7 @@
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<form method="post" action="{{route('product.import')}}" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
-			{{ csrf_field() }}{{ csrf_token() }}
+			{{ csrf_field() }}
 				<div class="modal-header">
 				<h3 class="modal-title">Export/Import Product</h3>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -98,7 +98,7 @@
 					<div class="form-group">
 						<label for="file" class="col-md-3 control-label">Import</label>
 						<div class="col-md-6">
-							<input type="file" id="file" name="file" class="form-control" autofocus required>
+							<input type="file" id="file" name="file" class="form-control" accept=".xlsx" autofocus required>
 							<span class="help-block with-errors"></span>
 						</div>
 					</div>
