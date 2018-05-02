@@ -41,6 +41,10 @@ class SalesOrderController extends Controller
     {
         return view('panel.transaction-management.sales-order.index');
     }
+    public function details()
+    {
+        return view('panel.transaction-management.sales-order.index');
+    }
 
     //view form create
     public function create()
@@ -221,13 +225,28 @@ class SalesOrderController extends Controller
     }
 
     public function orderExport(){
-       $order=SalesOrder::select('sono','client','catatan')->get();
-        return Excel::create('data_order', function($excel) use ($order){
-            $excel->sheet('sales order', function($sheet) use ($order){
+       $order=SalesOrder::select('sono','date','client','catatan','sales','product')->get();
+       for($i=0; $i < count($order); $i++){
+            $order[$i]['nama produk'] = $order[$i]['productattr'][$i]['name'];
+            $order[$i]['type'] = $order[$i]['productattr'][$i]['type'];
+            $order[$i]['code'] = $order[$i]['productattr'][$i]['name'];
+            $order[$i]['total'] = $order[$i]['productattr'][$i]['total'];
+            
+             unset($order[$i]['_id']);
+        }
+        for($i=0; $i < count($order); $i++){
+            $order[$i]['sales'] = $order[$i]['sales'][0]['name'];
+            
+            unset($order[$i]['_id']);
+
+        }
+        
+        return Excel::create('salesorder-list', function ($excel) use ($order) {
+            $excel->sheet('sales-order list', function ($sheet) use ($order) {
                 $sheet->fromArray($order);
             });
-        })->download('xls');
+        })->download('xlsx');
+        return dd($order);
 
-        
     }
 }
