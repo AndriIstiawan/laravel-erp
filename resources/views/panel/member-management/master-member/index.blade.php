@@ -29,7 +29,6 @@
 									<th>Name</th>
 									<th>Email</th>
 									<th>Phone</th>
-									<th>status</th>
 									<th>Date registered</th>
 									<th></th>
 								</tr>
@@ -61,14 +60,13 @@
 	            {data: 'name', name: 'name'},
 	            {data: 'email', name: 'email'},
 	            {data: 'phone', name: 'phone'},
-	            {data: 'status', name: 'status'},
 	            {data: 'created_at', name: 'created_at'},
 	            {data: 'action', name: 'action', orderable: false, searchable: false, width:'20%'}
 	        ],
 			"columnDefs": [
-				{"targets": 5,"className": "text-center"}
+				{"targets": 4,"className": "text-center"}
 			],
-			"order":[[4, 'desc']]
+			"order":[[3, 'desc']]
 		});
 		$('.datatable').attr('style','border-collapse: collapse !important');
 		
