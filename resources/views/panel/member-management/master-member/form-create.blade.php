@@ -18,7 +18,7 @@
 				<!--start card -->
 				<div class="card">
 					<div class="card-header">
-						<i class="fa fa-align-justify"></i> Member
+						<i class="fa fa-align-justify"></i> Client
 						<small>new management </small>
 					</div>
 					<div class="card-body">
@@ -38,17 +38,14 @@
 											<div class="row">
 												<div class="col-md-6">
 												<div class="form-group">
-													<label class="col-form-label" for="name">*Name</label>
 													<input type="text" class="form-control" id="name" name="name" placeholder="Name" aria-describedby="name-error">
 													<em id="name-error" class="error invalid-feedback">Please enter a name site</em>
 												</div>
 												<div class="form-group">
-													<label class="col-form-label" for="email">*Email</label>
 													<input type="text" class="form-control" id="email" name="email" placeholder="Email" aria-describedby="email-error">
 													<em id="email-error" class="error invalid-feedback">Please enter a valid email address</em>
 												</div>
 												<div class="form-group">
-													<label class="col-form-label" for="phone">*Phone</label>
 													<input type="number" class="form-control" id="phone" name="phone" placeholder="Phone" aria-describedby="phone-error">
 													<em id="phone-error" class="error invalid-feedback">Please enter a valid phone</em>
 												</div>
@@ -60,7 +57,7 @@
 													<label class="col-form-label" for="level">*Level</label>
 													<input type="hidden" name="level" value="{{$level['_id']}}">
 													<input type="number" class="form-control" placeholder="{{$level['name']}}" readonly>
-												</div> -->
+												</div> --><!-- 
 												<div class="form-group">
 									              	<label class="col-form-label" for="status">*Status</label> <p>
 									                	<label class="switch switch-text switch-pill switch-info">
@@ -68,7 +65,7 @@
 									                	<span class="switch-label" data-on="On" data-off="Off"></span>
 									                	<span class="switch-handle"></span>
 									                </label>
-									            </div>
+									            </div> -->
 												</div>
 												<div class="col-md-6">
 												<div class="text-center">
@@ -171,7 +168,6 @@
 							<div class="form-group input_fields_wrap">
 								<div class="option-card">
 									<div class="form-group">
-										<label class="col-form-label" for="address">*Address</label>
 										<div id="address" class="control-group input-group" style="margin-top:10px">
 											<textarea type="text" rows="3" name="address[]" class="form-control" placeholder="Address" aria-describedby="address-error" required></textarea>
 											<em id="address-error" class="error invalid-feedback">Please enter a address</em>
