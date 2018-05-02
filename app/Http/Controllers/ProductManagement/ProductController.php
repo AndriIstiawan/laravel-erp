@@ -265,7 +265,7 @@ class ProductController extends Controller
                 //editing sheet 1
                 $sheet0 = $reader->setActiveSheetIndex(0);
                 $reader->getActiveSheet()->fromArray($data, null, 'L2', false, false); //L2 is note columns
-                $reader->getActiveSheet()->setAutoSize(true);
+                //$reader->getActiveSheet()->setAutoSize(true);
             })->setFilename($filename)->download('xlsx');
         }
 

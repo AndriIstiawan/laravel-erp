@@ -36,12 +36,12 @@
 												<div class="input-group">
 													<input type="text" class="form-control" id="date" name="date" value="{{ date('Y-m-d H:i:s') }}" readonly>
 												</div>
-												<label class="col-form-label" for="phone">*Client</label>
+												<br>
 												<div class="input-group">
-													<input type="text" class="form-control" id="client" name="client" aria-describedby="client-error" placeholder="Member">
+													<input type="text" class="form-control" id="client" name="client" aria-describedby="client-error" placeholder="Client">
 													<em id="client-error" class="error invalid-feedback">Please enter a client</em>
 												</div>
-												<label class="col-form-label" for="sales">*Sales</label>
+												<Br>
 												<div class="input-group">
 													<select id="saless" class="form-control form-control-sm" style="width: 100% !important;" name="sales" aria-describedby="sales-error">
 														<option value=""></option>
@@ -70,7 +70,6 @@
 	                	<div class="form-group input_">
 								<div class="row product-list">
 									<div class="col-md-4">
-										<label class="col-form-label" for="name">*Name Product</label>
 											<select name="product[]" style="width: 100% !important;" class="form-control form-control-sm products" aria-describedby="product[]-error">
 		                        				<option value=""></option>
 						                        @foreach ($product as $product)
@@ -88,14 +87,12 @@
 										<input type="text" class="form-control" name="code[]" id="product-code" readonly>
 									</div>
 									<div class="col-md-2">
-			                            <label class="col-form-label" for="total">*Total (Kg)</label>
-			                            <input type="number" onkeyup="findTotal($(this))" class="form-control total" id="total" name="total[]" placeholder="00" aria-describedby="total-error">
+			                            <input type="number" onkeyup="findTotal($(this))" class="form-control total" id="total" name="total[]" placeholder="00" aria-describedby="total-error" placeholder="00 Kg">
 			                            <em id="total-error" class="error invalid-feedback">
 			                              Please enter a total
 			                            </em>
 				                    </div>
 									<div class="col-md-4">
-				                        <label class="col-form-label" >*Packaging Option</label>
 				                        <select name="packaging[]" style="width: 100% !important;" class="form-control form-control-sm packaging" aria-describedby="packaging-error" onchange="findTotal($(this))">
 					                        <option value=""></option>
 											<option data-package="Plastik" value="0.25" >250 gram - Plastik</option>
@@ -112,7 +109,6 @@
 				                        <em id="packaging-error" class="error invalid-feedback">Please select packaging</em>
 		                    		</div>
 			                        <div class="col-md-2">
-				                        <label class="col-form-label" >*Amount</label>
 				                        <div class="control-group input-group">
 				                        <input class="form-control" type="number" name="amount[]" id="amount" placeholder="00" aria-describedby="amount-error" readonly/>
 				                        <em id="amount-error" class="error invalid-feedback"></em>
@@ -178,7 +174,7 @@
 								<div class="row">
 									<div class="col-md-12">
 									<div class="form-group">
-										<label class="col-form-label" for="catatan">Catatan(optional)</label>
+										
 										<textarea type="text" rows="5" class="form-control" id="catatan" name="catatan" placeholder="Catatan" aria-describedby="catatan-error"></textarea>
 									</div>
 									</div>
