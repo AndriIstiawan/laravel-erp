@@ -9,6 +9,7 @@
 				<button type="button" class="btn btn-primary" onclick="refresh()">
 					<i class="fa fa-refresh"></i>
 				</button>
+
 				<a href="{{ route('sales-order.create') }}" class="btn btn-primary ladda-button" data-style="zoom-in">
 					<span class="ladda-label">
 						<i class="fa fa-plus">
@@ -16,6 +17,7 @@
 							New Order
 					</span>
 				</a>
+
                 <button class="btn btn-success ladda-button"  data-toggle="modal"
 						 data-target="#modal-exim" >
 					<span class="ladda-label">
@@ -24,6 +26,7 @@
 							Export Sales Order
 					</span>
 				</button>
+
 			</p>
 			</div>
 		</div>
@@ -62,6 +65,7 @@
 				</div>
 			</div>
 		</div>
+		
 		<div class="modal" id="modal-exim" tabindex="1" role="dialog" aria-hidden="true" data-backdrop="static">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
@@ -151,9 +155,9 @@
 	        ],
 			"columnDefs": [
 				{"targets": 9,"className": "text-center"},
-				{"targets": 7,"className": "text-center"}
+				{"targets": 8,"className": "text-center"}
 			],
-			"order":[[8, 'desc']]
+			"order":[[9, 'desc']]
 		});
 		$('.datatable').attr('style','border-collapse: collapse !important');
 		

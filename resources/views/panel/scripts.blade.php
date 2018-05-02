@@ -29,11 +29,14 @@
 	@if(isset($_GET['edit']))
 		toastr.success('Edit {{$_GET['edit']}} successfully saved..', '{{$_GET['edit']}} has been edited.');
 	@endif
+    @if(Session::get('new'))
+        toastr.success('New {{Session::get('new')}} successfully saved..', 'A {{Session::get('new')}} has been created.');
+    @endif
 	@if(Session::get('update'))
-		toastr.success('Edit {{Session::get('update')}} successfully saved..', 'An {{Session::get('update')}} has been edited.');
+		toastr.success('Edit {{Session::get('update')}} successfully saved..', 'A {{Session::get('update')}} has been edited.');
 	@endif
 	@if(Session::get('dlt'))
-		toastr.success('Successful {{Session::get('dlt')}} deleted..', 'An {{Session::get('dlt')}} has been deleted.');
+		toastr.success('Successful {{Session::get('dlt')}} deleted..', 'A {{Session::get('dlt')}} has been deleted.');
     @endif
 </script>
 
