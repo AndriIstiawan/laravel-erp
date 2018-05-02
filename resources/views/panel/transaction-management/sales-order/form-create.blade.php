@@ -31,18 +31,13 @@
 													<em id="sono-error" class="error invalid-feedback">Please enter a SO NO</em>
 													<input type="hidden" class="form-control" id="date" name="date" value="{{ date('Y-m-d H:i:s') }}" readonly>
 												<div class="input-group">
-													<input type="text" class="form-control" id="client" name="client" aria-describedby="client-error" placeholder="Client">
-													<em id="client-error" class="error invalid-feedback">Please enter a client</em>
-												</div>
-												<Br>
-												<div class="input-group">
-													<select id="saless" class="form-control form-control-sm" style="width: 100% !important;" name="sales" aria-describedby="sales-error">
+													<select id="client" class="form-control" style="width: 100% !important;" name="client" aria-describedby="client-error">
 														<option value=""></option>
-													@foreach($modUser as $modUser)
-														<option value="{{$modUser->id}}">{{$modUser->name}}</option>
-													@endforeach
+														@foreach($member as $member)
+														<option value="{{$member->id}}">{{$member->name}}</option>
+														@endforeach
 													</select>
-													<em id="sales-error" class="error invalid-feedback">Please select a sales</em>
+													<em id="client-error" class="error invalid-feedback">Please enter a client</em>
 												</div>
 												</div>
 											</div>
@@ -83,7 +78,7 @@
 
 									<div class="col-md-2">
 										<label class="col-form-label" for="type"></label>
-			                            <input type="number" onkeyup="findTotal($(this))" class="form-control total" id="total" name="total[]" placeholder="00" aria-describedby="total-error" placeholder="00 Kg">
+			                            <input type="number" onkeyup="findTotal($(this))" class="form-control total" id="total" name="total[]" placeholder="KG" aria-describedby="total-error" placeholder="00 Kg">
 			                            <em id="total-error" class="error invalid-feedback">
 			                              Please enter a total
 			                            </em>
@@ -108,7 +103,7 @@
 			                        <div class="col-md-2">
 			                        	<label class="col-form-label" for="type"></label>
 				                        <div class="control-group input-group">
-				                        <input class="form-control" type="number" name="amount[]" id="amount" placeholder="00" aria-describedby="amount-error" readonly/>
+				                        <input class="form-control" type="number" name="amount[]" id="amount" placeholder="Amount" aria-describedby="amount-error" readonly/>
 				                        <em id="amount-error" class="error invalid-feedback"></em>
 				                    	</div>
 				                    </div>

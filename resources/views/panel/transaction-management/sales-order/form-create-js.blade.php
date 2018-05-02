@@ -100,8 +100,16 @@
         $(this).valid();
     });
 
+    $('#client').select2({
+        theme: "bootstrap",
+        placeholder: 'Please select Client'
+    }).change(function () {
+        $(this).valid();
+    });
+
     function findTotal(elm) {
         var elemTotal = elm.parent().parent().find('input[name="total[]"]');
+        var elempack = elm.parent().parent().find('input[name="package[]"]');
         var elemPackaging = elm.parent().parent().find('select[name="packaging[]"]');
         var elemAmount = elm.parent().parent().find('input[name="amount[]"]');
         var valueTotal = parseInt(elemTotal.val());
@@ -179,8 +187,7 @@
     $("#jxForm1").validate({
         rules: {
             client: {
-                required: true,
-                minlength: 2
+                required: true
             },
             sales: {
                 required: true
@@ -200,8 +207,7 @@
         },
         messages: {
             client: {
-                required: 'Please enter a client',
-                minlength: 'name client must consist of at least 2 characters'
+                required: 'Please select a client'
             },
             sales: {
                 required: 'Please select a sales'
