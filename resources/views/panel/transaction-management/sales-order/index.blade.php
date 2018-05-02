@@ -44,7 +44,6 @@
 							<thead>
 								<tr>
 									<th>SO No</th>
-									<th>SO Date</th>
 									<th>Client</th>
 									<th>Product</th>
 									<th>Total</th>
@@ -87,6 +86,41 @@
 			</div>
 		</div>
 		</div>
+
+		<!-- <div class="modal" id="modal-detail" tabindex="1" role="dialog" aria-hidden="true" data-backdrop="static">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<form method="post" action="" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
+				{{ csrf_field() }}
+				<div class="modal-header">
+				<h3 class="modal-title">Details</h3>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times; </span>
+					</button>
+				</div>
+					<div class="modal-body">
+						<div class="form-group">
+							<label for="file" class="col-md-3 control-label">Export</label>
+							<div class="col-md-6">
+								<table class="table table-responsive-sm table-bordered table-striped table-sm datatable" style="width: 100%;" >
+							<thead>
+								<tr>
+									<th>Product</th>
+									<th>Total</th>
+									<th>Packaging</th>
+									<th>Amount</th>
+								</tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>	
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		</div> -->
 	</div>
 </div>
 @endsection
@@ -105,7 +139,6 @@
 	        ajax: '{{ route('sales-order.index') }}/list-data',
 	        columns: [
 	            {data: 'sono', name: 'sono'},
-	            {data: 'date', name: 'date'},
 	            {data: 'client', name: 'client'},
 	            {data: 'productattr.[<br>].name', name: 'name'},
 	            {data: 'productattr.[<br>].total', name: 'total'},
@@ -117,7 +150,7 @@
 	            {data: 'action', name: 'action', orderable: false, searchable: false, width:'20%'}
 	        ],
 			"columnDefs": [
-				{"targets": 10,"className": "text-center"},
+				{"targets": 9,"className": "text-center"},
 				{"targets": 8,"className": "text-center"}
 			],
 			"order":[[9, 'desc']]

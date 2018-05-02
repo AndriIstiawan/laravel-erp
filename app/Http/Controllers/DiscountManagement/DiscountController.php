@@ -39,8 +39,6 @@ class DiscountController extends Controller
         $discount->time = $request->time;
         $discount->price = $request->price;
         $discount->save();
-
-        
         return redirect()->route('discount.index')->with('toastr', 'discount');
     }
 
