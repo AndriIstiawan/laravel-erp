@@ -18,9 +18,9 @@
                     <input type="text" class="form-control" name="code[]" id="products-code" readonly>
                 </div>
                 <div class="col-md-2">
-                    <input type="number" onkeyup="findTotal($(this))" class="form-control total" id="total" name="total[]" placeholder="00" aria-describedby="total-error">
-                    <em id="total-error" class="error invalid-feedback">
-                        Please enter a total
+                    <input type="number" onkeyup="findTotal($(this))" class="form-control total" id="total" name="total[]" placeholder="KG" aria-describedby="totals-error">
+                    <em id="totals-error" class="error invalid-feedback">
+                      Please enter a totals
                     </em>
                 </div>
                 <div class="col-md-4">
@@ -42,7 +42,7 @@
                 </div>
                 <div class="col-md-2">
                     <div class="control-group input-group">
-                        <input class="form-control" type="text" name="amount[]" id="amount" placeholder="00" aria-describedby="amount-error" readonly/>
+                        <input class="form-control" type="text" name="amount[]" id="amount" placeholder="Amount" aria-describedby="amount-error" readonly/>
                         <span class="input-group-append">
                             <button class="btn btn-danger rounded pull-right" id="minmore" onclick="$(this).closest('.option-card2 .optts').remove()">
                                 <i class="fa fa-trash"></i>
