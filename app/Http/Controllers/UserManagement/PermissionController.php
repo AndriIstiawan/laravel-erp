@@ -74,7 +74,7 @@ class PermissionController extends Controller
                         <i class="fa fa-pencil-square-o"></i>&nbsp;Edit permission</button>'.
                     '<form style="display:inline;" method="POST" action="'.
                         route('permission.destroy',['id' => $permission->id]).'">'.method_field('DELETE').csrf_field().
-                    '<button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-remove"></i>&nbsp;Remove</button></form>';
+                    '<button type="button" onclick="removeList($(this))"  class="btn btn-danger btn-sm"><i class="fa fa-remove"></i>&nbsp;Remove</button></form>';
             })
             ->rawColumns(['status', 'action'])
             ->make(true);

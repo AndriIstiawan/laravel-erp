@@ -37,17 +37,17 @@ class MasterMemberController extends Controller
         $member->name = $request->name;
         $member->email = $request->email;
         $member->phone = $request->phone;
-        $member->point = $request->point;
+        /*$member->point = $request->point;
         $level=Levels::where('_id', $request->level)->get();
         $member->level=$level->toArray();
-        $member->status = $request->status;
+        */$member->status = $request->status;
         $member->address = $request->address;
-        $member->dompet = $request->dompet;
+        /*$member->dompet = $request->dompet;
         $member->koin = $request->koin;
-        $member->password = bcrypt($request->password);
-        $sales=user::whereIn('_id', $request->sales)->get();
+        */$member->password = bcrypt($request->password);
+        /*$sales=user::whereIn('_id', $request->sales)->get();
         $member->sales=$sales->toArray();
-		$member->save();
+		*/$member->save();
 
         if ($request->hasFile('picture')) {
 			$pictureFile = $request->file('picture');
@@ -73,7 +73,7 @@ class MasterMemberController extends Controller
 						<i class="fa fa-pencil-square-o"></i>&nbsp;Edit member</a>'.
 					'<form style="display:inline;" method="POST" action="'.
 						route('master-member.destroy',['id' => $member->id]).'">'.method_field('DELETE').csrf_field().
-					'<button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-remove"></i>&nbsp;Remove</button></form>';
+					'<button type="button" class="btn btn-danger btn-sm" onclick="removeList($(this))"><i class="fa fa-remove"></i>&nbsp;Remove</button></form>';
 			})
 			->rawColumns(['status', 'action'])
 			->make(true);
@@ -81,13 +81,13 @@ class MasterMemberController extends Controller
 
     //view form edit
     public function edit($id){
-		$member = Member::find($id);
+		$member = Member::find($id);/*
         $modUser = User::where('role', 'elemMatch', array('name' => 'Sales'))->whereNotIn('name', array_column($member->sales,'name'))->get();
-        $level = Levels::where('name', array_column($member->level,'name'))->get();
+        $level = Levels::where('name', array_column($member->level,'name'))->get();*/
         return view('panel.member-management.master-member.form-edit')
         ->with([
-        	'member'=>$member, 
-        	'modUser' => $modUser
+        	'member'=>$member, /*
+        	'modUser' => $modUser*/
         ]);
 	}
 
@@ -98,14 +98,14 @@ class MasterMemberController extends Controller
         $member->name = $request->name;
         $member->email = $request->email;
         $member->phone = $request->phone;
-        $member->sales = $request->sales;
+        /*$member->sales = $request->sales;
         $level=Levels::where('_id', $request->level)->get();
         $member->level=$level->toArray();
-        $member->address = $request->address;
+        */$member->address = $request->address;
         $member->status = $request->status;
-        $sales=user::whereIn('_id', $request->sales)->get();
+        /*$sales=user::whereIn('_id', $request->sales)->get();
         $member->sales=$sales->toArray();
-		$member->save();
+		*/$member->save();
 
         if ($request->hasFile('picture')) {
 			$pictureFile = $request->file('picture');

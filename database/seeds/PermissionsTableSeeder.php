@@ -110,7 +110,40 @@ class PermissionsTableSeeder extends Seeder
 				'guard_name' => 'web',
 				'created_at' => date("Y-m-d H:i:s"),
 				'updated_at' => date("Y-m-d H:i:s")
-			]/*,
+			],
+			[
+	        	'name' => 'Master Member',
+	        	'slug' => null,
+	        	'type' => 'module-menu',
+				'icon' => 'fa fa-users',
+				'parent' => null,
+				'description' => 'Module Menu',
+				'guard_name' => 'web',
+				'created_at' => date("Y-m-d H:i:s"),
+				'updated_at' => date("Y-m-d H:i:s")
+			],
+			[
+	        	'name' => 'Member',
+	        	'slug' => 'master-member',
+	        	'type' => 'module-menu',
+				'icon' => 'icon-cursor',
+				'parent' => null,
+				'description' => 'Module Menu',
+				'guard_name' => 'web',
+				'created_at' => date("Y-m-d H:i:s"),
+				'updated_at' => date("Y-m-d H:i:s")
+			],
+			/*[
+	        	'name' => 'Level',
+	        	'slug' => 'level',
+	        	'type' => 'module-menu',
+				'icon' => 'icon-cursor',
+				'parent' => null,
+				'description' => 'Module Menu',
+				'guard_name' => 'web',
+				'created_at' => date("Y-m-d H:i:s"),
+				'updated_at' => date("Y-m-d H:i:s")
+			]*//*,
 			[
 	        	'name' => 'Category',
 	        	'slug' => 'category',
@@ -309,51 +342,7 @@ class PermissionsTableSeeder extends Seeder
 				'guard_name' => 'web',
 				'created_at' => date("Y-m-d H:i:s"),
 				'updated_at' => date("Y-m-d H:i:s")
-			],
-			[
-	        	'name' => 'Master Member',
-	        	'slug' => null,
-	        	'type' => 'module-menu',
-				'icon' => 'fa fa-users',
-				'parent' => null,
-				'description' => 'Module Menu',
-				'guard_name' => 'web',
-				'created_at' => date("Y-m-d H:i:s"),
-				'updated_at' => date("Y-m-d H:i:s")
-			],
-			[
-	        	'name' => 'Member',
-	        	'slug' => 'master-member',
-	        	'type' => 'module-menu',
-				'icon' => 'icon-cursor',
-				'parent' => null,
-				'description' => 'Module Menu',
-				'guard_name' => 'web',
-				'created_at' => date("Y-m-d H:i:s"),
-				'updated_at' => date("Y-m-d H:i:s")
-			],
-			[
-	        	'name' => 'Level',
-	        	'slug' => 'level',
-	        	'type' => 'module-menu',
-				'icon' => 'icon-cursor',
-				'parent' => null,
-				'description' => 'Module Menu',
-				'guard_name' => 'web',
-				'created_at' => date("Y-m-d H:i:s"),
-				'updated_at' => date("Y-m-d H:i:s")
-			],*//*
-			[
-	        	'name' => 'Archievement',
-	        	'slug' => 'archievement',
-	        	'type' => 'module-menu',
-				'icon' => 'fa fa-bars',
-				'parent' => null,
-				'description' => 'Module Menu',
-				'guard_name' => 'web',
-				'created_at' => date("Y-m-d H:i:s"),
-				'updated_at' => date("Y-m-d H:i:s")
-			],*/
+			]*/
 			/*[
 	        	'name' => 'Master Setting',
 	        	'slug' => 'master-setting',
