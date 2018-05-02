@@ -28,21 +28,13 @@
 										<input type="hidden" class="id" name="id">
 											<div class="row">
 												<div class="col-md-12">
-												<label class="col-form-label" for="sono">*SO NO</label>
-												<div class="input-group">
-													<input type="text" class="form-control" id="sono" name="sono" placeholder="NO1029ON" aria-describedby="sono-error" value="{{$order->sono}}" readonly="">
+													<input type="hidden" class="form-control" id="sono" name="sono" placeholder="NO1029ON" aria-describedby="sono-error" value="{{$order->sono}}" readonly="">
 													<em id="sono-error" class="error invalid-feedback">Please enter a SO NO</em>
-												</div>
-												<label class="col-form-label" for="type">*SO Date</label>
-												<div class="input-group">
-													<input type="text" class="form-control" id="date" name="date" value="{{$order->date}}" readonly>
-												</div>
-												<label class="col-form-label" for="phone">*Client</label>
+													<input type="hidden" class="form-control" id="date" name="date" value="{{$order->date}}" readonly>
 												<div class="input-group">
 													<input type="text" class="form-control" id="client" name="client" aria-describedby="client-error" value="{{$order->client}}" placeholder="Member" >
 													<em id="client-error" class="error invalid-feedback">Please enter a client</em>
 												</div>
-												<label class="col-form-label" for="sales">*Sales</label>
 												<div class="input-group">
 													<select id="saless" class="form-control form-control-sm" style="width: 100% !important;" name="sales" aria-describedby="sales-error">
 														<option value=""></option>
@@ -80,7 +72,6 @@
 					    <div class="optts">
 						<div class="row product-list">
 							<div class="col-md-4">
-								<label class="col-form-label" for="name">Name Product</label>
 								<select name="product[]" style="width: 100% !important;" class="form-control form-control-sm products" aria-describedby="product[]-error">
 									<option value=""></option>
 									<option value="{{$productsss['id']}}" data-code="{{$productsss['code']}}" data-type="{{$productsss['type']}}" selected="">{{$productsss['code']}}-{{$productsss['type']}}-{{$productsss['name']}}</option>
@@ -99,14 +90,12 @@
 								<input type="hidden" value="{{$productsss['code']}}" class="form-control" name="code[]" id="product-code" readonly><!-- 
 							</div> -->
 							<div class="col-md-2">
-		                          <label class="col-form-label" for="total">Total(Kg)</label>
 		                          <input type="number" onkeyup="findTotal()" class="form-control" id="total" name="total[]" value="{{$productsss['total']}}" placeholder="00" aria-describedby="totals-error" >
 		                            <em id="totals-error" class="error invalid-feedback">
 		                              Please enter a totals
 		                            </em>
 		                        </div>
 							<div class="col-md-4">
-			                        <label class="col-form-label" >*Packaging (Kg)</label>
 			                        <select name="packaging[]" class="form-control packaging" style="width: 100% !important;" aria-describedby="packaging-error" onchange="findTotal($(this))">
 				                        <option value=""></option>
 										<option data-package="Plastik" value="0.25" {{($productsss['packaging'] == '0.25' && $productsss['package'] == 'Plastik'?'selected':'')}} >250 gram - Plastik</option>
@@ -122,7 +111,6 @@
 				                    </select>
 			                    </div>
 							<div class="col-md-2">
-		                        <label class="col-form-label" >Amount</label>
             					<div class="control-group input-group">
 		                        	<input class="form-control" id="amount" value="{{$productsss['amount']}}" min="1" type="number" name="amount[]" placeholder="00" aria-describedby="amount-error" required=""  readonly/>
 	         						<span class="input-group-append">
@@ -198,7 +186,6 @@
 								<div class="row">
 									<div class="col-md-12">
 									<div class="form-group">
-										<label class="col-form-label" for="catatan">Catatan(optional)</label>
 										<textarea type="text" rows="5" class="form-control" id="catatan" name="catatan" placeholder="Catatan" aria-describedby="catatan-error">{{$order->catatan}}</textarea>
 									</div>
 									</div>

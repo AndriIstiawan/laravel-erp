@@ -30,7 +30,7 @@
     function refProductChange() {
         $('.input_ .option-card2 .products').select2({
                 theme: "bootstrap",
-                placeholder: 'Please select'
+                placeholder: 'Please select Product'
             })
             .change(function () {
                 var element = $(this).find('option:selected');
@@ -42,7 +42,7 @@
             });
         $('.product-list .products').select2({
                 theme: "bootstrap",
-                placeholder: 'Please select'
+                placeholder: 'Please select Product'
             })
             .change(function () {
                 var element = $(this).find('option:selected');
@@ -55,7 +55,7 @@
 
         $('.product-list .packaging').select2({
             theme: "bootstrap",
-            placeholder: 'Please select'
+            placeholder: 'Please select Packaging'
         }).change(function () {
             var element = $(this).find('option:selected');
                 var productType = element.attr('data-package');
@@ -65,7 +65,7 @@
         
         $('.option-card2 .packaging').select2({
             theme: "bootstrap",
-            placeholder: 'Please select'
+            placeholder: 'Please select Packaging'
         }).change(function () {
             var element = $(this).find('option:selected');
                 var productType = element.attr('data-package');
