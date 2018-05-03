@@ -127,7 +127,7 @@
 						</div>
 					</div>
 				</div> -->
-				<!-- <div class="card">
+				<div class="card">
 					<div class="card-header">
 						<i class="fa fa-align-justify"></i> Sales
 						<small>management </small>
@@ -135,7 +135,6 @@
 					<div class="card-body">
 						<div class="row">
 							<div class="form-group col-md-12">
-		                      	<label class="col-form-label" for="sales">*Sales</label>
 		                        	<select id="sales" name="sales[]" class="form-control" aria-describedby="sales-error" required>
 		                        		<option value=""></option>
 		                        @foreach ($modUser as $modUser)
@@ -154,7 +153,7 @@
 							</div>
 						</div>
 					</div>
-				</div> -->
+				</div>
 			</div>
 		</div>
 		<!--/.row-->
@@ -219,7 +218,7 @@
 @section('myscript')
 <script src="{{ asset('fiture-style/select2/select2.min.js') }}"></script>
 <script>	
-	$('#sales').select2({theme:"bootstrap", placeholder:'Please select'})
+	$('#sales').select2({theme:"bootstrap", placeholder:'Please select Sales'})
 		.change(function(){
 			var element= $(this).find('option:selected');
 			$('#sales-name').val(element.attr('data-name'));
