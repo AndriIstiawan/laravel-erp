@@ -240,7 +240,7 @@ class SalesOrderController extends Controller
                 $orderarr[]=[
                     'sono'=>$order[$i]->sono,
                     'client'=>$order[$i]->client[0]['name'],
-                    'sales'=>$order[$i]->sales[0]['name'],
+                    'sales'=>$order[$i]->client[0]['sales'][0]['name'],
                     'product name'=>$order[$i]->productattr[$j]['name'],
                     'type'=>$order[$i]->productattr[$j]['type'],
                     'code'=>$order[$i]->productattr[$j]['code'],
