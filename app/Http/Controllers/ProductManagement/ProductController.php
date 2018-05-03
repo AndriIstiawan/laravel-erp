@@ -97,7 +97,7 @@ class ProductController extends Controller
             ->addColumn('action', function ($products) {
                 return
                 '<a class="btn btn-success btn-sm"  href="' . route('product.edit', ['id' => $products->id]) . '">
-                        <i class="fa fa-pencil-square-o"></i>&nbsp;Edit product</a>' .
+                        <i class="fa fa-pencil-square-o"></i>&nbsp;Edit</a>' .
                 '<form style="display:inline;" method="POST" action="' .
                 route('product.destroy', ['id' => $products->id]) . '">' . method_field('DELETE') . csrf_field() .
                     '<button type="button" onclick="removeList($(this))" class="btn btn-danger btn-sm"><i class="fa fa-remove"></i>&nbsp;Remove</button></form>';
