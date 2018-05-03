@@ -34,11 +34,12 @@
 													<select id="client" class="form-control" style="width: 100% !important;" name="client" aria-describedby="client-error">
 														<option value=""></option>
 														@foreach($member as $member)
-														<option value="{{$member->id}}">{{$member->name}} - {{(isset($member->sales[0]['name'])?$member->sales[0]['name']:'')}}</option>
+														<option data-new="{{(isset($member->sales[0]['_id'])?$member->sales[0]['_id']:'')}}" value="{{$member->id}}">{{$member->name}} - {{(isset($member->sales[0]['name'])?$member->sales[0]['name']:'')}}</option>
 														@endforeach
 													</select>
 													<em id="client-error" class="error invalid-feedback">Please enter a client</em>
 												</div>
+												<input type="hidden" class="form-control" id="sales" name="sales" aria-describedby="sales-error" readonly>
 												</div>
 											</div>
 									</div>
@@ -78,7 +79,7 @@
 
 									<div class="col-md-1">
 										<label class="col-form-label" for="type"></label>
-			                            <input type="number" onkeyup="findTotal($(this))" class="form-control total" id="total" name="total[]" placeholder="kg" aria-describedby="total-error">
+			                            <input type="text" onkeyup="findTotal($(this))" class="form-control total number" id="total" name="total[]" placeholder="kg" aria-describedby="total-error">
 			                            <em id="total-error" class="error invalid-feedback">
 			                              Please enter a total
 			                            </em>
