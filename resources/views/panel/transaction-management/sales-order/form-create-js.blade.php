@@ -106,7 +106,7 @@
 
     $('#client').select2({
         theme: "bootstrap",
-        placeholder: 'Please select Client'
+        placeholder: 'Please select Client - Sales'
     }).change(function () {
         $(this).valid();
     });
@@ -117,14 +117,32 @@
         var elemPackaging = elm.parent().parent().find('select[name="packaging[]"]');
         var elemAmount = elm.parent().parent().find('input[name="amount[]"]');
         var valueTotal = parseInt(elemTotal.val());
+        if (isNaN(valueTotal)) {
+            valueTotal = 0;
+        }
         var valuePack = (elempack.val());
+        var valuetot = parseInt (elemTotal.val());
+        if (isNaN(valuetot)) {
+            valuetot = 0;
+        }
         var valuePackaging = parseFloat(elemPackaging.find('option:selected').val());
+        if (isNaN(valuePackaging)) {
+            valuePackaging = 0;
+        }
         var valueAmount = valueTotal / valuePackaging;
         if (isNaN(valueTotal) || isNaN(valuePackaging)) {
             valueAmount = 0;
         }
-        valueAmount = parseInt(valueAmount);
-        elemAmount.val(valueAmount)/*.val("x").val(valuePack)*/;
+        var value = parseInt(valueAmount);
+        if (isNaN(value)) {
+            value = 0;
+        }
+        var total = value*valuePackaging
+        if (isNaN(total)) {
+            total = 0;
+        }
+        var final = value + " x "+ (valuePackaging)+ " kg - " + (valuePack) + " = " +(total)+" kg";
+        elemAmount.val(final)/*.val("x").val(valuePack)*/;
         elemAmount.valid();
     }
 

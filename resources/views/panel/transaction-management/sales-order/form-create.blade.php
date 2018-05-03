@@ -34,14 +34,11 @@
 													<select id="client" class="form-control" style="width: 100% !important;" name="client" aria-describedby="client-error">
 														<option value=""></option>
 														@foreach($member as $member)
-														<option value="{{$member->id}}">{{$member->name}}</option>
+														<option value="{{$member->id}}">{{$member->name}} - {{(isset($member->sales[0]['name'])?$member->sales[0]['name']:'')}}</option>
 														@endforeach
 													</select>
 													<em id="client-error" class="error invalid-feedback">Please enter a client</em>
 												</div>
-												@foreach($sales as $sales)
-												<input type="hidden" class="form-control" id="sales" name="sales" aria-describedby="sono-error" value="{{$sales->id}}" readonly>
-												@endforeach
 												</div>
 											</div>
 									</div>
@@ -54,8 +51,8 @@
 				<!--end card -->
 				<div class="card">
 					<div class="card-header">
-						<i class="fa fa-align-justify"></i> Packaging
-						<small>Product </small>
+						<i class="fa fa-align-justify"></i> Products
+						<small>Order </small>
 					</div>
 					<div class="card-body">
 	                	<div class="form-group input_">
@@ -75,13 +72,13 @@
 										<input type="text" class="form-control product-type" name="type[]" readonly>
 									</div>
 									<div style="display: none;" class="col-md-2">
-										<label class="col-form-label" for="code">*Code</label>										
+										<label class="col-form-label" for="code">*Code</label>
 										<input type="text" class="form-control" name="code[]" id="product-code" readonly>
 									</div>
 
 									<div class="col-md-1">
 										<label class="col-form-label" for="type"></label>
-			                            <input type="number" onkeyup="findTotal($(this))" class="form-control total" id="total" name="total[]" placeholder="kg" aria-describedby="total-error" placeholder="00 Kg">
+			                            <input type="number" onkeyup="findTotal($(this))" class="form-control total" id="total" name="total[]" placeholder="kg" aria-describedby="total-error">
 			                            <em id="total-error" class="error invalid-feedback">
 			                              Please enter a total
 			                            </em>
@@ -90,16 +87,16 @@
 										<label class="col-form-label" for="type"></label>
 				                        <select name="packaging[]" style="width: 100% !important;" class="form-control form-control-sm packaging" aria-describedby="packaging-error" onchange="findTotal($(this))">
 					                        <option value=""></option>
-											<option data-new="250 gram - Plastik" data-package="Plastik" value="0.25" >250 gram - Plastik</option>
-											<option data-new="500 gram - Plastik" data-package="Plastik" value="0.5">500 gram - Plastik</option>  
-											<option data-new="1 kg - Plastik" data-package="Plastik" value="1">1 kg - Plastik</option> 
-											<option data-new="250 gram - Aluminium" data-package="Aluminium" value="0.25" >250 gram - Aluminium</option>
-											<option data-new="500 gram - Aluminium" data-package="Aluminium" value="0.5">500 gram - Aluminium</option>
-											<option data-new="1 kg - Aluminium" data-package="Aluminium" value="1">1 kg - Aluminium</option>   
-											<option data-new="5 kg - Jerigen" data-package="Jerigen" value="5">5 kg - Jerigen</option>  
-											<option data-new="25 kg - Jerigen" data-package="Jerigen" value="25">25 kg - Jerigen</option>
-											<option data-new="30 kg - Jerigen" data-package="Jerigen" value="30">30 kg - Jerigen</option>
-											<option data-new="25 kg - Drum" data-package="Drum" value="25">25 kg - Drum</option>
+											<option data-new="gram" data-package="Plastik" value="0.25" >250 gram - Plastik</option>
+											<option data-new="gram" data-package="Plastik" value="0.5">500 gram - Plastik</option>  
+											<option data-new="kg" data-package="Plastik" value="1">1 kg - Plastik</option> 
+											<option data-new="gram" data-package="Aluminium" value="0.25" >250 gram - Aluminium</option>
+											<option data-new="gram" data-package="Aluminium" value="0.5">500 gram - Aluminium</option>
+											<option data-new="kg" data-package="Aluminium" value="1">1 kg - Aluminium</option>   
+											<option data-new="kg" data-package="Jerigen" value="5">5 kg - Jerigen</option>  
+											<option data-new="kg" data-package="Jerigen" value="25">25 kg - Jerigen</option>
+											<option data-new="kg" data-package="Jerigen" value="30">30 kg - Jerigen</option>
+											<option data-new="kg" data-package="Drum" value="25">25 kg - Drum</option>
 				                        </select>
 				                        <em id="packaging-error" class="error invalid-feedback">Please select packaging</em>
 		                    		</div>
@@ -107,8 +104,8 @@
 			                        	<label class="col-form-label" for="type"></label>
 				                        <div class="control-group input-group">
 				                        	<input class="form-control" type="text" name="amount[]" id="amount" placeholder="Amount" aria-describedby="amount-error" readonly/>
-				                        <span class="input-group-text">x</span>
-				                    	<input type="text" class="form-control packages" name="new[]" readonly>
+				                        <!-- <span class="input-group-text">x</span> -->
+				                    	<input type="hidden" class="form-control packages" name="new[]" readonly>
 				                    	</div>
 				                        <em id="amount-error" class="error invalid-feedback"></em>
 				                    </div>
@@ -119,35 +116,35 @@
 				                    <div class="col-md-4" style="display: none;"> 
 				                        <div class="form-group">
 				                          <label class="col-form-label" >*Realisasi (Kg)</label>
-				                          <input class="form-control" type="text" value="" name="realisasi[]" id="realisasi" aria-describedby="realisasi-error"/>
+				                          <input class="form-control" type="text" name="realisasi[]" id="realisasi" aria-describedby="realisasi-error"/>
 				                        <em id="realisasi-error" class="error invalid-feedback">Please enter a realisasi</em>
 				                        </div>
 				                    </div>
 				                    <div class="col-md-4" style="display: none;">
 				                        <div class="form-group">
 				                          <label class="col-form-label" >*Stock Kapuk</label>
-				                          <input class="form-control" type="text" value="1" name="stockk[]" id="stockk" aria-describedby="stockk-error"/>
+				                          <input class="form-control" type="text" name="stockk[]" id="stockk" aria-describedby="stockk-error"/>
 				                        <em id="stockk-error" class="error invalid-feedback">Please enter a stockk</em>
 				                        </div>
 				                    </div>
 				                    <div class="col-md-4" style="display: none;">
 				                        <div class="form-group">
 				                          <label class="col-form-label" >*Pending SO</label>
-				                          <input class="form-control" type="text" value="1" name="pending[]" id="pending" aria-describedby="pending-error"/>
+				                          <input class="form-control" type="text" name="pending[]" id="pending" aria-describedby="pending-error"/>
 				                        <em id="pending-error" class="error invalid-feedback">Please enter a pending</em>
 				                        </div>
 				                    </div>
 				                    <div class="col-md-4" style="display: none;">
 				                        <div class="form-group">
 				                          <label class="col-form-label" >*Balance Stock</label>
-				                          <input class="form-control" type="text" value="1" name="balance[]" id="balance" aria-describedby="balance-error"/>
+				                          <input class="form-control" type="text" name="balance[]" id="balance" aria-describedby="balance-error"/>
 				                        <em id="balance-error" class="error invalid-feedback">Please enter a balance</em>
 				                        </div>
 				                    </div>
 				                    <div class="col-md-4" style="display: none;">
 				                        <div class="form-group">
 				                          <label class="col-form-label" >*Pending PR</label>
-				                          <input class="form-control" type="text" value="1" name="pendingpr[]" id="pendingpr" aria-describedby="pendingpr-error"/>
+				                          <input class="form-control" type="text" name="pendingpr[]" id="pendingpr" aria-describedby="pendingpr-error"/>
 				                        <em id="pendingpr-error" class="error invalid-feedback">Please enter a pendingpr</em>
 				                        </div>
 				                    </div>
@@ -163,8 +160,8 @@
 			<div class="col-md-6">
 				<div class="card">
 					<div class="card-header">
-						<i class="fa fa-align-justify"></i> Pemeriksaan
-						<small>Product </small>
+						<i class="fa fa-align-justify"></i> Additional
+						<small>Notes </small>
 					</div>
 					<div class="card-body">
 						<div class="row">

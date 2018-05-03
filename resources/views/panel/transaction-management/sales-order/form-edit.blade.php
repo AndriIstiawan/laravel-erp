@@ -35,10 +35,10 @@
 													<select id="client" class="form-control" style="width: 100% !important;" name="client" aria-describedby="client-error">
 														<option value=""></option>
 														@foreach($order->client as $memberattr)
-														<option value="{{$memberattr['_id']}}" selected="">{{$memberattr['name']}}</option>
+														<option value="{{$memberattr['_id']}}" selected="">{{$memberattr['name']}} - {{(isset($memberattr['sales'][0]['name'])?$memberattr['sales'][0]['name']:'')}}</option>
 														@endforeach
 														@foreach($member as $member)
-														<option value="{{$member->id}}">{{$member->name}}</option>
+														<option value="{{$member->id}}">{{$member->name}} - {{(isset($member->sales[0]['name'])?$member->sales[0]['name']:'')}}</option>
 														@endforeach
 													</select>
 													<em id="client-error" class="error invalid-feedback">Please enter a client</em>
@@ -58,8 +58,8 @@
 				<!--end card -->
 				<div class="card">
 					<div class="card-header">
-						<i class="fa fa-align-justify"></i> Packaging
-						<small>Product </small>
+						<i class="fa fa-align-justify"></i> Products
+						<small>Order </small>
 					</div>
 					<div class="card-body">
               			<div type="hidden" id="theCount" value="0"></div>
@@ -91,7 +91,7 @@
 							</div> -->
 							<div class="col-md-1">
 								<label class="col-form-label" for="code"></label>
-		                          <input type="number" onkeyup="findTotal()" class="form-control" id="total" name="total[]" value="{{$productsss['total']}}" placeholder="00" aria-describedby="totals-error" >
+		                          <input type="number" onkeyup="findTotal()" class="form-control" id="total" name="total[]" value="{{$productsss['total']}}" placeholder="kg" aria-describedby="totals-error" >
 		                            <em id="totals-error" class="error invalid-feedback">
 		                              Please enter a totals
 		                            </em>
@@ -100,25 +100,25 @@
 								<label class="col-form-label" for="code"></label>
 			                        <select name="packaging[]" class="form-control packaging" style="width: 100% !important;" aria-describedby="packaging-error" onchange="findTotal($(this))">
 				                        <option value=""></option>
-										<option data-new="250 gram - Plastik" data-package="Plastik" value="0.25" {{($productsss['packaging'] == '0.25' && $productsss['package'] == 'Plastik'?'selected':'')}} >250 gram - Plastik</option>
-										<option data-new="500 gram - Plastik" data-package="Plastik" value="0.5" {{($productsss['packaging'] == '0.5' && $productsss['package'] == 'Plastik'?'selected':'')}}>500 gram - Plastik</option>  
-										<option data-new="1 kg - Plastik" data-package="Plastik" value="1" {{($productsss['packaging'] == '1' && $productsss['package'] == 'Plastik'?'selected':'')}}>1 kg - Plastik</option> 
-										<option data-new="250 gram - Aluminium" data-package="Aluminium" value="0.25" {{($productsss['packaging'] == '0.25' && $productsss['package'] == 'Aluminium'?'selected':'')}}>250 gram - Aluminium</option>
-										<option data-new="500 gram - Aluminium" data-package="Aluminium" value="0.5" {{($productsss['packaging'] == '0.5' && $productsss['package'] == 'Aluminium'?'selected':'')}}>500 gram - Aluminium</option>  
-										<option data-new="1 kg - Aluminium" data-package="Aluminium" value="1" {{($productsss['packaging'] == '1' && $productsss['package'] == 'Aluminium'?'selected':'')}}>1 kg - Aluminium</option>   
-										<option data-new="5 kg - Jerigen" data-package="Jerigen" value="5" {{($productsss['packaging'] == '5' && $productsss['package'] == 'Jerigen'?'selected':'')}}>5 kg - Jerigen</option>  
-										<option data-new="25 kg - Jerigen" data-package="Jerigen" value="25" {{($productsss['packaging'] == '25' && $productsss['package'] == 'Jerigen'?'selected':'')}}>25 kg - Jerigen</option>
-										<option data-new="30 kg - Jerigen" data-package="Jerigen" value="30" {{($productsss['packaging'] == '30' && $productsss['package'] == 'Jerigen'?'selected':'')}}>30 kg - Jerigen</option>
-										<option data-new="25 kg - Drum" data-package="Drum" value="25" {{($productsss['packaging'] == '25' || $productsss['package'] == 'Drum'?'selected':'')}}>25 kg - Drum</option>
+										<option data-new="gram" data-package="Plastik" value="0.25" {{($productsss['packaging'] == '0.25' && $productsss['package'] == 'Plastik'?'selected':'')}} >250 gram - Plastik</option>
+										<option data-new="gram" data-package="Plastik" value="0.5" {{($productsss['packaging'] == '0.5' && $productsss['package'] == 'Plastik'?'selected':'')}}>500 gram - Plastik</option>  
+										<option data-new="kg" data-package="Plastik" value="1" {{($productsss['packaging'] == '1' && $productsss['package'] == 'Plastik'?'selected':'')}}>1 kg - Plastik</option> 
+										<option data-new="gram" data-package="Aluminium" value="0.25" {{($productsss['packaging'] == '0.25' && $productsss['package'] == 'Aluminium'?'selected':'')}}>250 gram - Aluminium</option>
+										<option data-new="gram" data-package="Aluminium" value="0.5" {{($productsss['packaging'] == '0.5' && $productsss['package'] == 'Aluminium'?'selected':'')}}>500 gram - Aluminium</option>  
+										<option data-new="kg" data-package="Aluminium" value="1" {{($productsss['packaging'] == '1' && $productsss['package'] == 'Aluminium'?'selected':'')}}>1 kg - Aluminium</option>   
+										<option data-new="kg" data-package="Jerigen" value="5" {{($productsss['packaging'] == '5' && $productsss['package'] == 'Jerigen'?'selected':'')}}>5 kg - Jerigen</option>  
+										<option data-new="kg" data-package="Jerigen" value="25" {{($productsss['packaging'] == '25' && $productsss['package'] == 'Jerigen'?'selected':'')}}>25 kg - Jerigen</option>
+										<option data-new="kg" data-package="Jerigen" value="30" {{($productsss['packaging'] == '30' && $productsss['package'] == 'Jerigen'?'selected':'')}}>30 kg - Jerigen</option>
+										<option data-new="kg" data-package="Drum" value="25" {{($productsss['packaging'] == '25' || $productsss['package'] == 'Drum'?'selected':'')}}>25 kg - Drum</option>
 				                    </select>
 				                    <em id="packaging-error" class="error invalid-feedback">Please select packaging</em>
 			                    </div>
 							<div class="col-md-4">
 								<label class="col-form-label" for="code"></label>
-            					<div class="control-group input-group">
-		                        	<input class="form-control" id="amount" value="{{$productsss['amount']}}" min="1" type="number" name="amount[]" placeholder="00" aria-describedby="amount-error" required=""  readonly/>
-		                        	<span class="input-group-text">x</span>
-                   					<input type="text" class="form-control packages" value="{{$productsss['packaging']}} kg - {{$productsss['package']}}" name="new[]" readonly>
+            					<div class="control-group input-group" >
+		                        		<input class="form-control" id="amount" value="{{$productsss['amount']}}" type="text" name="amount[]" placeholder="Amount" aria-describedby="amount-error" required=""  readonly/>
+		                        	<!-- <span class="input-group-text">x</span> -->
+                   					<input type="hidden" class="form-control packages" value="{{$productsss['packaging']}} kg - {{$productsss['package']}}" name="new[]" readonly>
 									<span class="input-group-append">
 	         						 	<button class="btn btn-danger rounded pull-right" id="minmore" onclick="$(this).closest('.option-card1 .optts').remove()"><i class="fa fa-trash"></i>
 	            						</button>
@@ -135,35 +135,35 @@
 		                    <div class="col-md-4" style="display: none;"> 
 		                        <div class="form-group">
 		                          <label class="col-form-label" >*Realisasi (Kg)</label>
-		                          <input class="form-control" type="text" value="1" name="realisasi[]" id="realisasi" aria-describedby="realisasi-error"/>
+		                          <input class="form-control" type="text" name="realisasi[]" id="realisasi" aria-describedby="realisasi-error"/>
 		                        <em id="realisasi-error" class="error invalid-feedback">Please enter a realisasi</em>
 		                        </div>
 		                    </div>
 		                    <div class="col-md-4" style="display: none;">
 		                        <div class="form-group">
 		                          <label class="col-form-label" >*Stock Kapuk</label>
-		                          <input class="form-control" type="text" value="1" name="stockk[]" id="stockk" aria-describedby="stockk-error"/>
+		                          <input class="form-control" type="text" name="stockk[]" id="stockk" aria-describedby="stockk-error"/>
 		                        <em id="stockk-error" class="error invalid-feedback">Please enter a stockk</em>
 		                        </div>
 		                    </div>
 		                    <div class="col-md-4" style="display: none;">
 		                        <div class="form-group">
 		                          <label class="col-form-label" >*Pending SO</label>
-		                          <input class="form-control" type="text" value="1" name="pending[]" id="pending" aria-describedby="pending-error"/>
+		                          <input class="form-control" type="text" name="pending[]" id="pending" aria-describedby="pending-error"/>
 		                        <em id="pending-error" class="error invalid-feedback">Please enter a pending</em>
 		                        </div>
 		                    </div>
 		                    <div class="col-md-4" style="display: none;">
 		                        <div class="form-group">
 		                          <label class="col-form-label" >*Balance Stock</label>
-		                          <input class="form-control" type="text" value="1" name="balance[]" id="balance" aria-describedby="balance-error"/>
+		                          <input class="form-control" type="text" name="balance[]" id="balance" aria-describedby="balance-error"/>
 		                        <em id="balance-error" class="error invalid-feedback">Please enter a balance</em>
 		                        </div>
 		                    </div>
 		                    <div class="col-md-4" style="display: none;">
 		                        <div class="form-group">
 		                          <label class="col-form-label" >*Pending PR</label>
-		                          <input class="form-control" type="text" value="1" name="pendingpr[]" id="pendingpr" aria-describedby="pendingpr-error"/>
+		                          <input class="form-control" type="text" name="pendingpr[]" id="pendingpr" aria-describedby="pendingpr-error"/>
 		                        <em id="pendingpr-error" class="error invalid-feedback">Please enter a pendingpr</em>
 		                        </div>
 		                    </div>
@@ -185,8 +185,8 @@
 			<div class="col-md-6">
 				<div class="card">
 					<div class="card-header">
-						<i class="fa fa-align-justify"></i> Pemeriksaan
-						<small>Product </small>
+						<i class="fa fa-align-justify"></i> Additional
+						<small>Notes </small>
 					</div>
 					<div class="card-body">
 						<div class="row">
