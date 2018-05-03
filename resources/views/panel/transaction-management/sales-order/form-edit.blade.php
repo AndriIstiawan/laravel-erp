@@ -58,8 +58,8 @@
 				<!--end card -->
 				<div class="card">
 					<div class="card-header">
-						<i class="fa fa-align-justify"></i> Packaging
-						<small>Product </small>
+						<i class="fa fa-align-justify"></i> Products
+						<small>Order </small>
 					</div>
 					<div class="card-body">
               			<div type="hidden" id="theCount" value="0"></div>
@@ -185,8 +185,8 @@
 			<div class="col-md-6">
 				<div class="card">
 					<div class="card-header">
-						<i class="fa fa-align-justify"></i> Pemeriksaan
-						<small>Product </small>
+						<i class="fa fa-align-justify"></i> Additional
+						<small>Notes </small>
 					</div>
 					<div class="card-body">
 						<div class="row">
