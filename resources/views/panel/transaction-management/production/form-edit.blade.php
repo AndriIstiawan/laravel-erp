@@ -37,7 +37,7 @@
 												<div class="input-group">
 													@foreach($order->client as $client)
 													<input type="hidden" class="form-control " id="client" name="client" value="{{$client['_id']}}" readonly="">
-													<input class="form-control" placeholder="{{$client['name']}}" aria-describedby="sales-error" readonly="">
+													<input class="form-control" placeholder="{{$client['name']}} - {{(isset($client['sales'][0]['name'])?$client['sales'][0]['name']:'')}}" aria-describedby="sales-error" readonly="">
 													@endforeach
 												</div>
 												</div>
@@ -78,7 +78,7 @@
                     		</div>
 	                        <div class="col-md-3">
 							<label class="col-form-label" for="type"></label>
-		                          <input class="form-control" placeholder="{{$product['amount']}}" value="{{$product['amount']}} x {{$product['packaging']}} kg - {{$product['package']}} " type="text" name="amount[]" id="amount" placeholder="00" readonly/>
+		                          <input class="form-control" placeholder="{{$product['amount']}}" value="{{$product['amount']}}" type="text" name="amount[]" id="amount" placeholder="00" readonly/>
 		                    </div>
 		                    <div class="col-md-4" style="display: none;">
 							<label class="col-form-label" for="type">*Package</label>

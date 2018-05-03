@@ -43,8 +43,8 @@
                 <div class="col-md-4">
                     <div class="control-group input-group">
                         <input class="form-control" type="text" name="amount[]" id="amount" placeholder="Amount" aria-describedby="amount-error" readonly/>
-                        <span class="input-group-text">x</span>
-                        <input type="text" class="form-control packages" name="new[]" readonly>
+                        <!-- <span class="input-group-text">x</span> -->
+                        <input type="hidden" class="form-control packages" name="new[]" readonly>
                         <span class="input-group-append">
                             <button class="btn btn-danger rounded pull-right" id="minmore" onclick="$(this).closest('.option-card2 .optts').remove()">
                                 <i class="fa fa-trash"></i>
@@ -61,35 +61,35 @@
                 <div class="col-md-4" style="display: none;">
                     <div class="form-group">
                         <label class="col-form-label">*Realisasi (Kg)</label>
-                        <input class="form-control" type="text" name="realisasi[]" value="1" id="realisasi" aria-describedby="realisasi-error" />
+                        <input class="form-control" type="text" name="realisasi[]" id="realisasi" aria-describedby="realisasi-error" />
                         <em id="realisasi-error" class="error invalid-feedback">Please enter a realisasi</em>
                     </div>
                 </div>
                 <div class="col-md-4" style="display: none;">
                     <div class="form-group">
                         <label class="col-form-label">*Stock Kapuk</label>
-                        <input class="form-control" type="text" name="stockk[]" value="1" id="stockk" aria-describedby="stockk-error" />
+                        <input class="form-control" type="text" name="stockk[]" id="stockk" aria-describedby="stockk-error" />
                         <em id="stockk-error" class="error invalid-feedback">Please enter a stockk</em>
                     </div>
                 </div>
                 <div class="col-md-4" style="display: none;">
                     <div class="form-group">
                         <label class="col-form-label">*Pending SO</label>
-                        <input class="form-control" type="text" name="pending[]" value="1" id="pending" aria-describedby="pending-error" />
+                        <input class="form-control" type="text" name="pending[]" id="pending" aria-describedby="pending-error" />
                         <em id="pending-error" class="error invalid-feedback">Please enter a pending</em>
                     </div>
                 </div>
                 <div class="col-md-4" style="display: none;">
                     <div class="form-group">
                         <label class="col-form-label">*Balance Stock</label>
-                        <input class="form-control" type="text" name="balance[]" value="1" id="balance" aria-describedby="balance-error" />
+                        <input class="form-control" type="text" name="balance[]" id="balance" aria-describedby="balance-error" />
                         <em id="balance-error" class="error invalid-feedback">Please enter a balance</em>
                     </div>
                 </div>
                 <div class="col-md-4" style="display: none;">
                     <div class="form-group">
                         <label class="col-form-label">*Pending PR</label>
-                        <input class="form-control" type="text" name="pendingpr[]" value="1" id="pendingpr" aria-describedby="pendingpr-error" />
+                        <input class="form-control" type="text" name="pendingpr[]" id="pendingpr" aria-describedby="pendingpr-error" />
                         <em id="pendingpr-error" class="error invalid-feedback">Please enter a pendingpr</em>
                     </div>
                 </div>
