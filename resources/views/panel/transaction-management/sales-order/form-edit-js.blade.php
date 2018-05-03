@@ -59,7 +59,9 @@
         }).change(function () {
             var element = $(this).find('option:selected');
                 var productType = element.attr('data-package');
+                var newType = element.attr('data-new');
                 $(this).parent().parent().find('input[name="package[]"]').val(productType);
+                $(this).parent().parent().find('input[name="new[]"]').val(newType);
                 $(this).valid();
         });
         
@@ -69,7 +71,9 @@
         }).change(function () {
             var element = $(this).find('option:selected');
                 var productType = element.attr('data-package');
+                var newType = element.attr('data-new');
                 $(this).parent().parent().find('input[name="package[]"]').val(productType);
+                $(this).parent().parent().find('input[name="new[]"]').val(newType);
                 $(this).valid();
         });
     }

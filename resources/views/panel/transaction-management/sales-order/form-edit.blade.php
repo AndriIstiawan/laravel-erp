@@ -88,41 +88,44 @@
 								<label class="col-form-label" for="code">Code</label> -->
 								<input type="hidden" value="{{$productsss['code']}}" class="form-control" name="code[]" id="product-code" readonly><!-- 
 							</div> -->
-							<div class="col-md-2">
+							<div style="width:10%;">
 		                          <input type="number" onkeyup="findTotal()" class="form-control" id="total" name="total[]" value="{{$productsss['total']}}" placeholder="00" aria-describedby="totals-error" >
 		                            <em id="totals-error" class="error invalid-feedback">
 		                              Please enter a totals
 		                            </em>
 		                        </div>
-							<div class="col-md-4">
-			                        <select name="packaging[]" id="packaging" class="form-control packaging" style="width: 100% !important;" aria-describedby="packaging-error" onchange="findTotal($(this))">
+							<div class="col-md-3">
+			                        <select name="packaging[]" class="form-control packaging" style="width: 100% !important;" aria-describedby="packaging-error" onchange="findTotal($(this))">
 				                        <option value=""></option>
-										<option data-package="Plastik" value="0.25" {{($productsss['packaging'] == '0.25' && $productsss['package'] == 'Plastik'?'selected':'')}} >250 gram - Plastik</option>
-										<option data-package="Plastik" value="0.5" {{($productsss['packaging'] == '0.5' && $productsss['package'] == 'Plastik'?'selected':'')}}>500 gram - Plastik</option>  
-										<option data-package="Plastik" value="1" {{($productsss['packaging'] == '1' && $productsss['package'] == 'Plastik'?'selected':'')}}>1 kg - Plastik</option> 
-										<option data-package="Aluminium" value="0.25" {{($productsss['packaging'] == '0.25' && $productsss['package'] == 'Aluminium'?'selected':'')}}>250 gram - Aluminium</option>
-										<option data-package="Aluminium" value="0.5" {{($productsss['packaging'] == '0.25' && $productsss['package'] == 'Plastik'?'selected':'')}}>500 gram - Aluminium</option>  
-										<option data-package="Aluminium" value="1" {{($productsss['packaging'] == '1' && $productsss['package'] == 'Aluminium'?'selected':'')}}>1 kg - Aluminium</option>   
-										<option data-package="Jerigen" value="5" {{($productsss['packaging'] == '5' && $productsss['package'] == 'Jerigen'?'selected':'')}}>5 kg - Jerigen</option>  
-										<option data-package="Jerigen" value="25" {{($productsss['packaging'] == '25' && $productsss['package'] == 'Jerigen'?'selected':'')}}>25 kg - Jerigen</option>
-										<option data-package="Jerigen" value="30" {{($productsss['packaging'] == '30' && $productsss['package'] == 'Jerigen'?'selected':'')}}>30 kg - Jerigen</option>
-										<option data-package="Drum" value="25" {{($productsss['packaging'] == '25' || $productsss['package'] == 'Drum'?'selected':'')}}>25 kg - Drum</option>
+										<option data-new="250 gram - Plastik" data-package="Plastik" value="0.25" {{($productsss['packaging'] == '0.25' && $productsss['package'] == 'Plastik'?'selected':'')}} >250 gram - Plastik</option>
+										<option data-new="500 gram - Plastik" data-package="Plastik" value="0.5" {{($productsss['packaging'] == '0.5' && $productsss['package'] == 'Plastik'?'selected':'')}}>500 gram - Plastik</option>  
+										<option data-new="1 kg - Plastik" data-package="Plastik" value="1" {{($productsss['packaging'] == '1' && $productsss['package'] == 'Plastik'?'selected':'')}}>1 kg - Plastik</option> 
+										<option data-new="250 gram - Aluminium" data-package="Aluminium" value="0.25" {{($productsss['packaging'] == '0.25' && $productsss['package'] == 'Aluminium'?'selected':'')}}>250 gram - Aluminium</option>
+										<option data-new="500 gram - Aluminium" data-package="Aluminium" value="0.5" {{($productsss['packaging'] == '0.5' && $productsss['package'] == 'Aluminium'?'selected':'')}}>500 gram - Aluminium</option>  
+										<option data-new="1 kg - Aluminium" data-package="Aluminium" value="1" {{($productsss['packaging'] == '1' && $productsss['package'] == 'Aluminium'?'selected':'')}}>1 kg - Aluminium</option>   
+										<option data-new="5 kg - Jerigen" data-package="Jerigen" value="5" {{($productsss['packaging'] == '5' && $productsss['package'] == 'Jerigen'?'selected':'')}}>5 kg - Jerigen</option>  
+										<option data-new="25 kg - Jerigen" data-package="Jerigen" value="25" {{($productsss['packaging'] == '25' && $productsss['package'] == 'Jerigen'?'selected':'')}}>25 kg - Jerigen</option>
+										<option data-new="30 kg - Jerigen" data-package="Jerigen" value="30" {{($productsss['packaging'] == '30' && $productsss['package'] == 'Jerigen'?'selected':'')}}>30 kg - Jerigen</option>
+										<option data-new="25 kg - Drum" data-package="Drum" value="25" {{($productsss['packaging'] == '25' || $productsss['package'] == 'Drum'?'selected':'')}}>25 kg - Drum</option>
 				                    </select>
 				                    <em id="packaging-error" class="error invalid-feedback">Please select packaging</em>
 			                    </div>
-							<div class="col-md-2">
+							<div style="width:10.4%;">
             					<div class="control-group input-group">
 		                        	<input class="form-control" id="amount" value="{{$productsss['amount']}}" min="1" type="number" name="amount[]" placeholder="00" aria-describedby="amount-error" required=""  readonly/>
-	         						<span class="input-group-append">
-	         						 	<button class="btn btn-danger rounded pull-right" id="minmore" onclick="$(this).closest('.option-card1 .optts').remove()"><i class="fa fa-trash"></i>
-	            						</button>
-	            					</span>
+		                        	<span class="input-group-text">x</span>
 		                        </div>
             					<em id="amount-error" class="error invalid-feedback"></em>
 		                    </div>
-		                    <div class="col-md-4" style="display: none;">
-								<label class="col-form-label" for="type">*Package</label>
-									<input type="text" value="{{$productsss['package']}}" class="form-control packages" name="package[]" readonly>
+		                     <div style="width: 19.6%;">
+								<div class="control-group input-group">
+                   					<input type="text" class="form-control packages" value="{{$productsss['packaging']}} - {{$productsss['package']}}" name="new[]" readonly>
+									<input type="hidden" value="{{$productsss['package']}}" class="form-control packages" name="package[]" readonly>
+									<span class="input-group-append">
+	         						 	<button class="btn btn-danger rounded pull-right" id="minmore" onclick="$(this).closest('.option-card1 .optts').remove()"><i class="fa fa-trash"></i>
+	            						</button>
+	            					</span>
+	            				</div>
 							</div>
 		                    <div class="col-md-4" style="display: none;"> 
 		                        <div class="form-group">
