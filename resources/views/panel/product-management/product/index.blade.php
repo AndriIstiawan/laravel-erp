@@ -22,9 +22,18 @@
 					<span class="ladda-label">
 						<i class="fa fa-cloud-download">
 						</i>
-							Import/Export Products
+							Import Products
 					</span>
 				</button>
+
+				<a href="{{route('product.export')}}" class="btn btn-success ladda-button" data-style="zoom-in">
+					<span class="ladda-label">
+						<i class="fa fa-file-excel-o">
+						</i>
+							Export Products
+					</span>
+				</a>
+
 				</p>
 			</div>
 		</div>
@@ -78,7 +87,7 @@
 			<form method="post" action="{{route('product.import')}}" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
 			{{ csrf_field() }}
 				<div class="modal-header">
-				<h3 class="modal-title">Export/Import Product</h3>
+				<h3 class="modal-title">Import Product</h3>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times; </span>
 					</button>
@@ -86,17 +95,14 @@
 				</div>
 
 				<div class="modal-body">
-
-					<div class="form-group">
-						<label for="export" class="col-md-3 control-label">Export</label>
-						<div class="col-md-6">
-							<a href="{{route('product.export')}}" class="btn btn-success">Export</a>
-							<span class="help-block with-errors"></span>
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label for="file" class="col-md-3 control-label">Import</label>
+					<div class="form-group row">
+						<label class="col-md-3 " for="name">*Files
+                                    
+                                    <a class="btn btn-primary" href="{{route('product.index')}}/download-import-form">
+                        		<i class="fa fa-download"></i>&nbsp; Download Form
+                    		</a>
+                                    <small class="text-muted">Please download form file before import product data.</small>
+                                </label>
 						<div class="col-md-6">
 							<input type="file" id="file" name="file" class="form-control" accept=".xlsx" autofocus required>
 							<span class="help-block with-errors"></span>

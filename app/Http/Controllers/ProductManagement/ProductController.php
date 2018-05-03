@@ -84,7 +84,7 @@ class ProductController extends Controller
         $product->currency = $request->currency;
         $product->save();
 
-        return redirect()->route('product.index')->with('toastr', 'new');
+        return redirect()->route('product.index')->with('new', 'product');
 
     }
 
@@ -220,7 +220,7 @@ class ProductController extends Controller
         return dd($product);
 
     }
-    
+
     public function productImport(Request $request)
     {
         if ($request->hasFile('file')) {
@@ -258,6 +258,7 @@ class ProductController extends Controller
                         }else{
                             $product = Product::where('code', $code)->first();
                             if($product){
+                                $product['code'] = $code;
                                 $product['name'] = $name;
                                 $product['type'] = $type;
                                 $product['stock'] = $stock;
@@ -274,6 +275,7 @@ class ProductController extends Controller
                                 $data[] = array('product edit successfuly');
                             }else{
                                 $product = new Product();
+                                $product['code'] = $code;
                                 $product['name'] = $name;
                                 $product['type'] = $type;
                                 $product['stock'] = $stock;

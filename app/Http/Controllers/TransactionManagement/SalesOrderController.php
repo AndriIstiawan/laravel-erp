@@ -9,10 +9,10 @@ use App\Variant;
 use App\Member;
 use App\SalesOrder;
 use App\User;
+use Auth;
 use Yajra\Datatables\Datatables;
 use File;
 use Image;
-use Auth;
 use Excel;
 use datetime;
 
@@ -56,8 +56,8 @@ class SalesOrderController extends Controller
         $order=SalesOrder::all();
         $product= Product::all();
         $member= Member::all();
-        $sales = User::where('name', Auth::user()->name)->get();
         $products= Product::all();
+        $sales=user::where('name',Auth::user()->name)->get();
         $modUser = User::where('role', 'elemMatch', array('name' => 'Sales'))->get();
         $user= User::where('role', 'elemMatch', array('name' => 'Tim Operational'))->get();
         $users= User::where('role', 'elemMatch', array('name' => 'Tim Operational'))->get();
@@ -65,11 +65,11 @@ class SalesOrderController extends Controller
             'so_id' => $this->generateSO(),
             'order' => $order, 
             'product' => $product,
+            'sales'=> $sales,
             'member' => $member,
             'products' => $products,
             'user' => $user,
             'users' => $users,
-            'sales' => $sales,
             'modUser' => $modUser,
         ]);
     }
@@ -99,11 +99,11 @@ class SalesOrderController extends Controller
                 'packaging' => $request->packaging[$i],
                 'amount' => $request->amount[$i],
                 'package' => $request->package[$i],
-                'realisasi' => null[$i],
-                'stockk' => null[$i],
-                'pending' => null[$i],
-                'balance' => null[$i],
-                'pendingpr' => null[$i]
+                'realisasi' => $request->realisasi[$i],
+                'stockk' => $request->stockk[$i],
+                'pending' => $request->pending[$i],
+                'balance' => $request->balance[$i],
+                'pendingpr' => $request->pendingpr[$i]
             ];
         }
         $order->productattr=$productss;
@@ -155,8 +155,7 @@ class SalesOrderController extends Controller
     {
         $order = SalesOrder::find($id);
         $product= Product::whereNotIn('name', array_column($order->productattr,'name'))->get();
-        $member= Member::whereNotIn('name', array_column($order->client,'name'))->get();
-        $modUser = User::where('role', 'elemMatch', array('name' => 'Sales'))->whereNotIn('name', array_column($order->sales,'name'))->get(); 
+        $member= Member::whereNotIn('name', array_column($order->client,'name'))->get(); 
         $products= Product::all(); 
         $att = SalesOrder::whereIn('name', array_column($order->productattr,'name'))->get();
         $user= User::where('role', 'elemMatch', array('name' => 'Production'))->get();
@@ -182,8 +181,8 @@ class SalesOrderController extends Controller
         $clients=Member::where('_id', $request->client)->get();
         $order->client = $clients->toArray();
 
-        $sales=user::where('_id', $request->sales)->get();
-        $order->sales=$sales->toArray();
+        /*$sales=user::where('_id', $request->sales)->get();
+        $order->sales=$sales->toArray();*/
 
         $productss =[];
         for($i=0; $i < count($request->total); $i++){
@@ -197,11 +196,11 @@ class SalesOrderController extends Controller
                 'packaging' => $request->packaging[$i],
                 'amount' => $request->amount[$i],
                 'package' => $request->package[$i],
-                'realisasi' => null[$i],
-                'stockk' => null[$i],
-                'pending' => null[$i],
-                'balance' => null[$i],
-                'pendingpr' => null[$i]
+                'realisasi' => $request->realisasi[$i],
+                'stockk' => $request->stockk[$i],
+                'pending' => $request->pending[$i],
+                'balance' => $request->balance[$i],
+                'pendingpr' => $request->pendingpr[$i]
             ];
         }
         $order->productattr=$productss;
@@ -235,20 +234,26 @@ class SalesOrderController extends Controller
 
     public function orderExport(){
        $order=SalesOrder::select('sono','date','client','catatan','sales','productattr')->get();
-       for($i=0; $i < count($order); $i++){
-            $order[$i]['nama produk'] = $order[$i]['productattr'][$i]['name'];
-            $order[$i]['type'] = $order[$i]['productattr'][$i]['type'];
-            $order[$i]['code'] = $order[$i]['productattr'][$i]['name'];
-            $order[$i]['total'] = $order[$i]['productattr'][$i]['total'];
-            
-             unset($order[$i]['productattr']);
-        }
-        for($i=0; $i < count($order); $i++){
-            $order[$i]['sales'] = $order[$i]['sales'][0]['name'];
-            
-            unset($order[$i]['_id']);
-
-        }
+       $product=SalesOrder::Select('productattr');
+       $t=$product->productattr;
+       
+           for($i=0; $i < count($t); $i++){
+                $order[$i]['nama produk'] = $order[$i]['productattr'][$i]['name'];
+                $order[$i]['type'] = $order[$i]['productattr'][$i]['type'];
+                $order[$i]['code'] = $order[$i]['productattr'][$i]['code'];
+                $order[$i]['total'] = $order[$i]['productattr'][$i]['total'];
+                
+                 unset($order[$i]['productattr']);
+            }
+        
+            for($i=0; $i < count($order); $i++){
+                $order[$i]['client'] = $order[$i]['client'][0]['name'];
+            }
+            for($i=0; $i < count($order); $i++){
+                $order[$i]['sales'] = $order[$i]['sales'][0]['name'];
+                unset($order[$i]['_id']);
+            }
+        
         
         return Excel::create('salesorder-list', function ($excel) use ($order) {
             $excel->sheet('sales-order list', function ($sheet) use ($order) {
