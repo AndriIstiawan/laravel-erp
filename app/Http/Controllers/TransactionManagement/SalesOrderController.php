@@ -234,33 +234,32 @@ class SalesOrderController extends Controller
 
     public function orderExport(){
        $order=SalesOrder::select('sono','date','client','catatan','sales','productattr')->get();
-       $product=SalesOrder::Select('productattr');
-       $t=$product->productattr;
-       
-           for($i=0; $i < count($t); $i++){
-                $order[$i]['nama produk'] = $order[$i]['productattr'][$i]['name'];
-                $order[$i]['type'] = $order[$i]['productattr'][$i]['type'];
-                $order[$i]['code'] = $order[$i]['productattr'][$i]['code'];
-                $order[$i]['total'] = $order[$i]['productattr'][$i]['total'];
-                
-                 unset($order[$i]['productattr']);
+       $orderarr=[];
+       for($i=0; $i < count($order); $i++){
+            for($j=0; $j < count($order[$i]->productattr); $j++){
+                $orderarr[]=[
+                    'sono'=>$order[$i]->sono,
+                    'client'=>$order[$i]->client[0]['name'],
+                    'sales'=>$order[$i]->sales[0]['name'],
+                    'product name'=>$order[$i]->productattr[$j]['name'],
+                    'type'=>$order[$i]->productattr[$j]['type'],
+                    'code'=>$order[$i]->productattr[$j]['code'],
+                    'total'=>$order[$i]->productattr[$j]['total'],
+                    'package'=>$order[$i]->productattr[$j]['package'],
+                    'catatan'=>$order[$i]->catatan,
+
+                ];
             }
+       }
+
+
         
-            for($i=0; $i < count($order); $i++){
-                $order[$i]['client'] = $order[$i]['client'][0]['name'];
-            }
-            for($i=0; $i < count($order); $i++){
-                $order[$i]['sales'] = $order[$i]['sales'][0]['name'];
-                unset($order[$i]['_id']);
-            }
-        
-        
-        return Excel::create('salesorder-list', function ($excel) use ($order) {
-            $excel->sheet('sales-order list', function ($sheet) use ($order) {
-                $sheet->fromArray($order);
+        return Excel::create('salesorder-list', function ($excel) use ($orderarr) {
+            $excel->sheet('sales-order list', function ($sheet) use ($orderarr) {
+                $sheet->fromArray($orderarr);
             });
         })->download('xlsx');
-        return dd($order);
+        return dd($orderarr);
 
     }
 }

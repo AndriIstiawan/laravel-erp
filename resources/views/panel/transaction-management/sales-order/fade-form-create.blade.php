@@ -59,7 +59,7 @@
                     </div>
                     <em id="amount-error" class="error invalid-feedback"></em>
                 </div>
-                <div style="width: 19.6%;">
+                <div class="col-md-2">
                     <label class="col-form-label" for="type"></label>
                     <div class="control-group input-group">
                     <input type="hidden" class="form-control packages" name="package[]" readonly>
