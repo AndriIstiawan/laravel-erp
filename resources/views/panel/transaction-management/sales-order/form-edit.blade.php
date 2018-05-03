@@ -88,7 +88,7 @@
 								<label class="col-form-label" for="code">Code</label> -->
 								<input type="hidden" value="{{$productsss['code']}}" class="form-control" name="code[]" id="product-code" readonly><!-- 
 							</div> -->
-							<div style="width:10%;">
+							<div class="col-md-1">
 		                          <input type="number" onkeyup="findTotal()" class="form-control" id="total" name="total[]" value="{{$productsss['total']}}" placeholder="00" aria-describedby="totals-error" >
 		                            <em id="totals-error" class="error invalid-feedback">
 		                              Please enter a totals
@@ -110,14 +110,14 @@
 				                    </select>
 				                    <em id="packaging-error" class="error invalid-feedback">Please select packaging</em>
 			                    </div>
-							<div style="width:10.4%;">
+							<div class="col-md-2">
             					<div class="control-group input-group">
 		                        	<input class="form-control" id="amount" value="{{$productsss['amount']}}" min="1" type="number" name="amount[]" placeholder="00" aria-describedby="amount-error" required=""  readonly/>
 		                        	<span class="input-group-text">x</span>
 		                        </div>
             					<em id="amount-error" class="error invalid-feedback"></em>
 		                    </div>
-		                     <div style="width: 19.6%;">
+		                     <div class="col-md-2">
 								<div class="control-group input-group">
                    					<input type="text" class="form-control packages" value="{{$productsss['packaging']}} kg - {{$productsss['package']}}" name="new[]" readonly>
 									<input type="hidden" value="{{$productsss['package']}}" class="form-control packages" name="package[]" readonly>

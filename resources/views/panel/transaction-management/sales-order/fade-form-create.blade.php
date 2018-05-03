@@ -20,7 +20,7 @@
                     <label class="col-form-label" for="code">*Code</label>
                     <input type="text" class="form-control" name="code[]" id="products-code" readonly>
                 </div>
-                <div style="width:10%;">
+                <div class="col-md-1">
                     <label class="col-form-label" for="type"></label>
                     <input type="number" onkeyup="findTotal($(this))" class="form-control total" id="total" name="total[]" placeholder="KG" aria-describedby="total-error">
                     <em id="total-error" class="error invalid-feedback">
@@ -45,7 +45,7 @@
                     </select>
                     <em id="packaging-error" class="error invalid-feedback">Please select packaging</em>
                 </div>
-                <div style="width:10.4%;">
+                <div class="col-md-2">
                     <label class="col-form-label" for="type"></label>
                     <div class="control-group input-group">
                         <input class="form-control" type="text" name="amount[]" id="amount" placeholder="Amount" aria-describedby="amount-error" readonly/>
@@ -53,7 +53,7 @@
                     </div>
                     <em id="amount-error" class="error invalid-feedback"></em>
                 </div>
-                <div style="width: 19.6%;">
+                <div class="col-md-2">
                     <label class="col-form-label" for="type"></label>
                     <div class="control-group input-group">
                     <input type="text" class="form-control packages" name="new[]" readonly>

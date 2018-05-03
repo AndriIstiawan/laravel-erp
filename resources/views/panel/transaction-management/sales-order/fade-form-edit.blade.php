@@ -17,7 +17,7 @@
                 <div style="display: none;" class="col-md-2">
                     <input type="text" class="form-control" name="code[]" id="products-code" readonly>
                 </div>
-                <div style="width:10%;">
+                <div class="col-md-1">
                     <input type="number" onkeyup="findTotal($(this))" class="form-control total" id="total" name="total[]" placeholder="KG" aria-describedby="totals-error">
                     <em id="totals-error" class="error invalid-feedback">
                       Please enter a totals
@@ -40,14 +40,14 @@
                     </select>
                     <em id="packaging-error" class="error invalid-feedback">Please select packaging</em>
                 </div>
-                <div style="width:10.4%;">
+                <div class="col-md-2">
                     <div class="control-group input-group">
                         <input class="form-control" type="text" name="amount[]" id="amount" placeholder="Amount" aria-describedby="amount-error" readonly/>
                         <span class="input-group-text">x</span>
                     </div>
                     <em id="amount-error" class="error invalid-feedback"></em>
                 </div>
-                <div style="width: 19.6%;">
+                <div class="col-md-2">
                     <div class="control-group input-group">
                     <input type="text" class="form-control packages" name="new[]" readonly>
                     <input type="hidden" class="form-control packages" name="package[]" readonly>
