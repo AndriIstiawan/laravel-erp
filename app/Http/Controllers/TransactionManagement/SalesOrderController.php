@@ -95,8 +95,8 @@ class SalesOrderController extends Controller
                 'name'=>$products['name'],
                 'type'=>$products['type'],
                 'code'=>$products['code'],
-                'total' => $request->total[$i],
-                'packaging' => $request->packaging[$i],
+                'total' => $request->total[$i]/*.' kg'*/,
+                'packaging' => $request->packaging[$i]/*.' kg'*/,
                 'amount' => $request->amount[$i],
                 'package' => $request->package[$i],
                 'realisasi' => $request->realisasi[$i],
@@ -131,7 +131,7 @@ class SalesOrderController extends Controller
         return Datatables::of($orders)
             ->addColumn('status', function ($order) {
                 return ($order->status == 1 ?
-                    '<span class="badge badge-success">'.$order->client[0]['sales'][0]['name'].'&nbsp;(Sales Executive)</span>' :
+                    '<span class="badge badge-success">'.$order->sales[0]['name'].'&nbsp;(Sales Executive)</span>' :
                     '<span class="badge badge-success">'.$order->produksi[0]['name'].'&nbsp;(Production)</span>');
             })
             

@@ -108,6 +108,9 @@
         theme: "bootstrap",
         placeholder: 'Please select Client - Sales'
     }).change(function () {
+        var element = $(this).find('option:selected');
+        var salesType = element.attr('data-new');
+        $(this).parent().parent().find('input[name="sales"]').val(salesType);
         $(this).valid();
     });
 
@@ -121,10 +124,6 @@
             valueTotal = 0;
         }
         var valuePack = (elempack.val());
-        var valuetot = parseInt (elemTotal.val());
-        if (isNaN(valuetot)) {
-            valuetot = 0;
-        }
         var valuePackaging = parseFloat(elemPackaging.find('option:selected').val());
         if (isNaN(valuePackaging)) {
             valuePackaging = 0;

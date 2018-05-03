@@ -32,13 +32,13 @@
 													<em id="sono-error" class="error invalid-feedback">Please enter a SO NO</em>
 													<input type="hidden" class="form-control" id="date" name="date" value="{{$order->date}}" readonly>
 												<div class="form-group">
-													<select id="client" class="form-control" style="width: 100% !important;" name="client" aria-describedby="client-error">
+													<select id="client" class="form-control client" style="width: 100% !important;" name="client" aria-describedby="client-error">
 														<option value=""></option>
 														@foreach($order->client as $memberattr)
-														<option value="{{$memberattr['_id']}}" selected="">{{$memberattr['name']}} - {{(isset($memberattr['sales'][0]['name'])?$memberattr['sales'][0]['name']:'')}}</option>
+														<option data-new="{{(isset($memberattr['sales'][0]['_id'])?$memberattr['sales'][0]['_id']:'')}}" value="{{$memberattr['_id']}}" selected="">{{$memberattr['name']}} - {{(isset($memberattr['sales'][0]['name'])?$memberattr['sales'][0]['name']:'')}}</option>
 														@endforeach
 														@foreach($member as $member)
-														<option value="{{$member->id}}">{{$member->name}} - {{(isset($member->sales[0]['name'])?$member->sales[0]['name']:'')}}</option>
+														<option data-new="{{(isset($member->sales[0]['_id'])?$member->sales[0]['_id']:'')}}" value="{{$member->id}}">{{$member->name}} - {{(isset($member->sales[0]['name'])?$member->sales[0]['name']:'')}}</option>
 														@endforeach
 													</select>
 													<em id="client-error" class="error invalid-feedback">Please enter a client</em>

@@ -209,7 +209,7 @@
 				required:true,
 				email:true,
 				remote:{
-					url: '{{ route('master-user.index') }}/find',
+					url: '{{ route('master-client.index') }}/find',
 					type: "post",
 					data:{
 						_token:'{{ csrf_token() }}',

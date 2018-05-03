@@ -98,8 +98,8 @@ class MasterMemberController extends Controller
     //view form edit
     public function edit($id){
 		$member = Member::find($id);
-        $modUser = User::where('role', 'elemMatch', array('name' => 'Sales'))->whereNotIn('name', array_column($member->sales,'name'))->get();
-        $level = Levels::where('name', array_column($member->level,'name'))->get();
+        $modUser = User::where('role', 'elemMatch', array('name' => 'Sales'))->whereNotIn('name', array_column($member->sales,'name'))->get();/*
+        $level = Levels::where('name', array_column($member->level,'name'))->get();*/
         return view('panel.member-management.master-member.form-edit')
         ->with([
         	'member'=>$member, 
