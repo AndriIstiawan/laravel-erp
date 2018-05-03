@@ -12,6 +12,6 @@ class SalesOrder extends Moloquent
     use SoftDeletes;
     
     protected $fillable = [
-        'date','client','product','type','code','total','packaging','amount','package','realisasi','stockk','pending','balance','pendingpr','note',
+        'date','client','product','type','code','total','packaging','amount','package','realisasi','stockk','pending','balance','pendingpr','note','productattr',
     ];
 }
