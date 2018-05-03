@@ -29,6 +29,7 @@
 									<th>Name</th>
 									<th>Email</th>
 									<th>Phone</th>
+									<th>Sales</th>
 									<th>Date registered</th>
 									<th></th>
 								</tr>
@@ -60,13 +61,14 @@
 	            {data: 'name', name: 'name'},
 	            {data: 'email', name: 'email'},
 	            {data: 'phone', name: 'phone'},
+	            {data: 'sales.[].name', name: 'phone'},
 	            {data: 'created_at', name: 'created_at'},
 	            {data: 'action', name: 'action', orderable: false, searchable: false, width:'20%'}
 	        ],
 			"columnDefs": [
-				{"targets": 4,"className": "text-center"}
+				{"targets": 5,"className": "text-center"}
 			],
-			"order":[[3, 'desc']]
+			"order":[[4, 'desc']]
 		});
 		$('.datatable').attr('style','border-collapse: collapse !important');
 		

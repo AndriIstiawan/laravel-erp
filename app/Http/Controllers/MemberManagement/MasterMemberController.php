@@ -61,9 +61,9 @@ class MasterMemberController extends Controller
         /*$member->dompet = $request->dompet;
         $member->koin = $request->koin;
         */$member->password = bcrypt($request->password);
-        /*$sales=user::whereIn('_id', $request->sales)->get();
+        $sales=user::whereIn('_id', $request->sales)->get();
         $member->sales=$sales->toArray();
-		*/$member->save();
+		$member->save();
 
         if ($request->hasFile('picture')) {
 			$pictureFile = $request->file('picture');
@@ -97,13 +97,13 @@ class MasterMemberController extends Controller
 
     //view form edit
     public function edit($id){
-		$member = Member::find($id);/*
+		$member = Member::find($id);
         $modUser = User::where('role', 'elemMatch', array('name' => 'Sales'))->whereNotIn('name', array_column($member->sales,'name'))->get();
-        $level = Levels::where('name', array_column($member->level,'name'))->get();*/
+        $level = Levels::where('name', array_column($member->level,'name'))->get();
         return view('panel.member-management.master-member.form-edit')
         ->with([
-        	'member'=>$member, /*
-        	'modUser' => $modUser*/
+        	'member'=>$member, 
+        	'modUser' => $modUser
         ]);
 	}
 
@@ -119,9 +119,9 @@ class MasterMemberController extends Controller
         $member->level=$level->toArray();
         */$member->address = $request->address;
         $member->status = $request->status;
-        /*$sales=user::whereIn('_id', $request->sales)->get();
+        $sales=user::whereIn('_id', $request->sales)->get();
         $member->sales=$sales->toArray();
-		*/$member->save();
+		$member->save();
 
         if ($request->hasFile('picture')) {
 			$pictureFile = $request->file('picture');

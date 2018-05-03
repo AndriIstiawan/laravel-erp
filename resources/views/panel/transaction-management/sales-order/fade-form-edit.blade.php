@@ -17,43 +17,46 @@
                 <div style="display: none;" class="col-md-2">
                     <input type="text" class="form-control" name="code[]" id="products-code" readonly>
                 </div>
-                <div class="col-md-2">
+                <div style="width:10%;">
                     <input type="number" onkeyup="findTotal($(this))" class="form-control total" id="total" name="total[]" placeholder="KG" aria-describedby="totals-error">
                     <em id="totals-error" class="error invalid-feedback">
                       Please enter a totals
                     </em>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <select id="packaging" name="packaging[]" class="form-control packaging" style="width: 100% !important;" aria-describedby="packaging-error"
                         onchange="findTotal($(this))">
                         <option value=""></option>
-                        <option data-package="Plastik" value="0.25" >250 gram - Plastik</option>
-                        <option data-package="Plastik" value="0.5">500 gram - Plastik</option>  
-                        <option data-package="Plastik" value="1">1 kg - Plastik</option> 
-                        <option data-package="Aluminium" value="0.25" >250 gram - Aluminium</option>
-                        <option data-package="Aluminium" value="0.5">500 gram - Aluminium</option>  
-                        <option data-package="Aluminium" value="1">1 kg - Aluminium</option>   
-                        <option data-package="Jerigen" value="5">5 kg - Jerigen</option>  
-                        <option data-package="Jerigen" value="25">25 kg - Jerigen</option>
-                        <option data-package="Jerigen" value="30">30 kg - Jerigen</option>
-                        <option data-package="Drum" value="25">25 kg - Drum</option>
+                        <option data-new="250 gram - Plastik" data-package="Plastik" value="0.25" >250 gram - Plastik</option>
+                        <option data-new="500 gram - Plastik" data-package="Plastik" value="0.5">500 gram - Plastik</option>  
+                        <option data-new="1 kg - Plastik" data-package="Plastik" value="1">1 kg - Plastik</option> 
+                        <option data-new="250 gram - Aluminium" data-package="Aluminium" value="0.25" >250 gram - Aluminium</option>
+                        <option data-new="500 gram - Aluminium" data-package="Aluminium" value="0.5">500 gram - Aluminium</option>
+                        <option data-new="1 kg - Aluminium" data-package="Aluminium" value="1">1 kg - Aluminium</option>   
+                        <option data-new="5 kg - Jerigen" data-package="Jerigen" value="5">5 kg - Jerigen</option>  
+                        <option data-new="25 kg - Jerigen" data-package="Jerigen" value="25">25 kg - Jerigen</option>
+                        <option data-new="30 kg - Jerigen" data-package="Jerigen" value="30">30 kg - Jerigen</option>
+                        <option data-new="25 kg - Drum" data-package="Drum" value="25">25 kg - Drum</option>
                     </select>
                     <em id="packaging-error" class="error invalid-feedback">Please select packaging</em>
                 </div>
-                <div class="col-md-2">
+                <div style="width:10.4%;">
                     <div class="control-group input-group">
                         <input class="form-control" type="text" name="amount[]" id="amount" placeholder="Amount" aria-describedby="amount-error" readonly/>
-                        <span class="input-group-append">
-                            <button class="btn btn-danger rounded pull-right" id="minmore" onclick="$(this).closest('.option-card2 .optts').remove()">
-                                <i class="fa fa-trash"></i>
-                            </button>
-                        </span>
+                        <span class="input-group-text">x</span>
                     </div>
                     <em id="amount-error" class="error invalid-feedback"></em>
                 </div>
-                <div class="col-md-4" style="display: none;">
-                    <label class="col-form-label" for="type">*Package</label>
-                    <input type="text" class="form-control packages" name="package[]" readonly>
+                <div style="width: 19.6%;">
+                    <div class="control-group input-group">
+                    <input type="text" class="form-control packages" name="new[]" readonly>
+                    <input type="hidden" class="form-control packages" name="package[]" readonly>
+                    <span class="input-group-append">
+                        <button class="btn btn-danger rounded pull-right" id="minmore" onclick="$(this).closest('.option-card2 .optts').remove()">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </span>
+                    </div>
                  </div>
                 <div class="col-md-4" style="display: none;">
                     <div class="form-group">

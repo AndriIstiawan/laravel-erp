@@ -85,8 +85,42 @@
 				</div>
 				<!--end card -->
 			</div>
+			<div class="col-lg-5">
+				<div class="card">
+					<div class="card-header">
+						<i class="fa fa-align-justify"></i> Sales Member
+						<small>Data</small>
+					</div>
+					<div class="card-body">
+						<div class="row">
+							<div class="form-group col-md-12">
+		                      	<label class="col-form-label" for="sales">*Sales</label>
+		                        	<select id="sales" name="sales[]" class="form-control" aria-describedby="sales-error" required>
+		                        	@foreach ($member->sales as $atts)
+		                          		<option data-name="{{$atts['name']}}" data-email="{{$atts['email']}}" value="{{$atts['_id']}}" selected>{{$atts['name']}}</option>
+		                        	@endforeach
+		                        	@foreach ($modUser as $modUser)
+		                          		<option data-name="{{$modUser->name}}" data-email="{{$modUser->email}}" value="{{$modUser->id}}">{{$modUser->name}}</option>
+		                        	@endforeach
+		                        	</select>
+		                      <em id="sales-error" class="error invalid-feedback">Please enter a new sales</em>
+		                  	</div>
+		                    <div class="input-group col-md-12">
+								<span class="input-group-text"><i class="fa fa-user-circle-o" ></i></span>
+									<input type="text" class="form-control" value="{{$atts['name']}}" id="sales-name" readonly>
+							</div>
+							<div class="input-group col-md-12" style="padding-top: 16px">
+								<span class="input-group-text"><i class="fa fa-envelope" ></i></span>
+									<input type="text" class="form-control" id="sales-email" value="{{$atts['email']}}" readonly>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		</div>
 
+		
 		<!--/.row-->
 		<div class="row">
 			<div class="attr-multiselect attr-dropdown form-group col-md-12">

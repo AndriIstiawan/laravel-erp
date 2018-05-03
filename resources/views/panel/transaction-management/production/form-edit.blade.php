@@ -71,7 +71,7 @@
 		                    </div>
 							<div class="col-md-4">
 			                        <input type="hidden" id="packaging" name="packaging[]" class="form-control" aria-describedby="packaging-error" value="{{$product['packaging']}}" readonly="">
-			                        <input class="form-control" aria-describedby="packaging-error" value="{{$product['packaging']}} - {{$product['package']}}" readonly="">
+			                        <input class="form-control" aria-describedby="packaging-error" value="{{$product['packaging']}} kg - {{$product['package']}}" readonly="">
                     		</div>
 	                        <div class="col-md-2">
 		                          <input class="form-control" placeholder="{{$product['amount']}}" value="{{$product['amount']}}" type="text" name="amount[]" id="amount" placeholder="00" readonly/>
