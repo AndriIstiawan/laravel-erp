@@ -119,7 +119,7 @@
 		                    </div>
 		                     <div style="width: 19.6%;">
 								<div class="control-group input-group">
-                   					<input type="text" class="form-control packages" value="{{$productsss['packaging']}} - {{$productsss['package']}}" name="new[]" readonly>
+                   					<input type="text" class="form-control packages" value="{{$productsss['packaging']}} kg - {{$productsss['package']}}" name="new[]" readonly>
 									<input type="hidden" value="{{$productsss['package']}}" class="form-control packages" name="package[]" readonly>
 									<span class="input-group-append">
 	         						 	<button class="btn btn-danger rounded pull-right" id="minmore" onclick="$(this).closest('.option-card1 .optts').remove()"><i class="fa fa-trash"></i>
