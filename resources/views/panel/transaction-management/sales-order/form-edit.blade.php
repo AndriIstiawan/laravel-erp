@@ -71,6 +71,7 @@
 					    <div class="optts">
 						<div class="row product-list">
 							<div class="col-md-4">
+								<label class="col-form-label" for="code"></label>
 								<select name="product[]" style="width: 100% !important;" class="form-control form-control-sm products" aria-describedby="product[]-error">
 									<option value=""></option>
 									<option value="{{$productsss['id']}}" data-code="{{$productsss['code']}}" data-type="{{$productsss['type']}}" selected="">{{$productsss['code']}}-{{$productsss['type']}}-{{$productsss['name']}}</option>
@@ -88,13 +89,15 @@
 								<label class="col-form-label" for="code">Code</label> -->
 								<input type="hidden" value="{{$productsss['code']}}" class="form-control" name="code[]" id="product-code" readonly><!-- 
 							</div> -->
-							<div style="width:10%;">
+							<div class="col-md-1">
+								<label class="col-form-label" for="code"></label>
 		                          <input type="number" onkeyup="findTotal()" class="form-control" id="total" name="total[]" value="{{$productsss['total']}}" placeholder="00" aria-describedby="totals-error" >
 		                            <em id="totals-error" class="error invalid-feedback">
 		                              Please enter a totals
 		                            </em>
 		                        </div>
 							<div class="col-md-3">
+								<label class="col-form-label" for="code"></label>
 			                        <select name="packaging[]" class="form-control packaging" style="width: 100% !important;" aria-describedby="packaging-error" onchange="findTotal($(this))">
 				                        <option value=""></option>
 										<option data-new="250 gram - Plastik" data-package="Plastik" value="0.25" {{($productsss['packaging'] == '0.25' && $productsss['package'] == 'Plastik'?'selected':'')}} >250 gram - Plastik</option>
@@ -110,21 +113,23 @@
 				                    </select>
 				                    <em id="packaging-error" class="error invalid-feedback">Please select packaging</em>
 			                    </div>
-							<div style="width:10.4%;">
+							<div class="col-md-4">
+								<label class="col-form-label" for="code"></label>
             					<div class="control-group input-group">
 		                        	<input class="form-control" id="amount" value="{{$productsss['amount']}}" min="1" type="number" name="amount[]" placeholder="00" aria-describedby="amount-error" required=""  readonly/>
 		                        	<span class="input-group-text">x</span>
-		                        </div>
-            					<em id="amount-error" class="error invalid-feedback"></em>
-		                    </div>
-		                     <div style="width: 19.6%;">
-								<div class="control-group input-group">
                    					<input type="text" class="form-control packages" value="{{$productsss['packaging']}} kg - {{$productsss['package']}}" name="new[]" readonly>
-									<input type="hidden" value="{{$productsss['package']}}" class="form-control packages" name="package[]" readonly>
 									<span class="input-group-append">
 	         						 	<button class="btn btn-danger rounded pull-right" id="minmore" onclick="$(this).closest('.option-card1 .optts').remove()"><i class="fa fa-trash"></i>
 	            						</button>
 	            					</span>
+		                        </div>
+            					<em id="amount-error" class="error invalid-feedback"></em>
+		                    </div>
+		                     <div style="width: 19.6%;">
+								<label class="col-form-label" for="code"></label>
+								<div class="control-group input-group">
+									<input type="hidden" value="{{$productsss['package']}}" class="form-control packages" name="package[]" readonly>
 	            				</div>
 							</div>
 		                    <div class="col-md-4" style="display: none;"> 

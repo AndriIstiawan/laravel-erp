@@ -20,9 +20,9 @@
                     <label class="col-form-label" for="code">*Code</label>
                     <input type="text" class="form-control" name="code[]" id="products-code" readonly>
                 </div>
-                <div style="width:10%;">
+                <div class="col-md-1">
                     <label class="col-form-label" for="type"></label>
-                    <input type="number" onkeyup="findTotal($(this))" class="form-control total" id="total" name="total[]" placeholder="KG" aria-describedby="total-error">
+                    <input type="number" onkeyup="findTotal($(this))" class="form-control total" id="total" name="total[]" placeholder="kg" aria-describedby="total-error">
                     <em id="total-error" class="error invalid-feedback">
                         Please enter a total
                     </em>
@@ -45,24 +45,24 @@
                     </select>
                     <em id="packaging-error" class="error invalid-feedback">Please select packaging</em>
                 </div>
-                <div style="width:10.4%;">
+                <div class="col-md-4">
                     <label class="col-form-label" for="type"></label>
                     <div class="control-group input-group">
                         <input class="form-control" type="text" name="amount[]" id="amount" placeholder="Amount" aria-describedby="amount-error" readonly/>
                         <span class="input-group-text">x</span>
+                        <input type="text" class="form-control packages" name="new[]" readonly>
+                        <span class="input-group-append">
+                            <button class="btn btn-danger rounded pull-right" id="minmore" onclick="$(this).closest('.option-card1 .optts').remove()">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </span>
                     </div>
                     <em id="amount-error" class="error invalid-feedback"></em>
                 </div>
                 <div style="width: 19.6%;">
                     <label class="col-form-label" for="type"></label>
                     <div class="control-group input-group">
-                    <input type="text" class="form-control packages" name="new[]" readonly>
                     <input type="hidden" class="form-control packages" name="package[]" readonly>
-                    <span class="input-group-append">
-                        <button class="btn btn-danger rounded pull-right" id="minmore" onclick="$(this).closest('.option-card1 .optts').remove()">
-                            <i class="fa fa-trash"></i>
-                        </button>
-                    </span>
                     </div>
                 </div>
                 <div class="col-md-4" style="display: none;">

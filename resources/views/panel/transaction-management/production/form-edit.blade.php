@@ -63,18 +63,22 @@
 					    @foreach ($order->productattr as $product)
 						<div class="row">
 							<div class="col-md-4">
+							<label class="col-form-label" for="type"></label>
 									<input type="hidden" id="product" value="{{$product['id']}}" name="product[]" class="form-control form-control-sm" aria-describedby="product-error">
 									<input placeholder="{{$product['code']}}-{{$product['type']}}-{{$product['name']}}" class="form-control" aria-describedby="product-error" readonly="">
 							</div>
 							<div class="col-md-2">
-	                          		<input type="number" class="form-control" id="total" name="total[]" value="{{$product['total']}}" placeholder="00" aria-describedby="totals-error" readonly="">
+							<label class="col-form-label" for="type"></label>
+	                          		<input type="text" class="form-control" id="total" name="total[]" value="{{$product['total']}} kg" placeholder="00" aria-describedby="totals-error" readonly="">
 		                    </div>
-							<div class="col-md-4">
+							<div class="col-md-3">
+							<label class="col-form-label" for="type"></label>
 			                        <input type="hidden" id="packaging" name="packaging[]" class="form-control" aria-describedby="packaging-error" value="{{$product['packaging']}}" readonly="">
 			                        <input class="form-control" aria-describedby="packaging-error" value="{{$product['packaging']}} kg - {{$product['package']}}" readonly="">
                     		</div>
-	                        <div class="col-md-2">
-		                          <input class="form-control" placeholder="{{$product['amount']}}" value="{{$product['amount']}}" type="text" name="amount[]" id="amount" placeholder="00" readonly/>
+	                        <div class="col-md-3">
+							<label class="col-form-label" for="type"></label>
+		                          <input class="form-control" placeholder="{{$product['amount']}}" value="{{$product['amount']}} x {{$product['packaging']}} kg - {{$product['package']}} " type="text" name="amount[]" id="amount" placeholder="00" readonly/>
 		                    </div>
 		                    <div class="col-md-4" style="display: none;">
 							<label class="col-form-label" for="type">*Package</label>
