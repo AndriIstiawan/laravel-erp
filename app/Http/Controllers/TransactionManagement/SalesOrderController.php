@@ -233,15 +233,19 @@ class SalesOrderController extends Controller
     }
 
     public function orderExport(){
-       $order=SalesOrder::select('sono','client','catatan','sales','productattr')->get();
-       $orderarr=[];
-       for($i=0; $i < count($order); $i++){
+       $order=SalesOrder::select('sono','client','sales','catatan','productattr')->get();
+       
+
+       
+
+      
+        for($i=0; $i < count($order); $i++){
+            $orderarr=[];
             for($j=0; $j < count($order[$i]->productattr); $j++){
                 $orderarr[]=[
-                    'Sono'=>$order[$i]->sono,
+                    'SO No'=>$order[$i]->sono,
                     'Client'=>$order[$i]->client[0]['name'],
-                    'Sales'=>$order[$i]->client[0]['sales'][0]['name'],
-                    'Product Name'=>$order[$i]->productattr[$j]['name'],
+                    'Sales'=>$order[$i]->sales[0]['name'],
                     'Type'=>$order[$i]->productattr[$j]['type'],
                     'Code'=>$order[$i]->productattr[$j]['code'],
                     'Total'=>$order[$i]->productattr[$j]['total'],
@@ -251,14 +255,17 @@ class SalesOrderController extends Controller
 
                 ];
             }
-       }
+        }
+            
 
 
         
+
         return Excel::create('salesorder-list', function ($excel) use ($orderarr) {
             $excel->sheet('sales-order list', function ($sheet) use ($orderarr) {
                 $sheet->fromArray($orderarr);
             });
+
         })->download('xlsx');
         return dd($orderarr);
 
