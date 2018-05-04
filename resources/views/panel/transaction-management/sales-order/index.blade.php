@@ -45,8 +45,8 @@
                                         <th>SO No</th>
                                         <th>Client</th>
                                         <th>Product</th>
-                                        <th>Total</th>
-                                        <th>Packaging</th>
+                                        <th>Total/kg</th>
+                                        <th>Packaging/kg</th>
                                         <th>Amount</th>
                                         <th>Catatan</th>
                                         <th>Commiter</th>

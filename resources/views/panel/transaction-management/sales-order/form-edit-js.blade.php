@@ -117,6 +117,7 @@
     function findTotal(elm) {
         var elemTotal = elm.parent().parent().find('input[name="total[]"]');
         var elempack = elm.parent().parent().find('input[name="package[]"]');
+        var newType = elm.parent().parent().find('input[name="new[]"]');
         var elemPackaging = elm.parent().parent().find('select[name="packaging[]"]');
         var elemAmount = elm.parent().parent().find('input[name="amount[]"]');
         var valueTotal = parseInt(elemTotal.val());
@@ -124,6 +125,7 @@
             valueTotal = 0;
         }
         var valuePack = (elempack.val());
+        var valueNew = (newType.val());
         var valuePackaging = parseFloat(elemPackaging.find('option:selected').val());
         if (isNaN(valuePackaging)) {
             valuePackaging = 0;
@@ -140,7 +142,7 @@
         if (isNaN(total)) {
             total = 0;
         }
-        var final = value + " x "+ (valuePackaging)+ " kg - " + (valuePack) + " = " +(total)+" kg";
+        var final = value + " x "+ (valueNew) +" - " + (valuePack) + " = " +(total)+" kg";
         elemAmount.val(final)/*.val("x").val(valuePack)*/;
         elemAmount.valid();
     }

@@ -88,16 +88,16 @@
 										<label class="col-form-label" for="type"></label>
 				                        <select name="packaging[]" style="width: 100% !important;" class="form-control form-control-sm packaging" aria-describedby="packaging-error" onchange="findTotal($(this))">
 					                        <option value=""></option>
-											<option data-new="gram" data-package="Plastik" value="0.25" >250 gram - Plastik</option>
-											<option data-new="gram" data-package="Plastik" value="0.5">500 gram - Plastik</option>  
-											<option data-new="kg" data-package="Plastik" value="1">1 kg - Plastik</option> 
-											<option data-new="gram" data-package="Aluminium" value="0.25" >250 gram - Aluminium</option>
-											<option data-new="gram" data-package="Aluminium" value="0.5">500 gram - Aluminium</option>
-											<option data-new="kg" data-package="Aluminium" value="1">1 kg - Aluminium</option>   
-											<option data-new="kg" data-package="Jerigen" value="5">5 kg - Jerigen</option>  
-											<option data-new="kg" data-package="Jerigen" value="25">25 kg - Jerigen</option>
-											<option data-new="kg" data-package="Jerigen" value="30">30 kg - Jerigen</option>
-											<option data-new="kg" data-package="Drum" value="25">25 kg - Drum</option>
+											<option data-new="250 gram" data-package="Plastik" value="0.25" >250 gram - Plastik</option>
+											<option data-new="500 gram" data-package="Plastik" value="0.5">500 gram - Plastik</option>  
+											<option data-new="1 kg" data-package="Plastik" value="1">1 kg - Plastik</option> 
+											<option data-new="250 gram" data-package="Aluminium" value="0.25" >250 gram - Aluminium</option>
+											<option data-new="500 gram" data-package="Aluminium" value="0.5">500 gram - Aluminium</option>
+											<option data-new="1 kg" data-package="Aluminium" value="1">1 kg - Aluminium</option>   
+											<option data-new="5 kg" data-package="Jerigen" value="5">5 kg - Jerigen</option>  
+											<option data-new="25 kg" data-package="Jerigen" value="25">25 kg - Jerigen</option>
+											<option data-new="30 kg" data-package="Jerigen" value="30">30 kg - Jerigen</option>
+											<option data-new="25 kg" data-package="Drum" value="25">25 kg - Drum</option>
 				                        </select>
 				                        <em id="packaging-error" class="error invalid-feedback">Please select packaging</em>
 		                    		</div>
