@@ -133,7 +133,7 @@ class ProductController extends Controller
     //download import form
     public function downloadImportForm()
     {
-        $file = public_path() . "/files/product/product-form-import.xlsx";
+        $file = public_path() . "/files/product/product-import.xlsx";
         return response()->download($file);
     }
 
