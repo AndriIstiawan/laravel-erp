@@ -81,7 +81,7 @@
                     <!--end card general-->
 
                     <!--start card price -->
-                    <div class="card">
+                    <!-- < --><!-- div class="card">
                         <div class="card-header">
                             <i class="fa fa-align-justify"></i> Price
                         </div>
@@ -182,11 +182,10 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <!--end card price-->
                     <!--start action -->
                     <div class="card">
-                        <div class="card">
                             <p>
                             <div class="btn-group"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                 <button type="submit" name="save" id="save" class="btn btn-success">Save</button>&nbsp;
@@ -195,7 +194,6 @@
                                 </button>
                             </div>
                             </p>
-                        </div>
                     </div>
                     <!--end card action -->
             </div>

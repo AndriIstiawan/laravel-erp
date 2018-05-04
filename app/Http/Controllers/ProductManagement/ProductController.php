@@ -61,26 +61,26 @@ class ProductController extends Controller
         $product->type = $request->type;
         $product->code = $request->code;
         $product->stock = $request->stock;
-        $product->price = [
-            [
-                "price" => $request->satu,
-            ],
-            [
-                "price" => $request->dua,
-            ],
-            [
-                "price" => $request->tiga,
-            ],
-            [
-                "price" => $request->empat,
-            ],
-            [
-                "price" => $request->lima,
-            ],
-            [
-                "price" => $request->enam,
-            ],
-        ];
+        // $product->price = [
+        //     [
+        //         "price" => $request->satu,
+        //     ],
+        //     [
+        //         "price" => $request->dua,
+        //     ],
+        //     [
+        //         "price" => $request->tiga,
+        //     ],
+        //     [
+        //         "price" => $request->empat,
+        //     ],
+        //     [
+        //         "price" => $request->lima,
+        //     ],
+        //     [
+        //         "price" => $request->enam,
+        //     ],
+        // ];
         $product->currency = $request->currency;
         $product->save();
 
@@ -91,7 +91,7 @@ class ProductController extends Controller
     //for getting datatable at index
     public function listData()
     {
-        $products = product::all();
+        $products = product::select('id','code','name','type','stock','created_at');
 
         return Datatables::of($products)
             ->addColumn('action', function ($products) {
@@ -163,26 +163,26 @@ class ProductController extends Controller
         $product->type = $request->type;
         $product->code = $request->code;
         $product->stock = $request->stock;
-        $product->price = [
-            [
-                "price" => $request->satu,
-            ],
-            [
-                "price" => $request->dua,
-            ],
-            [
-                "price" => $request->tiga,
-            ],
-            [
-                "price" => $request->empat,
-            ],
-            [
-                "price" => $request->lima,
-            ],
-            [
-                "price" => $request->enam,
-            ],
-        ];
+        // $product->price = [
+        //     [
+        //         "price" => $request->satu,
+        //     ],
+        //     [
+        //         "price" => $request->dua,
+        //     ],
+        //     [
+        //         "price" => $request->tiga,
+        //     ],
+        //     [
+        //         "price" => $request->empat,
+        //     ],
+        //     [
+        //         "price" => $request->lima,
+        //     ],
+        //     [
+        //         "price" => $request->enam,
+        //     ],
+        // ];
         $product->currency = $request->currency;
         $product->save();
 
