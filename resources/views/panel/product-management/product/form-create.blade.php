@@ -81,7 +81,7 @@
                     <!--end card general-->
 
                     <!--start card price -->
-                    <div class="card">
+                    <!-- <div class="card">
                         <div class="card-header">
                             <i class="fa fa-align-justify"></i> Price
                         </div>
@@ -183,7 +183,7 @@
                             </div>
                             
                         </div>
-                    </div>
+                    </div> -->
                     <!--end card price-->
                     <!--start action -->
                     <div class="card">
