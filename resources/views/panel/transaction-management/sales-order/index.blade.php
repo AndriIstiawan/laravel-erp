@@ -75,8 +75,19 @@
                             </button>
                         </div>
                         <div class="modal-body">
+                            
+
                             <div class="form-group">
-                                <label for="file" class="col-md-3 control-label">Export</label>
+                                <!-- <div class="row">
+                                    <div class="col-md-3">
+                                        <label>From</label>
+                                        <input type="text" name="StarDate" id="StarDate" class="form-control" required>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label>To</label>
+                                        <input type="text" name="EndDate" id="EndDate" class="form-control" required>
+                                    </div>
+                                </div> -->
                                 <div class="col-md-6">
                                     <a href="{{route('sales-order.export')}}" class="btn btn-success">Export</a>
                                     <span class="help-block with-errors"></span>
@@ -96,6 +107,37 @@
 <script src="{{ asset('fiture-style/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('fiture-style/datatables/dataTables.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('fiture-style/validation/jquery.validate.min.js') }}"></script>
+
+<!-- <script type="text/javascript">
+        $("#StarDate").datepicker({
+            changeMonth: true,
+            changeMonth: true,
+            changeYear: true,
+            yearRange: '2017:+0',
+            dateFormat: 'yy/mm/dd',
+            onSelect: function(dateText){
+                var DateRegistered = $('#StarDate').val();
+                var EndDate = $('#EndDate').val();
+                listOrder(DateRegistered,EndDate);
+            }
+
+        });
+        $("#EndDate").datepicker({
+            changeMonth: true,
+            changeMonth: true,
+            changeYear: true,
+            yearRange: '2017:+0',
+            dateFormat: 'yy/mm/dd',
+            onSelect: function(dateText){
+                var DateRegistered = $('#StarDate').val();
+                var EndDate = $('#EndDate').val();
+                listOrder(DateRegistered,EndDate);
+            }
+
+        });
+
+</script>
+ -->
 
 <script>
     //DATATABLES
