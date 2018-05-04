@@ -233,20 +233,21 @@ class SalesOrderController extends Controller
     }
 
     public function orderExport(){
-       $order=SalesOrder::select('sono','date','client','catatan','sales','productattr')->get();
+       $order=SalesOrder::select('sono','client','catatan','sales','productattr')->get();
        $orderarr=[];
        for($i=0; $i < count($order); $i++){
             for($j=0; $j < count($order[$i]->productattr); $j++){
                 $orderarr[]=[
-                    'sono'=>$order[$i]->sono,
-                    'client'=>$order[$i]->client[0]['name'],
-                    'sales'=>$order[$i]->client[0]['sales'][0]['name'],
-                    'product name'=>$order[$i]->productattr[$j]['name'],
-                    'type'=>$order[$i]->productattr[$j]['type'],
-                    'code'=>$order[$i]->productattr[$j]['code'],
-                    'total'=>$order[$i]->productattr[$j]['total'],
-                    'package'=>$order[$i]->productattr[$j]['package'],
-                    'catatan'=>$order[$i]->catatan,
+                    'Sono'=>$order[$i]->sono,
+                    'Client'=>$order[$i]->client[0]['name'],
+                    'Sales'=>$order[$i]->client[0]['sales'][0]['name'],
+                    'Product Name'=>$order[$i]->productattr[$j]['name'],
+                    'Type'=>$order[$i]->productattr[$j]['type'],
+                    'Code'=>$order[$i]->productattr[$j]['code'],
+                    'Total'=>$order[$i]->productattr[$j]['total'],
+                    'Package'=>$order[$i]->productattr[$j]['package'],
+                    'Final Total'=>$order[$i]->productattr[$j]['amount'],
+                    'Note'=>$order[$i]->catatan,
 
                 ];
             }
