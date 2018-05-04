@@ -194,7 +194,6 @@ class SalesOrderController extends Controller
                 'code'=>$products['code'],
                 'total' => $request->total[$i],
                 'packaging' => $request->packaging[$i],
-                'packagin' => $request->packagin[$i],
                 'amount' => $request->amount[$i],
                 'package' => $request->package[$i],
                 'realisasi' => $request->realisasi[$i],
