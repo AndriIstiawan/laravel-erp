@@ -11,6 +11,20 @@
                     <a class="btn btn-primary" href="{{route('master-client.create')}}">
                         <i class="fa fa-plus"></i>&nbsp; New Client
                     </a>
+                    <button class="btn btn-success ladda-button" data-toggle="modal" data-target="#modal-exim">
+                        <span class="ladda-label">
+                            <i class="fa fa-cloud-download">
+                            </i>
+                            Import Client
+                        </span>
+                    </button>
+                    <a href="{{route('product.export')}}" class="btn btn-success ladda-button" data-style="zoom-in">
+                        <span class="ladda-label">
+                            <i class="fa fa-file-excel-o">
+                            </i>
+                            Export Client
+                        </span>
+                    </a>
                 </p>
             </div>
         </div>
