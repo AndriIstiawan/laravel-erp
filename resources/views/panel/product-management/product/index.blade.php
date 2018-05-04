@@ -48,7 +48,7 @@
                         <div class="table-responsive">
                             <table class="table table-responsive-sm table-bordered table-striped table-sm datatable">
                                 <thead>
-                                    <tr>
+                                    <!-- <tr>
                                         <th rowspan="2" class="text-nowrap">Code</th>
                                         <th rowspan="2" class="text-nowrap">Name</th>
                                         <th rowspan="2" class="text-nowrap">Type</th>
@@ -57,15 +57,25 @@
                                         <th rowspan="2" class="text-nowrap">Currency</th>
                                         <th rowspan="2" class="text-nowrap">Date registered</th>
                                         <th rowspan="2" class="text-nowrap"></th>
-                                    </tr>
+                                    </tr> -->
                                     <tr>
+                                        <th class="text-nowrap">Code</th>
+                                        <th class="text-nowrap">Name</th>
+                                        <th class="text-nowrap">Type</th>
+                                        <th class="text-nowrap">Stock</th>
+                                        
+                                        <th class="text-nowrap">Date registered</th>
+                                        <th class="text-nowrap"></th>
+                                    </tr>
+
+                                    <!-- <tr>
                                         <th class="text-nowrap">250 Gr&nbsp;&nbsp;</th>
                                         <th class="text-nowrap">500 Gr&nbsp;&nbsp;</th>
                                         <th class="text-nowrap">1 Kg&nbsp;&nbsp;</th>
                                         <th class="text-nowrap">5 Kg&nbsp;&nbsp;</th>
                                         <th class="text-nowrap">25 Kg&nbsp;&nbsp;</th>
                                         <th class="text-nowrap">30 Kg&nbsp;&nbsp;</th>
-                                    </tr>
+                                    </tr> -->
                                 </thead>
                                 <tbody>
                                 </tbody>
@@ -141,34 +151,34 @@
                 data: 'stock',
                 name: 'stock'
             },
-            {
-                data: 'satu',
-                name: 'satu'
-            },
-            {
-                data: 'dua',
-                name: 'dua'
-            },
-            {
-                data: 'tiga',
-                name: 'tiga'
-            },
-            {
-                data: 'empat',
-                name: 'empat'
-            },
-            {
-                data: 'lima',
-                name: 'lima'
-            },
-            {
-                data: 'enam',
-                name: 'enam'
-            },
-            {
-                data: 'currency',
-                name: 'currency'
-            },
+            // {
+            //     data: 'satu',
+            //     name: 'satu'
+            // },
+            // {
+            //     data: 'dua',
+            //     name: 'dua'
+            // },
+            // {
+            //     data: 'tiga',
+            //     name: 'tiga'
+            // },
+            // {
+            //     data: 'empat',
+            //     name: 'empat'
+            // },
+            // {
+            //     data: 'lima',
+            //     name: 'lima'
+            // },
+            // {
+            //     data: 'enam',
+            //     name: 'enam'
+            // },
+            // {
+            //     data: 'currency',
+            //     name: 'currency'
+            // },
             {
                 data: 'created_at',
                 name: 'created_at'
@@ -182,10 +192,10 @@
             }
         ],
         "columnDefs": [
-            {"targets": 12,"className": "text-center"}
+            {"targets": 4,"className": "text-center"}
         ],
         "order": [
-            [11, 'desc']
+            [2, 'desc']
         ]
     });
     $('.datatable').attr('style', 'border-collapse: collapse !important');
