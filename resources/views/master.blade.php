@@ -64,13 +64,13 @@
                 }
             ?>
 			<li class="breadcrumb-menu d-md-down-none">
-			<div class="btn-group" role="group" aria-label="Button group">
+			<!-- <div class="btn-group" role="group" aria-label="Button group">
 			<a class="btn" href="#"><i class="icon-speech"></i></a>
 			<a class="btn" href="./"><i class="icon-graph"></i> &nbsp;Dashboard</a>
       @if(Auth::user()->hasAcc('master-setting'))
 			<a class="btn" href=""><i class="icon-settings"></i> &nbsp;Settings</a>
       @endif
-			</div>
+			</div> -->
 			</li>
 		</ol>
       <!-- Breadcrumb -->

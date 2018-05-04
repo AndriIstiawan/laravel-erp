@@ -38,11 +38,7 @@
                 <div class="card">
                     <div class="card-header">
                         <i class="fa fa-align-justify"></i> Products Table
-                        <div class="card-actions">
-                            <a href="#" target="_blank">
-                                <small class="text-muted">docs</small>
-                            </a>
-                        </div>
+                        
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
