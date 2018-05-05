@@ -17,11 +17,7 @@
                 <div class="card">
                     <div class="card-header">
                         <i class="fa fa-align-justify"></i> Sales Order Table
-                        <div class="card-actions">
-                            <a href="#" target="_blank">
-                                <small class="text-muted">docs</small>
-                            </a>
-                        </div>
+                        
                     </div>
                     <div class="card-body table-responsive-sm" style="width: 100%;">
                         <div class="table-responsive">

@@ -146,4 +146,5 @@ class MasterMemberController extends Controller
 		
 		return redirect()->route('master-client.index')->with('dlt', 'client');
     }
+    
 }
