@@ -26,28 +26,26 @@
 								<div class="row">
 									<div class="col-md-12">
 										<input type="hidden" class="id" name="id">
-											<div class="row">
-												<div class="col-md-12">
+										<div class="row">
+											<div class="col-md-12">
 													<input type="hidden" class="form-control" id="sono" name="sono" placeholder="NO1029ON" aria-describedby="sono-error" value="{{$order->sono}}" readonly="">
 													<em id="sono-error" class="error invalid-feedback">Please enter a SO NO</em>
 													<input type="hidden" class="form-control" id="date" name="date" value="{{$order->date}}" readonly>
-												<div class="form-group">
-													<select id="client" class="form-control client" style="width: 100% !important;" name="client" aria-describedby="client-error">
-														<option value=""></option>
-														@foreach($order->client as $memberattr)
-														<option data-new="{{(isset($memberattr['sales'][0]['_id'])?$memberattr['sales'][0]['_id']:'')}}" value="{{$memberattr['_id']}}" selected="">{{$memberattr['name']}} - {{(isset($memberattr['sales'][0]['name'])?$memberattr['sales'][0]['name']:'')}}</option>
-														@endforeach
-														@foreach($member as $member)
-														<option data-new="{{(isset($member->sales[0]['_id'])?$member->sales[0]['_id']:'')}}" value="{{$member->id}}">{{$member->name}} - {{(isset($member->sales[0]['name'])?$member->sales[0]['name']:'')}}</option>
-														@endforeach
-													</select>
-													<em id="client-error" class="error invalid-feedback">Please enter a client</em>
-												</div>
+												<select id="client" class="form-control client" style="width: 100% !important;" name="client" aria-describedby="client-error">
+													<option value=""></option>
+													@foreach($order->client as $memberattr)
+													<option data-new="{{(isset($memberattr['sales'][0]['_id'])?$memberattr['sales'][0]['_id']:'')}}" value="{{$memberattr['_id']}}" selected="">{{$memberattr['name']}} - {{(isset($memberattr['sales'][0]['name'])?$memberattr['sales'][0]['name']:'')}}</option>
+													@endforeach
+													@foreach($member as $member)
+													<option data-new="{{(isset($member->sales[0]['_id'])?$member->sales[0]['_id']:'')}}" value="{{$member->id}}">{{$member->name}} - {{(isset($member->sales[0]['name'])?$member->sales[0]['name']:'')}}</option>
+													@endforeach
+												</select>
+												<em id="client-error" class="error invalid-feedback">Please enter a client</em>
 												@foreach($order->sales as $sales)
 												<input type="hidden" class="form-control" id="sales" name="sales" aria-describedby="sono-error" value="{{$sales['_id']}}" readonly>
 												@endforeach
-												</div>
 											</div>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -70,8 +68,7 @@
 					    <div class="option-card1">
 					    <div class="optts">
 						<div class="row product-list">
-							<div class="col-md-4">
-								<label class="col-form-label" for="code"></label>
+							<p class="col-md-4">
 								<select name="product[]" style="width: 100% !important;" class="form-control form-control-sm products" aria-describedby="product[]-error">
 									<option value=""></option>
 									<option value="{{$productsss['id']}}" data-code="{{$productsss['code']}}" data-type="{{$productsss['type']}}" selected="">{{$productsss['code']}}-{{$productsss['type']}}-{{$productsss['name']}}</option>
@@ -80,7 +77,7 @@
 					              	@endforeach
 								</select>
           					<em id="product[]-error" class="error invalid-feedback">Please select product</em>
-							</div><!-- 
+							</p><!-- 
 							<div class="col-md-2">
 							<label class="col-form-label" for="type">Type</label> -->
 									<input type="hidden" class="form-control" value="{{$productsss['type']}}" name="type[]" id="product-type" readonly>
@@ -89,32 +86,29 @@
 								<label class="col-form-label" for="code">Code</label> -->
 								<input type="hidden" value="{{$productsss['code']}}" class="form-control" name="code[]" id="product-code" readonly><!-- 
 							</div> -->
-							<div class="col-md-1">
-								<label class="col-form-label" for="code"></label>
+							<p class="col-md-1">
 		                          <input type="number" onkeyup="findTotal()" class="form-control" id="total" name="total[]" value="{{$productsss['total']}}" placeholder="kg" aria-describedby="totals-error" >
 		                            <em id="totals-error" class="error invalid-feedback">
 		                              Please enter a totals
 		                            </em>
-		                        </div>
-							<div class="col-md-3">
-								<label class="col-form-label" for="code"></label>
-			                        <select name="packaging[]" class="form-control packaging" style="width: 100% !important;" aria-describedby="packaging-error" onchange="findTotal($(this))">
-				                        <option value=""></option>
-										<option data-new="250 gram" data-package="Plastik" value="0.25" {{($productsss['packaging'] == '0.25' && $productsss['package'] == 'Plastik'?'selected':'')}} >250 gram - Plastik</option>
-										<option data-new="500 gram" data-package="Plastik" value="0.5" {{($productsss['packaging'] == '0.5' && $productsss['package'] == 'Plastik'?'selected':'')}}>500 gram - Plastik</option>  
-										<option data-new="1 kg" data-package="Plastik" value="1" {{($productsss['packaging'] == '1' && $productsss['package'] == 'Plastik'?'selected':'')}}>1 kg - Plastik</option> 
-										<option data-new="250 gram" data-package="Aluminium" value="0.25" {{($productsss['packaging'] == '0.25' && $productsss['package'] == 'Aluminium'?'selected':'')}}>250 gram - Aluminium</option>
-										<option data-new="500 gram" data-package="Aluminium" value="0.5" {{($productsss['packaging'] == '0.5' && $productsss['package'] == 'Aluminium'?'selected':'')}}>500 gram - Aluminium</option>  
-										<option data-new="1 kg" data-package="Aluminium" value="1" {{($productsss['packaging'] == '1' && $productsss['package'] == 'Aluminium'?'selected':'')}}>1 kg - Aluminium</option>   
-										<option data-new="5 kg" data-package="Jerigen" value="5" {{($productsss['packaging'] == '5' && $productsss['package'] == 'Jerigen'?'selected':'')}}>5 kg - Jerigen</option>  
-										<option data-new="25 kg" data-package="Jerigen" value="25" {{($productsss['packaging'] == '25' && $productsss['package'] == 'Jerigen'?'selected':'')}}>25 kg - Jerigen</option>
-										<option data-new="30 kg" data-package="Jerigen" value="30" {{($productsss['packaging'] == '30' && $productsss['package'] == 'Jerigen'?'selected':'')}}>30 kg - Jerigen</option>
-										<option data-new="25 kg" data-package="Drum" value="25" {{($productsss['packaging'] == '25' || $productsss['package'] == 'Drum'?'selected':'')}}>25 kg - Drum</option>
-				                    </select>
-				                    <em id="packaging-error" class="error invalid-feedback">Please select packaging</em>
-			                    </div>
+		                    </p>
+							<p class="col-md-3">
+		                        <select name="packaging[]" class="form-control packaging" style="width: 100% !important;" aria-describedby="packaging-error" onchange="findTotal($(this))">
+			                        <option value=""></option>
+									<option data-new="250 gram" data-package="Plastik" value="0.25" {{($productsss['packaging'] == '0.25' && $productsss['package'] == 'Plastik'?'selected':'')}} >250 gram - Plastik</option>
+									<option data-new="500 gram" data-package="Plastik" value="0.5" {{($productsss['packaging'] == '0.5' && $productsss['package'] == 'Plastik'?'selected':'')}}>500 gram - Plastik</option>  
+									<option data-new="1 kg" data-package="Plastik" value="1" {{($productsss['packaging'] == '1' && $productsss['package'] == 'Plastik'?'selected':'')}}>1 kg - Plastik</option> 
+									<option data-new="250 gram" data-package="Aluminium" value="0.25" {{($productsss['packaging'] == '0.25' && $productsss['package'] == 'Aluminium'?'selected':'')}}>250 gram - Aluminium</option>
+									<option data-new="500 gram" data-package="Aluminium" value="0.5" {{($productsss['packaging'] == '0.5' && $productsss['package'] == 'Aluminium'?'selected':'')}}>500 gram - Aluminium</option>  
+									<option data-new="1 kg" data-package="Aluminium" value="1" {{($productsss['packaging'] == '1' && $productsss['package'] == 'Aluminium'?'selected':'')}}>1 kg - Aluminium</option>   
+									<option data-new="5 kg" data-package="Jerigen" value="5" {{($productsss['packaging'] == '5' && $productsss['package'] == 'Jerigen'?'selected':'')}}>5 kg - Jerigen</option>  
+									<option data-new="25 kg" data-package="Jerigen" value="25" {{($productsss['packaging'] == '25' && $productsss['package'] == 'Jerigen'?'selected':'')}}>25 kg - Jerigen</option>
+									<option data-new="30 kg" data-package="Jerigen" value="30" {{($productsss['packaging'] == '30' && $productsss['package'] == 'Jerigen'?'selected':'')}}>30 kg - Jerigen</option>
+									<option data-new="25 kg" data-package="Drum" value="25" {{($productsss['packaging'] == '25' || $productsss['package'] == 'Drum'?'selected':'')}}>25 kg - Drum</option>
+			                    </select>
+			                    <em id="packaging-error" class="error invalid-feedback">Please select packaging</em>
+			                </p>
 							<div class="col-md-4">
-								<label class="col-form-label" for="code"></label>
             					<div class="control-group input-group" >
 		                        		<input class="form-control" id="amount" value="{{$productsss['amount']}}" type="text" name="amount[]" placeholder="Amount" aria-describedby="amount-error" required=""  readonly/>
 		                        	<!-- <span class="input-group-text">x</span> -->
@@ -168,7 +162,7 @@
 		                        </div>
 		                    </div>
 						</div>
-						<hr style="border-top: 4px solid #20a8d8; ">
+						<!-- <hr style="border-top: 4px solid #20a8d8; "> -->
 						</div>
 						</div>
 		                    @endforeach
