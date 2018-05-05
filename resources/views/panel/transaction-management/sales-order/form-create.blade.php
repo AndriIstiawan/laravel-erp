@@ -58,8 +58,7 @@
 					<div class="card-body">
 	                	<div class="form-group input_">
 								<div class="row product-list">
-									<div class="col-md-4">
-										<label class="col-form-label" for="type"></label>
+									<p class="col-md-4">
 											<select name="product[]" style="width: 100% !important;" class="form-control form-control-sm products" aria-describedby="product[]-error">
 		                        				<option value=""></option>
 						                        @foreach ($product as $product)
@@ -67,7 +66,7 @@
 						                        @endforeach
 				                        	</select>
 				                        <em id="product[]-error" class="error invalid-feedback"></em>
-									</div>
+									</p>
 									<div style="display: none;" class="col-md-2">
 									<label class="col-form-label" for="type">*Type</label>
 										<input type="text" class="form-control product-type" name="type[]" readonly>
@@ -76,16 +75,13 @@
 										<label class="col-form-label" for="code">*Code</label>
 										<input type="text" class="form-control" name="code[]" id="product-code" readonly>
 									</div>
-
-									<div class="col-md-1">
-										<label class="col-form-label" for="type"></label>
+									<p class="col-md-1">
 			                            <input type="text" onkeyup="findTotal($(this))" class="form-control total number" id="total" name="total[]" placeholder="kg" aria-describedby="total-error">
 			                            <em id="total-error" class="error invalid-feedback">
 			                              Please enter a total
 			                            </em>
-				                    </div>
-									<div class="col-md-3">
-										<label class="col-form-label" for="type"></label>
+				                    </p>
+									<p class="col-md-3">
 				                        <select name="packaging[]" style="width: 100% !important;" class="form-control form-control-sm packaging" aria-describedby="packaging-error" onchange="findTotal($(this))">
 					                        <option value=""></option>
 											<option data-new="250 gram" data-package="Plastik" value="0.25" >250 gram - Plastik</option>
@@ -100,20 +96,14 @@
 											<option data-new="25 kg" data-package="Drum" value="25">25 kg - Drum</option>
 				                        </select>
 				                        <em id="packaging-error" class="error invalid-feedback">Please select packaging</em>
-		                    		</div>
-			                        <div class="col-md-4">
-			                        	<label class="col-form-label" for="type"></label>
-				                        <div class="control-group input-group">
-				                        	<input class="form-control" type="text" name="amount[]" id="amount" placeholder="Amount" aria-describedby="amount-error" readonly/>
+		                    		</p>
+			                        <p class="col-md-4">
+				                        <input class="form-control" type="text" name="amount[]" id="amount" placeholder="Amount" aria-describedby="amount-error" readonly/>
 				                        <!-- <span class="input-group-text">x</span> -->
 				                    	<input type="hidden" class="form-control packages" name="new[]" readonly>
-				                    	</div>
-				                        <em id="amount-error" class="error invalid-feedback"></em>
-				                    </div>
-				                    <div class="col-md-2">
-				                    	<label class="col-form-label" for="type"></label>
 										<input type="hidden" class="form-control packages" name="package[]" readonly>
-									</div>
+				                        <em id="amount-error" class="error invalid-feedback"></em>
+				                    </p>
 				                    <div class="col-md-4" style="display: none;"> 
 				                        <div class="form-group">
 				                          <label class="col-form-label" >*Realisasi (Kg)</label>
@@ -150,11 +140,12 @@
 				                        </div>
 				                    </div>
 								</div>
-								<hr style="border-top: 4px solid #20a8d8; ">
+								<p>
+								<!-- <hr style="border-top: 4px solid #20a8d8; "> -->
 							<div class="option-card1">
 							</div>
-						<button  type="button" class="btn btn-primary pull-right" id="addMe" onclick="$('.input_ .option-card1').append($('.optt').html());refProductChange();"> Add More</button>
 						</div>
+						<button  type="button" class="btn btn-primary pull-right" id="addMe" onclick="$('.input_ .option-card1').append($('.optt').html());refProductChange();"> Add More</button>
 					</div>
 				</div>
 			</div>
