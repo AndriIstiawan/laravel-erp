@@ -15,6 +15,7 @@ use File;
 use Image;
 use Excel;
 use datetime;
+use App\Counter;
 
 class SalesOrderController extends Controller
 {
@@ -229,7 +230,8 @@ class SalesOrderController extends Controller
     }
 
     public function generateSO(){
-        return "SO-".date('H:i:s-d-m-Y');
+        $id_counter = Counter::first()->generateSO('so_counter');
+        return "SO-".$id_counter;
     }
 
     public function orderExport(){
