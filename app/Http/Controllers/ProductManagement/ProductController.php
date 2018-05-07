@@ -38,8 +38,16 @@ class ProductController extends Controller
     //public index product
     public function index()
     {
+        
         return view('panel.product-management.product.index');
     }
+    public function tampil($id){
+        $product = product::find($id);
+        $categories = Categories::all();
+        $categories = $categories->toArray();
+        return view('panel.product-management.product.form-edit')->with(['product' => $product, 'categories' => $categories]);
+    }
+
 
     //view form create
     public function create()
@@ -234,8 +242,8 @@ class ProductController extends Controller
                     //check parent column value
                     if(!isset($listData['code'])||!isset($listData['name'])||!isset($listData['type'])
                     ||!isset($listData['stock'])
-
-                    // ||!isset($listData['currency'])||!isset($listData['price_250_gr'])
+                    // ||!isset($listData['currency'])
+                    // ||!isset($listData['price_250_gr'])
                     // ||!isset($listData['price_500_gr'])||!isset($listData['price_1_kg'])||!isset($listData['price_5_kg'])
                     // ||!isset($listData['price_25_kg'])||!isset($listData['price_30_kg'])
                     ){
@@ -254,13 +262,12 @@ class ProductController extends Controller
                         // $price_5_kg = $listData['price_5_kg'];
                         // $price_25_kg = $listData['price_25_kg'];
                         // $price_30_kg = $listData['price_30_kg'];
-                        // if( trim($code) == "" || trim($name) == "" || trim($type) == "" || trim($stock) == ""
-                        // || trim($currency) == "" || trim($price_250_gr) == "" || trim($price_500_gr) == "" 
-                        // || trim($price_1_kg) == "" || trim($price_5_kg) == "" || trim($price_25_kg) == ""|| trim($price_30_kg) == "" ){
-                        //     $data[] = array('error import => data value not valid');
                         if( trim($code) == "" || trim($name) == "" || trim($type) == "" || trim($stock) == ""
-                        ){
+                        // || trim($currency) == "" || trim($price_250_gr) == "" || trim($price_500_gr) == "" 
+                        // || trim($price_1_kg) == "" || trim($price_5_kg) == "" || trim($price_25_kg) == ""|| trim($price_30_kg) == "" 
+                    ){
                             $data[] = array('error import => data value not valid');
+                        
                         }else{
                             $product = Product::where('code', $code)->first();
                             if($product){
