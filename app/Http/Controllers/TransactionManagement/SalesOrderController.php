@@ -43,10 +43,10 @@ class SalesOrderController extends Controller
     {
         return view('panel.transaction-management.sales-order.index');
     }
-    public function details()
-    {
-        return view('panel.transaction-management.sales-order.index');
-    }
+    // public function details()
+    // {
+    //     return view('panel.transaction-management.sales-order.index');
+    // }
 
     //view form create
     public function create()

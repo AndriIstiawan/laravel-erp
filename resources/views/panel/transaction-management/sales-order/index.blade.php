@@ -94,6 +94,43 @@
                 </div>
             </div>
         </div>
+
+        <!-- <div class="modal" id="modal-show" tabindex="1" role="dialog" aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <form method="post" action="" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
+                        {{ csrf_field() }}
+                        <div class="modal-header">
+                            <h3 class="modal-title">Export Sales Order</h3>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times; </span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            
+
+                            <div class="card-body table-responsive-sm" style="width: 100%;">
+                            <div class="table-responsive">
+                                <table class="table table-responsive-sm table-bordered table-striped table-sm datatable" style="width: 100%;">
+                                    <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Total/kg</th>
+                                        <th>Packaging/kg</th>
+                                        <th>Amount</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div> -->
     </div>
 </div>
 @endsection
@@ -188,10 +225,6 @@
         ],
         "columnDefs": [{
                 "targets": 9,
-                "className": "text-center"
-            },
-            {
-                "targets": 7,
                 "className": "text-center"
             }
         ],
