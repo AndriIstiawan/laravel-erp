@@ -1,0 +1,143 @@
+<script>	
+	function refProductChange() {
+	$('.option-card1 .sales').select2({theme:"bootstrap", placeholder:'Please select Sales'})
+		.change(function(){
+			var element= $(this).find('option:selected');
+            var productType = element.attr('data-name');
+            var newType = element.attr('data-email');
+            $(this).parent().parent().find('input[name="name[]"]').val(productType);
+            $(this).parent().parent().find('input[name="email[]"]').val(newType);
+			$(this).valid();
+		});
+
+	$('.option-card1 .type').select2({theme:"bootstrap", placeholder:'Please select Type'});
+	}
+	
+	function readURL(input) {
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+			reader.onload = function (e){ $('.picturePrev').attr('src', e.target.result); }
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+
+	$(document).on('click', '#save', function(e) {
+        e.preventDefault();
+        if($('#jxForm1').valid()){
+            swal({
+                title: "Are you sure want to submit the form?",
+                text: "Please make sure all data inputted correctly",
+                buttons: true,
+            }).then((confirm) => {
+                if(confirm){ $('#jxForm1').submit(); }
+            });
+        }
+    });
+
+	$("#picture").change(function (){ readURL(this); });
+
+	$('.type').on('change', function(){
+    $(this).addClass('is-valid').removeClass('is-invalid');
+  	});
+
+	$('#status').on('change', function(){
+    $(this).addClass('is-valid').removeClass('is-invalid');
+  	});
+
+  	$('.sales').on('change', function(){
+    $(this).addClass('is-valid').removeClass('is-invalid');
+  	});
+
+	$("#jxForm1").validate({
+		rules:{
+			name:{required:true,minlength:2},
+			address:{required:true,minlength:2},
+			sales:{required:true},
+			phone:{required:true},
+			password:{required:true,minlength:5},
+			confirm_password:{required:true,equalTo:'#password'},
+			email:{
+				required:true,
+				email:true,
+				remote:{
+					url: '{{ route('master-client.index') }}/find',
+					type: "post",
+					data:{
+						_token:'{{ csrf_token() }}',
+						id: $('.id').val(),
+						email: function(){
+							return $('#jxForm1 :input[name="email"]').val();
+						}
+					}
+				}
+			}
+		},
+		messages:{
+			name:{
+				required:'Please enter a name site',
+				minlength:'Name must consist of at least 2 characters'
+			},
+			address:{
+				required:'Please enter a name site',
+				minlength:'Name must consist of at least 2 characters'
+			},
+			phone:{ required:'Please enter a phone number' 
+			},
+			dompet:{ required:'Please enter a dompet' 
+			},
+			koin:{ required:'Please enter a koin' 
+			},
+			sales:{ required:'Please select sales' 
+			},
+			password:{
+				required:'Please provide a password',
+				minlength:'Password must be at least 5 characters long'
+			},
+			confirm_password:{
+				required:'Please provide a password',
+				minlength:'Password must be at least 5 characters long',
+				equalTo:'Please enter the same password'
+			},
+			email: {
+				email:'Please enter a valid email address',
+				remote:'Email address already in use. Please use other email.'
+			}
+		},
+		errorElement:'em',
+		errorPlacement:function(error,element){
+			error.addClass('invalid-feedback');
+		},
+		highlight:function(element,errorClass,validClass){
+			$(element).addClass('is-invalid').removeClass('is-valid');
+		},
+		unhighlight:function(element,errorClass,validClass){
+			$(element).addClass('is-valid').removeClass('is-invalid');
+		}
+	});
+
+	$(document).ready(function() {
+    var max_fields      = 10; //maximum input boxes allowed
+    var wrapper         = $(".input_fields_wrap"); //Fields wrapper
+    var add_button      = $(".add_field_btn-primary"); //Add button ID
+    
+    var x = 1; //initlal text box count
+    $(add_button).click(function(e){ //on add input button click
+        e.preventDefault();
+        if(x < max_fields){ //max input box allowed
+            x++; //text box increment
+            $(wrapper).append('<div class="option-card"><div class="form-group"><label class="col-form-label" for="address">*Address</label><div id="address" class="control-group input-group" style="margin-top:10px"><input type="text" name="address[]" class="form-control" placeholder="Address" aria-describedby="address-error" required><div class="input-group-btn"><button class="btn btn-danger remove" type="button"><i class="fa fa-close"></i></button></div><em id="address-error" class="error invalid-feedback">Please enter a address</em></div></div></div>'); //add input box
+        }
+    });
+    
+    $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+        e.preventDefault(); $(this).parent('div').remove(); x--;
+    })
+});
+	$(document).ready(function() {
+  //here it will remove the current value of the remove button which has been pressed
+      $("body").on("click",".remove",function(){ 
+          $(this).closest('.form-group').remove();
+          });
+  });
+	
+</script>
