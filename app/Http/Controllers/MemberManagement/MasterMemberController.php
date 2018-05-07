@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Member;
 use App\Levels;
+use App\Product;
 use App\User;
 use Yajra\Datatables\Datatables;
 
@@ -43,7 +44,12 @@ class MasterMemberController extends Controller
 		
 		$level= Levels::orderBy('point', 'ASC')->first();
         $modUser = User::where('role', 'elemMatch', array('name' => 'Sales'))->get();
-        return view('panel.member-management.master-member.form-create')->with(['modUser' => $modUser, 'level' => $level]);
+        $product = Product::all();
+        return view('panel.member-management.master-member.form-create')->with([
+            'modUser' => $modUser, 
+            'level' => $level,
+            'product' => $product
+        ]);
     }
 
     //Store data member 
