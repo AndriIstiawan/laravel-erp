@@ -58,7 +58,7 @@
                                         <th class="text-nowrap">Code</th>
                                         <th class="text-nowrap">Name</th>
                                         <th class="text-nowrap">Type</th>
-                                        <th class="text-nowrap">Stock</th>
+                                        <!-- <th class="text-nowrap">Stock</th> -->
                                         
                                         <th class="text-nowrap">Date registered</th>
                                         <th class="text-nowrap"></th>
@@ -143,10 +143,10 @@
                 data: 'type',
                 name: 'type'
             },
-            {
-                data: 'stock',
-                name: 'stock'
-            },
+            // {
+            //     data: 'stock',
+            //     name: 'stock'
+            // },
             // {
             //     data: 'satu',
             //     name: 'satu'
@@ -188,7 +188,7 @@
             }
         ],
         "columnDefs": [
-            {"targets": 4,"className": "text-center"}
+            {"targets": 3,"className": "text-center"}
         ],
         "order": [
             [2, 'desc']

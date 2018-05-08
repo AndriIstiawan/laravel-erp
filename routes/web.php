@@ -41,7 +41,7 @@ Route::middleware('auth')->group(function() {
 	Route::post('promo/find', 'DiscountManagement\PromoController@find');
 	/* END Master deal */
 
-	/* Sales order */
+	/* transaction */
 	Route::resource('sales-order', 'TransactionManagement\SalesOrderController');
 	Route::post('sales-order/find', 'TransactionManagement\SalesOrderController@find');
 
@@ -51,7 +51,7 @@ Route::middleware('auth')->group(function() {
 	Route::resource('production', 'TransactionManagement\ProductionController');
 	Route::post('production/find', 'TransactionManagement\ProductionController@find');
 	Route::get('exportt', 'TransactionManagement\SalesOrderController@orderExport')->name('sales-order.export');
-	/* END Sales order */
+	/* END Transaction  */
 
 	/* Master home */
 	Route::resource('slider', 'MasterhomeManagement\SliderController');
