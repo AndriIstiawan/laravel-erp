@@ -113,7 +113,7 @@
             var salesType = element.attr('data-new');
             var salesNew = $('.member-divisi .'+$(this).val()).html();
             $(this).parent().parent().find('input[name="sales"]').val(salesNew);
-            $(this).parent().parent().find('select[name="divisi"]').val(salesNew);
+            $(this).parent().parent().find('select[name="divisi"]').html(salesNew);
             $(this).valid();
         });
 
