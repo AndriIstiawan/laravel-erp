@@ -10,7 +10,27 @@
 			$(this).valid();
 		});
 
-	$('.option-card1 .type').select2({theme:"bootstrap", placeholder:'Please select Type'});
+	$('.option-card1 .type').select2({theme:"bootstrap", placeholder:'Please select Type'})
+		.change(function(){
+			var element= $(this).find('option:selected');
+			$(this).valid();
+		});
+
+	$('.option-card2 .sales').select2({theme:"bootstrap", placeholder:'Please select Sales'})
+		.change(function(){
+			var element= $(this).find('option:selected');
+            var productType = element.attr('data-name');
+            var newType = element.attr('data-email');
+            $(this).parent().parent().find('input[name="name[]"]').val(productType);
+            $(this).parent().parent().find('input[name="email[]"]').val(newType);
+			$(this).valid();
+		});
+
+	$('.option-card2 .type').select2({theme:"bootstrap", placeholder:'Please select Type'})
+		.change(function(){
+			var element= $(this).find('option:selected');
+			$(this).valid();
+		});
 	}
     refProductChange();
 	
@@ -41,7 +61,7 @@
     $(this).addClass('is-valid').removeClass('is-invalid');
   	});
 
-	$('#title').select2({theme:"bootstrap", placeholder:'Please select Title'});
+  	$('#title').select2({theme:"bootstrap", placeholder:'Please select Title'});
   	$('#title').on('change', function(){
     $(this).addClass('is-valid').removeClass('is-invalid');
   	});
@@ -77,7 +97,6 @@
 			name:{required:true,minlength:2},
 			address:{required:true,minlength:2},
 			phone:{required:true},
-			title:{required:true},
 			'nameSub[]':{
                 "allRequiredSelect": true
             },
@@ -124,8 +143,6 @@
                 "allRequiredSelect": 'each field are required'
             },
 			phone:{ required:'Please enter a phone number' 
-			},
-			title:{ required:'Please select a title' 
 			},
 			dompet:{ required:'Please enter a dompet' 
 			},

@@ -104,15 +104,27 @@
         $(this).valid();
     });
 
-    $('#client').select2({
-        theme: "bootstrap",
-        placeholder: 'Please select Client - Sales'
-    }).change(function () {
-        var element = $(this).find('option:selected');
-        var salesType = element.attr('data-new');
-        $(this).parent().parent().find('input[name="sales"]').val(salesType);
-        $(this).valid();
-    });
+    function tampilkan(){
+        $('.client').select2({
+            theme: "bootstrap",
+            placeholder: 'Please select Client - Sales'
+        }).change(function () {
+            var element = $(this).find('option:selected');
+            var salesType = element.attr('data-new');
+            var salesNew = $('.member-divisi .'+$(this).val()).html();
+            $(this).parent().parent().find('input[name="sales"]').val(salesNew);
+            $(this).parent().parent().find('select[name="divisi"]').val(salesNew);
+            $(this).valid();
+        });
+
+        $('.divisi').select2({
+            theme: "bootstrap",
+            placeholder: 'Please select Sales'
+        }).change(function () {
+            $(this).valid();
+        });
+    }
+    tampilkan();    
 
     function findTotal(elm) {
         var elemTotal = elm.parent().parent().find('input[name="total[]"]');

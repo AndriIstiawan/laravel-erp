@@ -58,17 +58,17 @@
     function notifB2B(response){
         var countPOPending = parseInt(response);
         if(countPOPending > 0){
-            $('#notif-b2b').html('<span class="badge badge-pill badge-warning"><i class="fa fa-info"></i></span>');
-            $('#notif-b2b-pending').html('<span class="badge badge-pill badge-warning" style="margin-right: 15px;">'+response+'</span>');
+            $('#notif-erp').html('<span class="badge badge-pill badge-warning"><i class="fa fa-info"></i></span>');
+            $('#notif-erp-pending').html('<span class="badge badge-pill badge-warning" style="margin-right: 15px;">'+response+'</span>');
         }else{
-            $('#notif-b2b').html('');
-            $('#notif-b2b-pending').html('');
+            $('#notif-erp').html('');
+            $('#notif-erp-pending').html('');
         }
     }
     var timeoutTime = 5000;
     var timeoutTimer = setInterval(function(){ 
         $.ajax({
-            url: "{{url('notif-b2b')}}",
+            url: "{{url('notif-erp')}}",
             type: 'GET',
             success: function (response) {
                 notifB2B(response);
@@ -81,7 +81,7 @@
             clearInterval(timeoutTimer);
             timeoutTimer = setInterval(function(){ 
                 $.ajax({
-                    url: "{{url('notif-b2b')}}",
+                    url: "{{url('notif-erp')}}",
                     type: 'GET',
                     success: function (response) {
                         notifB2B(response);

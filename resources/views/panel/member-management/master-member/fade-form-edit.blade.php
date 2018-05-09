@@ -9,8 +9,8 @@
 				<p class="col-md-4">
 			        <select name="type[]" class="form-control type" aria-describedby="type-error" required>
 			        	<option value=""></option>
-			        @foreach ($product as $product)
-			          	<option value="{{$product->id}}" >{{$product->type}}</option>
+			        @foreach ($products as $products)
+			          	<option value="{{$products->id}}" >{{$products->type}}</option>
 			        @endforeach
 			        </select>
 			      	<em id="type-error" class="error invalid-feedback">Please select a type</em>
@@ -18,14 +18,14 @@
 				<p class="col-md-3">
 			        	<select name="sales[]" class="form-control sales" aria-describedby="sales-error" required>
 			        		<option value=""></option>
-			        @foreach ($modUser as $modUser)
-			          		<option data-name="{{$modUser->name}}" data-email="{{$modUser->email}}" value="{{$modUser->id}}" >{{$modUser->name}}</option>
+			        @foreach ($modUsers as $modUsers)
+			          		<option data-name="{{$modUsers->name}}" data-email="{{$modUsers->email}}" value="{{$modUsers->id}}" >{{$modUsers->name}}</option>
 			        @endforeach
 			        	</select>
 			      <em id="sales-error" class="error invalid-feedback">Please enter a new sales</em>
 			  	</p>
 			  	<p class="col-md-1">
-		            <button class="btn btn-danger rounded pull-right" id="minmore" onclick="$(this).closest('.option-card1 .optts').remove()">
+		            <button class="btn btn-danger rounded pull-right" id="minmore" onclick="$(this).closest('.option-card2 .optts').remove()">
 		                <i class="fa fa-trash"></i>
 		            </button>
 			    </p>

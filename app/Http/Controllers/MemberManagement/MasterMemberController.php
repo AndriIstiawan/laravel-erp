@@ -58,17 +58,35 @@ class MasterMemberController extends Controller
 		$member = new Member();
         $member->name = $request->name;
         $member->email = $request->email;
-        $member->phone = $request->phone;
-        /*$member->point = $request->point;
+        $member->phone = $request->phone;/*
+        $member->point = $request->point;
         $level=Levels::where('_id', $request->level)->get();
         $member->level=$level->toArray();
-        */$member->status = $request->status;
+        $member->status = $request->status;*/
         $member->address = $request->address;
+        $member->title = $request->title;
         /*$member->dompet = $request->dompet;
         $member->koin = $request->koin;
-        */$member->password = bcrypt($request->password);
+        $member->password = bcrypt($request->password);*/
+        $subDiv =[];
+        for($i=0; $i < count($request->nameSub); $i++){
+            $products=Product::where('_id', $request->type[$i])->first();
+            $sales=user::where('_id', $request->sales[$i])->first();
+            $subDiv[] =[
+                'proId'=>$products['id'],
+                'name'=>$products['name'],
+                'type'=>$products['type'],
+                'code'=>$products['code'],
+                'sales'=>$sales['name'],
+                'email'=>$sales['email'],
+                'salId'=>$sales['id'],
+                'nameSub' => $request->nameSub[$i],
+            ];
+        }
+        $member->subDivision=$subDiv;
+/*
         $sales=user::whereIn('_id', $request->sales)->get();
-        $member->sales=$sales->toArray();
+        $member->sales=$sales->toArray();*/
 		$member->save();
 
         if ($request->hasFile('picture')) {
@@ -80,7 +98,7 @@ class MasterMemberController extends Controller
 		}
 
 		$member->save();
-
+/*        return dd($member);*/
 		return redirect()->route('master-client.index')->with('toastr', 'new');
     }
 
@@ -104,12 +122,18 @@ class MasterMemberController extends Controller
     //view form edit
     public function edit($id){
 		$member = Member::find($id);
-        $modUser = User::where('role', 'elemMatch', array('name' => 'Sales'))->whereNotIn('name', array_column($member->sales,'name'))->get();/*
+        $modUser = User::where('role', 'elemMatch', array('name' => 'Sales'))->whereNotIn('email', array_column($member->subDivision,'email'))->get();
+        $modUsers = User::where('role', 'elemMatch', array('name' => 'Sales'))->get();
+        $product= Product::whereNotIn('_id', array_column($member->subDivision,'proId'))->get();
+        $products = Product::all();/*
         $level = Levels::where('name', array_column($member->level,'name'))->get();*/
         return view('panel.member-management.master-member.form-edit')
         ->with([
         	'member'=>$member, 
-        	'modUser' => $modUser
+        	'modUser' => $modUser,
+            'modUsers' => $modUsers,
+            'product' => $product,
+            'products' => $products
         ]);
 	}
 
@@ -122,11 +146,27 @@ class MasterMemberController extends Controller
         $member->phone = $request->phone;
         /*$member->sales = $request->sales;
         $level=Levels::where('_id', $request->level)->get();
-        $member->level=$level->toArray();
-        */$member->address = $request->address;
-        $member->status = $request->status;
-        $sales=user::whereIn('_id', $request->sales)->get();
-        $member->sales=$sales->toArray();
+        $member->level=$level->toArray();*/
+        $member->address = $request->address;
+        $member->title = $request->title;
+        /*$member->status = $request->status;*/
+        $subDiv =[];
+        for($i=0; $i < count($request->nameSub); $i++){
+            $products=Product::where('_id', $request->type[$i])->first();
+            $sales=user::where('_id', $request->sales[$i])->first();
+            $subDiv[] =[
+                'proId'=>$products['id'],
+                'name'=>$products['name'],
+                'type'=>$products['type'],
+                'code'=>$products['code'],
+                'sales'=>$sales['name'],
+                'email'=>$sales['email'],
+                'salId'=>$sales['id'],
+                'nameSub' => $request->nameSub[$i],
+            ];
+        }
+        $member->subDivision=$subDiv;
+
 		$member->save();
 
         if ($request->hasFile('picture')) {

@@ -44,6 +44,14 @@
 													<em id="name-error" class="error invalid-feedback">Please enter a name site title</em>
 												</div>
 												<div class="form-group">
+													<select class="form-control" id="title" name="title" placeholder="Phone" aria-describedby="title-error">
+														<option value=""></option>
+														<option value="Bapak" {{($member->title == 'Bapak'?'selected':'')}}>Bapak</option>
+														<option value="Ibu" {{($member->title == 'Ibu'?'selected':'')}}>Ibu</option>
+													</select> 
+													<em id="title-error" class="error invalid-feedback">Please select a title</em>
+												</div>
+												<div class="form-group">
 													<input type="text" class="form-control" id="email" name="email" placeholder="Email" value="{{$member->email}}" aria-describedby="email-error">
 													<em id="email-error" class="error invalid-feedback">Please enter a valid email address</em>
 												</div>
@@ -85,35 +93,52 @@
 				</div>
 				<!--end card -->
 			</div>
-			<div class="col-lg-5">
+			<div class="col-lg-12">
 				<div class="card">
 					<div class="card-header">
-						<i class="fa fa-align-justify"></i> Sales Member
-						<small>Data</small>
+						<i class="fa fa-align-justify"></i> Sub
+						<small>Division management</small>
 					</div>
 					<div class="card-body">
-						<div class="row">
-							<div class="form-group col-md-12">
-		                      	<label class="col-form-label" for="sales">*Sales</label>
-		                        	<select id="sales" name="sales[]" class="form-control" aria-describedby="sales-error" required>
-		                        	@foreach ($member->sales as $atts)
-		                          		<option data-name="{{$atts['name']}}" data-email="{{$atts['email']}}" value="{{$atts['_id']}}" selected>{{$atts['name']}}</option>
-		                        	@endforeach
-		                        	@foreach ($modUser as $modUser)
-		                          		<option data-name="{{$modUser->name}}" data-email="{{$modUser->email}}" value="{{$modUser->id}}">{{$modUser->name}}</option>
-		                        	@endforeach
-		                        	</select>
-		                      <em id="sales-error" class="error invalid-feedback">Please enter a new sales</em>
-		                  	</div>
-		                    <div class="input-group col-md-12">
-								<span class="input-group-text"><i class="fa fa-user-circle-o" ></i></span>
-									<input type="text" class="form-control" value="{{$atts['name']}}" id="sales-name" readonly>
+						<div class="option-card1">
+							@foreach ($member->subDivision as $attr)
+	        				<div class="optts">
+								<div class="row">
+									<p class="col-md-4">
+										<input type="text" id="nameSub" class="form-control" name="nameSub[]" aria-describedby="nameSub-error" value="{{$attr['nameSub']}}" placeholder="Name Sub" required>
+										<em id="nameSub-error" class="error invalid-feedback">Please enter a new name</em>
+									</p>
+									<p class="col-md-4">
+								        <select name="type[]" class="form-control type" aria-describedby="type-error" required>
+								        	<option value=""></option>
+								          	<option value="{{$attr['proId']}}" selected="">{{$attr['type']}}</option>
+								        @foreach ($product as $product)
+								          	<option value="{{$product['_id']}}" >{{$product['type']}}</option>
+								        @endforeach
+								        </select>
+								      	<em id="type-error" class="error invalid-feedback">Please select a type</em>
+								  	</p>
+									<p class="col-md-3">
+				                        	<select name="sales[]" class="form-control sales" aria-describedby="sales-error" required>
+				                          		<option value="{{$attr['salId']}}" selected>{{$attr['sales']}}</option>
+				                        	@foreach ($modUser as $modUser)
+				                          		<option value="{{$modUser['_id']}}">{{$modUser['name']}}</option>
+				                        	@endforeach
+				                        	</select>
+				                      <em id="sales-error" class="error invalid-feedback">Please enter a new sales</em>
+				                  	</p>
+				                  	<p class="col-md-1">
+							            <button class="btn btn-danger rounded pull-right" id="minmore" onclick="$(this).closest('.option-card1 .optts').remove()">
+							                <i class="fa fa-trash"></i>
+							            </button>
+								    </p>
+								</div>
 							</div>
-							<div class="input-group col-md-12" style="padding-top: 16px">
-								<span class="input-group-text"><i class="fa fa-envelope" ></i></span>
-									<input type="text" class="form-control" id="sales-email" value="{{$atts['email']}}" readonly>
-							</div>
+							@endforeach
 						</div>
+						<div class="option-card2">
+						</div>
+						<button  type="button" class="btn btn-primary pull-right" id="addMe" onclick="$('.option-card2').append($('.optt').html());refProductChange();"><i class="fa fa-plus"></i>&nbsp;&nbsp;Add Sub</button>
 					</div>
 				</div>
 			</div>
@@ -159,148 +184,11 @@
 	</div>
 </div>
 </form>
+@include('panel.member-management.master-member.fade-form-edit')
 @endsection
 <!-- /.container-fluid -->
 
 @section('myscript')
 <script src="{{ asset('fiture-style/select2/select2.min.js') }}"></script>
-<script>	
-	$('#level').select2({theme:"bootstrap", placeholder:'Please select'});
-	$('#sales').select2({theme:"bootstrap", placeholder:'Please select'})
-		.change(function(){
-			var element= $(this).find('option:selected');
-			$('#sales-name').val(element.attr('data-name'));
-			$('#sales-email').val(element.attr('data-email'));
-		});
-	
-	function readURL(input) {
-		if (input.files && input.files[0]) {
-			var reader = new FileReader();
-			reader.onload = function (e){ $('.picturePrev').attr('src', e.target.result); }
-			reader.readAsDataURL(input.files[0]);
-		}
-	}
-
-	$(document).on('click', '#save', function(e) {
-        e.preventDefault();
-        if($('#jxForm1').valid()){
-            swal({
-                title: "Are you sure want to submit the form?",
-                text: "Please make sure all data inputted correctly",
-                buttons: true,
-            }).then((confirm) => {
-                if(confirm){ $('#jxForm1').submit(); }
-            });
-        }
-    });
-
-	$("#picture").change(function (){ readURL(this); });
-
-	$('#level').on('change', function(){
-    $(this).addClass('is-valid').removeClass('is-invalid');
-  	});
-
-	$('#status').on('change', function(){
-    $(this).addClass('is-valid').removeClass('is-invalid');
-  	});
-
-  	$('#sales').on('change', function(){
-    $(this).addClass('is-valid').removeClass('is-invalid');
-  	});
-
-	$("#jxForm1").validate({
-		rules:{
-			name:{required:true,minlength:2},
-			address:{required:true,minlength:2},
-			sales:{required:true},
-			phone:{required:true},
-			level:{required:true},
-			status:{required:true},
-			password:{required:true,minlength:5},
-			confirm_password:{required:true,equalTo:'#password'},
-			email:{
-				required:true,
-				email:true,
-				remote:{
-					url: '{{ route('master-client.index') }}/find',
-					type: "post",
-					data:{
-						_token:'{{ csrf_token() }}',
-						id: $('.id').val(),
-						email: function(){
-							return $('#jxForm1 :input[name="email"]').val();
-						}
-					}
-				}
-			}
-		},
-		messages:{
-			name:{
-				required:'Please enter a name site',
-				minlength:'Name must consist of at least 2 characters'
-			},
-			address:{
-				required:'Please enter a name site',
-				minlength:'Name must consist of at least 2 characters'
-			},
-			phone:{ required:'Please enter a phone number' 
-			},
-			sales:{ required:'Please select sales' 
-			},
-			level:{ required:'Please select level' 
-			},
-			status:{ required:'Please select status' 
-			},
-			password:{
-				required:'Please provide a password',
-				minlength:'Password must be at least 5 characters long'
-			},
-			confirm_password:{
-				required:'Please provide a password',
-				minlength:'Password must be at least 5 characters long',
-				equalTo:'Please enter the same password'
-			},
-			email: {
-				email:'Please enter a valid email address',
-				remote:'Email address already in use. Please use other email.'
-			}
-		},
-		errorElement:'em',
-		errorPlacement:function(error,element){
-			error.addClass('invalid-feedback');
-		},
-		highlight:function(element,errorClass,validClass){
-			$(element).addClass('is-invalid').removeClass('is-valid');
-		},
-		unhighlight:function(element,errorClass,validClass){
-			$(element).addClass('is-valid').removeClass('is-invalid');
-		}
-	});
-
-	$(document).ready(function() {
-    var max_fields      = 10; //maximum input boxes allowed
-    var wrapper         = $(".input_fields_wrap"); //Fields wrapper
-    var add_button      = $(".add_field_btn-primary"); //Add button ID
-    
-    var x = 1; //initlal text box count
-    $(add_button).click(function(e){ //on add input button click
-        e.preventDefault();
-        if(x < max_fields){ //max input box allowed
-            x++; //text box increment
-            $(wrapper).append('<div class="option-card"><div class="form-group"><label class="col-form-label" for="address">*Address</label><div id="address" class="control-group input-group" style="margin-top:10px"><input type="text" name="address[]" class="form-control" placeholder="Address" aria-describedby="address-error" required><div class="input-group-btn"><button class="btn btn-danger remove" type="button"><i class="fa fa-close"></i></button></div><em id="address-error" class="error invalid-feedback">Please enter a address</em></div></div></div>'); //add input box
-        }
-    });
-    
-    $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
-        e.preventDefault(); $(this).parent('div').remove(); x--;
-    })
-});
-	$(document).ready(function() {
-  //here it will remove the current value of the remove button which has been pressed
-      $("body").on("click",".remove",function(){ 
-          $(this).closest('.form-group').remove();
-      });
-  });
-	
-</script>
+@include('panel.member-management.master-member.form-edit-js')
 @endsection
