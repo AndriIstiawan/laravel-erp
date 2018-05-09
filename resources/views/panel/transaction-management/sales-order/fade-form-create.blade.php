@@ -1,4 +1,13 @@
 <div class="fade" style="display: none;">
+    <div class="member-divisi">
+        @foreach($member as $member_list)
+            <div class="{{$member_list['_id']}}">
+                @foreach($member_list['subDivision'] as $member_divisi)
+<option value="{{$member_divisi['email']}}">{{$member_divisi['nameSub']}}</option>
+                @endforeach
+            </div>
+        @endforeach
+    </div>
     <div class="optt">
         <div class="optts">
             <div class="row">

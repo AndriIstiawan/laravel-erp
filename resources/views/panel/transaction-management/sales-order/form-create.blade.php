@@ -30,16 +30,20 @@
 													<input type="hidden" class="form-control" id="sono" name="sono" aria-describedby="sono-error" value="{{$so_id}}" readonly>
 													<em id="sono-error" class="error invalid-feedback">Please enter a SO NO</em>
 													<input type="hidden" class="form-control" id="date" name="date" value="{{ date('Y-m-d H:i:s') }}" readonly>
-												<div class="input-group">
-													<select id="client" class="form-control" style="width: 100% !important;" name="client" aria-describedby="client-error">
+												<div class="form-group">
+													<select class="form-control client" style="width: 100% !important;" name="client" aria-describedby="client-error" onchange="tampilkan($(this))">
 														<option value=""></option>
-														@foreach($member as $member)
-														<option data-new="{{(isset($member->sales[0]['_id'])?$member->sales[0]['_id']:'')}}" value="{{$member->id}}">{{$member->name}} - {{(isset($member->sales[0]['name'])?$member->sales[0]['name']:'')}}</option>
+														@foreach($member as $member_option)
+														<option data-new="{{(isset($member_option->subDivision[0]['salId'])?$member_option->subDivision[0]['salId']:'')}}" value="{{$member_option->id}}">{{$member_option->name}} - {{(isset($member_option->subDivision[0]['sales'])?$member_option->subDivision[0]['sales']:'')}}</option>
 														@endforeach
 													</select>
 													<em id="client-error" class="error invalid-feedback">Please enter a client</em>
 												</div>
-												<input type="hidden" class="form-control" id="sales" name="sales" aria-describedby="sales-error" readonly>
+												<div class="form-group member_listview">
+													<select type="text" name="divisi" style="width: 100% !important;" class="form-control form-control-sm divisi">
+					                        		</select>
+												<input type="text" class="form-control" id="sales" name="sales" aria-describedby="sales-error" readonly>
+					                        	</div>
 												</div>
 											</div>
 									</div>

@@ -85,7 +85,7 @@
                 name: 'phone'
             },
             {
-                data: 'sales.[].name',
+                data: 'subDivision.[<br>].sales',
                 name: 'phone'
             },
             {

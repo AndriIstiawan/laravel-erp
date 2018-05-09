@@ -34,10 +34,10 @@
 												<select id="client" class="form-control client" style="width: 100% !important;" name="client" aria-describedby="client-error">
 													<option value=""></option>
 													@foreach($order->client as $memberattr)
-													<option data-new="{{(isset($memberattr['sales'][0]['_id'])?$memberattr['sales'][0]['_id']:'')}}" value="{{$memberattr['_id']}}" selected="">{{$memberattr['name']}} - {{(isset($memberattr['sales'][0]['name'])?$memberattr['sales'][0]['name']:'')}}</option>
+													<option data-new="{{(isset($memberattr['subDivision'][0]['solId'])?$memberattr['subDivision'][0]['solId']:'')}}" value="{{$memberattr['_id']}}" selected="">{{$memberattr['name']}} - {{(isset($memberattr['subDivision'][0]['sales'])?$memberattr['subDivision'][0]['sales']:'')}}</option>
 													@endforeach
 													@foreach($member as $member)
-													<option data-new="{{(isset($member->sales[0]['_id'])?$member->sales[0]['_id']:'')}}" value="{{$member->id}}">{{$member->name}} - {{(isset($member->sales[0]['name'])?$member->sales[0]['name']:'')}}</option>
+													<option data-new="{{(isset($member->subDivision[0]['salId'])?$member->subDivision[0]['salId']:'')}}" value="{{$member->id}}">{{$member->name}} - {{(isset($member->subDivision[0]['sales'])?$member->subDivision[0]['sales']:'')}}</option>
 													@endforeach
 												</select>
 												<em id="client-error" class="error invalid-feedback">Please enter a client</em>

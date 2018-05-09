@@ -42,11 +42,19 @@
 													<em id="name-error" class="error invalid-feedback">Please enter a name site</em>
 												</div>
 												<div class="form-group">
+													<select class="form-control" id="title" name="title" placeholder="Phone" aria-describedby="title-error">
+														<option value=""></option>
+														<option value="Bapak">Bapak</option>
+														<option value="Ibu">Ibu</option>
+													</select> 
+													<em id="title-error" class="error invalid-feedback">Please select a title</em>
+												</div>
+												<div class="form-group">
 													<input type="text" class="form-control" id="email" name="email" placeholder="Email" aria-describedby="email-error">
 													<em id="email-error" class="error invalid-feedback">Please enter a valid email address</em>
 												</div>
 												<div class="form-group">
-													<input type="number" class="form-control" id="phone" name="phone" placeholder="Phone" aria-describedby="phone-error">
+													<input type="text" class="form-control" id="phone" name="phone" placeholder="Phone" aria-describedby="phone-error">
 													<em id="phone-error" class="error invalid-feedback">Please enter a valid phone</em>
 												</div>
 												<!-- <div class="form-group">
