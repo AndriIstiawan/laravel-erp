@@ -15,6 +15,7 @@ use File;
 use Image;
 use Excel;
 use datetime;
+use App\Counter;
 
 class SalesOrderController extends Controller
 {
@@ -43,10 +44,6 @@ class SalesOrderController extends Controller
     {
         return view('panel.transaction-management.sales-order.index');
     }
-    // public function details()
-    // {
-    //     return view('panel.transaction-management.sales-order.index');
-    // }
 
     //view form create
     public function create()
@@ -137,8 +134,8 @@ class SalesOrderController extends Controller
             
             ->addColumn('action', function ($order) {
                 return 
-                    // '<a class="btn btn-success btn-sm"  href="'.route('sales-order.edit',['id' => $order->id]).'">
-                    //     <i class="fa fa-pencil-square-o"></i>&nbsp;Edit</a>'.
+                    // '<a class="btn btn-success btn-sm"  href="'.route('sales-order.display',['id' => $order->id]).'">
+                    //     <i class="fa fa-pencil-square-o"></i>&nbsp;Details</a>'.
                     '<a class="btn btn-success btn-sm"  href="'.route('sales-order.edit',['id' => $order->id]).'">
                         <i class="fa fa-pencil-square-o"></i>&nbsp;Edit</a>'.
                     '<form style="display:inline;" method="POST" action="'.
@@ -155,8 +152,8 @@ class SalesOrderController extends Controller
     {
         $order = SalesOrder::find($id);
         $product= Product::whereNotIn('name', array_column($order->productattr,'name'))->get();
-        $member= Member::whereNotIn('name', array_column($order->client,'name'))->get(); 
-        $products= Product::all(); 
+        $member= Member::whereNotIn('name', array_column($order->client,'name'))->get();
+        $products= Product::all();
         $att = SalesOrder::whereIn('name', array_column($order->productattr,'name'))->get();
         $user= User::where('role', 'elemMatch', array('name' => 'Production'))->get();
         $users= User::where('role', 'elemMatch', array('name' => 'Production'))->get();
@@ -228,8 +225,16 @@ class SalesOrderController extends Controller
         return redirect()->route('sales-order.index')->with('dlt', 'sales-order');
     }
 
+    public function display($id)
+    {
+        $order = SalesOrder::find($id);
+        $order->delete();
+        return redirect()->route('sales-order.index')->with('dlt', 'sales-order');
+    }
+
     public function generateSO(){
-        return "SO-".date('H:i:s-d-m-Y');
+        $id_counter = Counter::first()->generateSO('so_counter');
+        return "SO-".$id_counter;
     }
 
     public function orderExport(){
