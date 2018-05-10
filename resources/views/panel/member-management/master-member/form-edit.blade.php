@@ -105,11 +105,11 @@
 	        				<div class="optts">
 								<div class="row">
 									<p class="col-md-4">
-										<input type="text" id="nameSub" class="form-control" name="nameSub[]" aria-describedby="nameSub-error" value="{{$attr['nameSub']}}" placeholder="Name Sub" required>
+										<input type="text" class="form-control" name="nameSub[]" aria-describedby="nameSub-error" value="{{$attr['nameSub']}}" placeholder="Name Sub" >
 										<em id="nameSub-error" class="error invalid-feedback">Please enter a new name</em>
 									</p>
 									<p class="col-md-4">
-								        <select name="type[]" class="form-control type" aria-describedby="type-error" required>
+								        <select name="type[]" class="form-control type" aria-describedby="type-error">
 								        	<option value=""></option>
 								          	<option value="{{$attr['proId']}}" selected="">{{$attr['type']}}</option>
 								        @foreach ($product as $product)
@@ -119,7 +119,7 @@
 								      	<em id="type-error" class="error invalid-feedback">Please select a type</em>
 								  	</p>
 									<p class="col-md-3">
-				                        	<select name="sales[]" class="form-control sales" aria-describedby="sales-error" required>
+				                        	<select name="sales[]" class="form-control sales" aria-describedby="sales-error">
 				                          		<option value="{{$attr['salId']}}" selected>{{$attr['sales']}}</option>
 				                        	@foreach ($modUser as $modUser)
 				                          		<option value="{{$modUser['_id']}}">{{$modUser['name']}}</option>

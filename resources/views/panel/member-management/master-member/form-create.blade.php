@@ -141,7 +141,33 @@
 						<small>Division management </small>
 					</div>
 					<div class="card-body">
-						<div class="option-card1">
+						<div class="form-group input_">
+							<div class="row product-list">
+								<p class="col-md-4">
+									<input type="text" class="form-control" name="nameSub[]" aria-describedby="nameSub-error" id="nameSub" placeholder="Name Sub">
+									<em id="nameSub-error" class="error invalid-feedback">Please enter a new name</em>
+								</p>
+								<p class="col-md-4">
+							        <select name="type[]" class="form-control type" aria-describedby="type-error">
+							        	<option value=""></option>
+							        @foreach ($product as $attr)
+							          	<option value="{{$attr->id}}" >{{$attr->type}}</option>
+							        @endforeach
+							        </select>
+							      	<em id="type-error" class="error invalid-feedback">Please select a type</em>
+							  	</p>
+								<p class="col-md-4">
+							        	<select name="sales[]" class="form-control sales" aria-describedby="sales-error" >
+							        		<option value=""></option>
+							        @foreach ($modUser as $mod)
+							          		<option data-name="{{$mod->name}}" data-email="{{$mod->email}}" value="{{$mod->id}}" >{{$mod->name}}</option>
+							        @endforeach
+							        	</select>
+							      <em id="sales-error" class="error invalid-feedback">Please enter a new sales</em>
+							  	</p>
+							</div>
+							<div class="option-card1">
+							</div>
 						</div>
 					<button  type="button" class="btn btn-primary pull-right" id="addMe" onclick="$('.option-card1').append($('.optt').html());refProductChange();"><i class="fa fa-plus"></i>&nbsp;&nbsp;Add Sub</button>
 					</div>

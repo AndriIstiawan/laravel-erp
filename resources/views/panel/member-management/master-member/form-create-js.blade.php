@@ -1,16 +1,26 @@
 <script>	
 	function refProductChange() {
-	$('.option-card1 .sales').select2({theme:"bootstrap", placeholder:'Please select Sales'})
+	$('.input_ .option-card1 .sales').select2({theme:"bootstrap", placeholder:'Please select Sales'})
 		.change(function(){
 			var element= $(this).find('option:selected');
-            var productType = element.attr('data-name');
-            var newType = element.attr('data-email');
-            $(this).parent().parent().find('input[name="name[]"]').val(productType);
-            $(this).parent().parent().find('input[name="email[]"]').val(newType);
+			$(this).valid();
+		});
+		
+	$('.product-list .sales').select2({theme:"bootstrap", placeholder:'Please select Sales'})
+		.change(function(){
+			var element= $(this).find('option:selected');
 			$(this).valid();
 		});
 
-	$('.option-card1 .type').select2({theme:"bootstrap", placeholder:'Please select Type'});
+	$('.input_ .option-card1 .type').select2({theme:"bootstrap", placeholder:'Please select Type'})
+	.change(function () {
+        $(this).valid();
+    		});
+
+	$('.product-list .type').select2({theme:"bootstrap", placeholder:'Please select Type'})
+	.change(function () {
+        $(this).valid();
+    		});
 	}
     refProductChange();
 	
@@ -79,7 +89,7 @@
 			phone:{required:true},
 			title:{required:true},
 			'nameSub[]':{
-                "allRequiredSelect": true
+                "allRequiredInput": true
             },
             'type[]':{
                 "allRequiredSelect": true
@@ -115,7 +125,7 @@
 				minlength:'Name must consist of at least 2 characters'
 			},
 			'nameSub[]': {
-                "allRequiredSelect": 'each field are required'
+                "allRequiredInput": 'each field are required'
             },
 			'type[]': {
                 "allRequiredSelect": 'each field are required'

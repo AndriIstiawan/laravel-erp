@@ -3,11 +3,11 @@
         <div class="optts">
 			<div class="row">
 				<p class="col-md-4">
-					<input type="text" class="form-control" name="nameSub[]" aria-describedby="nameSub-error" placeholder="Name Sub" required>
+					<input id="nameSub" type="text" class="form-control" name="nameSub[]" aria-describedby="nameSub-error" placeholder="Name Sub">
 					<em id="nameSub-error" class="error invalid-feedback">Please enter a new name</em>
 				</p>
 				<p class="col-md-4">
-			        <select name="type[]" class="form-control type" aria-describedby="type-error" required>
+			        <select name="type[]" class="form-control type" aria-describedby="type-error">
 			        	<option value=""></option>
 			        @foreach ($products as $products)
 			          	<option value="{{$products->id}}" >{{$products->type}}</option>
@@ -16,7 +16,7 @@
 			      	<em id="type-error" class="error invalid-feedback">Please select a type</em>
 			  	</p>
 				<p class="col-md-3">
-			        	<select name="sales[]" class="form-control sales" aria-describedby="sales-error" required>
+			        	<select name="sales[]" class="form-control sales" aria-describedby="sales-error">
 			        		<option value=""></option>
 			        @foreach ($modUsers as $modUsers)
 			          		<option data-name="{{$modUsers->name}}" data-email="{{$modUsers->email}}" value="{{$modUsers->id}}" >{{$modUsers->name}}</option>
