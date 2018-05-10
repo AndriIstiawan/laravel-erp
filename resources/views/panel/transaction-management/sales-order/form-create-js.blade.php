@@ -110,17 +110,18 @@
             placeholder: 'Please select Client - Sales'
         }).change(function () {
             var element = $(this).find('option:selected');
-            var salesType = element.attr('data-new');
             var salesNew = $('.member-divisi .'+$(this).val()).html();
-            $(this).parent().parent().find('input[name="sales"]').val(salesNew);
             $(this).parent().parent().find('select[name="divisi"]').html(salesNew);
             $(this).valid();
         });
 
         $('.divisi').select2({
             theme: "bootstrap",
-            placeholder: 'Please select Sales'
+            placeholder: 'Please select divisi'
         }).change(function () {
+            var element = $(this).find('option:selected');
+            var salesType = element.attr('data-new');
+            $(this).parent().parent().find('input[name="sales"]').val(salesType);
             $(this).valid();
         });
     }
@@ -225,7 +226,7 @@
             client: {
                 required: true
             },
-            sales: {
+            divisi: {
                 required: true
             },
             'product[]': {
@@ -245,8 +246,8 @@
             client: {
                 required: 'Please select a client'
             },
-            sales: {
-                required: 'Please select a sales'
+            divisi: {
+                required: 'Please select a divisi'
             },
             'product[]': {
                 "allRequiredSelect": 'each field are required'
