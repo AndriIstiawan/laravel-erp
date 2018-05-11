@@ -114,8 +114,13 @@ Route::middleware('auth')->group(function() {
 	Route::resource('paymentpo', 'PaymentManagement\PaymentPOController');
 	Route::post('paymentpo/find', 'PaymentManagement\PaymentPOController@find');
 
+    /* Master CLient */
 	Route::resource('master-client', 'MemberManagement\MasterMemberController');
-	Route::post('master-client/find', 'MemberManagement\MasterMemberController@find');
+    Route::post('master-client/find', 'MemberManagement\MasterMemberController@find');
+
+    Route::resource('location', 'MemberManagement\LocationController');
+    Route::post('location/find', 'MemberManagement\LocationController@find');
+    /* END Master CLient */
 
 	Route::resource('level', 'MemberManagement\LevelController');
 	Route::post('level/find', 'MemberManagement\LevelController@find');
