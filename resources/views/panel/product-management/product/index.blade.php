@@ -188,10 +188,10 @@
             }
         ],
         "columnDefs": [
-            {"targets": 3,"className": "text-center"}
+            {"targets": 4,"className": "text-center"}
         ],
         "order": [
-            [2, 'desc']
+            [3, 'desc']
         ]
     });
     $('.datatable').attr('style', 'border-collapse: collapse !important');

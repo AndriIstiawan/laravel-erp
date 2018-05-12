@@ -116,11 +116,17 @@ Route::middleware('auth')->group(function() {
 
     /* Master CLient */
 	Route::resource('master-client', 'MemberManagement\MasterMemberController');
+<<<<<<< HEAD
+	Route::post('master-client/find', 'MemberManagement\MasterMemberController@find');
+	Route::get('export-client', 'MemberManagement\MasterMemberController@clientExport')->name('client.export');
+	Route::post('import-client', 'MemberManagement\MasterMemberController@clientImport')->name('client.import');
+=======
     Route::post('master-client/find', 'MemberManagement\MasterMemberController@find');
 
     Route::resource('location', 'MemberManagement\LocationController');
     Route::post('location/find', 'MemberManagement\LocationController@find');
     /* END Master CLient */
+>>>>>>> 1328cae090c44093fd05c1b504593ac55bfba82b
 
 	Route::resource('level', 'MemberManagement\LevelController');
 	Route::post('level/find', 'MemberManagement\LevelController@find');

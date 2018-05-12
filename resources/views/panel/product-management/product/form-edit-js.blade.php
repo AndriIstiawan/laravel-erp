@@ -1,7 +1,7 @@
 <script>  
   
   //submit button
-        $(document).on('click', '#save', function(e) {
+        /*$(document).on('click', '#save', function(e) {
             e.preventDefault();
             if($('#jxForm1').valid()){
                 swal({
@@ -12,11 +12,15 @@
                     if(confirm){ $('#jxForm1').submit(); }
                 });
             }
-        });
+        });*/
 
-    $('#type').select2({theme: "bootstrap",placeholder: 'Please select'})
+    $('#type').select2({theme: "bootstrap",placeholder: 'Please select Type'})
               .change(function () {$(this).valid();});
-    $('#currency').select2({theme: "bootstrap",placeholder: 'Please select'})
+    $('#category').select2({theme: "bootstrap",placeholder: 'Please select Category'})
+              .change(function () {$(this).valid();});
+    $('#commercial').select2({theme: "bootstrap",placeholder: 'Please select Commercial'})
+              .change(function () {$(this).valid();});
+    $('#currency').select2({theme: "bootstrap",placeholder: 'Please select Curency'})
               .change(function () {$(this).valid();});
 
   $("#jxForm1").validate({
@@ -24,6 +28,8 @@
       name:{required:true},
       type:{required:true},
       code:{required:true},
+      commercial:{required:true},
+      category:{required:true},
       stock:{required:true},
       satu:{required:true},
       dua:{required:true},
@@ -45,6 +51,12 @@
       },
       stock:{
         required:'Please enter a stock'
+      },
+      commercial:{
+        required:'Please enter a commercial'
+      },
+      category:{
+        required:'Please enter a category'
       },
       satu:{
         required:'Please fill the blank'

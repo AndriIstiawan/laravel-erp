@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Member;
 use App\Levels;
 use App\Product;
+use Excel;
 use App\User;
 use App\Counter;
 use Yajra\Datatables\Datatables;
@@ -214,6 +215,42 @@ class MasterMemberController extends Controller
         return redirect()->route('master-client.index')->with('edit', 'client');
     }
 
+    public function generateSO(){
+        $id_counter = CodeMember::first()->generateSO('code_member');
+        return ($id_counter);
+    }
+
+    public function clientExport(Request $request){
+       $member=Member::select('code','name','phone','email','fax','title','address','pasar','subDivision','shipaddress')->get();
+            $members=[];
+       
+        for($i=0; $i < count($member); $i++){
+            for($j=0; $j < count($member[$i]->subDivision); $j++){
+                $members[]=[
+                    'Code'=>$member[$i]->code,
+                    'Dispaly Name'=>$member[$i]->name,
+                    'Mobile'=>$member[$i]->phone,
+                    'Email'=>$member[$i]->email,
+                    'Fax'=>$member[$i]->fax,
+                    'Billing Address'=>$member[$i]->address,
+                    'Title'=>$member[$i]->title,
+                    'Pasar'=>$member[$i]->pasar,
+                    'Sales'=>$member[$i]->subDivision[$j]['sales'],
+                    'Type'=>$member[$i]->subDivision[$j]['type'],
+                    'Shipping Address'=>$member[$i]->shipaddress[$j]['shipaddress'],
+
+                ];
+            }
+        }
+        return Excel::create('client-list', function ($excel) use ($members) {
+            $excel->sheet('client list', function ($sheet) use ($members) {
+                $sheet->fromArray($members);
+            });
+
+        })->download('xlsx');
+        return dd($members);
+
+    }
     //Delete data setting
     public function destroy($id){
 		$member = Member::find($id);

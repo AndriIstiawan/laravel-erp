@@ -25,56 +25,50 @@
                         </div>
                         <div class="card-body">
                             <div class="form-group row">
-                                <label class="col-md-3 col-form-label" for="name">*Product Name
-                                    <br>
-                                    <small class="text-muted">Write product names according to product type, brand, and details.</small>
-                                </label>
-                                <div class="col-md-9">
+                                <p class="col-md-9">
                                     <input type="text" name="name" class="form-control" placeholder="Enter product name.." aria-describedby="name-error">
                                     <em id="name-error" class="error invalid-feedback"></em>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-md-3 col-form-label" for="type">*Type
-                                    <br>
-                                </label>
-                                <div class="col-md-9">
-                                    <div class="form-group row">
-                                        <div class="col-md-4">
-                                            <select id="type" name="type" class="form-control" style="width: 100% !important;" aria-describedby="type-error" required>
-                                                <option value=""></option>
-                                                <option value="BP" >BP</option>
-                                                <option value="LC">LC</option>  
-                                                <option value="AC">AC</option>  
-                                                <option value="CM">CM</option>  
-                                                <option value="PK">PK</option>
-                                            </select>
-                                            <em id="type-error" class="error invalid-feedback">Please select type</em>
-                                        </div>
-                                    </div>
-                                </div>
-                                <label class="col-md-3 col-form-label" for="Code">*Code
-                                    <br>
-                                </label>
-                                <div class="col-md-9">
-                                    <div class="form-group row">
-                                        <div class="col-md-4">
-                                            <input type="text" class="form-control" name="code" placeholder="500YU" id="code" aria-describedby="code-error" required="">
-                                            <em id="code-error" class="error invalid-feedback">Please select type</em>
-                                        </div>
-                                    </div>
-                                </div>
-                                <label class="col-md-3 col-form-label" for="Stock">*Stock
-                                    <br>
-                                </label>
-                                <div class="col-md-9">
-                                    <div class="form-group row">
-                                        <div class="col-md-4">
-                                            <input type="number" class="form-control" placeholder="00" name="stock" id="stock" aria-describedby="stock-error" >
-                                            <em id="stock-error" class="error invalid-feedback">Please select type</em>
-                                        </div>
-                                    </div>
-                                </div>
+                                </p>
+                                <p class="form-group col-md-3">
+                                    <select id="type" name="type" class="form-control" style="width: 100% !important;" aria-describedby="type-error" required>
+                                        <option value=""></option>
+                                        <option value="BP" >BP</option>
+                                        <option value="LC">LC</option>  
+                                        <option value="AC">AC</option>  
+                                        <option value="CM">CM</option>  
+                                        <option value="PK">PK</option>
+                                    </select>
+                                    <em id="type-error" class="error invalid-feedback">Please select type</em>
+                                </p>
+                                <p class="form-group col-md-3">
+                                    <select id="category" name="category" class="form-control" style="width: 100% !important;" aria-describedby="category-error" required>
+                                        <option value=""></option>
+                                        <option value="VFM" >VFM</option>
+                                        <option value="FM">FM</option>  
+                                        <option value="MOD">MOD</option>  
+                                        <option value="SM">SM</option>  
+                                        <option value="NM">NM</option>
+                                    </select>
+                                    <em id="category-error" class="error invalid-feedback">Please select type</em>
+                                </p>
+                                <p class="form-group col-md-3">
+                                    <select id="commercial" name="commercial" class="form-control" style="width: 100% !important;" aria-describedby="commercial-error" required>
+                                        <option value=""></option>
+                                        <option value="Reguler" >Reguler</option>
+                                        <option value="New">New</option>  
+                                        <option value="Stop">Stop</option>  
+                                        <option value="Promo">Promo</option> 
+                                    </select>
+                                    <em id="commercial-error" class="error invalid-feedback">Please select type</em>
+                                </p>
+                                <p class="form-group col-md-3">
+                                    <input type="text" class="form-control" name="code" placeholder="Code Product" id="code" aria-describedby="code-error" required="">
+                                    <em id="code-error" class="error invalid-feedback">Please select type</em>
+                                </p>
+                                <p class="form-group col-md-3">
+                                    <input type="number" class="form-control" placeholder="Stok" name="stock" id="stock" aria-describedby="stock-error" >
+                                    <em id="stock-error" class="error invalid-feedback">Please select type</em>
+                                </p>
                             </div>
                         </div>
                     </div>

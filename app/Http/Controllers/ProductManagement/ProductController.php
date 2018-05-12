@@ -67,6 +67,8 @@ class ProductController extends Controller
         $product = new Product();
         $product->name = $request->name;
         $product->type = $request->type;
+        $product->category = $request->category;
+        $product->commercial = $request->commercial;
         $product->code = $request->code;
         $product->stock = $request->stock;
         // $product->price = [
@@ -89,7 +91,7 @@ class ProductController extends Controller
         //         "price" => $request->enam,
         //     ],
         // ];
-        $product->currency = $request->currency;
+        /*$product->currency = $request->currency;*/
         $product->save();
 
         return redirect()->route('product.index')->with('new', 'product');
@@ -169,6 +171,8 @@ class ProductController extends Controller
         $product = Product::find($id);
         $product->name = $request->name;
         $product->type = $request->type;
+        $product->category = $request->category;
+        $product->commercial = $request->commercial;
         $product->code = $request->code;
         $product->stock = $request->stock;
         // $product->price = [
@@ -191,7 +195,7 @@ class ProductController extends Controller
         //         "price" => $request->enam,
         //     ],
         // ];
-        $product->currency = $request->currency;
+        /*$product->currency = $request->currency;*/
         $product->save();
 
         return redirect()->route('product.index')->with('update', 'product');

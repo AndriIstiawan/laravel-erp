@@ -4,7 +4,7 @@
             <div class="{{$member_list['_id']}}">
                 <option value=""></option>
                 @foreach($member_list['subDivision'] as $member_divisi)
-<option data-new="{{$member_divisi['salId']}}" value="{{$member_divisi['email']}}">{{$member_divisi['nameSub']}} - {{$member_divisi['type']}} - {{$member_divisi['sales']}}</option>
+<option data-new="{{$member_divisi['salId']}}" value="{{$member_divisi['email']}}">{{$member_divisi['type']}} - {{$member_divisi['sales']}}</option>
                 @endforeach
             </div>
         @endforeach
