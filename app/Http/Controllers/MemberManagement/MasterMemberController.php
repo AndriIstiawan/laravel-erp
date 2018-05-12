@@ -125,9 +125,6 @@ class MasterMemberController extends Controller
 		$members = Member::all();
 		
         return Datatables::of($members)
-            ->addColumn('title_fullname', function ($member) {
-                return $member->title.". ".$member->fullname;
-            })
 			->addColumn('action', function ($member) {
 				return 
 					'<div class="button-group"><a class="btn btn-success btn-sm" href="'.route('master-client.edit',['id' => $member->id]).'">
@@ -136,7 +133,7 @@ class MasterMemberController extends Controller
 						route('master-client.destroy',['id' => $member->id]).'">'.method_field('DELETE').csrf_field().
 					'<button type="button" class="btn btn-danger btn-sm" onclick="removeList($(this))"><i class="fa fa-remove"></i>&nbsp;Remove</button></form></div>';
 			})
-			->rawColumns(['title_fullname', 'action'])
+			->rawColumns(['action'])
 			->make(true);
     }
 
