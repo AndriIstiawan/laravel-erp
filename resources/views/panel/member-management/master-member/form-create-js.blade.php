@@ -47,7 +47,8 @@
 
 	$("#picture").change(function (){ readURL(this); });
 
-	$('#status').on('change', function(){
+	$('#pasar').select2({theme:"bootstrap", placeholder:'Please select Segmen Pasar'});
+	$('#pasar').on('change', function(){
     $(this).addClass('is-valid').removeClass('is-invalid');
   	});
 
@@ -85,12 +86,14 @@
 	$("#jxForm1").validate({
 		rules:{
 			name:{required:true,minlength:2},
+			fax:{required:true,minlength:2},
 			address:{required:true,minlength:2},
-			phone:{required:true},
-			title:{required:true},
-			'nameSub[]':{
+			'shipaddress[]':{
                 "allRequiredInput": true
             },
+			phone:{required:true},
+			pasar:{required:true},
+			title:{required:true},
             'type[]':{
                 "allRequiredSelect": true
             },
@@ -120,13 +123,17 @@
 				required:'Please enter a name site',
 				minlength:'Name must consist of at least 2 characters'
 			},
-			address:{
-				required:'Please enter a name site',
+			fax:{
+				required:'Please enter a name fax',
 				minlength:'Name must consist of at least 2 characters'
 			},
-			'nameSub[]': {
-                "allRequiredInput": 'each field are required'
-            },
+			address:{
+				required:'Please enter a Billing Address',
+				minlength:'Name must consist of at least 2 characters'
+			},
+			'shipaddress[]':{
+				"allRequiredInput": 'each field are required'
+			},
 			'type[]': {
                 "allRequiredSelect": 'each field are required'
             },
@@ -134,6 +141,8 @@
                 "allRequiredSelect": 'each field are required'
             },
 			phone:{ required:'Please enter a phone number' 
+			},
+			pasar:{ required:'Please select a segmen pasar' 
 			},
 			title:{ required:'Please select a title' 
 			},
@@ -151,6 +160,7 @@
 				equalTo:'Please enter the same password'
 			},
 			email: {
+				required:'Please enter a email address',
 				email:'Please enter a valid email address',
 				remote:'Email address already in use. Please use other email.'
 			}
@@ -183,7 +193,7 @@
         e.preventDefault();
         if(x < max_fields){ //max input box allowed
             x++; //text box increment
-            $(wrapper).append('<div class="option-card"><div class="form-group"><label class="col-form-label" for="address">*Address</label><div id="address" class="control-group input-group" style="margin-top:10px"><input type="text" name="address[]" class="form-control" placeholder="Address" aria-describedby="address-error" required><div class="input-group-btn"><button class="btn btn-danger remove" type="button"><i class="fa fa-close"></i></button></div><em id="address-error" class="error invalid-feedback">Please enter a address</em></div></div></div>'); //add input box
+            $(wrapper).append('<div class="option-card"><div class="form-group"><div id="address" class="control-group input-group" style="margin-top:10px"><input id="shipaddress" type="text" name="shipaddress[]" class="form-control" placeholder="Address" aria-describedby="shipaddress-error" required><div class="input-group-btn"><button class="btn btn-danger remove" type="button"><i class="fa fa-close"></i></button></div><em id="shipaddress-error" class="error invalid-feedback">Please enter a address</em></div></div></div>'); //add input box
         }
     });
     

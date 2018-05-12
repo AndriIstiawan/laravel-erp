@@ -62,31 +62,28 @@
         <div class="modal" id="modal-exim" tabindex="1" role="dialog" aria-hidden="true" data-backdrop="static">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
-                    <form method="post" action="" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
-                        {{ csrf_field() }}
                         <div class="modal-header">
                             <h3 class="modal-title">Export Sales Order</h3>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times; </span>
                             </button>
                         </div>
+                    <form method="get" action="{{route('sales-order.export')}}" novalidate="novalidate">
+                        {{ csrf_field() }}
                         <div class="modal-body">
-                            
-
                             <div class="form-group">
-                                <!-- <div class="row">
-                                    <div class="col-md-3">
+                                <div class="row">
+                                    <div class="col-md-5">
                                         <label>From</label>
-                                        <input type="text" name="StarDate" id="StarDate" class="form-control" required>
+                                        <input type="date" name="from" class="form-control" required>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-5">
                                         <label>To</label>
-                                        <input type="text" name="EndDate" id="EndDate" class="form-control" required>
+                                        <input type="date" name="to" id="EndDate" class="form-control" required>
                                     </div>
-                                </div> -->
-                                <div class="col-md-6">
-                                    <a href="{{route('sales-order.export')}}" class="btn btn-success">Export</a>
-                                    <span class="help-block with-errors"></span>
+                                </div>
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn btn-success pull-right">Export</button><br>
                                 </div>
                             </div>
                         </div>
@@ -178,50 +175,17 @@
         processing: true,
         serverSide: true,
         ajax: '{{ route("sales-order.index") }}/list-data',
-        columns: [{
-                data: 'sono',
-                name: 'sono'
-            },
-            {
-                data: 'client.[].name',
-                name: 'client'
-            },
-            {
-                data: 'productattr.[<br>].name',
-                name: 'name'
-            },
-            {
-                data: 'productattr.[<br>].total',
-                name: 'total'
-            },
-            {
-                data: 'productattr.[<br>].packaging',
-                name: 'packaging'
-            },
-            {
-                data: 'productattr.[<br>].amount',
-                name: 'amount'
-            },
-            {
-                data: 'catatan',
-                name: 'catatan'
-            },
-            {
-                data: 'status',
-                name: 'status',
-                orderable: false
-            },
-            {
-                data: 'created_at',
-                name: 'created_at'
-            },
-            {
-                data: 'action',
-                name: 'action',
-                orderable: false,
-                searchable: false,
-                width: '20%'
-            }
+        columns: [
+            { data: 'sono', name: 'sono'},
+            { data: 'client.[].name', name: 'client'},
+            { data: 'productattr.[<br>].name', name: 'name'},
+            { data: 'productattr.[<br>].total', name: 'total'},
+            { data: 'productattr.[<br>].packaging', name: 'packaging'},
+            { data: 'productattr.[<br>].amount', name: 'amount'},
+            { data: 'catatan', name: 'catatan'},
+            { data: 'status',name: 'status',orderable: false},
+            { data: 'created_at', name: 'created_at' },
+            { data: 'action', name: 'action', orderable: false, searchable: false, width: '20%' }
         ],
         "columnDefs": [{
                 "targets": 9,

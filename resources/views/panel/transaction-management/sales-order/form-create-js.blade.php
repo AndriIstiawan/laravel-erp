@@ -91,12 +91,14 @@
     }).change(function () {
         $(this).valid();
     });
-    $('#produksi').select2({
+
+    $('.shipping').select2({
         theme: "bootstrap",
-        placeholder: 'Please select'
+        placeholder: 'Please select shipping address'
     }).change(function () {
         $(this).valid();
     });
+    
     $('#saless').select2({
         theme: "bootstrap",
         placeholder: 'Please select Sales'
@@ -235,7 +237,7 @@
             'total[]': {
                 "allRequiredInput": true
             },
-            'packagin[]': {
+            'packaging[]': {
                 "allRequiredSelect": true
             },
             'amount[]': {
@@ -255,7 +257,7 @@
             'total[]': {
                 "allRequiredInput": 'each field are required'
             },
-            'packagin[]': {
+            'packaging[]': {
                 "allRequiredSelect": 'each field are required'
             },
             'amount[]': {

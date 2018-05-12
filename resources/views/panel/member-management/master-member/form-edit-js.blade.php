@@ -32,7 +32,7 @@
 		}
 	}
 
-	$(document).on('click', '#save', function(e) {
+	/*$(document).on('click', '#save', function(e) {
         e.preventDefault();
         if($('#jxForm1').valid()){
             swal({
@@ -43,11 +43,12 @@
                 if(confirm){ $('#jxForm1').submit(); }
             });
         }
-    });
+    });*/
 
 	$("#picture").change(function (){ readURL(this); });
 
-	$('#status').on('change', function(){
+	$('#pasar').select2({theme:"bootstrap", placeholder:'Please select Segmen Pasar'});
+	$('#pasar').on('change', function(){
     $(this).addClass('is-valid').removeClass('is-invalid');
   	});
 
@@ -87,6 +88,9 @@
 			name:{required:true,minlength:2},
 			address:{required:true,minlength:2},
 			phone:{required:true},
+			'shipaddress[]':{
+                "allRequiredInput": true
+            },
 			'nameSub[]':{
                 "allRequiredInput": true
             },
@@ -118,6 +122,9 @@
 			name:{
 				required:'Please enter a name site',
 				minlength:'Name must consist of at least 2 characters'
+			},
+			'shipaddress[]':{
+				"allRequiredInput": 'each field are required'
 			},
 			address:{
 				required:'Please enter a name site',
@@ -180,7 +187,7 @@
         e.preventDefault();
         if(x < max_fields){ //max input box allowed
             x++; //text box increment
-            $(wrapper).append('<div class="option-card"><div class="form-group"><label class="col-form-label" for="address">*Address</label><div id="address" class="control-group input-group" style="margin-top:10px"><input type="text" name="address[]" class="form-control" placeholder="Address" aria-describedby="address-error" required><div class="input-group-btn"><button class="btn btn-danger remove" type="button"><i class="fa fa-close"></i></button></div><em id="address-error" class="error invalid-feedback">Please enter a address</em></div></div></div>'); //add input box
+            $(wrapper).append('<div class="option-card"><div class="form-group"><div id="address" class="control-group input-group" style="margin-top:10px"><input type="text" name="shipaddress[]" class="form-control" placeholder="Address" aria-describedby="shipaddress-error"><div class="input-group-btn"><button class="btn btn-danger remove" type="button"><i class="fa fa-close"></i></button></div><em id="shipaddress-error" class="error invalid-feedback">Please enter a address</em></div></div></div>'); //add input box
         }
     });
     

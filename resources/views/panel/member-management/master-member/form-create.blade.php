@@ -38,7 +38,7 @@
 											<div class="row">
 												<div class="col-md-6">
 												<div class="form-group">
-													<input type="text" class="form-control" id="name" name="name" placeholder="Name" aria-describedby="name-error">
+													<input type="text" class="form-control" id="name" name="name" placeholder="Display Name" aria-describedby="name-error">
 													<em id="name-error" class="error invalid-feedback">Please enter a name site</em>
 												</div>
 												<div class="form-group">
@@ -56,6 +56,19 @@
 												<div class="form-group">
 													<input type="text" class="form-control" id="phone" name="phone" placeholder="Phone" aria-describedby="phone-error">
 													<em id="phone-error" class="error invalid-feedback">Please enter a valid phone</em>
+												</div>
+												<div class="form-group">
+													<input type="text" class="form-control" id="fax" name="fax" placeholder="Fax" aria-describedby="fax-error">
+													<em id="fax-error" class="error invalid-feedback">Please enter a valid fax</em>
+												</div>
+												<div class="form-group">
+													<select id="pasar" name="pasar" class="form-control" aria-describedby="pasar-error">
+											        	<option value=""></option>
+					                                    <option value="INDUSTRI">INDUSTRI</option> 
+											        	<option value="RETAIL">RETAIL</option> 
+					                                    <option value="EXPORT">EXPORT</option> 
+											        </select>
+													<em id="pasar-error" class="error invalid-feedback">Please enter a valid fax</em>
 												</div>
 												<!-- <div class="form-group">
 													<label class="col-form-label" for="point">*Point</label>
@@ -111,30 +124,6 @@
 				<!--end card -->
 			</div>
 			<div class="col-md-12">
-				<!-- <div class="card">
-					<div class="card-header">
-						<i class="fa fa-align-justify"></i> Saldo
-						<small>management </small>
-					</div>
-					<div class="card-body">
-						<div class="row">
-							<div class="form-group col-md-12">
-		                      	<i class="fa fa fa-money"></i> <label class="col-form-label" for="dompet">Dompet</label>
-		                        	<div class="input-group">
-				                          	<span class="input-group-text">Rp.</span>
-				                          	<input type="number" class="form-control idr-currency" id="dompet" name="dompet" placeholder="00" aria-describedby="dompet-error">
-				                      <em id="dompet-error" class="error invalid-feedback">Please enter a dompet</em>
-				                  	</div>
-		                      	<i class="fa fa fa-copyright"></i> <label class="col-form-label" for="koin">Koin</label>
-		                        	<div class="input-group">
-				                          	<span class="input-group-text">Rp.</span>
-				                          	<input type="number" class="form-control idr-currency" id="koin" name="koin" placeholder="00" aria-describedby="koin-error">
-				                      <em id="koin-error" class="error invalid-feedback">Please enter a koin</em>
-				                  	</div>
-		                  	</div>
-						</div>
-					</div>
-				</div> -->
 				<div class="card">
 					<div class="card-header">
 						<i class="fa fa-align-justify"></i> Sub
@@ -143,20 +132,18 @@
 					<div class="card-body">
 						<div class="form-group input_">
 							<div class="row product-list">
-								<p class="col-md-4">
-									<input type="text" class="form-control" name="nameSub[]" aria-describedby="nameSub-error" id="nameSub" placeholder="Name Sub">
-									<em id="nameSub-error" class="error invalid-feedback">Please enter a new name</em>
-								</p>
-								<p class="col-md-4">
+								<p class="col-md-6">
 							        <select name="type[]" class="form-control type" aria-describedby="type-error">
 							        	<option value=""></option>
-							        @foreach ($product as $attr)
-							          	<option value="{{$attr->id}}" >{{$attr->type}}</option>
-							        @endforeach
+							        	<option value="BP">BP</option>
+                                        <option value="LC">LC</option>  
+                                        <option value="AC">AC</option>  
+                                        <option value="CM">CM</option>  
+                                        <option value="PK">PK</option>
 							        </select>
 							      	<em id="type-error" class="error invalid-feedback">Please select a type</em>
 							  	</p>
-								<p class="col-md-4">
+								<p class="col-md-6">
 							        	<select name="sales[]" class="form-control sales" aria-describedby="sales-error" >
 							        		<option value=""></option>
 							        @foreach ($modUser as $mod)
@@ -178,20 +165,47 @@
 		<div class="row">
 			<div class="attr-multiselect attr-dropdown form-group col-md-12">
 				<div class="card">
+					<div class="card-header">
+						<i class="fa fa-align-justify"></i> Billing
+						<small> Address </small>
+					</div>
 					<div class="card-body">
-                            <!-- <button class="btn btn-primary add_field_btn-primary" >Add Address</button>
-						<hr> -->
 						<div class="option-card">
-							<div class="form-group input_fields_wrap">
+							<div class="form-group">
 								<div class="option-card">
 									<div class="form-group">
 										<div id="address" class="control-group input-group" style="margin-top:10px">
-											<textarea type="text" rows="3" name="address[]" class="form-control" placeholder="Address" aria-describedby="address-error" required></textarea>
+											<textarea type="text" rows="3" name="address" class="form-control" placeholder="Address" aria-describedby="address-error" required></textarea>
 											<em id="address-error" class="error invalid-feedback">Please enter a address</em>
 										</div>
 									</div>
 								</div>
 							</div>
+						</div>
+					</div>
+				</div>
+			</div>			
+		</div>
+		<div class="row">
+			<div class="attr-multiselect attr-dropdown form-group col-md-12">
+				<div class="card">
+					<div class="card-header">
+						<i class="fa fa-align-justify"></i> Shipping
+						<small> Address </small>
+					</div>
+					<div class="card-body">
+						<div class="option-card">
+							<div class="form-group input_fields_wrap">
+								<div class="option-card">
+									<div class="form-group">
+										<div id="address" class="control-group input-group" style="margin-top:10px">
+											<input id="shipaddress" type="text" name="shipaddress[]" class="form-control" placeholder="Address" aria-describedby="shipaddress-error" required>
+											<em id="shipaddress-error" class="error invalid-feedback">Please enter a address</em>
+										</div>
+									</div>
+								</div>
+							</div>
+							<button class="btn btn-primary add_field_btn-primary pull-right" >Add +</button>
 						</div>
 					</div>
 				</div>

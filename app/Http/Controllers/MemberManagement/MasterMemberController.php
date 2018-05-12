@@ -7,7 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Member;
 use App\Levels;
 use App\Product;
+use Excel;
 use App\User;
+use App\CodeMember;
 use Yajra\Datatables\Datatables;
 
 class MasterMemberController extends Controller
@@ -56,35 +58,37 @@ class MasterMemberController extends Controller
     public function store(Request $request){
 
 		$member = new Member();
+        $member->code = $this->generateSO();
         $member->name = $request->name;
         $member->email = $request->email;
-        $member->phone = $request->phone;/*
-        $member->point = $request->point;
-        $level=Levels::where('_id', $request->level)->get();
-        $member->level=$level->toArray();
-        $member->status = $request->status;*/
+        $member->phone = $request->phone;
+        $member->fax = $request->fax;
         $member->address = $request->address;
         $member->title = $request->title;
+        $member->pasar = $request->pasar;
+        $ship=[];
+        for ($i=0; $i < count($request->shipaddress); $i++) { 
+            $ship[] = [
+                'shipaddress'=>$request->shipaddress[$i],
+            ];
+        }
+        $member->shipaddress = $ship;
         /*$member->dompet = $request->dompet;
         $member->koin = $request->koin;
         $member->password = bcrypt($request->password);*/
         $subDiv =[];
-        for($i=0; $i < count($request->nameSub); $i++){
-            $products=Product::where('_id', $request->type[$i])->first();
+        for($i=0; $i < count($request->type); $i++){
+            $products=Product::where('type', $request->type[$i])->first();
             $sales=user::where('_id', $request->sales[$i])->first();
             $subDiv[] =[
-                'proId'=>$products['id'],
-                'name'=>$products['name'],
                 'type'=>$products['type'],
-                'code'=>$products['code'],
                 'sales'=>$sales['name'],
                 'email'=>$sales['email'],
                 'salId'=>$sales['id'],
-                'nameSub' => $request->nameSub[$i],
             ];
         }
         $member->subDivision=$subDiv;
-/*
+        /*
         $sales=user::whereIn('_id', $request->sales)->get();
         $member->sales=$sales->toArray();*/
 		$member->save();
@@ -98,7 +102,7 @@ class MasterMemberController extends Controller
 		}
 
 		$member->save();
-/*        return dd($member);*/
+        /*return dd($member);*/
 		return redirect()->route('master-client.index')->with('toastr', 'new');
     }
 
@@ -141,13 +145,24 @@ class MasterMemberController extends Controller
     public function update(Request $request, $id){
 
     	$member = Member::find($id);
+        $member->name = $request->code;
         $member->name = $request->name;
         $member->email = $request->email;
         $member->phone = $request->phone;
+        $member->fax = $request->fax;
         /*$member->sales = $request->sales;
         $level=Levels::where('_id', $request->level)->get();
         $member->level=$level->toArray();*/
         $member->address = $request->address;
+
+        $ship=[];
+        for ($i=0; $i < count($request->shipaddress); $i++) { 
+            $ship[] = [
+                'shipaddress'=>$request->shipaddress[$i],
+            ];
+        }
+        $member->shipaddress = $ship;
+
         $member->title = $request->title;
         /*$member->status = $request->status;*/
         $subDiv =[];
@@ -162,7 +177,6 @@ class MasterMemberController extends Controller
                 'sales'=>$sales['name'],
                 'email'=>$sales['email'],
                 'salId'=>$sales['id'],
-                'nameSub' => $request->nameSub[$i],
             ];
         }
         $member->subDivision=$subDiv;
@@ -185,6 +199,42 @@ class MasterMemberController extends Controller
 		return redirect()->route('master-client.index')->with('update', 'client');
     }
 
+    public function generateSO(){
+        $id_counter = CodeMember::first()->generateSO('code_member');
+        return ($id_counter);
+    }
+
+    public function clientExport(Request $request){
+       $member=Member::select('code','name','phone','email','fax','title','address','pasar','subDivision','shipaddress')->get();
+            $members=[];
+       
+        for($i=0; $i < count($member); $i++){
+            for($j=0; $j < count($member[$i]->subDivision); $j++){
+                $members[]=[
+                    'Code'=>$member[$i]->code,
+                    'Dispaly Name'=>$member[$i]->name,
+                    'Mobile'=>$member[$i]->phone,
+                    'Email'=>$member[$i]->email,
+                    'Fax'=>$member[$i]->fax,
+                    'Billing Address'=>$member[$i]->address,
+                    'Title'=>$member[$i]->title,
+                    'Pasar'=>$member[$i]->pasar,
+                    'Sales'=>$member[$i]->subDivision[$j]['sales'],
+                    'Type'=>$member[$i]->subDivision[$j]['type'],
+                    'Shipping Address'=>$member[$i]->shipaddress[$j]['shipaddress'],
+
+                ];
+            }
+        }
+        return Excel::create('client-list', function ($excel) use ($members) {
+            $excel->sheet('client list', function ($sheet) use ($members) {
+                $sheet->fromArray($members);
+            });
+
+        })->download('xlsx');
+        return dd($members);
+
+    }
     //Delete data setting
     public function destroy($id){
 		$member = Member::find($id);

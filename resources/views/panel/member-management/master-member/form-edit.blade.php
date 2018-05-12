@@ -56,9 +56,23 @@
 													<em id="email-error" class="error invalid-feedback">Please enter a valid email address</em>
 												</div>
 												<div class="form-group">
-													<input type="number" class="form-control" id="phone" name="phone" placeholder="Phone" value="{{$member->phone}}" aria-describedby="phone-error">
+													<input type="text" class="form-control" id="phone" name="phone" placeholder="Phone" value="{{$member->phone}}" aria-describedby="phone-error">
 													<em id="phone-error" class="error invalid-feedback">Please enter a valid phone</em>
-												</div><!-- 
+												</div>
+												<div class="form-group">
+													<input type="text" class="form-control" id="fax" name="fax" placeholder="Fax" value="{{$member->fax}}" aria-describedby="fax-error">
+													<em id="fax-error" class="error invalid-feedback">Please enter a valid fax</em>
+												</div>
+												<div class="form-group">
+													<select id="pasar" name="pasar" class="form-control" aria-describedby="pasar-error">
+											        	<option value=""></option>
+					                                    <option value="INDUSTRI" {{($member->pasar == 'INDUSTRI'?'selected':'')}}>INDUSTRI</option> 
+											        	<option value="RETAIL" {{($member->pasar == 'RETAIL'?'selected':'')}}>RETAIL</option> 
+					                                    <option value="EXPORT" {{($member->pasar == 'EXPORT'?'selected':'')}}>EXPORT</option> 
+											        </select>
+													<em id="pasar-error" class="error invalid-feedback">Please enter a valid fax</em>
+												</div>
+												<!-- 
 												
 												<div class="form-group">
 									              	<label class="col-form-label" for="status">*Status</label> <p>
@@ -104,21 +118,18 @@
 							@foreach ($member->subDivision as $attr)
 	        				<div class="optts">
 								<div class="row">
-									<p class="col-md-4">
-										<input type="text" class="form-control" name="nameSub[]" aria-describedby="nameSub-error" value="{{$attr['nameSub']}}" placeholder="Name Sub" >
-										<em id="nameSub-error" class="error invalid-feedback">Please enter a new name</em>
-									</p>
-									<p class="col-md-4">
+									<p class="col-md-6">
 								        <select name="type[]" class="form-control type" aria-describedby="type-error">
 								        	<option value=""></option>
-								          	<option value="{{$attr['proId']}}" selected="">{{$attr['type']}}</option>
-								        @foreach ($product as $product)
-								          	<option value="{{$product['_id']}}" >{{$product['type']}}</option>
-								        @endforeach
+								          	<option value="BP" {{($attr['type'] == 'BP'?'selected':'')}}>BP</option>
+					                        <option value="LC" {{($attr['type'] == 'LC'?'selected':'')}}>LC</option>  
+					                        <option value="AC" {{($attr['type'] == 'AC'?'selected':'')}}>AC</option>  
+					                        <option value="CM" {{($attr['type'] == 'CM'?'selected':'')}}>CM</option>  
+					                        <option value="PK" {{($attr['type'] == 'PK'?'selected':'')}}>PK</option>
 								        </select>
 								      	<em id="type-error" class="error invalid-feedback">Please select a type</em>
 								  	</p>
-									<p class="col-md-3">
+									<p class="col-md-6">
 				                        	<select name="sales[]" class="form-control sales" aria-describedby="sales-error">
 				                          		<option value="{{$attr['salId']}}" selected>{{$attr['sales']}}</option>
 				                        	@foreach ($modUser as $modUser)
@@ -127,11 +138,11 @@
 				                        	</select>
 				                      <em id="sales-error" class="error invalid-feedback">Please enter a new sales</em>
 				                  	</p>
-				                  	<p class="col-md-1">
+				                  	<!-- <p class="col-md-1">
 							            <button class="btn btn-danger rounded pull-right" id="minmore" onclick="$(this).closest('.option-card1 .optts').remove()">
 							                <i class="fa fa-trash"></i>
 							            </button>
-								    </p>
+								    </p> -->
 								</div>
 							</div>
 							@endforeach
@@ -150,18 +161,43 @@
 		<div class="row">
 			<div class="attr-multiselect attr-dropdown form-group col-md-12">
 				<div class="card">
-					<div class="card-body"><!-- 
-							<button class="btn btn-primary add_field_btn-primary" >Add Address</button>
-						<hr> -->
+					<div class="card-header">
+						<i class="fa fa-align-justify"></i> Billing
+						<small> Address </small>
+					</div>
+					<div class="card-body">
 						<div class="option-card">	
-							@foreach($member->address as $address)
-								<div class="form-group">
-						        	<textarea type="text" name="address[]" id="address" class="form-control" placeholder="Address" rows="3" value="{{$address}}" aria-describedby="address-error" required>{{$address}}</textarea>
-						        	<em id="address-error" class="error invalid-feedback">Please enter a address</em>
-						      	</div>
-						    @endforeach
+							<div class="form-group">
+					        	<textarea type="text" name="address" id="address" class="form-control" placeholder="Address" rows="3" value="{{$member->address}}" aria-describedby="address-error" required>{{$member->address}}</textarea>
+					        	<em id="address-error" class="error invalid-feedback">Please enter a address</em>
+					      	</div>
+						</div>
+					</div>
+				</div>
+			</div>			
+		</div>
+		<div class="row">
+			<div class="attr-multiselect attr-dropdown form-group col-md-12">
+				<div class="card">
+					<div class="card-header">
+						<i class="fa fa-align-justify"></i> Shipping
+						<small> Address </small>
+					</div>
+					<div class="card-body">
+						<div class="option-card">
 							<div class="form-group input_fields_wrap">
+								<div class="option-card">
+									<div class="form-group">
+										@foreach ($member->shipaddress as $ship)
+										<div id="address" class="control-group input-group" style="margin-top:10px">
+											<input id="shipaddress" type="text" name="shipaddress[]" class="form-control" placeholder="Address" value="{{$ship['shipaddress']}}" aria-describedby="shipaddress-error" required>
+											<em id="shipaddress-error" class="error invalid-feedback">Please enter a address</em>
+										</div>
+										@endforeach
+									</div>
+								</div>
 							</div>
+							<button class="btn btn-primary add_field_btn-primary pull-right" >Add +</button>
 						</div>
 					</div>
 				</div>

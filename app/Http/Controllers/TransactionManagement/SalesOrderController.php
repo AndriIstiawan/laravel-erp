@@ -136,8 +136,8 @@ class SalesOrderController extends Controller
                 return 
                     // '<a class="btn btn-success btn-sm"  href="'.route('sales-order.display',['id' => $order->id]).'">
                     //     <i class="fa fa-pencil-square-o"></i>&nbsp;Details</a>'.
-                    '<a class="btn btn-success btn-sm"  href="'.route('sales-order.edit',['id' => $order->id]).'">
-                        <i class="fa fa-pencil-square-o"></i>&nbsp;Edit</a>'.
+                    /*'<a class="btn btn-success btn-sm"  href="'.route('sales-order.edit',['id' => $order->id]).'">
+                        <i class="fa fa-pencil-square-o"></i>&nbsp;Edit</a>'.*/
                     '<form style="display:inline;" method="POST" action="'.
                         route('sales-order.destroy',['id' => $order->id]).'">'.method_field('DELETE').csrf_field().
                     '<button type="button" class="btn btn-danger btn-sm" onclick="removeList($(this))"><i class="fa fa-remove"></i>&nbsp;Remove</button></form>';
@@ -237,18 +237,15 @@ class SalesOrderController extends Controller
         return "SO-".$id_counter;
     }
 
-    public function orderExport(){
-       $order=SalesOrder::select('sono','client','sales','catatan','productattr')->get();
-       
-
-       
-
-      
-        for($i=0; $i < count($order); $i++){
+    public function orderExport(Request $request){
+       $order=SalesOrder::select('sono','created_at','client','sales','catatan','productattr')->get();
             $orderarr=[];
+       
+        for($i=0; $i < count($order); $i++){
             for($j=0; $j < count($order[$i]->productattr); $j++){
                 $orderarr[]=[
                     'SO No'=>$order[$i]->sono,
+                    'created_at'=>$order[$i]->created_at,
                     'Client'=>$order[$i]->client[0]['name'],
                     'Sales'=>$order[$i]->sales[0]['name'],
                     'Type'=>$order[$i]->productattr[$j]['type'],
@@ -261,17 +258,12 @@ class SalesOrderController extends Controller
                 ];
             }
         }
-            
-
-
-        
-
-        return Excel::create('salesorder-list', function ($excel) use ($orderarr) {
+        /*return Excel::create('salesorder-list', function ($excel) use ($orderarr) {
             $excel->sheet('sales-order list', function ($sheet) use ($orderarr) {
                 $sheet->fromArray($orderarr);
             });
 
-        })->download('xlsx');
+        })->download('xlsx');*/
         return dd($orderarr);
 
     }

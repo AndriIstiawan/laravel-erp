@@ -25,56 +25,50 @@
                         </div>
                         <div class="card-body">
                             <div class="form-group row">
-                                <label class="col-md-3 col-form-label" for="name">*Product Name
-                                    <br>
-                                    <small class="text-muted">Write product names according to product type, brand, and details.</small>
-                                </label>
-                                <div class="col-md-9">
+                                <p class="col-md-9">
                                     <input type="text" name="name" class="form-control" placeholder="Enter product name.." aria-describedby="name-error" value="{{$product->name}}">
                                     <em id="name-error" class="error invalid-feedback"></em>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-md-3 col-form-label" for="type">*Type
-                                    <br>
-                                </label>
-                                <div class="col-md-9">
-                                    <div class="form-group row">
-                                        <div class="col-md-4">
-                                            <select id="type" name="type" class="form-control" style="width: 100% !important;" aria-describedby="type-error" required>
-                                                <option value="{{$product->type}}">{{$product->type}}</option>
-                                                <option value="BP" >BP</option>
-                                                <option value="LC">LC</option>  
-                                                <option value="AC">AC</option>  
-                                                <option value="CM">CM</option>  
-                                                <option value="PK">PK</option>
-                                            </select>
-                                            <em id="type-error" class="error invalid-feedback">Please select type</em>
-                                        </div>
-                                    </div>
-                                </div>
-                                <label class="col-md-3 col-form-label" for="Code">*Code
-                                    <br>
-                                </label>
-                                <div class="col-md-9">
-                                    <div class="form-group row">
-                                        <div class="col-md-4">
-                                            <input type="text" class="form-control" name="code" id="code" value="{{$product->code}}" aria-describedby="code-error">
-                                             <em id="code-error" class="error invalid-feedback">Please select type</em>
-                                        </div>
-                                    </div>
-                                </div>
-                                <label class="col-md-3 col-form-label" for="Stock">*Stock
-                                    <br>
-                                </label>
-                                <div class="col-md-9">
-                                    <div class="form-group row">
-                                        <div class="col-md-4">
-                                            <input type="text" class="form-control" name="stock" id="stock" value="{{$product->stock}}" aria-describedby="stock-error">
-                                            <em id="stock-error" class="error invalid-feedback">Please select type</em>
-                                        </div>
-                                    </div>
-                                </div>
+                                </p>
+                                <p class="col-md-3">
+                                    <select id="type" name="type" class="form-control" style="width: 100% !important;" aria-describedby="type-error" required>
+                                        <option value=""></option>
+                                        <option value="BP" {{($product->type == 'BP'?'selected':'')}} >BP</option>
+                                        <option value="LC" {{($product->type == 'LC'?'selected':'')}}>LC</option>  
+                                        <option value="AC" {{($product->type == 'AC'?'selected':'')}}>AC</option>  
+                                        <option value="CM" {{($product->type == 'CM'?'selected':'')}}>CM</option>  
+                                        <option value="PK" {{($product->type == 'PK'?'selected':'')}}>PK</option>
+                                    </select>
+                                    <em id="type-error" class="error invalid-feedback">Please select type</em>
+                                </p>
+                                <p class="form-group col-md-3">
+                                    <select id="category" name="category" class="form-control" style="width: 100% !important;" aria-describedby="category-error" required>
+                                        <option value=""></option>
+                                        <option value="VFM" {{($product->category == 'VFM'?'selected':'')}}>VFM</option>
+                                        <option value="FM" {{($product->category == 'FM'?'selected':'')}}>FM</option>  
+                                        <option value="MOD" {{($product->category == 'MOD'?'selected':'')}}>MOD</option>  
+                                        <option value="SM" {{($product->category == 'SM'?'selected':'')}}>SM</option>  
+                                        <option value="NM" {{($product->category == 'NM'?'selected':'')}}>NM</option>
+                                    </select>
+                                    <em id="category-error" class="error invalid-feedback">Please select type</em>
+                                </p>
+                                <p class="form-group col-md-3">
+                                    <select id="commercial" name="commercial" class="form-control" style="width: 100% !important;" aria-describedby="commercial-error" required>
+                                        <option value=""></option>
+                                        <option value="Reguler" {{($product->commercial == 'Reguler'?'selected':'')}}>Reguler</option>
+                                        <option value="New" {{($product->commercial == 'New'?'selected':'')}}>New</option>  
+                                        <option value="Stop" {{($product->commercial == 'Stop'?'selected':'')}}>Stop</option>  
+                                        <option value="Promo" {{($product->commercial == 'Promo'?'selected':'')}}>Promo</option> 
+                                    </select>
+                                    <em id="commercial-error" class="error invalid-feedback">Please select type</em>
+                                </p>
+                                <p class="col-md-3">
+                                    <input type="text" class="form-control" name="code" id="code" value="{{$product->code}}" aria-describedby="code-error">
+                                     <em id="code-error" class="error invalid-feedback">Please select type</em>
+                                </p>
+                                <p class="col-md-3">
+                                    <input type="text" class="form-control" name="stock" id="stock" value="{{$product->stock}}" aria-describedby="stock-error">
+                                    <em id="stock-error" class="error invalid-feedback">Please select type</em>
+                                </p>
                             </div>
                         </div>
                     </div>

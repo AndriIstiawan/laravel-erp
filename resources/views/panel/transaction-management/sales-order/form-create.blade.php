@@ -179,6 +179,35 @@
 			</div>
 			<div class="col-md-12">
 				<div class="card">
+					<div class="card-header">
+						<i class="fa fa-align-justify"></i> Shipping
+						<small>Address </small>
+					</div>
+					<div class="card-body">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="form-group">
+											<select class="form-control shipping" style="width: 100% !important;" name="shipping" aria-describedby="shipping-error">
+												<option value=""></option>
+												@foreach ($member as $ship)
+													@foreach($ship['shipaddress'] as $member_opt)
+													<option value="{{$member_opt['shipaddress']}}">{{$member_opt['shipaddress']}}</option>
+													@endforeach
+												@endforeach
+											</select>
+											<em id="shipping-error" class="error invalid-feedback">Please enter a client</em>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12">
+				<div class="card">
 					<p>
 					<div class="btn-group"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 					    <button type="submit" name="save" id="save" class="btn btn-success">Save</button>&nbsp;

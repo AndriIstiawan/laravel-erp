@@ -116,6 +116,8 @@ Route::middleware('auth')->group(function() {
 
 	Route::resource('master-client', 'MemberManagement\MasterMemberController');
 	Route::post('master-client/find', 'MemberManagement\MasterMemberController@find');
+	Route::get('export-client', 'MemberManagement\MasterMemberController@clientExport')->name('client.export');
+	Route::post('import-client', 'MemberManagement\MasterMemberController@clientImport')->name('client.import');
 
 	Route::resource('level', 'MemberManagement\LevelController');
 	Route::post('level/find', 'MemberManagement\LevelController@find');
