@@ -8,22 +8,8 @@
                     <button type="button" class="btn btn-primary" onclick="refresh()">
                         <i class="fa fa-refresh"></i>
                     </button>
-                    <a class="btn btn-primary" href="{{route('master-client.create')}}">
-                        <i class="fa fa-plus"></i>&nbsp; New Client
-                    </a>
-                    <button class="btn btn-success ladda-button" data-toggle="modal" data-target="#modal-exim">
-                        <span class="ladda-label">
-                            <i class="fa fa-cloud-download">
-                            </i>
-                            Import Client
-                        </span>
-                    </button>
-                    <a href="{{route('product.export')}}" class="btn btn-success ladda-button" data-style="zoom-in">
-                        <span class="ladda-label">
-                            <i class="fa fa-file-excel-o">
-                            </i>
-                            Export Client
-                        </span>
+                    <a class="btn btn-primary" href="{{route('location.create')}}">
+                        <i class="fa fa-plus"></i>&nbsp; New Location
                     </a>
                 </p>
             </div>
@@ -33,19 +19,16 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <i class="fa fa-align-justify"></i> Master Client Table
+                        <i class="fa fa-align-justify"></i> Location Table
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-responsive-sm table-bordered table-striped table-sm datatable">
                                 <thead>
                                     <tr>
-                                        <th class="text-nowrap">Display Name&nbsp;&nbsp;</th>
-                                        <th>Fullname&nbsp;&nbsp;</th>
-                                        <th>Mobile&nbsp;&nbsp;</th>
-                                        <th>Sales&nbsp;&nbsp;</th>
-                                        <th class="text-nowrap">Billing Address&nbsp;&nbsp;</th>
-                                        <th class="text-nowrap">Date registered&nbsp;&nbsp;</th>
+                                        <th>Name</th>
+                                        <th>Type</th>
+                                        <th>Date registered</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -72,26 +55,14 @@
     $('.datatable').DataTable({
         processing: true,
         serverSide: true,
-        ajax: '{{route("master-client.index")}}/list-data',
+        ajax: '{{route("location.index")}}/data',
         columns: [{
-                data: 'display_name',
-                name: 'display_name'
+                data: 'name',
+                name: 'name'
             },
             {
-                data: 'title_fullname',
-                name: 'fullname'
-            },
-            {
-                data: 'mobile.[ / ].number',
-                name: 'mobile'
-            },
-            {
-                data: 'sales.[0].name',
-                name: 'sales'
-            },
-            {
-                data: 'billing_address',
-                name: 'billing_address'
+                data: 'point',
+                name: 'point'
             },
             {
                 data: 'created_at',
@@ -104,18 +75,12 @@
                 searchable: false,
             }
         ],
-        "columnDefs": [
-            {
-            "targets": 5,
+        "columnDefs": [{
+            "targets": 3,
             "className": "text-center"
-            },
-            {
-            "targets": 6,
-            "className": "text-center text-nowarp"
-            },
-        ],
+        }],
         "order": [
-            [5, 'desc']
+            [2, 'desc']
         ]
     });
     $('.datatable').attr('style', 'border-collapse: collapse !important');
