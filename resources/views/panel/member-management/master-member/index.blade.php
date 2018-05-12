@@ -40,8 +40,8 @@
                             <table class="table table-responsive-sm table-bordered table-striped table-sm datatable">
                                 <thead>
                                     <tr>
+                                        <th class="text-nowrap">Code</th>
                                         <th class="text-nowrap">Display Name&nbsp;&nbsp;</th>
-                                        <th>Fullname&nbsp;&nbsp;</th>
                                         <th>Mobile&nbsp;&nbsp;</th>
                                         <th>Sales&nbsp;&nbsp;</th>
                                         <th class="text-nowrap">Billing Address&nbsp;&nbsp;</th>
@@ -74,12 +74,12 @@
         serverSide: true,
         ajax: '{{route("master-client.index")}}/list-data',
         columns: [{
-                data: 'display_name',
-                name: 'display_name'
+                data: 'code',
+                name: 'code'
             },
             {
-                data: 'title_fullname',
-                name: 'fullname'
+                data: 'display_name',
+                name: 'display_name'
             },
             {
                 data: 'mobile.[ / ].number',

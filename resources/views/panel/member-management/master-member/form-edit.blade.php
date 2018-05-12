@@ -1081,7 +1081,9 @@
             $(element).addClass('is-invalid').removeClass('is-valid');
             $(element).parent('.input-group').find('.select2-selection').attr('style',
                 'border-color:#f86c6b');
-            $(element).parent('.input-group').find('.select2-selection').css('height', '80px');
+            if($(element).attr('id')=='shippingAddress'){
+                $(element).parent('.input-group').find('.select2-selection').css('height', '80px');
+            }
         },
         unhighlight: function (element, errorClass, validClass) {
             $(element).addClass('is-valid').removeClass('is-invalid');
