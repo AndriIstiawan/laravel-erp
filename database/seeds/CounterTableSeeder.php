@@ -15,6 +15,10 @@ class CounterTableSeeder extends Seeder
             [
                 '_id' => 'so_counter',
                 'seq' => 1
+            ],
+            [
+                '_id' => 'client_counter',
+                'seq' => 1
             ]
         ]);
     }

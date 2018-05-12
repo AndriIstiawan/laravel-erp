@@ -132,7 +132,18 @@ class PermissionsTableSeeder extends Seeder
 				'guard_name' => 'web',
 				'created_at' => date("Y-m-d H:i:s"),
 				'updated_at' => date("Y-m-d H:i:s")
-			],
+            ],
+            // [
+	        // 	'name' => 'Location',
+	        // 	'slug' => 'location',
+	        // 	'type' => 'module-menu',
+			// 	'icon' => 'icon-cursor',
+			// 	'parent' => null,
+			// 	'description' => 'Module Menu',
+			// 	'guard_name' => 'web',
+			// 	'created_at' => date("Y-m-d H:i:s"),
+			// 	'updated_at' => date("Y-m-d H:i:s")
+			// ],
 			/*[
 	        	'name' => 'Level',
 	        	'slug' => 'level',
@@ -510,7 +521,7 @@ class PermissionsTableSeeder extends Seeder
 			->update(['parent' => (string)$parent['_id']]);
 
 		$parent = DB::table('permissions')->where('name','Master Client')->first();
-		DB::table('permissions')->whereIn('slug', ['master-client'/*,'level'*//*,'archievement'*/])
+		DB::table('permissions')->whereIn('slug', ['master-client', 'location'/*,'level'*//*,'archievement'*/])
 			->update(['parent' => (string)$parent['_id']]);
 
 		$parent = DB::table('permissions')->where('name','Footer Management')->first();

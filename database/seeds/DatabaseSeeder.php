@@ -28,6 +28,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PaymensMethodsTableSeeder::class);*/
         $this->call(ProductsTableSeeder::class);
         $this->call(CounterTableSeeder::class);
-        $this->call(CodemembersTableSeeder::class);
+        $this->call(LocationTableSeeder::class);
     }
 }

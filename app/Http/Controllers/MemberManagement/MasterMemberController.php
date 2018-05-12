@@ -9,7 +9,7 @@ use App\Levels;
 use App\Product;
 use Excel;
 use App\User;
-use App\CodeMember;
+use App\Counter;
 use Yajra\Datatables\Datatables;
 
 class MasterMemberController extends Controller
@@ -43,160 +43,176 @@ class MasterMemberController extends Controller
 	
     //View Form create
     public function create(){
-		
-		$level= Levels::orderBy('point', 'ASC')->first();
-        $modUser = User::where('role', 'elemMatch', array('name' => 'Sales'))->get();
+        $sales = User::where('role', 'elemMatch', array('name' => 'Sales'))->get();
         $product = Product::all();
         return view('panel.member-management.master-member.form-create')->with([
-            'modUser' => $modUser, 
-            'level' => $level,
-            'product' => $product
+            'sales' => $sales, 
         ]);
     }
 
     //Store data member 
     public function store(Request $request){
-
-		$member = new Member();
-        $member->code = $this->generateSO();
-        $member->name = $request->name;
-        $member->email = $request->email;
-        $member->phone = $request->phone;
-        $member->fax = $request->fax;
-        $member->address = $request->address;
+        $member = new Member();
+        $member->code = $this->generateClient();
+        $member->display_name = $request->displayName;
+        $member->fullname = $request->fullname;
         $member->title = $request->title;
-        $member->pasar = $request->pasar;
-        $ship=[];
-        for ($i=0; $i < count($request->shipaddress); $i++) { 
-            $ship[] = [
-                'shipaddress'=>$request->shipaddress[$i],
+        $member->email = $request->email;
+        $mobile = [];
+        if($request->mobile != null){
+            foreach($request->mobile as $mobile_list){
+                $mobile[] = [
+                    'number' => $mobile_list
+                ];
+            }
+        }
+        $member->mobile = $mobile;
+        $member->company = $request->company;
+        $member->segmen_pasar = $request->segmenPasar;
+        $member->negara = $request->negara;
+        $member->provinsi = $request->provinsi;
+        $member->kota = $request->kota;
+        $phone = [];
+        if($request->phone != null){
+            foreach($request->phone as $phone_list){
+                $phone[] = [
+                    'number' => $phone_list
+                ];
+            }   
+        }
+        $member->phone = $phone;
+        $sales = User::where('_id',$request->sales)->first();
+        $member->sales = [[
+            'name' => $sales['name'],
+            'detail' => [
+                $sales->toArray()
+            ]
+        ]];
+        $member->remarks = $request->remarks;
+        $member->billing_address = $request->billingAddress;
+        $shipping_address = [];
+        foreach($request->shippingAddress as $shipping_list){
+            $shipping_address[] = [
+                'address' => $shipping_list
             ];
         }
-        $member->shipaddress = $ship;
-        /*$member->dompet = $request->dompet;
-        $member->koin = $request->koin;
-        $member->password = bcrypt($request->password);*/
-        $subDiv =[];
-        for($i=0; $i < count($request->type); $i++){
-            $products=Product::where('type', $request->type[$i])->first();
-            $sales=user::where('_id', $request->sales[$i])->first();
-            $subDiv[] =[
-                'type'=>$products['type'],
-                'sales'=>$sales['name'],
-                'email'=>$sales['email'],
-                'salId'=>$sales['id'],
-            ];
+        $member->shipping_address = $shipping_address;
+        $divisi = [];
+        if(isset($request->arrDiv)){
+            foreach($request->arrDiv as $divisi_id){
+                $divisi_name = $request->input('divisiName'.$divisi_id);
+                $divisi_type = $request->input('divisiType'.$divisi_id);
+                $divisi_sales = User::where('_id',$request->input('divisiSales'.$divisi_id))->first();
+
+                $divisi[] = [
+                    'divisi_name' => $divisi_name,
+                    'divisi_type' => $divisi_type,
+                    'sales' => [[
+                        'name' => $divisi_sales['name'],
+                        'detail' => [
+                            $divisi_sales->toArray()
+                        ]
+                    ]],
+                ];
+            }
         }
-        $member->subDivision=$subDiv;
-        /*
-        $sales=user::whereIn('_id', $request->sales)->get();
-        $member->sales=$sales->toArray();*/
-		$member->save();
-
-        if ($request->hasFile('picture')) {
-			$pictureFile = $request->file('picture');
-			$extension = $pictureFile->getClientOriginalExtension();
-			$destinationPath = public_path('/img/avatars');
-			$pictureFile->move($destinationPath, $member->id.'.'.$extension);
-			$member->picture = $member->id.'.'.$extension;
-		}
-
-		$member->save();
-        /*return dd($member);*/
-		return redirect()->route('master-client.index')->with('toastr', 'new');
+        $member->divisi = $divisi;
+        $member->save();
+        return redirect()->route('master-client.index')->with('toastr', 'client');
     }
 
     //For getting datatable at index
     public function show(Request $request, $action){
 		$members = Member::all();
 		
-		return Datatables::of($members)
+        return Datatables::of($members)
 			->addColumn('action', function ($member) {
 				return 
-					'<a class="btn btn-success btn-sm" href="'.route('master-client.edit',['id' => $member->id]).'">
+					'<div class="button-group"><a class="btn btn-success btn-sm" href="'.route('master-client.edit',['id' => $member->id]).'">
 						<i class="fa fa-pencil-square-o"></i>&nbsp;Edit member</a>'.
 					'<form style="display:inline;" method="POST" action="'.
 						route('master-client.destroy',['id' => $member->id]).'">'.method_field('DELETE').csrf_field().
-					'<button type="button" class="btn btn-danger btn-sm" onclick="removeList($(this))"><i class="fa fa-remove"></i>&nbsp;Remove</button></form>';
+					'<button type="button" class="btn btn-danger btn-sm" onclick="removeList($(this))"><i class="fa fa-remove"></i>&nbsp;Remove</button></form></div>';
 			})
-			->rawColumns(['status', 'action'])
+			->rawColumns(['action'])
 			->make(true);
     }
 
     //view form edit
     public function edit($id){
-		$member = Member::find($id);
-        $modUser = User::where('role', 'elemMatch', array('name' => 'Sales'))->whereNotIn('email', array_column($member->subDivision,'email'))->get();
-        $modUsers = User::where('role', 'elemMatch', array('name' => 'Sales'))->get();
-        $product= Product::whereNotIn('_id', array_column($member->subDivision,'proId'))->get();
-        $products = Product::all();/*
-        $level = Levels::where('name', array_column($member->level,'name'))->get();*/
-        return view('panel.member-management.master-member.form-edit')
-        ->with([
-        	'member'=>$member, 
-        	'modUser' => $modUser,
-            'modUsers' => $modUsers,
-            'product' => $product,
-            'products' => $products
-        ]);
+        $member = Member::find($id);
+        $sales = User::where('role', 'elemMatch', array('name' => 'Sales'))->get();
+        return view('panel.member-management.master-member.form-edit')->with(['member'=>$member,'sales'=>$sales]);
 	}
 
 	//Update data setting
     public function update(Request $request, $id){
-
-    	$member = Member::find($id);
-        $member->name = $request->code;
-        $member->name = $request->name;
-        $member->email = $request->email;
-        $member->phone = $request->phone;
-        $member->fax = $request->fax;
-        /*$member->sales = $request->sales;
-        $level=Levels::where('_id', $request->level)->get();
-        $member->level=$level->toArray();*/
-        $member->address = $request->address;
-
-        $ship=[];
-        for ($i=0; $i < count($request->shipaddress); $i++) { 
-            $ship[] = [
-                'shipaddress'=>$request->shipaddress[$i],
-            ];
-        }
-        $member->shipaddress = $ship;
-
+        $member = Member::find($id);
+        $member->display_name = $request->displayName;
+        $member->fullname = $request->fullname;
         $member->title = $request->title;
-        /*$member->status = $request->status;*/
-        $subDiv =[];
-        for($i=0; $i < count($request->nameSub); $i++){
-            $products=Product::where('_id', $request->type[$i])->first();
-            $sales=user::where('_id', $request->sales[$i])->first();
-            $subDiv[] =[
-                'proId'=>$products['id'],
-                'name'=>$products['name'],
-                'type'=>$products['type'],
-                'code'=>$products['code'],
-                'sales'=>$sales['name'],
-                'email'=>$sales['email'],
-                'salId'=>$sales['id'],
+        $member->email = $request->email;
+        $mobile = [];
+        if($request->mobile != null){
+            foreach($request->mobile as $mobile_list){
+                $mobile[] = [
+                    'number' => $mobile_list
+                ];
+            }
+        }
+        $member->mobile = $mobile;
+        $member->company = $request->company;
+        $member->segmen_pasar = $request->segmenPasar;
+        $member->negara = $request->negara;
+        $member->provinsi = $request->provinsi;
+        $member->kota = $request->kota;
+        $phone = [];
+        if($request->phone != null){
+            foreach($request->phone as $phone_list){
+                $phone[] = [
+                    'number' => $phone_list
+                ];
+            }   
+        }
+        $member->phone = $phone;
+        $detail_sales = $member->sales[0]['detail'];
+        $sales = User::where('_id',$request->sales)->first();
+        $detail_sales[] = $sales->toArray();
+        $member->sales = [[
+            'name' => $sales['name'],
+            'detail' => $detail_sales
+        ]];
+        $member->remarks = $request->remarks;
+        $member->billing_address = $request->billingAddress;
+        $shipping_address = [];
+        foreach($request->shippingAddress as $shipping_list){
+            $shipping_address[] = [
+                'address' => $shipping_list
             ];
         }
-        $member->subDivision=$subDiv;
+        $member->shipping_address = $shipping_address;
+        $divisi = [];
+        if(isset($request->arrDiv)){
+            foreach($request->arrDiv as $divisi_id){
+                $divisi_name = $request->input('divisiName'.$divisi_id);
+                $divisi_type = $request->input('divisiType'.$divisi_id);
+                $divisi_sales = User::where('_id',$request->input('divisiSales'.$divisi_id))->first();
 
-		$member->save();
-
-        if ($request->hasFile('picture')) {
-			$pictureFile = $request->file('picture');
-			$extension = $pictureFile->getClientOriginalExtension();
-			$destinationPath = public_path('/img/avatars');
-			if($member->picture != '' || $member->picture != null){
-					File::delete(public_path('/img/avatars/'.$member->picture));
-				}
-			$pictureFile->move($destinationPath, $member->id.'.'.$extension);
-			$member->picture = $member->id.'.'.$extension;
-		}
-
-		$member->save();
-
-		return redirect()->route('master-client.index')->with('update', 'client');
+                $divisi[] = [
+                    'divisi_name' => $divisi_name,
+                    'divisi_type' => $divisi_type,
+                    'sales' => [[
+                        'name' => $divisi_sales['name'],
+                        'detail' => [
+                            $divisi_sales->toArray()
+                        ]
+                    ]],
+                ];
+            }
+        }
+        $member->divisi = $divisi;
+        $member->save();
+        return redirect()->route('master-client.index')->with('edit', 'client');
     }
 
     public function generateSO(){
@@ -241,6 +257,12 @@ class MasterMemberController extends Controller
 		$member->delete();
 		
 		return redirect()->route('master-client.index')->with('dlt', 'client');
+    }
+
+    //Generate Code
+    public function generateClient(){
+		$id_counter = Counter::first()->generateClient('client_counter');
+        return "CLT-".$id_counter;
     }
     
 }
