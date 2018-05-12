@@ -23,4 +23,15 @@ class Counter extends Moloquent
         });
         return $counter;
     }
+
+    public function generateClient($id) {
+        $counter = DB::collection('counter')->raw(function($collection) use ($id){
+            $collection = $collection->findOneAndUpdate([
+                '_id' => $id],
+                [ '$inc' => [ 'seq' => 1 ] 
+            ]);
+            return $collection->seq;
+        });
+        return $counter;
+    }
 }

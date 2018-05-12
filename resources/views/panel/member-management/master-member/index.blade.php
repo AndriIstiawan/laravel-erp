@@ -40,11 +40,12 @@
                             <table class="table table-responsive-sm table-bordered table-striped table-sm datatable">
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Phone</th>
-                                        <th>Sales</th>
-                                        <th>Date registered</th>
+                                        <th class="text-nowrap">Display Name&nbsp;&nbsp;</th>
+                                        <th>Fullname&nbsp;&nbsp;</th>
+                                        <th>Mobile&nbsp;&nbsp;</th>
+                                        <th>Sales&nbsp;&nbsp;</th>
+                                        <th class="text-nowrap">Billing Address&nbsp;&nbsp;</th>
+                                        <th class="text-nowrap">Date registered&nbsp;&nbsp;</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -73,20 +74,24 @@
         serverSide: true,
         ajax: '{{route("master-client.index")}}/list-data',
         columns: [{
-                data: 'name',
-                name: 'name'
+                data: 'display_name',
+                name: 'display_name'
             },
             {
-                data: 'email',
-                name: 'email'
+                data: 'title_fullname',
+                name: 'fullname'
             },
             {
-                data: 'phone',
-                name: 'phone'
+                data: 'mobile.[ / ].number',
+                name: 'mobile'
             },
             {
-                data: 'subDivision.[<br>].sales',
-                name: 'phone'
+                data: 'sales.[0].name',
+                name: 'sales'
+            },
+            {
+                data: 'billing_address',
+                name: 'billing_address'
             },
             {
                 data: 'created_at',
@@ -97,15 +102,20 @@
                 name: 'action',
                 orderable: false,
                 searchable: false,
-                width: '20%'
             }
         ],
-        "columnDefs": [{
+        "columnDefs": [
+            {
             "targets": 5,
             "className": "text-center"
-        }],
+            },
+            {
+            "targets": 6,
+            "className": "text-center text-nowarp"
+            },
+        ],
         "order": [
-            [4, 'desc']
+            [5, 'desc']
         ]
     });
     $('.datatable').attr('style', 'border-collapse: collapse !important');
