@@ -161,10 +161,6 @@
                 name: 'billing_address'
             },
             {
-                data: 'email',
-                name: 'email'
-            },
-            {
                 data: 'created_at',
                 name: 'created_at'
             },
