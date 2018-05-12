@@ -72,7 +72,7 @@
                             </div>
                             <div class="form-group row">
                                 <div class="input-group col-md-12">
-                                    <div class="input-group-prepend">
+                                    <div class="input-group-prepend" style="align-items:unset;">
                                         <span class="input-group-text">
                                             <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" data-original-title="ex: 081818827077"></i>
                                         </span>
@@ -683,7 +683,7 @@
                             </div>
                             <div class="form-group row">
                                 <div class="input-group col-md-12">
-                                    <div class="input-group-prepend">
+                                    <div class="input-group-prepend" style="align-items:unset;">
                                         <span class="input-group-text">
                                             <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" data-original-title="ex: 243551156"></i>
                                         </span>
