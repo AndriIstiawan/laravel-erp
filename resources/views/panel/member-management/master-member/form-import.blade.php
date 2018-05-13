@@ -120,7 +120,7 @@
                     $('.progress-modal').addClass('d-none');
                     window.open("{{url('/download-storage')}}/true/"+response, "_blank");
                     setTimeout(function(){
-						window.open("{{route('master-client.index')}}", "_blank");
+						window.open("{{route('master-client.index')}}", "_self");
 					}, 3000);
                 },
                 error: function (e) { 

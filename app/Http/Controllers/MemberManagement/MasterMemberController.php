@@ -252,6 +252,10 @@ class MasterMemberController extends Controller
         $excel = Excel::selectSheetsByIndex(0,1)->load($file, function($reader) use ($members) {
             $data = [];
             foreach($members as $member){
+                $data_mobile = implode(' / ', array_column($member->mobile, 'number'));
+                //if(is_numeric($data_mobile)){ $data_mobile = "`".$data_mobile; }
+                $data_phone = implode(' / ', array_column($member->phone, 'number'));
+                //if(is_numeric($data_phone)){ $data_phone = "`".$data_phone; }
                 $data[] = [
                     $member->code,
                     $member->display_name,
@@ -262,8 +266,8 @@ class MasterMemberController extends Controller
                     $member->billing_address,
                     implode(' / ', array_column($member->shipping_address, 'address')),
                     $member->email,
-                    implode(' / ', array_column($member->mobile, 'number')),
-                    implode(' / ', array_column($member->phone, 'number')),
+                    '="'.$data_mobile.'"',
+                    '="'.$data_phone.'"',
                     $member->remarks,
                     $member->kota,
                     $member->provinsi,
