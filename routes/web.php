@@ -116,7 +116,8 @@ Route::middleware('auth')->group(function() {
 
     /* Master CLient */
 	Route::resource('master-client', 'MemberManagement\MasterMemberController');
-	Route::post('master-client/find', 'MemberManagement\MasterMemberController@find');
+    Route::post('master-client/find', 'MemberManagement\MasterMemberController@find');
+    Route::post('master-client/import-data', 'MemberManagement\MasterMemberController@ImportData');
 
     Route::resource('location', 'MemberManagement\LocationController');
     Route::post('location/find', 'MemberManagement\LocationController@find');
@@ -153,20 +154,16 @@ Route::middleware('auth')->group(function() {
         return Auth::user()->countPOPending();
     });
 
-	// Section CoreUI elements
-	Route::view('/sample/dashboard','samples.dashboard');
-	Route::view('/sample/buttons','samples.buttons');
-	Route::view('/sample/social','samples.social');
-	Route::view('/sample/cards','samples.cards');
-	Route::view('/sample/forms','samples.forms');
-	Route::view('/sample/modals','samples.modals');
-	Route::view('/sample/switches','samples.switches');
-	Route::view('/sample/tables','samples.tables');
-	Route::view('/sample/tabs','samples.tabs');
-	Route::view('/sample/icons-font-awesome', 'samples.font-awesome-icons');
-	Route::view('/sample/icons-simple-line', 'samples.simple-line-icons');
-	Route::view('/sample/widgets','samples.widgets');
-	Route::view('/sample/charts','samples.charts');
+	//download file from storage
+    Route::get('download-storage/{status}/{filename}', function () {
+        $status = (Route::current()->status == 'true'?true:false);
+        $filename = Route::current()->filename;
+        if(file_exists(storage_path('exports/'.$filename))){
+            return response()->download(storage_path('exports/'.$filename))->deleteFileAfterSend($status);
+        }else{
+            return redirect('/');
+        }
+    });
 });
 // Section Pages
 Route::view('/sample/error404','errors.404')->name('error404');
