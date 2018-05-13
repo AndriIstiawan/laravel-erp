@@ -789,9 +789,9 @@
                             <button type="submit" class="btn btn-primary">
                                 <i class="fa fa-save"></i>&nbsp; Save
                             </button>
-                            <button type="button" class="btn btn-secondary">
+                            <a class="btn btn-secondary" href="{{route('master-client.index')}}"	>
                                 <i class="fa fa-remove"></i>&nbsp; Cancel
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
