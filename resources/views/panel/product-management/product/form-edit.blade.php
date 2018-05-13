@@ -25,9 +25,13 @@
                         </div>
                         <div class="card-body">
                             <div class="form-group row">
-                                <p class="col-md-9">
+                                <p class="col-md-12">
                                     <input type="text" name="name" class="form-control" placeholder="Enter product name.." aria-describedby="name-error" value="{{$product->name}}">
                                     <em id="name-error" class="error invalid-feedback"></em>
+                                </p>
+                                <p class="col-md-3">
+                                    <input type="text" class="form-control" name="code" id="code" value="{{$product->code}}" aria-describedby="code-error">
+                                     <em id="code-error" class="error invalid-feedback">Please select type</em>
                                 </p>
                                 <p class="col-md-3">
                                     <select id="type" name="type" class="form-control" style="width: 100% !important;" aria-describedby="type-error" required>
@@ -61,14 +65,10 @@
                                     </select>
                                     <em id="commercial-error" class="error invalid-feedback">Please select type</em>
                                 </p>
-                                <p class="col-md-3">
-                                    <input type="text" class="form-control" name="code" id="code" value="{{$product->code}}" aria-describedby="code-error">
-                                     <em id="code-error" class="error invalid-feedback">Please select type</em>
-                                </p>
-                                <p class="col-md-3">
+                                <!-- <p class="col-md-3">
                                     <input type="text" class="form-control" name="stock" id="stock" value="{{$product->stock}}" aria-describedby="stock-error">
                                     <em id="stock-error" class="error invalid-feedback">Please select type</em>
-                                </p>
+                                </p> -->
                             </div>
                         </div>
                     </div>

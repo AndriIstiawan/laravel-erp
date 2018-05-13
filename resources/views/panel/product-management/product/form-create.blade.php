@@ -25,6 +25,21 @@
                                     <em id="name-error" class="error invalid-feedback"></em>
                                 </p>
                                 <p class="form-group col-md-3">
+                                    <input type="text" class="form-control" name="code" placeholder="Code Product" id="code" aria-describedby="code-error" required="">
+                                    <em id="code-error" class="error invalid-feedback">Please select type</em>
+                                </p>
+                                <p class="form-group col-md-3">
+                                    <select id="type" name="type" class="form-control" style="width: 100% !important;" aria-describedby="type-error" required>
+                                        <option value=""></option>
+                                        <option value="BP">BP</option>
+                                        <option value="LC">LC</option>
+                                        <option value="AC">AC</option>
+                                        <option value="CM">CM</option>
+                                        <option value="PK">PK</option>
+                                    </select>
+                                    <em id="type-error" class="error invalid-feedback">Please select type</em>
+                                </p>
+                                <p class="form-group col-md-3">
                                     <select id="category" name="category" class="form-control" style="width: 100% !important;" aria-describedby="category-error"
                                         required>
                                         <option value=""></option>
@@ -46,21 +61,6 @@
                                         <option value="Promo">Promo</option>
                                     </select>
                                     <em id="commercial-error" class="error invalid-feedback">Please select type</em>
-                                </p>
-                                <p class="form-group col-md-3">
-                                    <input type="text" class="form-control" name="code" placeholder="Code Product" id="code" aria-describedby="code-error" required="">
-                                    <em id="code-error" class="error invalid-feedback">Please select type</em>
-                                </p>
-                                <p class="form-group col-md-3">
-                                    <select id="type" name="type" class="form-control" style="width: 100% !important;" aria-describedby="type-error" required>
-                                        <option value=""></option>
-                                        <option value="BP">BP</option>
-                                        <option value="LC">LC</option>
-                                        <option value="AC">AC</option>
-                                        <option value="CM">CM</option>
-                                        <option value="PK">PK</option>
-                                    </select>
-                                    <em id="type-error" class="error invalid-feedback">Please select type</em>
                                 </p>
                                 <!-- <p class="form-group col-md-3">
                                     <input type="number" class="form-control" placeholder="Stok" name="stock" id="stock" aria-describedby="stock-error">
