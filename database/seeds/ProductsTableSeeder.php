@@ -16,6 +16,8 @@ class ProductsTableSeeder extends Seeder
             'code' => '5006',
             'name' => 'EXTREME FORTE',
             'type' => 'BP',
+            'category' => 'VFM',
+            'commercial' => 'Reguler',
             'stock' => '120',
             'price'=> [
                 [
@@ -44,7 +46,9 @@ class ProductsTableSeeder extends Seeder
             [
             'code' => '5007',
             'name' => 'EXTREME FORTE 2',
-            'type' => 'BPK',
+            'type' => 'LC',
+            'category' => 'VFM',
+            'commercial' => 'Reguler',
             'stock' => '100',
             'price'=> [
                 [

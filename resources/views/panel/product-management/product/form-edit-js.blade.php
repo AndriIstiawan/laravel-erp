@@ -14,13 +14,13 @@
             }
         });*/
 
-    $('#type').select2({theme: "bootstrap",placeholder: 'Please select Type'})
+    $('#type').select2({theme: "bootstrap",placeholder: 'Type'})
               .change(function () {$(this).valid();});
-    $('#category').select2({theme: "bootstrap",placeholder: 'Please select Category'})
+    $('#category').select2({theme: "bootstrap",placeholder: 'Category'})
               .change(function () {$(this).valid();});
-    $('#commercial').select2({theme: "bootstrap",placeholder: 'Please select Commercial'})
+    $('#commercial').select2({theme: "bootstrap",placeholder: 'Commercial'})
               .change(function () {$(this).valid();});
-    $('#currency').select2({theme: "bootstrap",placeholder: 'Please select Curency'})
+    $('#currency').select2({theme: "bootstrap",placeholder: 'Curency'})
               .change(function () {$(this).valid();});
 
   $("#jxForm1").validate({
@@ -50,10 +50,10 @@
         required:'Please enter a code'
       },
       stock:{
-        required:'Please enter a stock'
+        required:'Please select a stock'
       },
       commercial:{
-        required:'Please enter a commercial'
+        required:'Please select a commercial'
       },
       category:{
         required:'Please enter a category'

@@ -81,10 +81,10 @@
                 required: 'Please enter a code'
             },
             commercial: {
-                required: 'Please enter a commercial'
+                required: 'Please select a commercial'
             },
             category: {
-                required: 'Please enter a category'
+                required: 'Please select a category'
             },
             stock: {
                 required: 'Please enter a stock'
