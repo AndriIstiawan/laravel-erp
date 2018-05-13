@@ -13,9 +13,9 @@ class UsersTableSeeder extends Seeder
     {
         DB::table('users')->insert([
             [
-            'name' => env('ROOT_NAME', 'Root Fiture'),
-            'email' => env('ROOT_USERNAME', 'jx@fiture.id'),
-            'password' => bcrypt(env('ROOT_PASSWORD', 'fiture123$#')),
+            'name' => env('ROOT_NAME'),
+            'email' => env('ROOT_USERNAME'),
+            'password' => bcrypt(env('ROOT_PASSWORD')),
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
             ],
