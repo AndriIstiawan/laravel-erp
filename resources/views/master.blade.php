@@ -58,7 +58,7 @@
                             $statusUrl = "active";
                         }
                         ?>
-                        <li class="breadcrumb-item {{$statusUrl}}"><?php echo $valUrl; ?></li>
+                        <li class="breadcrumb-item {{$statusUrl}}"><?php echo ($valUrl!='show'?$valUrl:(isset($uriLink)?$uriLink:'')); ?></li>
                         <?php
                     }
                 }

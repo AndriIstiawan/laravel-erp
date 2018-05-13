@@ -10,6 +10,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use Excel;
+use Auth;
 
 class MasterMemberController extends Controller
 {
@@ -149,6 +150,9 @@ class MasterMemberController extends Controller
             case "export":
                 return $this->clientExport();
                 break;
+            case "import":
+                return $this->clientImport();
+                break;
             default:
                 return $this->list_data();
         }
@@ -248,6 +252,10 @@ class MasterMemberController extends Controller
         $excel = Excel::selectSheetsByIndex(0,1)->load($file, function($reader) use ($members) {
             $data = [];
             foreach($members as $member){
+                $data_mobile = implode(' / ', array_column($member->mobile, 'number'));
+                //if(is_numeric($data_mobile)){ $data_mobile = "`".$data_mobile; }
+                $data_phone = implode(' / ', array_column($member->phone, 'number'));
+                //if(is_numeric($data_phone)){ $data_phone = "`".$data_phone; }
                 $data[] = [
                     $member->code,
                     $member->display_name,
@@ -258,8 +266,8 @@ class MasterMemberController extends Controller
                     $member->billing_address,
                     implode(' / ', array_column($member->shipping_address, 'address')),
                     $member->email,
-                    implode(' / ', array_column($member->mobile, 'number')),
-                    implode(' / ', array_column($member->phone, 'number')),
+                    '="'.$data_mobile.'"',
+                    '="'.$data_phone.'"',
                     $member->remarks,
                     $member->kota,
                     $member->provinsi,
@@ -276,6 +284,126 @@ class MasterMemberController extends Controller
             
         })->setFilename('client-form-export['.date("H-i-s d-m-Y")."]")->download('xlsx');
     }
+
+    //view form import
+    public function clientImport()
+    {
+        return view('panel.member-management.master-member.form-import')->with([
+            'uriLink' => 'import',
+        ]);
+    }
+
+    //import data
+    public function ImportData(Request $request)
+    {
+        $file = $request->import->getRealPath();
+        $filename = 'client-form-import['.date("H-i-s d-m-Y")."][".Auth::user()->email."]";
+        $excel = Excel::selectSheetsByIndex(0)->load($file, function($reader) use ($filename) {
+            $results = $reader->get();
+            //read sheet 1
+            foreach($results as $listData){ //result[0] if load multiple sheet selectSheetsByIndex(0,1)
+                //check parent column value
+                if(!isset($listData['code'])||!isset($listData['displayname'])||!isset($listData['companyname'])||!isset($listData['title'])
+                ||!isset($listData['fullname'])||!isset($listData['salesemail'])||!isset($listData['billingaddress'])||!isset($listData['shippingaddress'])
+                ||!isset($listData['email'])||!isset($listData['mobile'])||!isset($listData['phone'])||!isset($listData['remarks'])||!isset($listData['kota'])
+                ||!isset($listData['provinsi'])||!isset($listData['negara'])||!isset($listData['segmenpasar'])||!isset($listData['dateregister'])){
+                    $data[] = array('parent column not valid');
+                }else{
+                    $code = trim($listData['code']);
+                    $displayname = trim($listData['displayname']);
+                    $companyname = trim($listData['companyname']);
+                    $title = trim($listData['title']);
+                    $fullname = trim($listData['fullname']);
+                    $salesemail = trim($listData['salesemail']);
+                    $billingaddress = trim($listData['billingaddress']);
+                    $shippingaddress = trim($listData['shippingaddress']);
+                    $email = trim($listData['email']);
+                    $mobile = trim($listData['mobile']);
+                    $phone = trim($listData['phone']);
+                    $remarks = trim($listData['remarks']);
+                    $kota = trim($listData['kota']);
+                    $provinsi = trim($listData['provinsi']);
+                    $negara = trim($listData['negara']);
+                    $segmenpasar = trim($listData['segmenpasar']);
+                    $dateregister = trim($listData['dateregister']);
+
+                    if($code==""||$displayname==""||$title==""||$fullname==""||$salesemail==""||$billingaddress==""||$shippingaddress==""||$mobile==""){
+                        $data[] = array('error import => require data is empty [code,displayname,titlefullname,salesemail,billingaddress,shippingaddress,mobile]');
+                    }else{
+                        $sales = $sales = User::where('role', 'elemMatch', array('name' => 'Sales'))->where('email', $salesemail)->first();
+                        if(!$sales){
+                            $data[] = array('error import => sales email is not valid');
+                        }else{
+                            if (($timestamp = strtotime($dateregister)) == false && $dateregister != "") {
+                                $data[] = array('error import => date register is not valid');
+                            } else {
+                                $member = Member::where('code', $code)->first();
+                                if($member){
+                                    $data[] = array('edit client successfuly.');
+                                }else{
+                                    $data[] = array('new client successfuly insert.');
+                                    $member = new Member();
+                                }
+                                $member['code'] = $code;
+                                $member['display_name'] = $displayname;
+                                $member['fullname'] = $fullname;
+                                $member['title'] = $title;
+                                $member['email'] = $email;
+                                $member['company'] = $companyname;
+                                $member['segmen_pasar'] = $segmenpasar;
+                                $member['negara'] = $negara;
+                                $member['provinsi'] = $provinsi;
+                                $member['kota'] = $kota;
+                                $member['remarks'] = $remarks;
+                                $member['divisi'] = [];
+                                $member['billing_address'] = $billingaddress;
+                                $member['sales'] = [[
+                                    'name' => $sales['name'],
+                                    'detail' => [$sales->toArray()],
+                                ]];
+                                $shippingaddress = explode(' / ', $shippingaddress);
+                                $arrAddr = [];
+                                foreach($shippingaddress as $shipping_list){
+                                    $arrAddr[] = [
+                                        'address' => $shipping_list,
+                                    ];
+                                }
+                                $member['shipping_address'] = $arrAddr;
+                                $mobile = explode(' / ', $mobile);
+                                $arrNumber = [];
+                                foreach($mobile as $mobile_list){
+                                    $arrNumber[] = [
+                                        'number' => $mobile_list,
+                                    ];
+                                }
+                                $member['mobile'] = $arrNumber;
+                                $phone = explode(' / ', $phone);
+                                $arrNumber = [];
+                                foreach($phone as $phone_list){
+                                    $arrNumber[] = [
+                                        'number' => $phone_list,
+                                    ];
+                                }
+                                $member['phone'] = $arrNumber;
+                                if($dateregister != ""){
+                                    $dateregister = date("Y-m-d H:i:s", strtotime($dateregister));
+                                }else{
+                                    $dateregister = date("Y-m-d H:i:s");
+                                }
+                                $member['created_at'] = $dateregister;
+                                $member->save();
+                            }
+                        }
+                    }
+                }
+            }
+            //editing sheet 1
+            $sheet0 = $reader->setActiveSheetIndex(0);
+            $reader->getActiveSheet()->fromArray($data, null, 'R3', false, false); //D6 is note columns
+        })->setFilename($filename)->store('xlsx', false, true);
+        return $filename.'.xlsx';
+    }
+
     //Delete data setting
     public function destroy($id)
     {
