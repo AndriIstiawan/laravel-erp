@@ -1,6 +1,6 @@
 <script>  
   
-  $(document).ready(function() {
+  /*$(document).ready(function() {
     var counter = 0;
       $("#addMe").click(function(){
           counter++;
@@ -24,7 +24,7 @@
                 });
             }
         });
-  });
+  });*/
       
   $('#product')/*.select2({theme:"bootstrap", placeholder:'Please select'})*/
     .change(function(){

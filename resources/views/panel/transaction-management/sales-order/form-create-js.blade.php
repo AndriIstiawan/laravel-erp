@@ -1,6 +1,6 @@
 <script>
 
-    $(document).ready(function () {
+    /*$(document).ready(function () {
         var counter = 0;
         $("#addMe").click(function () {
             counter++;
@@ -25,7 +25,7 @@
                 });
             }
         });
-    });
+    });*/
 
     function refProductChange() {
         $('.input_ .option-card1 .products').select2({

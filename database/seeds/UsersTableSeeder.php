@@ -20,8 +20,56 @@ class UsersTableSeeder extends Seeder
             'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-            'name' => 'Sales',
-            'email' => 'sales@gmail.com',
+            'name' => 'DEDE',
+            'email' => 'dede@gmail.com',
+            'password' => bcrypt('asdasd'),
+            'role' => [],
+            'created_at' => date("Y-m-d H:i:s"),
+            'updated_at' => date("Y-m-d H:i:s")
+            ],
+            [
+            'name' => 'ALAMSYAH',
+            'email' => 'alamsyah@gmail.com',
+            'password' => bcrypt('asdasd'),
+            'role' => [],
+            'created_at' => date("Y-m-d H:i:s"),
+            'updated_at' => date("Y-m-d H:i:s")
+            ],
+            [
+            'name' => 'WONDO',
+            'email' => 'wondo@gmail.com',
+            'password' => bcrypt('asdasd'),
+            'role' => [],
+            'created_at' => date("Y-m-d H:i:s"),
+            'updated_at' => date("Y-m-d H:i:s")
+            ],
+            [
+            'name' => 'JULIAWAN',
+            'email' => 'juliawan@gmail.com',
+            'password' => bcrypt('asdasd'),
+            'role' => [],
+            'created_at' => date("Y-m-d H:i:s"),
+            'updated_at' => date("Y-m-d H:i:s")
+            ],
+            [
+            'name' => 'MGT',
+            'email' => 'mgt@gmail.com',
+            'password' => bcrypt('asdasd'),
+            'role' => [],
+            'created_at' => date("Y-m-d H:i:s"),
+            'updated_at' => date("Y-m-d H:i:s")
+            ],
+            [
+            'name' => 'INDRA',
+            'email' => 'indra@gmail.com',
+            'password' => bcrypt('asdasd'),
+            'role' => [],
+            'created_at' => date("Y-m-d H:i:s"),
+            'updated_at' => date("Y-m-d H:i:s")
+            ],
+            [
+            'name' => 'DRAJAT',
+            'email' => 'drajat@gmail.com',
             'password' => bcrypt('asdasd'),
             'role' => [],
             'created_at' => date("Y-m-d H:i:s"),
@@ -76,9 +124,33 @@ class UsersTableSeeder extends Seeder
             'updated_at' => date("Y-m-d H:i:s")
             ]
         ]);
-        
+
         $parent = DB::table('roles')->whereIn('name',['Sales'])->get();
-        DB::table('users')->whereIn('email', ['sales@gmail.com'])
+        DB::table('users')->whereIn('email', ['dede@gmail.com'])
+            ->update(['role' => $parent->toArray()]);
+
+        $parent = DB::table('roles')->whereIn('name',['Sales'])->get();
+        DB::table('users')->whereIn('email', ['alamsyah@gmail.com'])
+            ->update(['role' => $parent->toArray()]);
+
+        $parent = DB::table('roles')->whereIn('name',['Sales'])->get();
+        DB::table('users')->whereIn('email', ['wondo@gmail.com'])
+            ->update(['role' => $parent->toArray()]);
+
+        $parent = DB::table('roles')->whereIn('name',['Sales'])->get();
+        DB::table('users')->whereIn('email', ['juliawan@gmail.com'])
+            ->update(['role' => $parent->toArray()]);
+
+        $parent = DB::table('roles')->whereIn('name',['Sales'])->get();
+        DB::table('users')->whereIn('email', ['mgt@gmail.com'])
+            ->update(['role' => $parent->toArray()]);
+
+        $parent = DB::table('roles')->whereIn('name',['Sales'])->get();
+        DB::table('users')->whereIn('email', ['indra@gmail.com'])
+            ->update(['role' => $parent->toArray()]);
+
+        $parent = DB::table('roles')->whereIn('name',['Sales'])->get();
+        DB::table('users')->whereIn('email', ['drajat@gmail.com'])
             ->update(['role' => $parent->toArray()]);
 
         $parent = DB::table('roles')->whereIn('name',['Production'])->get();
