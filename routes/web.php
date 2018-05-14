@@ -83,8 +83,8 @@ Route::middleware('auth')->group(function() {
 	Route::resource('product', 'ProductManagement\ProductController');
     Route::post('product/find', 'ProductManagement\ProductController@find');
 
-	Route::resource('taxes', 'ProductManagement\TaxesController');
-	Route::post('taxes/find', 'ProductManagement\TaxesController@find');
+	Route::resource('type', 'ProductManagement\TypeController');
+	Route::post('type/find', 'ProductManagement\TypeController@find');
 
 	Route::resource('category', 'ProductManagement\CategoriesController');
 	Route::post('category/find', 'ProductManagement\CategoriesController@find');

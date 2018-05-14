@@ -112,6 +112,17 @@ class PermissionsTableSeeder extends Seeder
 				'updated_at' => date("Y-m-d H:i:s")
 			],
 			[
+	        	'name' => 'Type',
+	        	'slug' => 'type',
+	        	'type' => 'module-menu',
+				'icon' => 'icon-cursor',
+				'parent' => null,
+				'description' => 'Module Menu',
+				'guard_name' => 'web',
+				'created_at' => date("Y-m-d H:i:s"),
+				'updated_at' => date("Y-m-d H:i:s")
+			],
+			[
 	        	'name' => 'Master Client',
 	        	'slug' => null,
 	        	'type' => 'module-menu',
@@ -255,17 +266,6 @@ class PermissionsTableSeeder extends Seeder
 			// 	'updated_at' => date("Y-m-d H:i:s")
 			// ],
 			/**/
-			// [
-	        // 	'name' => 'Variants',
-	        // 	'slug' => 'variant',
-	        // 	'type' => 'module-menu',
-			// 	'icon' => 'icon-cursor',
-			// 	'parent' => null,
-			// 	'description' => 'Module Menu',
-			// 	'guard_name' => 'web',
-			// 	'created_at' => date("Y-m-d H:i:s"),
-			// 	'updated_at' => date("Y-m-d H:i:s")
-			// ],
 			// [
 	        // 	'name' => 'Taxes',
 	        // 	'slug' => 'taxes',
@@ -505,7 +505,7 @@ class PermissionsTableSeeder extends Seeder
 			->update(['parent' => (string)$parent['_id']]);
 
 		$parent = DB::table('permissions')->where('name','Product Management')->first();
-		DB::table('permissions')->whereIn('slug', ['product','attributes','attribute-sets','category','variant','taxes'])
+		DB::table('permissions')->whereIn('slug', ['product','type'])
 			->update(['parent' => (string)$parent['_id']]);
 
 		$parent = DB::table('permissions')->where('name','Orders Management')->first();
