@@ -6,7 +6,7 @@ use Moloquent;
 use Illuminate\Notifications\Notifiable;
 use Jenssegers\Mongodb\Eloquent\SoftDeletes;
 
-class Taxes extends Moloquent
+class Type extends Moloquent
 {
     use Notifiable;
 	use SoftDeletes;
@@ -16,6 +16,6 @@ class Taxes extends Moloquent
      * @var array
      */
     protected $fillable = [
-        'name', 'value',
+        'name',
     ];
 }
