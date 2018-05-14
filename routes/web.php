@@ -50,7 +50,6 @@ Route::middleware('auth')->group(function() {
 
 	Route::resource('production', 'TransactionManagement\ProductionController');
 	Route::post('production/find', 'TransactionManagement\ProductionController@find');
-	Route::get('exportt', 'TransactionManagement\SalesOrderController@orderExport')->name('sales-order.export');
 	/* END Transaction  */
 
 	/* Master home */

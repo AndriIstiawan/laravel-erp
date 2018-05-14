@@ -28,7 +28,7 @@
         $(this).valid();
     });
 
-    $("#jxForm1").validate({
+    $("#jxForm").validate({
         rules: {
             name: {
                 required: true
@@ -37,7 +37,17 @@
                 required: true
             },
             code: {
-                required: true
+                required: true,
+                remote:{
+					url: "{{ route('product.index') }}/find",
+					type: "post",
+					data:{
+						_token:'{{ csrf_token() }}',
+						code: function(){
+							return $('#jxForm :input[name="code"]').val();
+						}
+					}
+				}
             },
             commercial: {
                 required: true
@@ -78,7 +88,8 @@
                 required: 'Please select a type'
             },
             code: {
-                required: 'Please enter a code'
+                required: 'Please enter a code',
+                remote: 'Code already use'
             },
             commercial: {
                 required: 'Please select a commercial'

@@ -1,6 +1,6 @@
 @extends('master') @section('content')
 <link href="{{ asset('fiture-style/select2/select2.min.css') }}" rel="stylesheet">
-<form id="jxForm1" novalidate="novalidate" method="POST" action="{{ route('product.store') }}" enctype="multipart/form-data">
+<form id="jxForm" novalidate="novalidate" method="POST" action="{{ route('product.store') }}" enctype="multipart/form-data">
     {{ csrf_field() }}
     <div class="container-fluid">
         <div class="animate fadeIn">
