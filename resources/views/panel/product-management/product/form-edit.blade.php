@@ -41,6 +41,12 @@
                                         <option value="AC" {{($product->type == 'AC'?'selected':'')}}>AC</option>  
                                         <option value="CM" {{($product->type == 'CM'?'selected':'')}}>CM</option>  
                                         <option value="PK" {{($product->type == 'PK'?'selected':'')}}>PK</option>
+                                        <?php
+                                        $arr = ['BP','LC','AC','CM','PK'];
+                                        if(array_search($product->type, $arr) == false){
+                                            echo '<option value="'.$product->type.'" selected>'.$product->type.'</option>';
+                                        }
+                                        ?>
                                     </select>
                                     <em id="type-error" class="error invalid-feedback">Please select type</em>
                                 </p>
@@ -52,6 +58,12 @@
                                         <option value="MOD" {{($product->category == 'MOD'?'selected':'')}}>MOD</option>  
                                         <option value="SM" {{($product->category == 'SM'?'selected':'')}}>SM</option>  
                                         <option value="NM" {{($product->category == 'NM'?'selected':'')}}>NM</option>
+                                        <?php
+                                        $arr = ['VFM','FM','MOD','SM','NM'];
+                                        if(array_search($product->category, $arr) == false){
+                                            echo '<option value="'.$product->category.'" selected>'.$product->category.'</option>';
+                                        }
+                                        ?>
                                     </select>
                                     <em id="category-error" class="error invalid-feedback">Please select type</em>
                                 </p>
@@ -62,6 +74,12 @@
                                         <option value="New" {{($product->commercial == 'New'?'selected':'')}}>New</option>  
                                         <option value="Stop" {{($product->commercial == 'Stop'?'selected':'')}}>Stop</option>  
                                         <option value="Promo" {{($product->commercial == 'Promo'?'selected':'')}}>Promo</option> 
+                                        <?php
+                                        $arr = ['Reguler','New','Stop', 'Promo'];
+                                        if(array_search($product->commercial, $arr) == false){
+                                            echo '<option value="'.$product->commercial.'" selected>'.$product->commercial.'</option>';
+                                        }
+                                        ?>
                                     </select>
                                     <em id="commercial-error" class="error invalid-feedback">Please select type</em>
                                 </p>
