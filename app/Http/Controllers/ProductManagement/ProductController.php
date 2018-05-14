@@ -215,14 +215,14 @@ class ProductController extends Controller
 
     public function productExport()
     {
-        $product = Product::select('code', 'name', 'type', 'stock', 'currency', 'price')->get();
-        for($i=0; $i < count($product); $i++){
+        $product = Product::select('code', 'name', 'type', 'category', 'commercial', 'price')->get();
+        for($i=0; $i < count($product); $i++){/*
             $product[$i]['Price 250 gr'] = $product[$i]['price'][0]['price'];
             $product[$i]['Price 500 gr'] = $product[$i]['price'][1]['price'];
             $product[$i]['Price 1 Kg'] = $product[$i]['price'][2]['price'];
             $product[$i]['Price 5 Kg'] = $product[$i]['price'][3]['price'];
             $product[$i]['Price 25 Kg'] = $product[$i]['price'][4]['price'];
-            $product[$i]['Price 30 Kg'] = $product[$i]['price'][5]['price'];
+            $product[$i]['Price 30 Kg'] = $product[$i]['price'][5]['price'];*/
             unset($product[$i]['price']);
             unset($product[$i]['_id']);
         }
@@ -248,7 +248,7 @@ class ProductController extends Controller
                 foreach($results as $listData){ //result[0] if load multiple sheet selectSheetsByIndex(0,1)
                     //check parent column value
                     if(!isset($listData['code'])||!isset($listData['name'])||!isset($listData['type'])
-                    ||!isset($listData['stock'])
+                    ||!isset($listData['category'])||!isset($listData['commercial'])
                     // ||!isset($listData['currency'])
                     // ||!isset($listData['price_250_gr'])
                     // ||!isset($listData['price_500_gr'])||!isset($listData['price_1_kg'])||!isset($listData['price_5_kg'])
@@ -261,7 +261,8 @@ class ProductController extends Controller
                         $code = $listData['code'];
                         $name = $listData['name'];
                         $type = $listData['type'];
-                        $stock = $listData['stock'];
+                        $category = $listData['category'];
+                        $commercial = $listData['commercial'];
                         // $currency = $listData['currency'];
                         // $price_250_gr = $listData['price_250_gr'];
                         // $price_500_gr = $listData['price_500_gr'];
@@ -269,7 +270,7 @@ class ProductController extends Controller
                         // $price_5_kg = $listData['price_5_kg'];
                         // $price_25_kg = $listData['price_25_kg'];
                         // $price_30_kg = $listData['price_30_kg'];
-                        if( trim($code) == "" || trim($name) == "" || trim($type) == "" || trim($stock) == ""
+                        if( trim($code) == "" || trim($name) == "" || trim($type) == "" || trim($category) == ""|| trim($commercial) == ""
                         // || trim($currency) == "" || trim($price_250_gr) == "" || trim($price_500_gr) == "" 
                         // || trim($price_1_kg) == "" || trim($price_5_kg) == "" || trim($price_25_kg) == ""|| trim($price_30_kg) == "" 
                     ){
@@ -281,7 +282,8 @@ class ProductController extends Controller
                                 $product['code'] = $code;
                                 $product['name'] = $name;
                                 $product['type'] = $type;
-                                $product['stock'] = $stock;
+                                $product['category'] = $category;
+                                $product['commercial'] = $commercial;
                                 // $product['currency'] = $currency;
                                 // $product['price'] = [
                                 //     ['price' => $price_250_gr],
@@ -298,7 +300,8 @@ class ProductController extends Controller
                                 $product['code'] = $code;
                                 $product['name'] = $name;
                                 $product['type'] = $type;
-                                $product['stock'] = $stock;
+                                $product['category'] = $category;
+                                $product['commercial'] = $commercial;
                                 // $product['currency'] = $currency;
                                 // $product['price'] = [
                                 //     ['price' => $price_250_gr],
