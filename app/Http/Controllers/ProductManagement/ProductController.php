@@ -23,22 +23,25 @@ class ProductController extends Controller
 
     //find product sku
     public function find(Request $request){
-
-        if($request->id){
-            $product = Product::where('_id', '<>', $request->id)->where('sku', $request->slug)->count();
-            $variant = Product::where('_id', '<>', $request->id)->where('variant', 'elemMatch', array('sku' => $request->slug))->count();
-        }else{
-            $product = Product::where('sku', $request->slug)->count();
-            $variant = Product::where('variant', 'elemMatch', array('sku' => $request->slug))->count();
+        $status = 'true';
+        $product = Product::where('code', $request->code)->first();
+        if($product){
+            if(isset($request->id)){
+                if($request->id == $product['_id']){
+                    $status = 'true';
+                }else{
+                    $status = 'false';
+                }
+            }else{
+                $status = 'false';
+            }
         }
-        
-        return ($product > 0 || $variant > 0 ? 'false' : 'true');
+        return $status;
     }
 
     //public index product
     public function index()
     {
-        
         return view('panel.product-management.product.index');
     }
     public function tampil($id){
