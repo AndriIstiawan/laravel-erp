@@ -74,38 +74,14 @@ class ProductController extends Controller
         $product->commercial = $request->commercial;
         $product->code = $request->code;
         $product->stock = $request->stock;
-        // $product->price = [
-        //     [
-        //         "price" => $request->satu,
-        //     ],
-        //     [
-        //         "price" => $request->dua,
-        //     ],
-        //     [
-        //         "price" => $request->tiga,
-        //     ],
-        //     [
-        //         "price" => $request->empat,
-        //     ],
-        //     [
-        //         "price" => $request->lima,
-        //     ],
-        //     [
-        //         "price" => $request->enam,
-        //     ],
-        // ];
-        /*$product->currency = $request->currency;*/
         $product->save();
-
         return redirect()->route('product.index')->with('new', 'product');
-
     }
 
     //for getting datatable at index
     public function listData()
     {
         $products = product::select('id','code','name','type','stock','created_at');
-
         return Datatables::of($products)
             ->addColumn('action', function ($products) {
                 return
@@ -153,9 +129,10 @@ class ProductController extends Controller
     public function show(Request $request, $action)
     {
         switch ($action) {
-            case "list-data":return $this->listData();
-            case "download-import-form":return $this->downloadImportForm();
+            case "export":
+                return $this->productExport();
                 break;
+            default : return $this->listData();
         }
     }
 
@@ -178,29 +155,7 @@ class ProductController extends Controller
         $product->commercial = $request->commercial;
         $product->code = $request->code;
         $product->stock = $request->stock;
-        // $product->price = [
-        //     [
-        //         "price" => $request->satu,
-        //     ],
-        //     [
-        //         "price" => $request->dua,
-        //     ],
-        //     [
-        //         "price" => $request->tiga,
-        //     ],
-        //     [
-        //         "price" => $request->empat,
-        //     ],
-        //     [
-        //         "price" => $request->lima,
-        //     ],
-        //     [
-        //         "price" => $request->enam,
-        //     ],
-        // ];
-        /*$product->currency = $request->currency;*/
         $product->save();
-
         return redirect()->route('product.index')->with('update', 'product');
     }
 
@@ -209,31 +164,33 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         $product->delete();
-
         return redirect()->route('product.index')->with('dlt', 'Products updated!');
     }
 
     public function productExport()
     {
-        $product = Product::select('code', 'name', 'type', 'category', 'commercial', 'price')->get();
-        for($i=0; $i < count($product); $i++){/*
-            $product[$i]['Price 250 gr'] = $product[$i]['price'][0]['price'];
-            $product[$i]['Price 500 gr'] = $product[$i]['price'][1]['price'];
-            $product[$i]['Price 1 Kg'] = $product[$i]['price'][2]['price'];
-            $product[$i]['Price 5 Kg'] = $product[$i]['price'][3]['price'];
-            $product[$i]['Price 25 Kg'] = $product[$i]['price'][4]['price'];
-            $product[$i]['Price 30 Kg'] = $product[$i]['price'][5]['price'];*/
-            unset($product[$i]['price']);
-            unset($product[$i]['_id']);
-        }
+        $file = storage_path('exports/product-form-format.xlsx');
+        $products = Product::all();
 
-        return Excel::create('product-list', function ($excel) use ($product) {
-            $excel->sheet('product list', function ($sheet) use ($product) {
-                $sheet->fromArray($product);
-            });
-        })->download('xlsx');
-        return dd($product);
+        //load excel form and editing row
+        $excel = Excel::selectSheetsByIndex(0,1)->load($file, function($reader) use ($products) {
+            $data = [];
+            foreach($products as $product){
+                $data[] = [
+                    $product->code,
+                    $product->name,
+                    $product->type,
+                    $product->category,
+                    $product->commercial,
+                    $product->currency,
+                ];
+            }
 
+            //editing sheet 1
+            $reader->setActiveSheetIndex(0);
+            $sheet1 = $reader->getActiveSheet();
+            $sheet1->fromArray($data, null, 'A3', false, false);
+        })->setFilename('client-form-export['.date("H-i-s d-m-Y")."]")->download('xlsx');
     }
 
     public function productImport(Request $request)
@@ -249,10 +206,6 @@ class ProductController extends Controller
                     //check parent column value
                     if(!isset($listData['code'])||!isset($listData['name'])||!isset($listData['type'])
                     ||!isset($listData['category'])||!isset($listData['commercial'])
-                    // ||!isset($listData['currency'])
-                    // ||!isset($listData['price_250_gr'])
-                    // ||!isset($listData['price_500_gr'])||!isset($listData['price_1_kg'])||!isset($listData['price_5_kg'])
-                    // ||!isset($listData['price_25_kg'])||!isset($listData['price_30_kg'])
                     ){
                         
                         $data[] = array('parent column not valid');
@@ -263,16 +216,7 @@ class ProductController extends Controller
                         $type = $listData['type'];
                         $category = $listData['category'];
                         $commercial = $listData['commercial'];
-                        // $currency = $listData['currency'];
-                        // $price_250_gr = $listData['price_250_gr'];
-                        // $price_500_gr = $listData['price_500_gr'];
-                        // $price_1_kg = $listData['price_1_kg'];
-                        // $price_5_kg = $listData['price_5_kg'];
-                        // $price_25_kg = $listData['price_25_kg'];
-                        // $price_30_kg = $listData['price_30_kg'];
                         if( trim($code) == "" || trim($name) == "" || trim($type) == "" || trim($category) == ""|| trim($commercial) == ""
-                        // || trim($currency) == "" || trim($price_250_gr) == "" || trim($price_500_gr) == "" 
-                        // || trim($price_1_kg) == "" || trim($price_5_kg) == "" || trim($price_25_kg) == ""|| trim($price_30_kg) == "" 
                     ){
                             $data[] = array('error import => data value not valid');
                         
@@ -284,15 +228,6 @@ class ProductController extends Controller
                                 $product['type'] = $type;
                                 $product['category'] = $category;
                                 $product['commercial'] = $commercial;
-                                // $product['currency'] = $currency;
-                                // $product['price'] = [
-                                //     ['price' => $price_250_gr],
-                                //     ['price' => $price_500_gr],
-                                //     ['price' => $price_1_kg],
-                                //     ['price' => $price_5_kg],
-                                //     ['price' => $price_25_kg],
-                                //     ['price' => $price_30_kg],                                 
-                                // ];
                                 $product->save();
                                 $data[] = array('product edit successfuly');
                             }else{
@@ -302,15 +237,6 @@ class ProductController extends Controller
                                 $product['type'] = $type;
                                 $product['category'] = $category;
                                 $product['commercial'] = $commercial;
-                                // $product['currency'] = $currency;
-                                // $product['price'] = [
-                                //     ['price' => $price_250_gr],
-                                //     ['price' => $price_500_gr],
-                                //     ['price' => $price_1_kg],
-                                //     ['price' => $price_5_kg],
-                                //     ['price' => $price_25_kg],
-                                //     ['price' => $price_30_kg],                                 
-                                // ];
                                 $product->save();
                                 $data[] = array('product create successfuly');
                             }

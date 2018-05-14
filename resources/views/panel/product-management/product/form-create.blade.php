@@ -19,16 +19,16 @@
                             <small>Create </small>
                         </div>
                         <div class="card-body">
-                            <div class="form-group row">
-                                <p class="col-md-12">
+                            <div class="row">
+                                <p class="input-group col-md-12">
                                     <input type="text" name="name" class="form-control" placeholder="Enter product name.." aria-describedby="name-error">
                                     <em id="name-error" class="error invalid-feedback"></em>
                                 </p>
-                                <p class="form-group col-md-3">
+                                <p class="input-group col-md-2">
                                     <input type="text" class="form-control" name="code" placeholder="Code Product" id="code" aria-describedby="code-error" required="">
                                     <em id="code-error" class="error invalid-feedback">Please select type</em>
                                 </p>
-                                <p class="form-group col-md-3">
+                                <p class="input-group col-md-2">
                                     <select id="type" name="type" class="form-control" style="width: 100% !important;" aria-describedby="type-error" required>
                                         <option value=""></option>
                                         <option value="BP">BP</option>
@@ -39,7 +39,7 @@
                                     </select>
                                     <em id="type-error" class="error invalid-feedback">Please select type</em>
                                 </p>
-                                <p class="form-group col-md-3">
+                                <p class="input-group col-md-3">
                                     <select id="category" name="category" class="form-control" style="width: 100% !important;" aria-describedby="category-error"
                                         required>
                                         <option value=""></option>
@@ -51,7 +51,7 @@
                                     </select>
                                     <em id="category-error" class="error invalid-feedback">Please select type</em>
                                 </p>
-                                <p class="form-group col-md-3">
+                                <p class="input-group col-md-3">
                                     <select id="commercial" name="commercial" class="form-control" style="width: 100% !important;" aria-describedby="commercial-error"
                                         required>
                                         <option value=""></option>
@@ -62,20 +62,24 @@
                                     </select>
                                     <em id="commercial-error" class="error invalid-feedback">Please select type</em>
                                 </p>
-                                <!-- <p class="form-group col-md-3">
-                                    <input type="number" class="form-control" placeholder="Stok" name="stock" id="stock" aria-describedby="stock-error">
-                                    <em id="stock-error" class="error invalid-feedback">Please select type</em>
-                                </p> -->
+                                <p class="input-group col-md-2">
+                                    <select id="currency" name="currency" class="form-control" style="width: 100% !important;" aria-describedby="currency-error">
+                                        <option value=""></option>
+                                        <option value="Reguler">USD</option>
+                                        <option value="New">IDR</option>
+                                    </select>
+                                    <em id="currency-error" class="error invalid-feedback"></em>
+                                </p>
                             </div>
                         </div>
-                        <div class="card-footer">
+                        <!-- <div class="card-footer">
                             <div class="btn-group">
                                 <button type="submit" name="save" id="save" class="btn btn-success">Save</button>&nbsp;
                                 <button type="button" class="btn btn-secondary" onclick="window.history.back()">
                                     <i class="fa fa-times-rectangle"></i>&nbsp; Cancel
                                 </button>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <!--end card general-->
                 </div>
