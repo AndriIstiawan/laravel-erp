@@ -68,7 +68,7 @@
                                 <span aria-hidden="true">&times; </span>
                             </button>
                         </div>
-                    <form method="get" action="{{route('sales-order.export')}}" novalidate="novalidate">
+                    <form method="get" action="" novalidate="novalidate">
                         {{ csrf_field() }}
                         <div class="modal-body">
                             <div class="form-group">
