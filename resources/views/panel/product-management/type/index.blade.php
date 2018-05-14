@@ -11,9 +11,9 @@
 					<i class="fa fa-refresh"></i>
 				</button>
 				<button type="button" class="btn btn-primary" data-toggle="modal"
-					 data-target="#primaryModal" data-link="{{ route('taxes.create') }}" 
+					 data-target="#primaryModal" data-link="{{ route('type.create') }}" 
 					 onclick="funcModal($(this))">
-				<i class="fa fa-plus"></i>&nbsp; New Taxes
+				<i class="fa fa-plus"></i>&nbsp; New Type
 				</button>
 				</p>
 			</div>
@@ -23,14 +23,13 @@
 			<div class="col-lg-12">
 				<div class="card">
 					<div class="card-header">
-						<i class="fa fa-align-justify"></i> Taxes Table
+						<i class="fa fa-align-justify"></i> Type Table
 					</div>
 					<div class="card-body">
 						<table class="table table-responsive-sm table-bordered table-striped table-sm datatable">
 							<thead>
 								<tr>
 									<th>Name</th>
-									<th>Value</th>
 									<th>Date registered</th>
 									<th></th>
 								</tr>
@@ -73,14 +72,13 @@
 	        ajax: '{!! url()->current() !!}/data',
 	        columns: [
 	            {data: 'name', name: 'name'},
-	            {data: 'value', name: 'value'},
 	            {data: 'created_at', name: 'created_at'},
 	            {data: 'action', name: 'action', orderable: false, searchable: false, width:'20%'}
 	        ],
 			"columnDefs": [
-				{"targets": 3,"className": "text-center"}
+				{"targets": 2,"className": "text-center"}
 			],
-			"order":[[3, 'desc']]
+			"order":[[1, 'desc']]
 		});
 		$('.datatable').attr('style','border-collapse: collapse !important');
 		
