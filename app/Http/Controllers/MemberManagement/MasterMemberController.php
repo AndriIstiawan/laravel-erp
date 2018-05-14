@@ -299,6 +299,7 @@ class MasterMemberController extends Controller
         $file = $request->import->getRealPath();
         $filename = 'client-form-import['.date("H-i-s d-m-Y")."][".Auth::user()->email."]";
         $excel = Excel::selectSheetsByIndex(0)->load($file, function($reader) use ($filename) {
+            $data = [];
             $results = $reader->get();
             //read sheet 1
             foreach($results as $listData){ //result[0] if load multiple sheet selectSheetsByIndex(0,1)

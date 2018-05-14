@@ -14,13 +14,13 @@
             }
         });*/
 
-    $('#type').select2({theme: "bootstrap",placeholder: 'Type'})
+    $('#type').select2({theme: "bootstrap",placeholder: 'Type',tags: true})
               .change(function () {$(this).valid();});
-    $('#category').select2({theme: "bootstrap",placeholder: 'Category'})
+    $('#category').select2({theme: "bootstrap",placeholder: 'Category',tags: true})
               .change(function () {$(this).valid();});
-    $('#commercial').select2({theme: "bootstrap",placeholder: 'Commercial'})
+    $('#commercial').select2({theme: "bootstrap",placeholder: 'Commercial',tags: true})
               .change(function () {$(this).valid();});
-    $('#currency').select2({theme: "bootstrap",placeholder: 'Curency'})
+    $('#currency').select2({theme: "bootstrap",placeholder: 'Curency',tags: true})
               .change(function () {$(this).valid();});
 
   $("#jxForm1").validate({

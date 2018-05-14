@@ -23,17 +23,17 @@ class PermissionsTableSeeder extends Seeder
 				'created_at' => date("Y-m-d H:i:s"),
 				'updated_at' => date("Y-m-d H:i:s")
 			],
-			[
-	        	'name' => 'Sales Order',
-	        	'slug' => 'sales-order',
-	        	'type' => 'module-menu',
-				'icon' => 'icon-cursor',
-				'parent' => null,
-				'description' => 'Module Menu',
-				'guard_name' => 'web',
-				'created_at' => date("Y-m-d H:i:s"),
-				'updated_at' => date("Y-m-d H:i:s")
-			],
+			// [
+	        // 	'name' => 'Sales Order',
+	        // 	'slug' => 'sales-order',
+	        // 	'type' => 'module-menu',
+			// 	'icon' => 'icon-cursor',
+			// 	'parent' => null,
+			// 	'description' => 'Module Menu',
+			// 	'guard_name' => 'web',
+			// 	'created_at' => date("Y-m-d H:i:s"),
+			// 	'updated_at' => date("Y-m-d H:i:s")
+			// ],
 			[
 	        	'name' => 'Production',
 	        	'slug' => 'production',
