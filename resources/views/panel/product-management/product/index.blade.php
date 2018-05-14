@@ -26,7 +26,7 @@
                         <span class="ladda-label">
                             <i class="fa fa-file-excel-o">
                             </i>
-                            Export Products
+                            Export All Products
                         </span>
                     </a>
                 </p>
@@ -38,7 +38,6 @@
                 <div class="card">
                     <div class="card-header">
                         <i class="fa fa-align-justify"></i> Products Table
-
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
