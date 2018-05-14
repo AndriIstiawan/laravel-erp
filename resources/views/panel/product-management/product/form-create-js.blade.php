@@ -22,7 +22,7 @@
     });
     $('#currency').select2({
         theme: "bootstrap",
-        placeholder: 'Please select ',
+        placeholder: 'Currency',
         tags: true
     }).change(function () {
         $(this).valid();
@@ -127,6 +127,8 @@
             error.addClass('invalid-feedback');
         },
         highlight: function (element, errorClass, validClass) {
+            $(element).parent('.input-group').find('.select2-selection').attr('style',
+                'border-color:#f86c6b');
             $(element).addClass('is-invalid').removeClass('is-valid');
         },
         unhighlight: function (element, errorClass, validClass) {
