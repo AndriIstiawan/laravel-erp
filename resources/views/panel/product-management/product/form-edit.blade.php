@@ -126,52 +126,52 @@
                             <div class="row">
                                 <p class="input-group col-md-2">
                                     <input type="text" class="form-control usd-format" name="250gPlastik" placeholder="250g Plastik" 
-                                        id="250gPlastik" aria-describedby="250gPlastik-error" value="{{$product->price[0]['price']}}">
+                                        id="250gPlastik" aria-describedby="250gPlastik-error" value="{{($product->price[0]['price']!='0'?$product->price[0]['price']:'')}}">
                                     <em id="250gPlastik-error" class="error invalid-feedback"></em>
                                 </p>
                                 <p class="input-group col-md-2">
                                     <input type="text" class="form-control usd-format" name="250gAluminium" placeholder="250g Aluminium" 
-                                        id="250gAluminium" aria-describedby="250gAluminium-error" value="{{$product->price[1]['price']}}">
+                                        id="250gAluminium" aria-describedby="250gAluminium-error" value="{{($product->price[1]['price']!='0'?$product->price[1]['price']:'')}}">
                                     <em id="250gAluminium-error" class="error invalid-feedback"></em>
                                 </p>
                                 <p class="input-group col-md-2">
                                     <input type="text" class="form-control usd-format" name="500gPlastik" placeholder="500g Plastik" 
-                                        id="500gPlastik" aria-describedby="500gPlastik-error" value="{{$product->price[2]['price']}}">
+                                        id="500gPlastik" aria-describedby="500gPlastik-error" value="{{($product->price[2]['price']!='0'?$product->price[2]['price']:'')}}">
                                     <em id="500gPlastik-error" class="error invalid-feedback"></em>
                                 </p>
                                 <p class="input-group col-md-2">
                                     <input type="text" class="form-control usd-format" name="500gAluminium" placeholder="500g Aluminium" 
-                                        id="500gAluminium" aria-describedby="500gAluminium-error" value="{{$product->price[3]['price']}}">
+                                        id="500gAluminium" aria-describedby="500gAluminium-error" value="{{($product->price[3]['price']!='0'?$product->price[3]['price']:'')}}">
                                     <em id="500gAluminium-error" class="error invalid-feedback"></em>
                                 </p>
                                 <p class="input-group col-md-2">
                                     <input type="text" class="form-control usd-format" name="1kgPlastik" placeholder="1kg Plastik" 
-                                        id="1kgPlastik" aria-describedby="1kgPlastik-error" value="{{$product->price[4]['price']}}">
+                                        id="1kgPlastik" aria-describedby="1kgPlastik-error" value="{{($product->price[4]['price']!='0'?$product->price[4]['price']:'')}}">
                                     <em id="1kgPlastik-error" class="error invalid-feedback"></em>
                                 </p>
                                 <p class="input-group col-md-2">
                                     <input type="text" class="form-control usd-format" name="1kgAluminium" placeholder="1kg Aluminium" 
-                                        id="1kgAluminium" aria-describedby="1kgAluminium-error" value="{{$product->price[5]['price']}}">
+                                        id="1kgAluminium" aria-describedby="1kgAluminium-error" value="{{($product->price[5]['price']!='0'?$product->price[5]['price']:'')}}">
                                     <em id="1kgAluminium-error" class="error invalid-feedback"></em>
                                 </p>
                                 <p class="input-group col-md-2">
                                     <input type="text" class="form-control usd-format" name="5kgJerigen" placeholder="5kg Jerigen" 
-                                        id="5kgJerigen" aria-describedby="5kgJerigen-error" value="{{$product->price[6]['price']}}">
+                                        id="5kgJerigen" aria-describedby="5kgJerigen-error" value="{{($product->price[6]['price']!='0'?$product->price[6]['price']:'')}}">
                                     <em id="5kgJerigen-error" class="error invalid-feedback"></em>
                                 </p>
                                 <p class="input-group col-md-2">
                                     <input type="text" class="form-control usd-format" name="25kgJerigen" placeholder="25kg Jerigen" 
-                                        id="25kgJerigen" aria-describedby="25kgJerigen-error" value="{{$product->price[7]['price']}}">
+                                        id="25kgJerigen" aria-describedby="25kgJerigen-error" value="{{($product->price[7]['price']!='0'?$product->price[7]['price']:'')}}">
                                     <em id="25kgJerigen-error" class="error invalid-feedback"></em>
                                 </p>
                                 <p class="input-group col-md-2">
                                     <input type="text" class="form-control usd-format" name="25kgDrum" placeholder="25kg Drum" 
-                                        id="25kgDrum" aria-describedby="25kgDrum-error" value="{{$product->price[8]['price']}}">
+                                        id="25kgDrum" aria-describedby="25kgDrum-error" value="{{($product->price[8]['price']!='0'?$product->price[8]['price']:'')}}">
                                     <em id="25kgDrum-error" class="error invalid-feedback"></em>
                                 </p>
                                 <p class="input-group col-md-2">
                                     <input type="text" class="form-control usd-format" name="30kgJerigen" placeholder="30kg Jerigen" 
-                                        id="30kgJerigen" aria-describedby="30kgJerigen-error" value="{{$product->price[9]['price']}}">
+                                        id="30kgJerigen" aria-describedby="30kgJerigen-error" value="{{($product->price[9]['price']!='0'?$product->price[9]['price']:'')}}">
                                     <em id="30kgJerigen-error" class="error invalid-feedback"></em>
                                 </p>
                             </div>
@@ -191,7 +191,7 @@
                                     <div class="row">
                                         <div class="input-group col-md-12">
                                             <input type="text" class="form-control input-float" name="250gPlastiks" placeholder="250g Plastik" 
-                                                id="250gPlastiks" aria-describedby="250gPlastiks-error" value="{{(double)$product->stock[0]['quantity']/1000}}">
+                                                id="250gPlastiks" aria-describedby="250gPlastiks-error" value="{{((double)$product->stock[0]['quantity']/1000!=0?(double)$product->stock[0]['quantity']/1000:'')}}">
                                             <div class="input-group-append">
                                                 <span class="input-group-text text-sm">kg</span>
                                             </div>
@@ -204,7 +204,7 @@
                                     <div class="row">
                                         <div class="input-group col-md-12">
                                             <input type="text" class="form-control input-float" name="250gAluminiums" placeholder="250g Aluminium" 
-                                                id="250gAluminiums" aria-describedby="250gAluminiums-error" value="{{(double)$product->stock[1]['quantity']/1000}}">
+                                                id="250gAluminiums" aria-describedby="250gAluminiums-error" value="{{((double)$product->stock[1]['quantity']/1000!=0?(double)$product->stock[1]['quantity']/1000:'')}}">
                                             <div class="input-group-append">
                                                 <span class="input-group-text text-sm">kg</span>
                                             </div>
@@ -217,7 +217,7 @@
                                     <div class="row">
                                         <div class="input-group col-md-12">
                                             <input type="text" class="form-control input-float" name="500gPlastiks" placeholder="500g Plastik" 
-                                                id="500gPlastiks" aria-describedby="500gPlastiks-error" value="{{(double)$product->stock[2]['quantity']/1000}}">
+                                                id="500gPlastiks" aria-describedby="500gPlastiks-error" value="{{((double)$product->stock[2]['quantity']/1000!=0?(double)$product->stock[1]['quantity']/1000:'')}}">
                                             <div class="input-group-append">
                                                 <span class="input-group-text text-sm">kg</span>
                                             </div>
@@ -230,7 +230,7 @@
                                     <div class="row">
                                         <div class="input-group col-md-12">
                                             <input type="text" class="form-control input-float" name="500gAluminiums" placeholder="500g Aluminium" 
-                                                id="500gAluminiums" aria-describedby="500gAluminiums-error" value="{{(double)$product->stock[3]['quantity']/1000}}">
+                                                id="500gAluminiums" aria-describedby="500gAluminiums-error" value="{{((double)$product->stock[3]['quantity']/1000!=0?(double)$product->stock[3]['quantity']/1000:'')}}">
                                             <div class="input-group-append">
                                                 <span class="input-group-text text-sm">kg</span>
                                             </div>
@@ -243,7 +243,7 @@
                                     <div class="row">
                                         <div class="input-group col-md-12">
                                             <input type="text" class="form-control input-float" name="1kgPlastiks" placeholder="1kg Plastik" 
-                                                id="1kgPlastiks" aria-describedby="1kgPlastiks-error" value="{{(double)$product->stock[4]['quantity']/1000}}">
+                                                id="1kgPlastiks" aria-describedby="1kgPlastiks-error" value="{{((double)$product->stock[4]['quantity']/1000!=0?(double)$product->stock[4]['quantity']/1000:'')}}">
                                             <div class="input-group-append">
                                                 <span class="input-group-text text-sm">kg</span>
                                             </div>
@@ -256,7 +256,7 @@
                                     <div class="row">
                                         <div class="input-group col-md-12">
                                             <input type="text" class="form-control input-float" name="1kgAluminiums" placeholder="1kg Aluminium" 
-                                                id="1kgAluminiums" aria-describedby="1kgAluminiums-error" value="{{(double)$product->stock[5]['quantity']/1000}}">
+                                                id="1kgAluminiums" aria-describedby="1kgAluminiums-error" value="{{((double)$product->stock[5]['quantity']/1000!=0?(double)$product->stock[5]['quantity']/1000:'')}}">
                                             <div class="input-group-append">
                                                 <span class="input-group-text text-sm">kg</span>
                                             </div>
@@ -269,7 +269,7 @@
                                     <div class="row">
                                         <div class="input-group col-md-12">
                                             <input type="text" class="form-control input-float" name="5kgJerigens" placeholder="5kg Jerigen" 
-                                                id="5kgJerigens" aria-describedby="5kgJerigens-error" value="{{(double)$product->stock[6]['quantity']/1000}}">
+                                                id="5kgJerigens" aria-describedby="5kgJerigens-error" value="{{((double)$product->stock[6]['quantity']/1000!=0?(double)$product->stock[6]['quantity']/1000:'')}}">
                                             <div class="input-group-append">
                                                 <span class="input-group-text text-sm">kg</span>
                                             </div>
@@ -282,7 +282,7 @@
                                     <div class="row">
                                         <div class="input-group col-md-12">
                                             <input type="text" class="form-control input-float" name="25kgJerigens" placeholder="25kg Jerigen" 
-                                                id="25kgJerigens" aria-describedby="25kgJerigens-error" value="{{(double)$product->stock[7]['quantity']/1000}}">
+                                                id="25kgJerigens" aria-describedby="25kgJerigens-error" value="{{((double)$product->stock[7]['quantity']/1000!=0?(double)$product->stock[7]['quantity']/1000:'')}}">
                                             <div class="input-group-append">
                                                 <span class="input-group-text text-sm">kg</span>
                                             </div>
@@ -295,7 +295,7 @@
                                     <div class="row">
                                         <div class="input-group col-md-12">
                                             <input type="text" class="form-control input-float" name="25kgDrums" placeholder="25kg Drum" 
-                                                id="25kgDrums" aria-describedby="25kgDrums-error" value="{{(double)$product->stock[8]['quantity']/1000}}">
+                                                id="25kgDrums" aria-describedby="25kgDrums-error" value="{{((double)$product->stock[8]['quantity']/1000!=0?(double)$product->stock[8]['quantity']/1000:'')}}">
                                             <div class="input-group-append">
                                                 <span class="input-group-text text-sm">kg</span>
                                             </div>
@@ -308,7 +308,7 @@
                                     <div class="row">
                                         <div class="input-group col-md-12">
                                             <input type="text" class="form-control input-float" name="30kgJerigens" placeholder="30kg Jerigens" 
-                                                id="30kgJerigens" aria-describedby="30kgJerigens-error" value="{{(double)$product->stock[9]['quantity']/1000}}">
+                                                id="30kgJerigens" aria-describedby="30kgJerigens-error" value="{{((double)$product->stock[9]['quantity']/1000!=0?(double)$product->stock[9]['quantity']/1000:'')}}">
                                             <div class="input-group-append">
                                                 <span class="input-group-text text-sm">kg</span>
                                             </div>
