@@ -14,7 +14,7 @@
 <!-- Tooltip -->
 <script src="{{ asset('js/ext/tooltip-convSlug.js')}}"></script>
 <!-- Number Format -->
-<script src="{{ asset('js/ext/number-format.js')}}"></script>
+<script src="{{ asset('js/ext/number-format.js') }}"></script>
 <!-- Swal MessageBox -->
 <script src="{{ asset('fiture-style/swal-msgbox/sweetalert.min.js')}}"></script>
 

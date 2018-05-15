@@ -1,4 +1,33 @@
 <script>
+    $('.usd-format').on('change', function () {
+        var number = $(this).val();
+        number = number.replace(',', '');
+        if (parseFloat(number)) {
+            number = parseFloat(number).toFixed(2);
+            if (number == 0) {
+                number = '';
+            } else {
+                number = number.toLocaleString('en-US')
+            }
+        } else {
+            number = '';
+        }
+        $(this).val(number);
+    });
+
+    $('.input-float').on('change', function () {
+        var number = $(this).val();
+        if (parseFloat(number)) {
+            number = parseFloat(number).toFixed(3);
+            if (number == 0) {
+                number = '';
+            }
+        } else {
+            number = '';
+        }
+        $(this).val(number);
+    });
+
     $('#type').select2({
             theme: "bootstrap",
             placeholder: 'Type',

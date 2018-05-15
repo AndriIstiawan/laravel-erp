@@ -1,8 +1,36 @@
 <script>
+    $('.usd-format').on('change', function () {
+        var number = $(this).val();
+        number = number.replace(',', '');
+        if (parseFloat(number)) {
+            number = parseFloat(number).toFixed(2);
+            if (number == 0) {
+                number = '';
+            } else {
+                number = number.toLocaleString('en-US')
+            }
+        } else {
+            number = '';
+        }
+        $(this).val(number);
+    });
+
+    $('.input-float').on('change', function () {
+        var number = $(this).val();
+        if (parseFloat(number)) {
+            number = parseFloat(number).toFixed(3);
+            if (number == 0) {
+                number = '';
+            }
+        } else {
+            number = '';
+        }
+        $(this).val(number);
+    });
+
     $('#type').select2({
         theme: "bootstrap",
-        placeholder: 'Type',
-        tags: true
+        placeholder: 'Type'
     }).change(function () {
         $(this).valid();
     });
@@ -38,16 +66,16 @@
             },
             code: {
                 required: true,
-                remote:{
-					url: "{{ route('product.index') }}/find",
-					type: "post",
-					data:{
-						_token:'{{ csrf_token() }}',
-						code: function(){
-							return $('#jxForm :input[name="code"]').val();
-						}
-					}
-				}
+                remote: {
+                    url: "{{ route('product.index') }}/find",
+                    type: "post",
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        code: function () {
+                            return $('#jxForm :input[name="code"]').val();
+                        }
+                    }
+                }
             },
             commercial: {
                 required: true
@@ -133,6 +161,8 @@
         },
         unhighlight: function (element, errorClass, validClass) {
             $(element).addClass('is-valid').removeClass('is-invalid');
+            $(element).parent('.input-group').find('.select2-selection').attr('style',
+                'border-color:#4dbd74');
         }
     });
 </script>

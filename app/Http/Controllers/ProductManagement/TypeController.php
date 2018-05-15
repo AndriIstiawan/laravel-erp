@@ -21,7 +21,7 @@ class TypeController extends Controller
 
         if ($request->id) {
             $type = Type::where('name', $request->name)->first();
-            if (count($type) > 0) {
+            if ($type) {
                 return ($request->id == $type->id ? 'true' : 'false');
             } else {
                 return 'true';
