@@ -8,21 +8,21 @@
                     <button type="button" class="btn btn-primary" onclick="refresh()">
                         <i class="fa fa-refresh"></i>
                     </button>
-                    <a href="{{ route('product.create') }}" class="btn btn-primary ladda-button" data-style="zoom-in">
+                    <a href="{{ route('product.create') }}" class="btn btn-primary ladda-button">
                         <span class="ladda-label">
                             <i class="fa fa-plus">
                             </i>
                             New Products
                         </span>
                     </a>
-                    <button class="btn btn-success ladda-button" data-toggle="modal" data-target="#modal-exim" disabled>
+                    <a href="{{route('product.index')}}/import" class="btn btn-success ladda-button">
                         <span class="ladda-label">
                             <i class="fa fa-cloud-download">
                             </i>
                             Import Products
                         </span>
-                    </button>
-                    <a href="{{route('product.index')}}/export" class="btn btn-success ladda-button" data-style="zoom-in" disabled>
+                    </a>
+                    <a href="{{route('product.index')}}/export" class="btn btn-success ladda-button">
                         <span class="ladda-label">
                             <i class="fa fa-file-excel-o">
                             </i>
