@@ -6,6 +6,8 @@ use App\Categories;
 use App\Http\Controllers\Controller;
 use App\Product;
 use App\Variant;
+use App\Type;
+use Auth;
 use Excel;
 use File;
 use Illuminate\Http\Request;
@@ -55,9 +57,8 @@ class ProductController extends Controller
     //view form create
     public function create()
     {
-        $categories = Categories::all();
-        $categories = $categories->toArray();
-        return view('panel.product-management.product.form-create', ['categories' => $categories]);
+        $types = Type::all();
+        return view('panel.product-management.product.form-create', ['types' => $types]);
     }
     public function form()
     {
@@ -69,43 +70,104 @@ class ProductController extends Controller
     {
         $product = new Product();
         $product->name = $request->name;
+        $product->code = $request->code;
         $product->type = $request->type;
         $product->category = $request->category;
         $product->commercial = $request->commercial;
-        $product->code = $request->code;
-        $product->stock = $request->stock;
-        // $product->price = [
-        //     [
-        //         "price" => $request->satu,
-        //     ],
-        //     [
-        //         "price" => $request->dua,
-        //     ],
-        //     [
-        //         "price" => $request->tiga,
-        //     ],
-        //     [
-        //         "price" => $request->empat,
-        //     ],
-        //     [
-        //         "price" => $request->lima,
-        //     ],
-        //     [
-        //         "price" => $request->enam,
-        //     ],
-        // ];
-        /*$product->currency = $request->currency;*/
+        $product->currency = $request->currency;
+        $product->price = [
+            [
+                'name' => '250g Plastik',
+                'price' => (double)str_replace(',', '',$request->input('250gPlastik'))
+            ],
+            [
+                'name' => '250g Aluminium',
+                'price' => (double)str_replace(',', '',$request->input('250gAluminium'))
+            ],
+            [
+                'name' => '500g Plastik',
+                'price' => (double)str_replace(',', '',$request->input('500gPlastik'))
+            ],
+            [
+                'name' => '500g Aluminium',
+                'price' => (double)str_replace(',', '',$request->input('500gAluminium'))
+            ],
+            [
+                'name' => '1kg Plastik',
+                'price' => (double)str_replace(',', '',$request->input('1kgPlastik'))
+            ],
+            [
+                'name' => '1kg Aluminium',
+                'price' => (double)str_replace(',', '',$request->input('1kgAluminium'))
+            ],
+            [
+                'name' => '5kg Jerigen',
+                'price' => (double)str_replace(',', '',$request->input('5kgJerigen'))
+            ],
+            [
+                'name' => '25kg Jerigen',
+                'price' => (double)str_replace(',', '',$request->input('25kgJerigen'))
+            ],
+            [
+                'name' => '25kg Drum',
+                'price' => (double)str_replace(',', '',$request->input('25kgDrum'))
+            ],
+            [
+                'name' => '30kg Jerigen',
+                'price' => (double)str_replace(',', '',$request->input('30kgJerigen'))
+            ],
+        ];
+        $product->stock = [
+            [
+                'name' => '250g Plastik',
+                'quantity' => ((double)$request->input('250gPlastiks'))*1000
+            ],
+            [
+                'name' => '250g Aluminium',
+                'quantity' => ((double)$request->input('250gAluminiums'))*1000
+            ],
+            [
+                'name' => '500g Plastik',
+                'quantity' => ((double)$request->input('500gPlastiks'))*1000
+            ],
+            [
+                'name' => '500g Aluminium',
+                'quantity' => ((double)$request->input('500gAluminiums'))*1000
+            ],
+            [
+                'name' => '1kg Plastik',
+                'quantity' => ((double)$request->input('1kgPlastiks'))*1000
+            ],
+            [
+                'name' => '1kg Aluminium',
+                'quantity' => ((double)$request->input('1kgAluminiums'))*1000
+            ],
+            [
+                'name' => '5kg Jerigen',
+                'quantity' => ((double)$request->input('5kgJerigens'))*1000
+            ],
+            [
+                'name' => '25kg Jerigen',
+                'quantity' => ((double)$request->input('25kgJerigens'))*1000
+            ],
+            [
+                'name' => '25kg Drum',
+                'quantity' => ((double)$request->input('25kgDrums'))*1000
+            ],
+            [
+                'name' => '30kg Jerigen',
+                'quantity' => ((double)$request->input('30kgJerigens'))*1000
+            ],
+        ];
+        
         $product->save();
-
         return redirect()->route('product.index')->with('new', 'product');
-
     }
 
     //for getting datatable at index
     public function listData()
     {
         $products = product::select('id','code','name','type','stock','created_at');
-
         return Datatables::of($products)
             ->addColumn('action', function ($products) {
                 return
@@ -153,9 +215,13 @@ class ProductController extends Controller
     public function show(Request $request, $action)
     {
         switch ($action) {
-            case "list-data":return $this->listData();
-            case "download-import-form":return $this->downloadImportForm();
+            case "export":
+                return $this->productExport();
                 break;
+            case "import":
+                return $this->productImport();
+                break;
+            default : return $this->listData();
         }
     }
 
@@ -163,9 +229,8 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = product::find($id);
-        $categories = Categories::all();
-        $categories = $categories->toArray();
-        return view('panel.product-management.product.form-edit')->with(['product' => $product, 'categories' => $categories]);
+        $types = Type::all();
+        return view('panel.product-management.product.form-edit')->with(['product' => $product, 'types' => $types]);
     }
 
     //update data product
@@ -173,34 +238,97 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         $product->name = $request->name;
+        $product->code = $request->code;
         $product->type = $request->type;
         $product->category = $request->category;
         $product->commercial = $request->commercial;
-        $product->code = $request->code;
-        $product->stock = $request->stock;
-        // $product->price = [
-        //     [
-        //         "price" => $request->satu,
-        //     ],
-        //     [
-        //         "price" => $request->dua,
-        //     ],
-        //     [
-        //         "price" => $request->tiga,
-        //     ],
-        //     [
-        //         "price" => $request->empat,
-        //     ],
-        //     [
-        //         "price" => $request->lima,
-        //     ],
-        //     [
-        //         "price" => $request->enam,
-        //     ],
-        // ];
-        /*$product->currency = $request->currency;*/
+        $product->currency = $request->currency;
+        $product->price = [
+            [
+                'name' => '250g Plastik',
+                'price' => (double)str_replace(',', '',$request->input('250gPlastik'))
+            ],
+            [
+                'name' => '250g Aluminium',
+                'price' => (double)str_replace(',', '',$request->input('250gAluminium'))
+            ],
+            [
+                'name' => '500g Plastik',
+                'price' => (double)str_replace(',', '',$request->input('500gPlastik'))
+            ],
+            [
+                'name' => '500g Aluminium',
+                'price' => (double)str_replace(',', '',$request->input('500gAluminium'))
+            ],
+            [
+                'name' => '1kg Plastik',
+                'price' => (double)str_replace(',', '',$request->input('1kgPlastik'))
+            ],
+            [
+                'name' => '1kg Aluminium',
+                'price' => (double)str_replace(',', '',$request->input('1kgAluminium'))
+            ],
+            [
+                'name' => '5kg Jerigen',
+                'price' => (double)str_replace(',', '',$request->input('5kgJerigen'))
+            ],
+            [
+                'name' => '25kg Jerigen',
+                'price' => (double)str_replace(',', '',$request->input('25kgJerigen'))
+            ],
+            [
+                'name' => '25kg Drum',
+                'price' => (double)str_replace(',', '',$request->input('25kgDrum'))
+            ],
+            [
+                'name' => '30kg Jerigen',
+                'price' => (double)str_replace(',', '',$request->input('30kgJerigen'))
+            ],
+        ];
+        $product->stock = [
+            [
+                'name' => '250g Plastik',
+                'quantity' => ((double)$request->input('250gPlastiks'))*1000
+            ],
+            [
+                'name' => '250g Aluminium',
+                'quantity' => ((double)$request->input('250gAluminiums'))*1000
+            ],
+            [
+                'name' => '500g Plastik',
+                'quantity' => ((double)$request->input('500gPlastiks'))*1000
+            ],
+            [
+                'name' => '500g Aluminium',
+                'quantity' => ((double)$request->input('500gAluminiums'))*1000
+            ],
+            [
+                'name' => '1kg Plastik',
+                'quantity' => ((double)$request->input('1kgPlastiks'))*1000
+            ],
+            [
+                'name' => '1kg Aluminium',
+                'quantity' => ((double)$request->input('1kgAluminiums'))*1000
+            ],
+            [
+                'name' => '5kg Jerigen',
+                'quantity' => ((double)$request->input('5kgJerigens'))*1000
+            ],
+            [
+                'name' => '25kg Jerigen',
+                'quantity' => ((double)$request->input('25kgJerigens'))*1000
+            ],
+            [
+                'name' => '25kg Drum',
+                'quantity' => ((double)$request->input('25kgDrums'))*1000
+            ],
+            [
+                'name' => '30kg Jerigen',
+                'quantity' => ((double)$request->input('30kgJerigens'))*1000
+            ],
+        ];
+        
         $product->save();
-
         return redirect()->route('product.index')->with('update', 'product');
     }
 
@@ -209,121 +337,200 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         $product->delete();
-
         return redirect()->route('product.index')->with('dlt', 'Products updated!');
     }
 
     public function productExport()
     {
-        $product = Product::select('code', 'name', 'type', 'category', 'commercial', 'price')->get();
-        for($i=0; $i < count($product); $i++){/*
-            $product[$i]['Price 250 gr'] = $product[$i]['price'][0]['price'];
-            $product[$i]['Price 500 gr'] = $product[$i]['price'][1]['price'];
-            $product[$i]['Price 1 Kg'] = $product[$i]['price'][2]['price'];
-            $product[$i]['Price 5 Kg'] = $product[$i]['price'][3]['price'];
-            $product[$i]['Price 25 Kg'] = $product[$i]['price'][4]['price'];
-            $product[$i]['Price 30 Kg'] = $product[$i]['price'][5]['price'];*/
-            unset($product[$i]['price']);
-            unset($product[$i]['_id']);
-        }
+        $file = storage_path('exports/product-form-format.xlsx');
+        $products = Product::all();
 
-        return Excel::create('product-list', function ($excel) use ($product) {
-            $excel->sheet('product list', function ($sheet) use ($product) {
-                $sheet->fromArray($product);
-            });
-        })->download('xlsx');
-        return dd($product);
+        //load excel form and editing row
+        $excel = Excel::selectSheetsByIndex(0,1)->load($file, function($reader) use ($products) {
+            $data = [];
+            foreach($products as $product){
+                $data[] = [
+                    $product->code,
+                    $product->name,
+                    $product->type,
+                    $product->category,
+                    $product->commercial,
+                    $product->currency,
+                    $product->price[0]['price'],
+                    $product->price[1]['price'],
+                    $product->price[2]['price'],
+                    $product->price[3]['price'],
+                    $product->price[4]['price'],
+                    $product->price[5]['price'],
+                    $product->price[6]['price'],
+                    $product->price[7]['price'],
+                    $product->price[8]['price'],
+                    $product->price[9]['price'],
+                    ((double)$product->stock[0]['quantity']/1000!=0?(double)$product->stock[0]['quantity']/1000:''),
+                    ((double)$product->stock[1]['quantity']/1000!=0?(double)$product->stock[1]['quantity']/1000:''),
+                    ((double)$product->stock[2]['quantity']/1000!=0?(double)$product->stock[2]['quantity']/1000:''),
+                    ((double)$product->stock[3]['quantity']/1000!=0?(double)$product->stock[3]['quantity']/1000:''),
+                    ((double)$product->stock[4]['quantity']/1000!=0?(double)$product->stock[4]['quantity']/1000:''),
+                    ((double)$product->stock[5]['quantity']/1000!=0?(double)$product->stock[5]['quantity']/1000:''),
+                    ((double)$product->stock[6]['quantity']/1000!=0?(double)$product->stock[6]['quantity']/1000:''),
+                    ((double)$product->stock[7]['quantity']/1000!=0?(double)$product->stock[7]['quantity']/1000:''),
+                    ((double)$product->stock[8]['quantity']/1000!=0?(double)$product->stock[8]['quantity']/1000:''),
+                    ((double)$product->stock[9]['quantity']/1000!=0?(double)$product->stock[9]['quantity']/1000:''),
+                ];
+            }
 
+            //editing sheet 1
+            $reader->setActiveSheetIndex(0);
+            $sheet1 = $reader->getActiveSheet();
+            $sheet1->fromArray($data, null, 'A3', false, false);
+        })->setFilename('client-form-export['.date("H-i-s d-m-Y")."]")->download('xlsx');
     }
 
-    public function productImport(Request $request)
+    //view form import
+    public function productImport()
     {
-        if ($request->hasFile('file')) {
-            $path = $request->file->getRealPath();
-            $filename = "import-product[".date("Y-m-d H:i:s")."]";
-            $excel = Excel::load($path, function ($reader) {
-                $results = $reader->get();
-                $data = [];
-                //read sheet 1
-                foreach($results as $listData){ //result[0] if load multiple sheet selectSheetsByIndex(0,1)
-                    //check parent column value
-                    if(!isset($listData['code'])||!isset($listData['name'])||!isset($listData['type'])
-                    ||!isset($listData['category'])||!isset($listData['commercial'])
-                    // ||!isset($listData['currency'])
-                    // ||!isset($listData['price_250_gr'])
-                    // ||!isset($listData['price_500_gr'])||!isset($listData['price_1_kg'])||!isset($listData['price_5_kg'])
-                    // ||!isset($listData['price_25_kg'])||!isset($listData['price_30_kg'])
-                    ){
-                        
-                        $data[] = array('parent column not valid');
+        return view('panel.product-management.product.form-import')->with([
+            'uriLink' => 'import',
+        ]);
+    }
 
+    //import data
+    public function ImportData(Request $request)
+    {
+        $file = $request->import->getRealPath();
+        $filename = 'product-form-import['.date("H-i-s d-m-Y")."][".Auth::user()->email."]";
+        $excel = Excel::selectSheetsByIndex(0)->load($file, function($reader) use ($filename) {
+            $data = [];
+            $results = $reader->get();
+
+            //read sheet 1
+            foreach($results as $listData){ //result[0] if load multiple sheet selectSheetsByIndex(0,1)
+                //check parent column value
+                if(!isset($listData['code'])||!isset($listData['product'])||!isset($listData['type'])||!isset($listData['category'])
+                ||!isset($listData['commercialstatus'])||!isset($listData['currency'])){
+                    $data[] = array('parent column not valid');
+                }else{
+                    $code = trim($listData['code']);
+                    $product_name = trim($listData['product']);
+                    $type = trim($listData['type']);
+                    $category = trim($listData['category']);
+                    $commercialstatus = trim($listData['commercialstatus']);
+                    $currency = trim($listData['currency']);
+
+                    if($code==""||$product_name==""||$type==""||$commercialstatus==""||$currency==""){
+                        $data[] = array('error import => require data is empty [code,product,type,commercialstatus,currency]');
                     }else{
-                        $code = $listData['code'];
-                        $name = $listData['name'];
-                        $type = $listData['type'];
-                        $category = $listData['category'];
-                        $commercial = $listData['commercial'];
-                        // $currency = $listData['currency'];
-                        // $price_250_gr = $listData['price_250_gr'];
-                        // $price_500_gr = $listData['price_500_gr'];
-                        // $price_1_kg = $listData['price_1_kg'];
-                        // $price_5_kg = $listData['price_5_kg'];
-                        // $price_25_kg = $listData['price_25_kg'];
-                        // $price_30_kg = $listData['price_30_kg'];
-                        if( trim($code) == "" || trim($name) == "" || trim($type) == "" || trim($category) == ""|| trim($commercial) == ""
-                        // || trim($currency) == "" || trim($price_250_gr) == "" || trim($price_500_gr) == "" 
-                        // || trim($price_1_kg) == "" || trim($price_5_kg) == "" || trim($price_25_kg) == ""|| trim($price_30_kg) == "" 
-                    ){
-                            $data[] = array('error import => data value not valid');
-                        
+                        $type = Type::where('name', $type)->first();
+                        if(!$type){
+                            $data[] = array('error import => type product not found');
                         }else{
                             $product = Product::where('code', $code)->first();
                             if($product){
-                                $product['code'] = $code;
-                                $product['name'] = $name;
-                                $product['type'] = $type;
-                                $product['category'] = $category;
-                                $product['commercial'] = $commercial;
-                                // $product['currency'] = $currency;
-                                // $product['price'] = [
-                                //     ['price' => $price_250_gr],
-                                //     ['price' => $price_500_gr],
-                                //     ['price' => $price_1_kg],
-                                //     ['price' => $price_5_kg],
-                                //     ['price' => $price_25_kg],
-                                //     ['price' => $price_30_kg],                                 
-                                // ];
-                                $product->save();
-                                $data[] = array('product edit successfuly');
+                                $data[] = array('edit client successfuly.');
                             }else{
+                                $data[] = array('new client successfuly insert.');
                                 $product = new Product();
-                                $product['code'] = $code;
-                                $product['name'] = $name;
-                                $product['type'] = $type;
-                                $product['category'] = $category;
-                                $product['commercial'] = $commercial;
-                                // $product['currency'] = $currency;
-                                // $product['price'] = [
-                                //     ['price' => $price_250_gr],
-                                //     ['price' => $price_500_gr],
-                                //     ['price' => $price_1_kg],
-                                //     ['price' => $price_5_kg],
-                                //     ['price' => $price_25_kg],
-                                //     ['price' => $price_30_kg],                                 
-                                // ];
-                                $product->save();
-                                $data[] = array('product create successfuly');
                             }
+                            $product['code'] = $code;
+                            $product['name'] = $product_name;
+                            $product['type'] = $type['name'];
+                            $product['category'] = $category;
+                            $product['commercialstatus'] = $commercialstatus;
+                            $product['currency'] = $currency;
+                            $product['price'] = [
+                                [
+                                    'name' => '250g Plastik',
+                                    'price' => (double)str_replace(',', '',$listData['250g_plastik_price'])
+                                ],
+                                [
+                                    'name' => '250g Aluminium',
+                                    'price' => (double)str_replace(',', '',$listData['250g_aluminium_price'])
+                                ],
+                                [
+                                    'name' => '500g Plastik',
+                                    'price' => (double)str_replace(',', '',$listData['500g_plastik_price'])
+                                ],
+                                [
+                                    'name' => '500g Aluminium',
+                                    'price' => (double)str_replace(',', '',$listData['500g_aluminium_price'])
+                                ],
+                                [
+                                    'name' => '1kg Plastik',
+                                    'price' => (double)str_replace(',', '',$listData['1kg_plastik_price'])
+                                ],
+                                [
+                                    'name' => '1kg Aluminium',
+                                    'price' => (double)str_replace(',', '',$listData['1kg_aluminium_price'])
+                                ],
+                                [
+                                    'name' => '5kg Jerigen',
+                                    'price' => (double)str_replace(',', '',$listData['5kg_jerigen_price'])
+                                ],
+                                [
+                                    'name' => '25kg Jerigen',
+                                    'price' => (double)str_replace(',', '',$listData['25kg_jerigen_price'])
+                                ],
+                                [
+                                    'name' => '25kg Drum',
+                                    'price' => (double)str_replace(',', '',$listData['25kg_drum_price'])
+                                ],
+                                [
+                                    'name' => '30kg Jerigen',
+                                    'price' => (double)str_replace(',', '',$listData['30kg_jerigen_price'])
+                                ],
+                            ];
+
+                            $product['stock'] = [
+                                [
+                                    'name' => '250g Plastik',
+                                    'quantity' => ((double)$listData['250g_plastik_stock'])*1000
+                                ],
+                                [
+                                    'name' => '250g Aluminium',
+                                    'quantity' => ((double)$listData['250g_aluminium_stock'])*1000
+                                ],
+                                [
+                                    'name' => '500g Plastik',
+                                    'quantity' => ((double)$listData['500g_plastik_stock'])*1000
+                                ],
+                                [
+                                    'name' => '500g Aluminium',
+                                    'quantity' => ((double)$listData['500g_aluminium_stock'])*1000
+                                ],
+                                [
+                                    'name' => '1kg Plastik',
+                                    'quantity' => ((double)$listData['1kg_plastik_stock'])*1000
+                                ],
+                                [
+                                    'name' => '1kg Aluminium',
+                                    'quantity' => ((double)$listData['1kg_aluminium_stock'])*1000
+                                ],
+                                [
+                                    'name' => '5kg Jerigen',
+                                    'quantity' => ((double)$listData['5kg_jerigen_stock'])*1000
+                                ],
+                                [
+                                    'name' => '25kg Jerigen',
+                                    'quantity' => ((double)$listData['25kg_jerigen_stock'])*1000
+                                ],
+                                [
+                                    'name' => '25kg Drum',
+                                    'quantity' => ((double)$listData['25kg_drum_stock'])*1000
+                                ],
+                                [
+                                    'name' => '30kg Jerigen',
+                                    'quantity' => ((double)$listData['30kg_jerigen_stock'])*1000
+                                ],
+                            ];
+                            $product->save();
                         }
                     }
                 }
-
-                //editing sheet 1
-                $sheet0 = $reader->setActiveSheetIndex(0);
-                $reader->getActiveSheet()->fromArray($data, null, 'L2', false, false); //L2 is note columns
-                //$reader->getActiveSheet()->setAutoSize(true);
-            })->setFilename($filename)->download('xlsx');
-        }
-
+            }
+            //editing sheet 1
+            $sheet0 = $reader->setActiveSheetIndex(0);
+            $reader->getActiveSheet()->fromArray($data, null, 'AA3', false, false); //D6 is note columns
+        })->setFilename($filename)->store('xlsx', false, true);
+        return $filename.'.xlsx';
     }
 }

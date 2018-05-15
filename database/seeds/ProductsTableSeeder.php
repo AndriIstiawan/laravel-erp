@@ -18,26 +18,89 @@ class ProductsTableSeeder extends Seeder
             'type' => 'BP',
             'category' => 'VFM',
             'commercial' => 'Reguler',
-            'stock' => '120',
+            'stock' => [
+                [
+                    'name' => '250g Plastik',
+                    'quantity' => (double)'0'
+                ],
+                [
+                    'name' => '250g Aluminium',
+                    'quantity' => (double)'0'
+                ],
+                [
+                    'name' => '500g Plastik',
+                    'quantity' => (double)'0'
+                ],
+                [
+                    'name' => '500g Aluminium',
+                    'quantity' => (double)'0'
+                ],
+                [
+                    'name' => '1kg Plastik',
+                    'quantity' => (double)'0'
+                ],
+                [
+                    'name' => '1kg Aluminium',
+                    'quantity' => (double)'0'
+                ],
+                [
+                    'name' => '5kg Jerigen',
+                    'quantity' => (double)'0'
+                ],
+                [
+                    'name' => '25kg Jerigen',
+                    'quantity' => (double)'0'
+                ],
+                [
+                    'name' => '25kg Drum',
+                    'quantity' => (double)'0'
+                ],
+                [
+                    'name' => '30kg Jerigen',
+                    'quantity' => (double)'0'
+                ],
+            ],
             'price'=> [
                 [
-                'price' => '38.62'
+                    'name' => '250g Plastik',
+                    'price' => (double)'0'
                 ],
                 [
-                'price' => '38.62'
+                    'name' => '250g Aluminium',
+                    'price' => (double)'0'
                 ],
                 [
-                'price' => '35.57'
+                    'name' => '500g Plastik',
+                    'price' => (double)'0'
                 ],
                 [
-                'price' => '32.36'
+                    'name' => '500g Aluminium',
+                    'price' => (double)'0'
                 ],
                 [
-                'price' => '30.05'
+                    'name' => '1kg Plastik',
+                    'price' => (double)'0'
                 ],
                 [
-                'price' => '29.05'
-                ]
+                    'name' => '1kg Aluminium',
+                    'price' => (double)'0'
+                ],
+                [
+                    'name' => '5kg Jerigen',
+                    'price' => (double)'0'
+                ],
+                [
+                    'name' => '25kg Jerigen',
+                    'price' => (double)'0'
+                ],
+                [
+                    'name' => '25kg Drum',
+                    'price' => (double)'0'
+                ],
+                [
+                    'name' => '30kg Jerigen',
+                    'price' => (double)'0'
+                ],
             ],
             'currency' => 'USD',
             'created_at' => date("Y-m-d H:i:s"),
@@ -49,26 +112,89 @@ class ProductsTableSeeder extends Seeder
             'type' => 'LC',
             'category' => 'VFM',
             'commercial' => 'Reguler',
-            'stock' => '100',
+            'stock' => [
+                [
+                    'name' => '250g Plastik',
+                    'quantity' => (double)'0'
+                ],
+                [
+                    'name' => '250g Aluminium',
+                    'quantity' => (double)'0'
+                ],
+                [
+                    'name' => '500g Plastik',
+                    'quantity' => (double)'0'
+                ],
+                [
+                    'name' => '500g Aluminium',
+                    'quantity' => (double)'0'
+                ],
+                [
+                    'name' => '1kg Plastik',
+                    'quantity' => (double)'0'
+                ],
+                [
+                    'name' => '1kg Aluminium',
+                    'quantity' => (double)'0'
+                ],
+                [
+                    'name' => '5kg Jerigen',
+                    'quantity' => (double)'0'
+                ],
+                [
+                    'name' => '25kg Jerigen',
+                    'quantity' => (double)'0'
+                ],
+                [
+                    'name' => '25kg Drum',
+                    'quantity' => (double)'0'
+                ],
+                [
+                    'name' => '30kg Jerigen',
+                    'quantity' => (double)'0'
+                ],
+            ],
             'price'=> [
                 [
-                'price' => '38.62'
+                    'name' => '250g Plastik',
+                    'price' => (double)'0'
                 ],
                 [
-                'price' => '35.57'
+                    'name' => '250g Aluminium',
+                    'price' => (double)'0'
                 ],
                 [
-                'price' => '32.36'
+                    'name' => '500g Plastik',
+                    'price' => (double)'0'
                 ],
                 [
-                'price' => '30.05'
+                    'name' => '500g Aluminium',
+                    'price' => (double)'0'
                 ],
                 [
-                'price' => '30.05'
+                    'name' => '1kg Plastik',
+                    'price' => (double)'0'
                 ],
                 [
-                'price' => '29.05'
-                ]
+                    'name' => '1kg Aluminium',
+                    'price' => (double)'0'
+                ],
+                [
+                    'name' => '5kg Jerigen',
+                    'price' => (double)'0'
+                ],
+                [
+                    'name' => '25kg Jerigen',
+                    'price' => (double)'0'
+                ],
+                [
+                    'name' => '25kg Drum',
+                    'price' => (double)'0'
+                ],
+                [
+                    'name' => '30kg Jerigen',
+                    'price' => (double)'0'
+                ],
             ],
             'currency' => 'USD',
             'created_at' => date("Y-m-d H:i:s"),

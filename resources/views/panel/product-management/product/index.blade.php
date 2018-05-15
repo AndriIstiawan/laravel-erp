@@ -8,21 +8,21 @@
                     <button type="button" class="btn btn-primary" onclick="refresh()">
                         <i class="fa fa-refresh"></i>
                     </button>
-                    <a href="{{ route('product.create') }}" class="btn btn-primary ladda-button" data-style="zoom-in">
+                    <a href="{{ route('product.create') }}" class="btn btn-primary ladda-button">
                         <span class="ladda-label">
                             <i class="fa fa-plus">
                             </i>
                             New Products
                         </span>
                     </a>
-                    <button class="btn btn-success ladda-button" data-toggle="modal" data-target="#modal-exim" disabled>
+                    <a href="{{route('product.index')}}/import" class="btn btn-success ladda-button">
                         <span class="ladda-label">
                             <i class="fa fa-cloud-download">
                             </i>
                             Import Products
                         </span>
-                    </button>
-                    <a href="#" class="btn btn-success ladda-button" data-style="zoom-in" disabled>
+                    </a>
+                    <a href="{{route('product.index')}}/export" class="btn btn-success ladda-button">
                         <span class="ladda-label">
                             <i class="fa fa-file-excel-o">
                             </i>
@@ -64,7 +64,7 @@
 <div class="modal" id="modal-exim" tabindex="1" role="dialog" aria-hidden="true" data-backdrop="static">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <form method="post" action="{{route('product.import')}}" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
+            <form method="post" action="" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="modal-header">
                     <h3 class="modal-title">Import Product</h3>

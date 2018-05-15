@@ -1,222 +1,348 @@
-@extends('master')
-@section('content')
+@extends('master') @section('content')
 <link href="{{ asset('fiture-style/select2/select2.min.css') }}" rel="stylesheet">
 <form id="jxForm" novalidate="novalidate" method="POST" action="{{ route('product.update',['id' => $product->id]) }}" enctype="multipart/form-data">
-{{ method_field('PUT') }}
-{{ csrf_field() }}
-<div class="container-fluid">
-    <div class="animate fadeIn">
-        <div class="row">
-            <div class="col-lg-1"></div>
-            <div class="col-lg-10">
-                <div class="alert alert-success" role="alert">
-                    <h4 class="alert-heading">New product!</h4>
-                </div>
-                <p>
-                    <a class="btn btn-primary" href="{{route('product.index')}}">
-                        <i class="fa fa-backward"></i>&nbsp; Back to List
-                    </a>
-                </p>
-                    <!--start card general -->
+    {{ method_field('PUT') }} {{ csrf_field() }}
+    <div class="container-fluid">
+        <div class="animate fadeIn">
+            <div class="row">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-10">
+                    <p>
+                        <a class="btn btn-primary" href="{{route('product.index')}}">
+                            <i class="fa fa-backward"></i>&nbsp; Back to List
+                        </a>
+                    </p>
+                    <!--start card product -->
                     <div class="card">
                         <div class="card-header">
                             <i class="fa fa-align-justify"></i> Product
-                            <small>Information </small>
+                            <small>Edit </small>
                         </div>
                         <div class="card-body">
-                            <div class="form-group row">
+                            <div class="row">
                                 <p class="col-md-12">
-                                    <input type="text" name="name" class="form-control" placeholder="Enter product name.." aria-describedby="name-error" value="{{$product->name}}">
+                                    <input type="text" name="name" class="form-control" placeholder="Product name" aria-describedby="name-error" value="{{$product->name}}">
                                     <em id="name-error" class="error invalid-feedback"></em>
                                 </p>
-                                <p class="col-md-3">
-                                    <input type="text" class="form-control" name="code" id="code" value="{{$product->code}}" aria-describedby="code-error">
-                                     <em id="code-error" class="error invalid-feedback">Please select type</em>
+                                <p class="col-md-2">
+                                    <input type="text" class="form-control" name="code" placeholder="Product code" id="code" aria-describedby="code-error" value="{{$product->code}}">
+                                    <em id="code-error" class="error invalid-feedback"></em>
                                 </p>
-                                <p class="col-md-3">
-                                    <select id="type" name="type" class="form-control" style="width: 100% !important;" aria-describedby="type-error" required>
+                                <p class="input-group col-md-2">
+                                    <select id="type" name="type" class="form-control" aria-describedby="type-error">
                                         <option value=""></option>
-                                        <option value="BP" {{($product->type == 'BP'?'selected':'')}} >BP</option>
-                                        <option value="LC" {{($product->type == 'LC'?'selected':'')}}>LC</option>  
-                                        <option value="AC" {{($product->type == 'AC'?'selected':'')}}>AC</option>  
-                                        <option value="CM" {{($product->type == 'CM'?'selected':'')}}>CM</option>  
-                                        <option value="PK" {{($product->type == 'PK'?'selected':'')}}>PK</option>
-                                        <?php
-                                        $arr = ['BP','LC','AC','CM','PK'];
-                                        if(array_search($product->type, $arr) == false){
-                                            echo '<option value="'.$product->type.'" selected>'.$product->type.'</option>';
-                                        }
-                                        ?>
+                                        @foreach($types as $type)
+                                        <option value="{{$type->name}}" {{($product->type==$type->name?'selected':'')}}>{{$type->name}}</option>
+                                        @endforeach
                                     </select>
-                                    <em id="type-error" class="error invalid-feedback">Please select type</em>
+                                    <em id="type-error" class="error invalid-feedback"></em>
                                 </p>
-                                <p class="form-group col-md-3">
-                                    <select id="category" name="category" class="form-control" style="width: 100% !important;" aria-describedby="category-error" required>
+                                <p class="input-group col-md-3">
+                                    <select id="category" name="category" class="form-control" aria-describedby="category-error">
                                         <option value=""></option>
-                                        <option value="VFM" {{($product->category == 'VFM'?'selected':'')}}>VFM</option>
-                                        <option value="FM" {{($product->category == 'FM'?'selected':'')}}>FM</option>  
-                                        <option value="MOD" {{($product->category == 'MOD'?'selected':'')}}>MOD</option>  
-                                        <option value="SM" {{($product->category == 'SM'?'selected':'')}}>SM</option>  
-                                        <option value="NM" {{($product->category == 'NM'?'selected':'')}}>NM</option>
-                                        <?php
-                                        $arr = ['VFM','FM','MOD','SM','NM'];
-                                        if(array_search($product->category, $arr) == false){
-                                            echo '<option value="'.$product->category.'" selected>'.$product->category.'</option>';
-                                        }
-                                        ?>
+                                        <option value="VFM">VFM</option>
+                                        <option value="FM">FM</option>
+                                        <option value="MOD">MOD</option>
+                                        <option value="SM">SM</option>
+                                        <option value="NM">NM</option>
                                     </select>
-                                    <em id="category-error" class="error invalid-feedback">Please select type</em>
+                                    <em id="category-error" class="error invalid-feedback"></em>
+                                    <script>
+                                        var x = document.getElementById("category");
+                                        var btrue = true;
+                                        for (i = 0; i < x.options.length; i++) {
+                                            if (x.options[i].value == "{{$product->category}}") {
+                                                x.options[i].selected = true;
+                                                btrue = false;
+                                            }
+                                        }
+                                        if (btrue === true) {
+                                            x.insertAdjacentHTML('beforeend',
+                                                '<option value="{{$product->category}}" selected>{{$product->category}}</option>'
+                                            );
+                                        }
+                                    </script>
                                 </p>
-                                <p class="form-group col-md-3">
-                                    <select id="commercial" name="commercial" class="form-control" style="width: 100% !important;" aria-describedby="commercial-error" required>
+                                <p class="input-group col-md-3">
+                                    <select id="commercial" name="commercial" class="form-control" aria-describedby="commercial-error">
                                         <option value=""></option>
-                                        <option value="Reguler" {{($product->commercial == 'Reguler'?'selected':'')}}>Reguler</option>
-                                        <option value="New" {{($product->commercial == 'New'?'selected':'')}}>New</option>  
-                                        <option value="Stop" {{($product->commercial == 'Stop'?'selected':'')}}>Stop</option>  
-                                        <option value="Promo" {{($product->commercial == 'Promo'?'selected':'')}}>Promo</option> 
-                                        <?php
-                                        $arr = ['Reguler','New','Stop', 'Promo'];
-                                        if(array_search($product->commercial, $arr) == false){
-                                            echo '<option value="'.$product->commercial.'" selected>'.$product->commercial.'</option>';
-                                        }
-                                        ?>
+                                        <option value="Reguler">Reguler</option>
+                                        <option value="New">New</option>
+                                        <option value="Stop">Stop</option>
+                                        <option value="Promo">Promo</option>
                                     </select>
-                                    <em id="commercial-error" class="error invalid-feedback">Please select type</em>
+                                    <em id="commercial-error" class="error invalid-feedback"></em>
+                                    <script>
+                                        var x = document.getElementById("commercial");
+                                        var btrue = true;
+                                        for (i = 0; i < x.options.length; i++) {
+                                            if (x.options[i].value == "{{$product->commercial}}") {
+                                                x.options[i].selected = true;
+                                                btrue = false;
+                                            }
+                                        }
+                                        if (btrue === true) {
+                                            x.insertAdjacentHTML('beforeend',
+                                                '<option value="{{$product->commercial}}" selected>{{$product->commercial}}</option>'
+                                            );
+                                        }
+                                    </script>
                                 </p>
-                                <!-- <p class="col-md-3">
-                                    <input type="text" class="form-control" name="stock" id="stock" value="{{$product->stock}}" aria-describedby="stock-error">
-                                    <em id="stock-error" class="error invalid-feedback">Please select type</em>
-                                </p> -->
+                                <p class="input-group col-md-2">
+                                    <select id="currency" name="currency" class="form-control" aria-describedby="currency-error">
+                                        <option value=""></option>
+                                        <option value="Reguler">USD</option>
+                                        <option value="New">IDR</option>
+                                    </select>
+                                    <em id="currency-error" class="error invalid-feedback"></em>
+                                    <script>
+                                        var x = document.getElementById("currency");
+                                        var btrue = true;
+                                        for (i = 0; i < x.options.length; i++) {
+                                            if (x.options[i].value == "{{$product->currency}}") {
+                                                x.options[i].selected = true;
+                                                btrue = false;
+                                            }
+                                        }
+                                        if (btrue === true) {
+                                            x.insertAdjacentHTML('beforeend',
+                                                '<option value="{{$product->currency}}" selected>{{$product->currency}}</option>'
+                                            );
+                                        }
+                                    </script>
+                                </p>
                             </div>
                         </div>
                     </div>
-                    <!--end card general-->
+                    <!--end card product-->
 
                     <!--start card price -->
-                    <!-- < --><!-- div class="card">
+                    <div class="card">
                         <div class="card-header">
                             <i class="fa fa-align-justify"></i> Price
+                            <small>Management </small>
                         </div>
                         <div class="card-body">
-                            <div class="form-group row">
-                                <label class="col-md-3 col-form-label" >*Price 250 gr
-                                    <br>
-                                </label>
-                                <div class="col-md-9">
-                                    <div class="form-group row">
-                                    <div class="col-md-4">
-                                        <input type="text" name="satu" class="form-control" placeholder="250 gr" style="width:200px;" aria-describedby="satu-error" value="{{$product->price[0]['price']}}">
-                                        <em id="satu-error" class="error invalid-feedback">Please select type</em>
-                                    </div>
-                                    </div>
-                                </div>
+                            <div class="row">
+                                <p class="input-group col-md-2">
+                                    <input type="text" class="form-control usd-format" name="250gPlastik" placeholder="250g Plastik" 
+                                        id="250gPlastik" aria-describedby="250gPlastik-error" value="{{($product->price[0]['price']!='0'?$product->price[0]['price']:'')}}">
+                                    <em id="250gPlastik-error" class="error invalid-feedback"></em>
+                                </p>
+                                <p class="input-group col-md-2">
+                                    <input type="text" class="form-control usd-format" name="250gAluminium" placeholder="250g Aluminium" 
+                                        id="250gAluminium" aria-describedby="250gAluminium-error" value="{{($product->price[1]['price']!='0'?$product->price[1]['price']:'')}}">
+                                    <em id="250gAluminium-error" class="error invalid-feedback"></em>
+                                </p>
+                                <p class="input-group col-md-2">
+                                    <input type="text" class="form-control usd-format" name="500gPlastik" placeholder="500g Plastik" 
+                                        id="500gPlastik" aria-describedby="500gPlastik-error" value="{{($product->price[2]['price']!='0'?$product->price[2]['price']:'')}}">
+                                    <em id="500gPlastik-error" class="error invalid-feedback"></em>
+                                </p>
+                                <p class="input-group col-md-2">
+                                    <input type="text" class="form-control usd-format" name="500gAluminium" placeholder="500g Aluminium" 
+                                        id="500gAluminium" aria-describedby="500gAluminium-error" value="{{($product->price[3]['price']!='0'?$product->price[3]['price']:'')}}">
+                                    <em id="500gAluminium-error" class="error invalid-feedback"></em>
+                                </p>
+                                <p class="input-group col-md-2">
+                                    <input type="text" class="form-control usd-format" name="1kgPlastik" placeholder="1kg Plastik" 
+                                        id="1kgPlastik" aria-describedby="1kgPlastik-error" value="{{($product->price[4]['price']!='0'?$product->price[4]['price']:'')}}">
+                                    <em id="1kgPlastik-error" class="error invalid-feedback"></em>
+                                </p>
+                                <p class="input-group col-md-2">
+                                    <input type="text" class="form-control usd-format" name="1kgAluminium" placeholder="1kg Aluminium" 
+                                        id="1kgAluminium" aria-describedby="1kgAluminium-error" value="{{($product->price[5]['price']!='0'?$product->price[5]['price']:'')}}">
+                                    <em id="1kgAluminium-error" class="error invalid-feedback"></em>
+                                </p>
+                                <p class="input-group col-md-2">
+                                    <input type="text" class="form-control usd-format" name="5kgJerigen" placeholder="5kg Jerigen" 
+                                        id="5kgJerigen" aria-describedby="5kgJerigen-error" value="{{($product->price[6]['price']!='0'?$product->price[6]['price']:'')}}">
+                                    <em id="5kgJerigen-error" class="error invalid-feedback"></em>
+                                </p>
+                                <p class="input-group col-md-2">
+                                    <input type="text" class="form-control usd-format" name="25kgJerigen" placeholder="25kg Jerigen" 
+                                        id="25kgJerigen" aria-describedby="25kgJerigen-error" value="{{($product->price[7]['price']!='0'?$product->price[7]['price']:'')}}">
+                                    <em id="25kgJerigen-error" class="error invalid-feedback"></em>
+                                </p>
+                                <p class="input-group col-md-2">
+                                    <input type="text" class="form-control usd-format" name="25kgDrum" placeholder="25kg Drum" 
+                                        id="25kgDrum" aria-describedby="25kgDrum-error" value="{{($product->price[8]['price']!='0'?$product->price[8]['price']:'')}}">
+                                    <em id="25kgDrum-error" class="error invalid-feedback"></em>
+                                </p>
+                                <p class="input-group col-md-2">
+                                    <input type="text" class="form-control usd-format" name="30kgJerigen" placeholder="30kg Jerigen" 
+                                        id="30kgJerigen" aria-describedby="30kgJerigen-error" value="{{($product->price[9]['price']!='0'?$product->price[9]['price']:'')}}">
+                                    <em id="30kgJerigen-error" class="error invalid-feedback"></em>
+                                </p>
                             </div>
-                            <div class="form-group row">
-                                <label class="col-md-3 col-form-label" for="Stockl">*Price 500 gr
-                                    <br>
-                                </label>
-                                <div class="col-md-9">
-                                    <div class="form-group row">
-                                        <div class="col-md-4">
-                                            <input type="text" name="dua" class="form-control" placeholder="500 gr" style="width:200px;" aria-describedby="dua-error" value="{{$product->price[1]['price']}}">
-                                        <em id="dua-error" class="error invalid-feedback">Please select type</em>
-                                        </div> 
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-md-3 col-form-label" for="Stockl">*Price 1 Kg
-                                    <br>
-                                </label>
-                                <div class="col-md-9">
-                                    <div class="form-group row">
-                                        <div class="col-md-4">
-                                            <input type="text" name="tiga" class="form-control" placeholder="1 Kg" style="width:200px;" aria-describedby="tiga-error" value="{{$product->price[2]['price']}}">
-                                        <em id="tiga-error" class="error invalid-feedback">Please select type</em>
+                        </div>
+                    </div>
+                    <!--end card price-->
+
+                    <!--start card stock -->
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fa fa-align-justify"></i> Stock
+                            <small>Management </small>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="row">
+                                        <div class="input-group col-md-12">
+                                            <input type="text" class="form-control input-float" name="250gPlastiks" placeholder="250g Plastik" 
+                                                id="250gPlastiks" aria-describedby="250gPlastiks-error" value="{{((double)$product->stock[0]['quantity']/1000!=0?(double)$product->stock[0]['quantity']/1000:'')}}">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text text-sm">kg</span>
+                                            </div>
+                                            <em id="250gPlastiks-error" class="error invalid-feedback"></em>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-md-3 col-form-label" for="price">*Price 5 Kg
                                     <br>
-                                </label>
-                                <div class="col-md-9">
-                                    <div class="form-group row">
-                                        <div class="col-md-4">
-                                            <input type="text" name="empat" class="form-control" placeholder="5 Kg" style="width:200px;" aria-describedby="empat-error" value="{{$product->price[3]['price']}}">
-                                        <em id="empat-error" class="error invalid-feedback">Please select type</em>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="row">
+                                        <div class="input-group col-md-12">
+                                            <input type="text" class="form-control input-float" name="250gAluminiums" placeholder="250g Aluminium" 
+                                                id="250gAluminiums" aria-describedby="250gAluminiums-error" value="{{((double)$product->stock[1]['quantity']/1000!=0?(double)$product->stock[1]['quantity']/1000:'')}}">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text text-sm">kg</span>
+                                            </div>
+                                            <em id="250gAluminiums-error" class="error invalid-feedback"></em>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-md-3 col-form-label" for="price">*Price 25 Kg
                                     <br>
-                                </label>
-                                <div class="col-md-9">
-                                    <div class="form-group row">
-                                        <div class="col-md-4">
-                                            <input type="text" name="lima" class="form-control" placeholder="25 Kg" style="width:200px;" aria-describedby="lima-error" value="{{$product->price[4]['price']}}">
-                                        <em id="lima-error" class="error invalid-feedback">Please select type</em>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="row">
+                                        <div class="input-group col-md-12">
+                                            <input type="text" class="form-control input-float" name="500gPlastiks" placeholder="500g Plastik" 
+                                                id="500gPlastiks" aria-describedby="500gPlastiks-error" value="{{((double)$product->stock[2]['quantity']/1000!=0?(double)$product->stock[1]['quantity']/1000:'')}}">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text text-sm">kg</span>
+                                            </div>
+                                            <em id="500gPlastiks-error" class="error invalid-feedback"></em>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-md-3 col-form-label" for="price">*Price 30 Kg
                                     <br>
-                                </label>
-                                <div class="col-md-9">
-                                    <div class="form-group row">
-                                        <div class="col-md-4">
-                                            <input type="text" name="enam" class="form-control" placeholder="30 Kg" style="width:200px;" aria-describedby="30-error" value="{{$product->price[5]['price']}}">
-                                        <em id="enam-error" class="error invalid-feedback">Please select type</em>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="row">
+                                        <div class="input-group col-md-12">
+                                            <input type="text" class="form-control input-float" name="500gAluminiums" placeholder="500g Aluminium" 
+                                                id="500gAluminiums" aria-describedby="500gAluminiums-error" value="{{((double)$product->stock[3]['quantity']/1000!=0?(double)$product->stock[3]['quantity']/1000:'')}}">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text text-sm">kg</span>
+                                            </div>
+                                            <em id="500gAluminiums-error" class="error invalid-feedback"></em>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-md-3 col-form-label" for="price">*Currency
                                     <br>
-                                </label>
-                                <div class="col-md-9">
-                                    <div class="form-group row">
-                                        <div class="col-md-4">
-                                            <select id="currency" name="currency" class="form-control" style="width: 100% !important;" aria-describedby="currency-error" required>
-                                                <option value=""></option>
-                                                <option value="USD" {{($product->currency == 'USD'?'selected':'')}}>USD</option>
-                                                <option value="Rp" {{($product->currency == 'Rp'?'selected':'')}}>Rp</option>  
-                                            </select>
-                                        <em id="currency-error" class="error invalid-feedback">Please select type</em>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="row">
+                                        <div class="input-group col-md-12">
+                                            <input type="text" class="form-control input-float" name="1kgPlastiks" placeholder="1kg Plastik" 
+                                                id="1kgPlastiks" aria-describedby="1kgPlastiks-error" value="{{((double)$product->stock[4]['quantity']/1000!=0?(double)$product->stock[4]['quantity']/1000:'')}}">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text text-sm">kg</span>
+                                            </div>
+                                            <em id="1kgPlastiks-error" class="error invalid-feedback"></em>
                                         </div>
                                     </div>
+                                    <br>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="row">
+                                        <div class="input-group col-md-12">
+                                            <input type="text" class="form-control input-float" name="1kgAluminiums" placeholder="1kg Aluminium" 
+                                                id="1kgAluminiums" aria-describedby="1kgAluminiums-error" value="{{((double)$product->stock[5]['quantity']/1000!=0?(double)$product->stock[5]['quantity']/1000:'')}}">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text text-sm">kg</span>
+                                            </div>
+                                            <em id="1kgAluminiums-error" class="error invalid-feedback"></em>
+                                        </div>
+                                    </div>
+                                    <br>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="row">
+                                        <div class="input-group col-md-12">
+                                            <input type="text" class="form-control input-float" name="5kgJerigens" placeholder="5kg Jerigen" 
+                                                id="5kgJerigens" aria-describedby="5kgJerigens-error" value="{{((double)$product->stock[6]['quantity']/1000!=0?(double)$product->stock[6]['quantity']/1000:'')}}">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text text-sm">kg</span>
+                                            </div>
+                                            <em id="5kgJerigens-error" class="error invalid-feedback"></em>
+                                        </div>
+                                    </div>
+                                    <br>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="row">
+                                        <div class="input-group col-md-12">
+                                            <input type="text" class="form-control input-float" name="25kgJerigens" placeholder="25kg Jerigen" 
+                                                id="25kgJerigens" aria-describedby="25kgJerigens-error" value="{{((double)$product->stock[7]['quantity']/1000!=0?(double)$product->stock[7]['quantity']/1000:'')}}">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text text-sm">kg</span>
+                                            </div>
+                                            <em id="25kgJerigens-error" class="error invalid-feedback"></em>
+                                        </div>
+                                    </div>
+                                    <br>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="row">
+                                        <div class="input-group col-md-12">
+                                            <input type="text" class="form-control input-float" name="25kgDrums" placeholder="25kg Drum" 
+                                                id="25kgDrums" aria-describedby="25kgDrums-error" value="{{((double)$product->stock[8]['quantity']/1000!=0?(double)$product->stock[8]['quantity']/1000:'')}}">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text text-sm">kg</span>
+                                            </div>
+                                            <em id="25kgDrums-error" class="error invalid-feedback"></em>
+                                        </div>
+                                    </div>
+                                    <br>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="row">
+                                        <div class="input-group col-md-12">
+                                            <input type="text" class="form-control input-float" name="30kgJerigens" placeholder="30kg Jerigens" 
+                                                id="30kgJerigens" aria-describedby="30kgJerigens-error" value="{{((double)$product->stock[9]['quantity']/1000!=0?(double)$product->stock[9]['quantity']/1000:'')}}">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text text-sm">kg</span>
+                                            </div>
+                                            <em id="30kgJerigens-error" class="error invalid-feedback"></em>
+                                        </div>
+                                    </div>
+                                    <br>
                                 </div>
                             </div>
                         </div>
-                    </div> -->
-                    <!--end card price-->
-                    <!--start action -->
+                    </div>
+                    <!--end card stock-->
+
+                    <!--start card button -->
                     <div class="card">
-                            <p>
-                            <div class="btn-group"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <div class="card-footer">
+                            <div class="btn-group">
                                 <button type="submit" name="save" id="save" class="btn btn-success">Save</button>&nbsp;
                                 <button type="button" class="btn btn-secondary" onclick="window.history.back()">
-                                <i class="fa fa-times-rectangle"></i>&nbsp; Cancel
+                                    <i class="fa fa-times-rectangle"></i>&nbsp; Cancel
                                 </button>
                             </div>
-                            </p>
+                        </div>
                     </div>
-                    <!--end card action -->
+                    <!--end card button-->
+
+                </div>
             </div>
         </div>
     </div>
-</div>
 </form>
 @endsection
 <!-- /.container-fluid -->
 
 @section('myscript')
 <script src="{{ asset('fiture-style/select2/select2.min.js') }}"></script>
-@include('panel.product-management.product.form-edit-js')
-@endsection
+@include('panel.product-management.product.form-edit-js') @endsection
