@@ -237,12 +237,6 @@ class MasterMemberController extends Controller
         return redirect()->route('master-client.index')->with('edit', 'client');
     }
 
-    public function generateSO()
-    {
-        $id_counter = CodeMember::first()->generateSO('code_member');
-        return ($id_counter);
-    }
-
     public function clientExport()
     {
         $file = storage_path('exports/client-form-format.xlsx');
@@ -331,7 +325,7 @@ class MasterMemberController extends Controller
                     if($code==""||$displayname==""||$title==""||$fullname==""||$salesemail==""||$billingaddress==""||$shippingaddress==""||$mobile==""){
                         $data[] = array('error import => require data is empty [code,displayname,titlefullname,salesemail,billingaddress,shippingaddress,mobile]');
                     }else{
-                        $sales = $sales = User::where('role', 'elemMatch', array('name' => 'Sales'))->where('email', $salesemail)->first();
+                        $sales = User::where('role', 'elemMatch', array('name' => 'Sales'))->where('email', $salesemail)->first();
                         if(!$sales){
                             $data[] = array('error import => sales email is not valid');
                         }else{

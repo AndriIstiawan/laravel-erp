@@ -81,6 +81,7 @@ Route::middleware('auth')->group(function() {
     
 	Route::resource('product', 'ProductManagement\ProductController');
     Route::post('product/find', 'ProductManagement\ProductController@find');
+    Route::post('product/import-data', 'ProductManagement\ProductController@ImportData');
 
 	Route::resource('type', 'ProductManagement\TypeController');
 	Route::post('type/find', 'ProductManagement\TypeController@find');
