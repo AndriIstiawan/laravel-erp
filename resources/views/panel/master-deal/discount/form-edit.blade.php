@@ -1,53 +1,216 @@
+@extends('master')
+@section('content')
+<link href="{{ asset('fiture-style/select2/select2.min.css') }}" rel="stylesheet">
 <form id="jxForm" novalidate="novalidate" method="POST" action="{{ route('discount.update',['id' => $discount->id]) }}">
-	<div class="modal-header"><h4 class="modal-title">Edit Discount</h4>
-	</div>
-	<div class="modal-body">
 		{{ method_field('PUT') }}
 		{{ csrf_field() }}
-		<div class="form-group">
-			<label class="col-form-label" for="name">*Code</label>
-			<input type="text" class="form-control" id="code" name="code" placeholder="code product" aria-describedby="name-error" 
-				value="{{ $discount->code }}">
-			<em id="name-error" class="error invalid-feedback">Please enter a code of product</em>
-		</div>
-		<div class="form-group">
-			<label class="col-form-label" for="name">*Discount</label>
-			<input type="text" class="form-control" id="discount" name="discount" placeholder="discount" aria-describedby="slug-error" 
-				value="{{ $discount->discount }}">
-			<em id="slug-error" class="error invalid-feedback">Please enter the discount</em>
-		</div>
-		<div class="form-group">
-			<label class="col-form-label" for="name">*Time</label>
-			<input type="text" class="form-control" id="time" name="time" placeholder="time" aria-describedby="slug-error"
-				value="{{ $discount->time }}">
-			<em id="slug-error" class="error invalid-feedback">Please enter a time</em>
-		</div>
-	<div class="modal-footer">
-		<div class="form-group">
-			<button type="submit" class="btn btn-primary" name="signup" value="Sign up">Save</button>
-			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+<div class="container-fluid">
+	<div class="animate fadeIn">
+		<div class="row">
+        <div class="col-lg-2"></div>
+			<div class="col-md-8">
+			<p>
+            <button type="button" class="btn btn-primary" onclick="window.history.back()">
+              <i class="fa fa-backward"></i>&nbsp; Back to List
+            </button>
+          	</p>
+				<div class="card">
+					<div class="card-header">
+					<i class="fa fa-align-justify"></i> Add
+					<small>new Discount</small>
+					</div>
+					<div class="card-body">
+						<div class="form-group">
+							<div class="option-card">
+								<label class="col-form-label" for="kode">*Kode Discount
+									<i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="DN202IH"></i>
+								</label>
+								<div class="input-group">
+									<input type="text" id="kode" name="kode" class="form-control" placeholder="DN202IH" value="{{$discount->kode}}" aria-describedby="kode-error" required>
+									<em id="kode-error" class="error invalid-feedback">Please enter kode</em>
+								</div>
+								<label class="col-form-label" for="value">*Value</label>
+								<div class="input-group">
+									<input type="text" class="form-control idr-currency value" name="value" placeholder="00" value="{{$discount->value}}" aria-describedby="value-error">
+									<span class="input-group-text">
+										<select name="type" aria-describedby="type-error" required>
+											<option value=""></option>
+											<option value="Percent" {{($discount->type == 'Percent'?'selected':'')}}>Percent</option>
+											<option value="Price" {{($discount->type == 'Price'?'selected':'')}}>Price</option>
+										</select>
+									</span>
+									<em id="value-error" class="error invalid-feedback">Please enter a value</em>
+									<em id="type-error" class="error invalid-feedback">Please enter a type</em>
+								</div>
+							</div>
+						</div>
+						<div class="card">
+							<div class="card-header">
+								<i class="fa fa-align-justify"></i> Unique
+								<small>Modifier</small>
+							</div>
+							<div class="form-group">
+								<div class="option-card">
+									<div class="col-md-12">
+									<label class="col-form-label" for="category">*Category Product</label>
+									<select id="category" name="category[]" style="width: 100%;" class="form-control" multiple="" aria-describedby="category-error">
+									@foreach ($discount->type_product as $categorys)
+					                    <option value="{{ $categorys['_id'] }}" selected=""> {{ $categorys['name'] }}</option>
+					                @endforeach
+									@foreach ($category as $category)
+					                    <option value="{{ $category->id }}" > {{ $category->name }}</option>
+					                @endforeach
+									</select>
+									<input type="button" id="select_all" name="select_all" value="Select All">
+									<input type="button" id="deselect" name="deselect" value="Deselect All">
+									</div>
+									<div class="col-md-12">
+									<label class="col-form-label" for="member">*Unique Member</label>
+									<select id="member" name="member[]" style="width: 100%;"class="form-control" multiple="" aria-describedby="member-error">
+									@foreach ($discount->client as $members)
+					                    <option value="{{ $members['_id'] }}" selected=""> {{ $members['display_name'] }}</option>
+					                @endforeach
+									@foreach ($member as $member)
+					                    <option value="{{ $member->id }}" > {{ $member->display_name }}</option>
+					                @endforeach
+									</select>
+									<input type="button" id="select_all2" name="select_all2" value="Select All">
+									<input type="button" id="deselect2" name="deselect2" value="Deselect All">
+									</div>
+									<div class="col-md-12">
+									<label class="col-form-label" for="product">*Name Product</label>
+									<select id="product" name="product[]" style="width: 100%;" class="form-control" multiple="" aria-describedby="product-error">
+									@foreach ($discount->product as $products)
+					                    <option value="{{ $products['_id'] }}" selected=""> {{ $products['name'] }}</option>
+					                @endforeach
+									@foreach ($product as $product)
+					                    <option value="{{ $product->id }}" > {{ $product->name }}</option>
+					                @endforeach
+									</select>
+									<input type="button" id="select_all3" name="select_all3" value="Select All">
+									<input type="button" id="deselect3" name="deselect3" value="Deselect All">
+									</div>
+								</div>
+							</div>
+						</div>
+						<label class="col-form-label" for="odExpire">*Discount Expire
+							<i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="discount expire"></i>
+						</label>
+						<div class="input-group">
+							<input type="text" id="odExpire" name="disExpire" class="form-control text-right input-number" placeholder="00" value="{{$discount->disExpire}}" required>
+							<div class="input-group-append">
+								<span class="input-group-text">Hours</span>
+							</div>
+							<em id="odExpire-error" class="invalid-feedback">Please set discount expire</em>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-primary" name="signup" value="Sign up">Save</button>
+						<button type="button" class="btn btn-secondary" onclick="window.history.back()">
+							<i class="fa fa-times-rectangle"></i>&nbsp; Cancel
+						</button>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
+</div>
 </form>
+@endsection
+
+@section('myscript')
+<script src="{{ asset('fiture-style/select2/select2.min.js') }}"></script>
 <script>
+	$('#select_all').click( function() {
+    $('#category option').attr('selected', 'selected');
+	});
+
+	$('#deselect').click( function() {
+	$("#category option:selected").removeAttr("selected");
+	});
+
+	$('#select_all1').click( function() {
+    $('#level option').attr('selected', 'selected');
+	});
+
+	$('#deselect1').click( function() {
+	$("#level option:selected").removeAttr("selected");
+	});
+
+	$('#select_all2').click( function() {
+    $('#member option').attr('selected', 'selected');
+	});
+
+	$('#deselect2').click( function() {
+	$("#member option:selected").removeAttr("selected");
+	});
+
+	$('#select_all3').click( function() {
+    $('#product option').attr('selected', 'selected');
+	});
+
+	$('#deselect3').click( function() {
+	$("#product option:selected").removeAttr("selected");
+	});
+
+	$('#type').select2({theme:"bootstrap", placeholder:'Please select'});
+	$('#type').on('change', function(){
+    $(this).addClass('is-valid').removeClass('is-invalid');
+	  });
+
+	$('#category').select2({theme:"bootstrap", placeholder:'Please select'});
+	$('#category').on('change', function(){
+    $(this).addClass('is-valid').removeClass('is-invalid');
+	  });
+	  
+	  $('#level').select2({theme:"bootstrap", placeholder:'Please select'});
+	$('#level').on('change', function(){
+    $(this).addClass('is-valid').removeClass('is-invalid');
+	  });
+
+	  $('#product').select2({theme:"bootstrap", placeholder:'Please select'});
+	$('#product').on('change', function(){
+    $(this).addClass('is-valid').removeClass('is-invalid');
+	  });
+	  
+	  $('#member').select2({theme:"bootstrap", placeholder:'Please select'});
+	$('#member').on('change', function(){
+    $(this).addClass('is-valid').removeClass('is-invalid');
+  	});
+
 	$('#jxForm').validate({
 		rules:{
-			code:{required:true,minlength:1},
-			discount:{required:true,minlength:1},
-			time:{required:true,minlength:1},
+			type:{required:true},
+			value:{required:true},
+			price:{required:true},
+			kode:{
+				required:true,
+				remote:{
+					url: '{{ route('discount.index') }}/find',
+					type: "post",
+					data:{
+						_token:'{{ csrf_token() }}',
+						id:'{{ $discount->id }}',
+						kode: function(){
+							return $('#jxForm :input[name="kode"]').val();
+						}
+					}
+				}
+			}
 		},
 		messages:{
-			code:{
-				required:'Please enter a code of product',
-				minlength:'fill the blank'
+			kode:{
+				required:'Please enter a kode',
+				remote:'Kode already in use. Please use other kode.'
 			},
-			discount:{
-				required:'Please enter a discount',
-				minlength:'fill the discount'
+			type:{
+				required:'Please select a type',
 			},
-			time:{
-				required:'Please enter a time',
-				minlength:'fill the time'
+			value:{
+				required:'Please enter a value'
+			},
+			price:{
+				required:'Please enter a price'
 			}
 		},
 		errorElement:'em',
@@ -61,4 +224,23 @@
 			$(element).addClass('is-valid').removeClass('is-invalid');
 		}
 	});
+$(document).ready(function(){
+$("select").change(function(){
+    $(this).find("option:selected").each(function(){
+        if($(this).attr("value")=="Price"){
+            $(".box").not(".Price").hide();
+            $(".Price").show();
+        }else if($(this).attr("value")=="Percent"){
+            $(".box").not(".Percent").hide();
+            $(".Percent").show();
+        }else if($(this).attr("value")=="multiselect"){
+            $(".box").not(".multiselect").hide();
+            $(".multiselect").show();
+        }else{
+            $(".box").hide();
+        }
+    });
+}).change();
+});
 </script>
+@endsection

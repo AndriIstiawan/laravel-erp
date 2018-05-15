@@ -10,11 +10,9 @@
 					<button type="button" class="btn btn-primary" onclick="refresh()">
 						<i class="fa fa-refresh"></i>
 					</button>
-					<button type="button" class="btn btn-primary" data-toggle="modal"
-						 data-target="#primaryModal" data-link="{{route('discount.create')}}" 
-						 onclick="funcModal($(this))">
+					<a class="btn btn-primary" href="{{route('discount.create')}}"				 >
 						 <i class="fa fa-plus"></i>&nbsp; New Discount
-					</button>
+					</a>
 				</p>
 			</div>
 		</div>
@@ -29,11 +27,14 @@
 						<table class="table table-responsive-sm table-bordered table-striped table-sm datatable">
 							<thead>
 								<tr>
-									<th>Code</th>
-									<th>Price</th>
-									<th>Discount</th>
-									<th>Time (day)</th>
-									<th>Price after Discount</th>
+									<th>Kode</th>
+									<th>Type</th>
+									<th>Value</th>
+									<th>Category</th>
+									<!-- <th>Levels</th> -->
+									<th>Members</th>
+									<th>Products</th>
+									<th>DisExpired/Hours</th>
 									<th>Date registered</th>
 									<th></th>
 								</tr>
@@ -64,18 +65,21 @@
 	        serverSide: true,
 	        ajax: '{{ route('discount.index')}}/list-data',
 	        columns: [
-	            {data: 'code', name: 'code'},
-	            {data: 'price', name: 'price'},
-	            {data: 'discount', name: 'discount'},
-	            {data: 'time', name: 'time'},
-	            {data: 'price', name: 'price'},
+	            {data: 'kode', name: 'kode'},
+	            {data: 'type', name: 'type'},
+	            {data: 'value', name: 'value'},
+	            {data: 'type_product.[<br>].name', name: 'category'},/*
+	            {data: 'level.[<br>].name', name: 'level'},*/
+	            {data: 'client.[<br>].display_name', name: 'member'},
+	            {data: 'product.[<br>].name', name: 'product'},
+	            {data: 'disExpire', name: 'disExpire'},
 	            {data: 'created_at', name: 'created_at'},
 	            {data: 'action', name: 'action', orderable: false, searchable: false, width:'20%'}
 	        ],
 			"columnDefs": [
-				{"targets": 5,"className": "text-center"}
+				{"targets": 8,"className": "text-center"}
 			],
-			"order":[[2, 'desc']]
+			"order":[[7, 'desc']]
 		});
 		$('.datatable').attr('style','border-collapse: collapse !important');
 		
