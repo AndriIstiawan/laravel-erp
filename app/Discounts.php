@@ -12,6 +12,6 @@ class Discounts extends Moloquent
 	use SoftDeletes;
     
     protected $fillable = [
-        'code','price','discount','time','priceafter',
+        'code'
     ];
 }

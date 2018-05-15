@@ -2,7 +2,8 @@
 <div class="container-fluid">
     <div class="animate fadeIn">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-3"></div>
+            <div class="col-md-9">
                 <p>
                     <a class="btn btn-primary" href="{{route('product.index')}}">
                         <i class="fa fa-backward"></i>&nbsp; Back to List

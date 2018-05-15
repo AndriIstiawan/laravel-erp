@@ -144,6 +144,28 @@ class PermissionsTableSeeder extends Seeder
 				'created_at' => date("Y-m-d H:i:s"),
 				'updated_at' => date("Y-m-d H:i:s")
             ],
+            [
+	        	'name' => 'Master-Deal',
+	        	'slug' => null,
+	        	'type' => 'module-menu',
+				'icon' => 'fa fa-credit-card-alt',
+				'parent' => null,
+				'description' => 'Module Menu',
+				'guard_name' => 'web',
+				'created_at' => date("Y-m-d H:i:s"),
+				'updated_at' => date("Y-m-d H:i:s")
+			],
+			[
+	        	'name' => 'Discount',
+	        	'slug' => 'discount',
+	        	'type' => 'module-menu',
+				'icon' => 'icon-cursor',
+				'parent' => null,
+				'description' => 'Module Menu',
+				'guard_name' => 'web',
+				'created_at' => date("Y-m-d H:i:s"),
+				'updated_at' => date("Y-m-d H:i:s")
+			],
             // [
 	        // 	'name' => 'Location',
 	        // 	'slug' => 'location',
@@ -177,28 +199,7 @@ class PermissionsTableSeeder extends Seeder
 				'created_at' => date("Y-m-d H:i:s"),
 				'updated_at' => date("Y-m-d H:i:s")
 			],*//*,
-			[
-	        	'name' => 'Master-Deal',
-	        	'slug' => null,
-	        	'type' => 'module-menu',
-				'icon' => 'fa fa-credit-card-alt',
-				'parent' => null,
-				'description' => 'Module Menu',
-				'guard_name' => 'web',
-				'created_at' => date("Y-m-d H:i:s"),
-				'updated_at' => date("Y-m-d H:i:s")
-			],
-			[
-	        	'name' => 'Discount',
-	        	'slug' => 'discount',
-	        	'type' => 'module-menu',
-				'icon' => 'icon-cursor',
-				'parent' => null,
-				'description' => 'Module Menu',
-				'guard_name' => 'web',
-				'created_at' => date("Y-m-d H:i:s"),
-				'updated_at' => date("Y-m-d H:i:s")
-			],
+			
 			[
 	        	'name' => 'Promo',
 	        	'slug' => 'promo',
