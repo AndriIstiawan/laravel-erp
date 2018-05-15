@@ -6,6 +6,7 @@ use App\Categories;
 use App\Http\Controllers\Controller;
 use App\Product;
 use App\Variant;
+use App\Type;
 use Excel;
 use File;
 use Illuminate\Http\Request;
@@ -55,9 +56,8 @@ class ProductController extends Controller
     //view form create
     public function create()
     {
-        $categories = Categories::all();
-        $categories = $categories->toArray();
-        return view('panel.product-management.product.form-create', ['categories' => $categories]);
+        $types = Type::all();
+        return view('panel.product-management.product.form-create', ['types' => $types]);
     }
     public function form()
     {
@@ -69,11 +69,96 @@ class ProductController extends Controller
     {
         $product = new Product();
         $product->name = $request->name;
+        $product->code = $request->code;
         $product->type = $request->type;
         $product->category = $request->category;
         $product->commercial = $request->commercial;
-        $product->code = $request->code;
-        $product->stock = $request->stock;
+        $product->currency = $request->currency;
+        $product->price = [
+            [
+                'name' => '250g Plastik',
+                'price' => (double)str_replace(',', '',$request->input('250gPlastik'))
+            ],
+            [
+                'name' => '250g Aluminium',
+                'price' => (double)str_replace(',', '',$request->input('250gAluminium'))
+            ],
+            [
+                'name' => '500g Plastik',
+                'price' => (double)str_replace(',', '',$request->input('500gPlastik'))
+            ],
+            [
+                'name' => '500g Aluminium',
+                'price' => (double)str_replace(',', '',$request->input('500gAluminium'))
+            ],
+            [
+                'name' => '1kg Plastik',
+                'price' => (double)str_replace(',', '',$request->input('1kgPlastik'))
+            ],
+            [
+                'name' => '1kg Aluminium',
+                'price' => (double)str_replace(',', '',$request->input('1kgAluminium'))
+            ],
+            [
+                'name' => '5kg Jerigen',
+                'price' => (double)str_replace(',', '',$request->input('5kgJerigen'))
+            ],
+            [
+                'name' => '25kg Jerigen',
+                'price' => (double)str_replace(',', '',$request->input('25kgJerigen'))
+            ],
+            [
+                'name' => '25kg Drum',
+                'price' => (double)str_replace(',', '',$request->input('25kgDrum'))
+            ],
+            [
+                'name' => '30kg Jerigen',
+                'price' => (double)str_replace(',', '',$request->input('30kgJerigen'))
+            ],
+        ];
+        $product->stock = [
+            [
+                'name' => '250g Plastik',
+                'quantity' => ((double)$request->input('250gPlastiks'))*1000
+            ],
+            [
+                'name' => '250g Aluminium',
+                'quantity' => ((double)$request->input('250gAluminiums'))*1000
+            ],
+            [
+                'name' => '500g Plastik',
+                'quantity' => ((double)$request->input('500gPlastiks'))*1000
+            ],
+            [
+                'name' => '500g Aluminium',
+                'quantity' => ((double)$request->input('500gAluminiums'))*1000
+            ],
+            [
+                'name' => '1kg Plastik',
+                'quantity' => ((double)$request->input('1kgPlastiks'))*1000
+            ],
+            [
+                'name' => '1kg Aluminium',
+                'quantity' => ((double)$request->input('1kgAluminiums'))*1000
+            ],
+            [
+                'name' => '5kg Jerigen',
+                'quantity' => ((double)$request->input('5kgJerigens'))*1000
+            ],
+            [
+                'name' => '25kg Jerigen',
+                'quantity' => ((double)$request->input('25kgJerigens'))*1000
+            ],
+            [
+                'name' => '25kg Drum',
+                'quantity' => ((double)$request->input('25kgDrums'))*1000
+            ],
+            [
+                'name' => '30kg Jerigen',
+                'quantity' => ((double)$request->input('30kgJerigens'))*1000
+            ],
+        ];
+        
         $product->save();
         return redirect()->route('product.index')->with('new', 'product');
     }
@@ -140,9 +225,8 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = product::find($id);
-        $categories = Categories::all();
-        $categories = $categories->toArray();
-        return view('panel.product-management.product.form-edit')->with(['product' => $product, 'categories' => $categories]);
+        $types = Type::all();
+        return view('panel.product-management.product.form-edit')->with(['product' => $product, 'types' => $types]);
     }
 
     //update data product
@@ -150,11 +234,96 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         $product->name = $request->name;
+        $product->code = $request->code;
         $product->type = $request->type;
         $product->category = $request->category;
         $product->commercial = $request->commercial;
-        $product->code = $request->code;
-        $product->stock = $request->stock;
+        $product->currency = $request->currency;
+        $product->price = [
+            [
+                'name' => '250g Plastik',
+                'price' => (double)str_replace(',', '',$request->input('250gPlastik'))
+            ],
+            [
+                'name' => '250g Aluminium',
+                'price' => (double)str_replace(',', '',$request->input('250gAluminium'))
+            ],
+            [
+                'name' => '500g Plastik',
+                'price' => (double)str_replace(',', '',$request->input('500gPlastik'))
+            ],
+            [
+                'name' => '500g Aluminium',
+                'price' => (double)str_replace(',', '',$request->input('500gAluminium'))
+            ],
+            [
+                'name' => '1kg Plastik',
+                'price' => (double)str_replace(',', '',$request->input('1kgPlastik'))
+            ],
+            [
+                'name' => '1kg Aluminium',
+                'price' => (double)str_replace(',', '',$request->input('1kgAluminium'))
+            ],
+            [
+                'name' => '5kg Jerigen',
+                'price' => (double)str_replace(',', '',$request->input('5kgJerigen'))
+            ],
+            [
+                'name' => '25kg Jerigen',
+                'price' => (double)str_replace(',', '',$request->input('25kgJerigen'))
+            ],
+            [
+                'name' => '25kg Drum',
+                'price' => (double)str_replace(',', '',$request->input('25kgDrum'))
+            ],
+            [
+                'name' => '30kg Jerigen',
+                'price' => (double)str_replace(',', '',$request->input('30kgJerigen'))
+            ],
+        ];
+        $product->stock = [
+            [
+                'name' => '250g Plastik',
+                'quantity' => ((double)$request->input('250gPlastiks'))*1000
+            ],
+            [
+                'name' => '250g Aluminium',
+                'quantity' => ((double)$request->input('250gAluminiums'))*1000
+            ],
+            [
+                'name' => '500g Plastik',
+                'quantity' => ((double)$request->input('500gPlastiks'))*1000
+            ],
+            [
+                'name' => '500g Aluminium',
+                'quantity' => ((double)$request->input('500gAluminiums'))*1000
+            ],
+            [
+                'name' => '1kg Plastik',
+                'quantity' => ((double)$request->input('1kgPlastiks'))*1000
+            ],
+            [
+                'name' => '1kg Aluminium',
+                'quantity' => ((double)$request->input('1kgAluminiums'))*1000
+            ],
+            [
+                'name' => '5kg Jerigen',
+                'quantity' => ((double)$request->input('5kgJerigens'))*1000
+            ],
+            [
+                'name' => '25kg Jerigen',
+                'quantity' => ((double)$request->input('25kgJerigens'))*1000
+            ],
+            [
+                'name' => '25kg Drum',
+                'quantity' => ((double)$request->input('25kgDrums'))*1000
+            ],
+            [
+                'name' => '30kg Jerigen',
+                'quantity' => ((double)$request->input('30kgJerigens'))*1000
+            ],
+        ];
+        
         $product->save();
         return redirect()->route('product.index')->with('update', 'product');
     }

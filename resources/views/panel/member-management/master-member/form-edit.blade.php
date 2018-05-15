@@ -194,10 +194,15 @@
                                     </select>
                                     <script>
                                         var x = document.getElementById("provinsi");
+                                        var btrue = true;
                                         for (i = 0; i < x.options.length; i++) {
                                             if (x.options[i].value == "{{$member->provinsi}}") {
                                                 x.options[i].selected = true;
+                                                btrue = false;
                                             }
+                                        }
+                                        if(btrue === true){
+                                            x.insertAdjacentHTML('beforeend', '<option value="{{$member->provinsi}}" selected>{{$member->provinsi}}</option>');
                                         }
                                     </script>
                                 </div>
@@ -704,10 +709,15 @@
                                     </select>
                                     <script>
                                         var x = document.getElementById("kota");
+                                        var btrue = true;
                                         for (i = 0; i < x.options.length; i++) {
                                             if (x.options[i].value == "{{$member->kota}}") {
                                                 x.options[i].selected = true;
+                                                btrue = false;
                                             }
+                                        }
+                                        if(btrue === true){
+                                            x.insertAdjacentHTML('beforeend', '<option value="{{$member->kota}}" selected>{{$member->kota}}</option>');
                                         }
                                     </script>
                                 </div>
