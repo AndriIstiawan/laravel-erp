@@ -2,8 +2,8 @@
 @section('content')
 <link href="{{ asset('fiture-style/select2/select2.min.css') }}" rel="stylesheet">
 <form id="jxForm" novalidate="novalidate" method="POST" action="{{ route('discount.update',['id' => $discount->id]) }}">
-		{{ method_field('PUT') }}
-		{{ csrf_field() }}
+{{ method_field('PUT') }}
+{{ csrf_field() }}
 <div class="container-fluid">
 	<div class="animate fadeIn">
 		<div class="row">
@@ -22,6 +22,7 @@
 					<div class="card-body">
 						<div class="form-group">
 							<div class="option-card">
+								<input type="hidden" name="id" class="id" value="{{$discount->id}}">
 								<label class="col-form-label" for="kode">*Kode Discount
 									<i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="DN202IH"></i>
 								</label>
@@ -173,7 +174,7 @@
     $(this).addClass('is-valid').removeClass('is-invalid');
 	  });
 	  
-	  $('#member').select2({theme:"bootstrap", placeholder:'Please select'});
+	$('#member').select2({theme:"bootstrap", placeholder:'Please select'});
 	$('#member').on('change', function(){
     $(this).addClass('is-valid').removeClass('is-invalid');
   	});
@@ -190,7 +191,7 @@
 					type: "post",
 					data:{
 						_token:'{{ csrf_token() }}',
-						id:'{{ $discount->id }}',
+						id:$('.id').val(),
 						kode: function(){
 							return $('#jxForm :input[name="kode"]').val();
 						}

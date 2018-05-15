@@ -28,8 +28,8 @@
                                     <tr>
                                         <th>Name</th>
                                         <th>Email</th>
+                                        <th>Role</th>
                                         <th>Date registered</th>
-                                        <th>Status</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -66,13 +66,13 @@
                 name: 'email'
             },
             {
-                data: 'created_at',
-                name: 'created_at'
-            },
-            {
-                data: 'status',
+                data: 'role.[].name',
                 name: 'status',
                 orderable: false
+            },
+            {
+                data: 'created_at',
+                name: 'created_at'
             },
             {
                 data: 'action',
@@ -87,7 +87,7 @@
             "className": "text-center"
         }],
         "order": [
-            [2, 'desc']
+            [3, 'desc']
         ]
     });
     $('.datatable').attr('style', 'border-collapse: collapse !important');
