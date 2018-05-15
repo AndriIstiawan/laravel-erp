@@ -429,7 +429,7 @@ class ProductController extends Controller
                                 $data[] = array('edit client successfuly.');
                             }else{
                                 $data[] = array('new client successfuly insert.');
-                                $product = new Member();
+                                $product = new Product();
                             }
                             $product['code'] = $code;
                             $product['name'] = $product_name;
