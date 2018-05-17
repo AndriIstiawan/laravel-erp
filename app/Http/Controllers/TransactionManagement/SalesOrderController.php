@@ -125,17 +125,23 @@ class SalesOrderController extends Controller
                     case "order":
                         return '<span class="badge badge-success" style="padding:9px;">&nbsp;&nbsp;'.$order->status.'&nbsp;&nbsp;</span>';
                         break;
+                    case "production":
+                        return '<span class="badge badge-warning" style="padding:9px;">&nbsp;&nbsp;'.$order->status.'&nbsp;&nbsp;</span>';
+                        break;
                     default:
                         return '<span class="badge badge-success" style="padding:9px;">&nbsp;&nbsp;'.$order->status.'&nbsp;&nbsp;</span>';
                 }
             })
             ->addColumn('action', function ($order) {
-                return '';
-                /*'<a class="btn btn-success btn-sm"  href="'.route('sales-order.edit',['id' => $order->id]).'" '.($order->status!='order'?$order->status:'').'>
+                $edit = '';
+                if($order->status == 'order'){
+                    $edit = '<a class="btn btn-success btn-sm"  href="'.route('sales-order.edit',['id' => $order->id]).'" '.($order->status!='order'?$order->status:'').'>
                 <i class="fa fa-pencil-square-o"></i>&nbsp;Edit</a>'.
-                '<form style="display:inline;" method="POST" action="' .
-                route('sales-order.destroy', ['id' => $order->id]) . '">' . method_field('DELETE') . csrf_field() .
-                    '<button type="button" class="btn btn-danger btn-sm" onclick="removeList($(this))" '.($order->status!='order'?$order->status:'').'><i class="fa fa-remove"></i>&nbsp;Remove</button></form>';*/
+                '<form style="display:inline;" method="POST" action="' .route('sales-order.destroy', ['id' => $order->id]) . '">' . method_field('DELETE') . csrf_field().
+                    '<button type="button" class="btn btn-danger btn-sm" onclick="removeList($(this))" '.($order->status!='order'?$order->status:'').'><i class="fa fa-remove"></i>&nbsp;Remove
+                </button></form>';
+                }
+                return $edit;
             })
             ->rawColumns(['status', 'action', 'conv_total_kg'])
             ->make(true);
@@ -174,49 +180,61 @@ class SalesOrderController extends Controller
     //update data
     public function update(Request $request, $id)
     {
-        $order = SalesOrder::find($id);
-        $order->sono = $request->sono;
-        $order->date = $request->date;
+        $client = Member::find($request->client);
+        $divisi = [];
+        $sales = [
+            'name' => $client['sales'][0]['name'],
+            'detail' => $client['sales'][0]['detail'][count($client['sales'][0]['detail']) - 1],
+        ];
 
-        $clients = Member::where('_id', $request->client)->get();
-        $order->client = $clients->toArray();
-
-        /*$sales=user::where('_id', $request->sales)->get();
-        $order->sales=$sales->toArray();*/
-
-        $productss = [];
-        for ($i = 0; $i < count($request->total); $i++) {
-            $products = Product::where('_id', $request->product[$i])->first();
-            $productss[] = [
-                'id' => $products['id'],
-                'name' => $products['name'],
-                'type' => $products['type'],
-                'code' => $products['code'],
-                'total' => $request->total[$i],
-                'packaging' => $request->packaging[$i],
-                'amount' => $request->amount[$i],
-                'package' => $request->package[$i],
-                'realisasi' => $request->realisasi[$i],
-                'stockk' => $request->stockk[$i],
-                'pending' => $request->pending[$i],
-                'balance' => $request->balance[$i],
-                'pendingpr' => $request->pendingpr[$i],
+        if (isset($request->divisi)) {
+            $get_divisi = $client['divisi'][(int)$request->divisi];
+            $get_divisi['index'] = (int)$request->divisi;
+            $divisi = [
+                $get_divisi,
+            ];
+            $sales = [
+                'name' => $client['divisi'][(int) $request->divisi]['sales'][0]['name'],
+                'detail' => $client['divisi'][(int) $request->divisi]['sales'][0]['detail'][0],
             ];
         }
-        $order->productattr = $productss;
 
-        $order->catatan = $request->catatan;
-        $order->tunggu = $request->tunggu;
+        $so = SalesOrder::find($id);
+        $so['client'] = [
+            $client->toArray(),
+        ];
+        $so['sales'] = [$sales];
+        $so['divisi'] = $divisi;
+        $so['billing']= $request->billing;
+        $so['shipping'] = $client['shipping_address'][(int) $request->shipping]['address'];
+        $so['TOP'] = $request->TOP;
+        $so['white_label'] = $request->whiteLabel;
+        $so['notes'] = $request->notes;
+        $arrProduct = [];
+        $total_kg = 0;
+        $total_realisasi = 0;
+        foreach ($request->arrProduct as $key) {
+            $product = Product::find($request->input('product' . $key));
+            $total_kg = $total_kg + (((double) $request->input('total' . $key)) * 1000);
+            $total_realisasi = $total_realisasi + (((double) $request->input('realisasi' . $key)) * 1000);
+            $arrProduct[] = [
+                "product_id" => $product['_id'],
+                "name" => $product['name'] . " - " . $product['type'],
+                "product_detail" => [$product->toArray()],
+                "package" => $request->input('package' . $key),
+                "quantity" => $request->input('quantity' . $key),
+                "weight" => (double) $request->input('weight' . $key),
+                "total" => ((double) $request->input('total' . $key)) * 1000,
+                "realisasi" => ((double) $request->input('realisasi' . $key)) * 1000,
+            ];
+        }
+        $so['products'] = $arrProduct;
+        $so['total_product'] = count($request->arrProduct);
+        $so['total_kg'] = $total_kg;
+        $so['total_realisasi'] = $total_realisasi;
+        $so['status'] = "order";
 
-        $checks = user::where('_id', $request->check)->get();
-        $order->check = $checks->toArray();
-
-        $produksis = user::where('_id', $request->produksi)->get();
-        $order->produksi = $produksis->toArray();
-
-        $order->status = $request->status;
-
-        $order->save();
+        $so->save();
         return redirect()->route('sales-order.index')->with('update', 'sales-order');
     }
 
@@ -231,7 +249,9 @@ class SalesOrderController extends Controller
     public function display($id)
     {
         $order = SalesOrder::find($id);
-        $order->delete();
+        if($order['status'] == 'order'){
+            $order->delete();
+        }
         return redirect()->route('sales-order.index')->with('dlt', 'sales-order');
     }
 

@@ -176,33 +176,57 @@
                                         </div>
                                         <div class="col-md-2">
                                             <div class="form-group">
-                                                <select class="form-control packages" name="package1" aria-describedby="package1-error">
+                                                <select class="form-control packages" name="package{{$i}}" aria-describedby="package{{$i}}-error">
                                                     <option value=""></option>
-                                                    <option value="Plastik">Plastik</option>
-                                                    <option value="Aluminium">Aluminium</option>
-                                                    <option value="Jerigen">Jerigen</option>
-                                                    <option value="Drum">Drum</option>
+                                                    <option value="Plastik" {{($product_list['package']=='Plastik'?'selected':'')}}>Plastik</option>
+                                                    <option value="Aluminium" {{($product_list['package']=='Aluminium'?'selected':'')}}>Aluminium</option>
+                                                    <option value="Jerigen" {{($product_list['package']=='Jerigen'?'selected':'')}}>Jerigen</option>
+                                                    <option value="Drum" {{($product_list['package']=='Drum'?'selected':'')}}>Drum</option>
                                                 </select>
-                                                <em id="package1-error" class="error invalid-feedback packages-em"></em>
+                                                <em id="package{{$i}}-error" class="error invalid-feedback packages-em"></em>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <div class="input-group">
-                                                    <input class="form-control text-center quantity" type="text" name="quantity1" readonly>
+                                                    <input class="form-control text-center quantity" type="text" name="quantity{{$i}}" value="{{$product_list['quantity']}}" readonly>
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text">X</span>
                                                     </div>
-                                                    <select class="form-control weights" name="weight1" aria-describedby="weight1-error" onchange="countTotal($(this))">
+                                                    <select class="form-control weights" name="weight{{$i}}" aria-describedby="weight{{$i}}-error" onchange="countTotal($(this))">
                                                         <option value=""></option>
+                                                        <?php
+                                                        switch($product_list['package']){
+                                                            case "Plastik":
+                                                            case "Aluminium":
+                                                                ?>
+                                                                <option value="250" {{($product_list['weight']=='250'?'selected':'')}}>250g</option>
+                                                                <option value="500" {{($product_list['weight']=='500'?'selected':'')}}>500g</option>
+                                                                <option value="1000" {{($product_list['weight']=='1000'?'selected':'')}}>1kg</option>
+                                                                <?php
+                                                            break;
+                                                            case "Jerigen":
+                                                                ?>
+                                                                <option value="5000" {{($product_list['weight']=='5000'?'selected':'')}}>5kg</option>
+                                                                <option value="25000" {{($product_list['weight']=='25000'?'selected':'')}}>25kg</option>
+                                                                <option value="30000" {{($product_list['weight']=='30000'?'selected':'')}}>30kg</option>
+                                                                <?php
+                                                            break;
+                                                            case "Drum":
+                                                                ?>
+                                                                <option value="25000" {{($product_list['weight']=='25000'?'selected':'')}}>25kg</option>
+                                                                <?php
+                                                            break;
+                                                        }
+                                                        ?>
                                                     </select>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-6">
-                                                        <em id="quantity1-error" class="error invalid-feedback quantity-em text-left"></em>
+                                                        <em id="quantity{{$i}}-error" class="error invalid-feedback quantity-em text-left"></em>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <em id="weight1-error" class="error invalid-feedback weights-em text-right" style="padding-right:5px;"></em>
+                                                        <em id="weight{{$i}}-error" class="error invalid-feedback weights-em text-right" style="padding-right:5px;"></em>
                                                     </div>
                                                 </div>
                                             </div>
@@ -213,12 +237,12 @@
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text">=</span>
                                                     </div>
-                                                    <input type="text" class="form-control text-center totals input-number" name="total1" placeholder="Total" aria-describedby="total1-error"
-                                                        onchange="countTotal($(this))">
+                                                    <input type="text" class="form-control text-center totals input-number" name="total{{$i}}" placeholder="Total" aria-describedby="total{{$i}}-error"
+                                                        onchange="countTotal($(this))" value="{{(double)$product_list['total']/1000}}">
                                                     <div class="input-group-append">
                                                         <span class="input-group-text">Kg</span>
                                                     </div>
-                                                    <em id="total1-error" class="error invalid-feedback totals-em"></em>
+                                                    <em id="total{{$i}}-error" class="error invalid-feedback totals-em"></em>
                                                 </div>
                                             </div>
                                         </div>
@@ -226,11 +250,12 @@
                                             <div class="form-group row">
                                                 <div class="d-none">
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control text-center realisasi" name="realisasi1" placeholder="Realisasi" aria-describedby="realisasi1-error">
+                                                        <input type="text" class="form-control text-center realisasi" name="realisasi{{$i}}" placeholder="Realisasi" aria-describedby="realisasi1-error"
+                                                            value="{{(double)$product_list['realisasi']/1000}}">
                                                         <div class="input-group-append">
                                                             <span class="input-group-text">Kg</span>
                                                         </div>
-                                                        <em id="realisasi1-error" class="error invalid-feedback realisasi-em"></em>
+                                                        <em id="realisasi{{$i}}-error" class="error invalid-feedback realisasi-em"></em>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">

@@ -12,39 +12,6 @@
         }
     });
 
-    $('.product-order-list select[name="product1"]').select2({
-        theme: "bootstrap",
-        placeholder: 'Product - Type'
-    }).change(function () {
-        if (submit) {
-            $(this).valid();
-        }
-    });
-
-    $('.product-order-list select[name="package1"]').select2({
-        theme: "bootstrap",
-        placeholder: 'Package'
-    }).change(function () {
-        packageChange($(this));
-        if (submit) {
-            $(this).valid();
-        }
-    });
-
-    $('.product-order-list select[name="weight1"]').select2({
-        theme: "bootstrap",
-        placeholder: 'Weight',
-        language: {
-            noResults: function (params) {
-            return "";
-            }
-        }
-    }).change(function () {
-        if (submit) {
-            $(this).valid();
-        }
-    });
-
     function clientChange(elm) {
         html = "";
         if ($('.divisi-' + elm.val()).html()) {
@@ -121,24 +88,6 @@
             TOP: {
                 required: true
             },
-            product1: {
-                required: true
-            },
-            package1: {
-                required: true
-            },
-            quantity1: {
-                "quantityOrder": true
-            },
-            weight1: {
-                required: true
-            },
-            total1: {
-                required: true
-            },
-            realisasi1: {
-                required: true
-            },
         },
         messages: {
             client: {
@@ -146,24 +95,6 @@
             },
             TOP: {
                 required: 'Mohon input terms of payment'
-            },
-            product1: {
-                required: 'Mohon pilih product'
-            },
-            package1: {
-                required: 'Mohon pilih package'
-            },
-            quantity1: {
-                "quantityOrder": 'quantity invalid'
-            },
-            weight1: {
-                required: 'Mohon pilih berat'
-            },
-            total1: {
-                required: 'Mohon input total'
-            },
-            realisasi1: {
-                required: 'Mohon input realisasi'
             },
         },
         errorElement: 'em',
@@ -380,4 +311,78 @@
         }
     });
     //-----------end setting shipping client
+
+    <?php $i=0; ?>
+    @foreach($order['products'] as $product_list)
+    <?php $i++; ?>
+    count = parseInt('{{$i}}');
+    $('.product-order-list select[name="product{{$i}}"]').select2({
+        theme: "bootstrap",
+        placeholder: 'Product - Type'
+    }).change(function () {
+        if (submit) {
+            $(this).valid();
+        }
+    });
+    $('.product-order-list select[name="package{{$i}}"]').select2({
+        theme: "bootstrap",
+        placeholder: 'Package'
+    }).change(function () {
+        packageChange($(this));
+        if (submit) {
+            $(this).valid();
+        }
+    });
+    $('.product-order-list select[name="weight{{$i}}"]').select2({
+        theme: "bootstrap",
+        placeholder: 'Weight',
+        language: {
+            noResults: function (params) {
+            return "";
+            }
+        }
+    }).change(function () {
+        if (submit) {
+            $(this).valid();
+        }
+    });
+
+    //validate new product order
+    $('.product-order-list select[name="product{{$i}}"]').rules("add", {
+        required: true,
+        messages: {
+            required: "Mohon pilih product"
+        }
+    });
+    $('.product-order-list select[name="package{{$i}}"]').rules("add", {
+        required: true,
+        messages: {
+            required: "Mohon pilih package"
+        }
+    });
+    $('.product-order-list select[name="weight{{$i}}"]').rules("add", {
+        required: true,
+        messages: {
+            required: "Mohon pilih berat"
+        }
+    });
+    $('.product-order-list input[name="quantity{{$i}}"]').rules("add", {
+        "quantityOrder": true,
+        messages: {
+            "quantityOrder": "quantity invalid"
+        }
+    });
+    $('.product-order-list input[name="total{{$i}}"]').rules("add", {
+        required: true,
+        messages: {
+            required: "Mohon input total"
+        }
+    });
+    $('.product-order-list input[name="realisasi{{$i}}"]').rules("add", {
+        required: true,
+        messages: {
+            required: "Mohon input realisasi"
+        }
+    });
+    @endforeach
 </script>
