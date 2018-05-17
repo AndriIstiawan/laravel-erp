@@ -109,7 +109,11 @@ class SalesOrderController extends Controller
         $so->status = "order";
 
         $so->save();
-        return redirect()->route('sales-order.index')->with('toastr', 'order');
+        if($request->targetUrl){
+            return redirect('/')->with('toastr', 'order');
+        }else{
+            return redirect()->route('sales-order.index')->with('toastr', 'order');
+        }
     }
 
     //list data
