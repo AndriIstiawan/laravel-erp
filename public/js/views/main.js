@@ -167,6 +167,27 @@ $(function(){
     options: options
   });
 
+  // Bar chart
+ /* new Chart(document.getElementById("bar-chart"), {
+      type: 'bar',
+      data: {
+        labels: ["", "", "", "", ""],
+        datasets: [
+          {
+            backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+            data: [584,393,365,339,289]
+          }
+        ]
+      },
+      options: {
+        legend: { display: false },
+        title: {
+          display: true,
+          text: 'TOP 5 SKU SALES (KGS)'
+        }
+      }
+  });*/
+
   //Random Numbers
   function random(min,max) {
     return Math.floor(Math.random()*(max-min+1)+min);
