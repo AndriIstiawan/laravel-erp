@@ -27,14 +27,14 @@ class DiscountController extends Controller
         return view('panel.master-deal.discount.index');
     }
 
-    //find data categories
+    //find data email
     public function find(Request $request)
     {
 
         if ($request->id) {
-            $discount = Discounts::where('kode', $request->kode)->first();
-            if (count($discount) > 0) {
-                return ($request->id == $discount->id ? 'true' : 'false');
+            $type = Discounts::where('kode', $request->kode)->first();
+            if ($type) {
+                return ($request->id == $type->id ? 'true' : 'false');
             } else {
                 return 'true';
             }
@@ -65,7 +65,6 @@ class DiscountController extends Controller
         $members=[];
         $categorys=[];
         $products=[];
-        $levels=[];
         $discount = new Discounts();
         $discount->type = $request->type;
         $discount->kode = $request->kode;
@@ -135,7 +134,6 @@ class DiscountController extends Controller
         $members=[];
         $categorys=[];
         $products=[];
-        $levels=[];
         $discount = Discounts::find($id);
         $discount->type = $request->type;
         $discount->kode = $request->kode;
