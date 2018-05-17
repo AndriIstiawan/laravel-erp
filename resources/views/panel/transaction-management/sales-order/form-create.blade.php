@@ -1,233 +1,236 @@
-@extends('master')
-@section('content')
-<link href="{{ asset('fiture-style/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+@extends('master') @section('content')
 <link href="{{ asset('fiture-style/select2/select2.min.css') }}" rel="stylesheet">
-<form id="jxForm1" novalidate="novalidate" method="POST" action="{{ route('sales-order.store') }}" enctype="multipart/form-data">
-{{ csrf_field() }}
-<div class="container-fluid">
-	<div class="animate fadeIn">
-		<div class="row">
-			<div class="col-md-6">
-				<p>
-					<button type="button" class="btn btn-primary" onclick="window.history.back()">
-							<i class="fa fa-backward"></i>&nbsp; Back to List
-					</button>
-				</p>
-				<!--start card -->
-				
-				<div class="card">
-					<div class="card-header">
-						<i class="fa fa-align-justify"></i> SO
-						<small>data </small>
-					</div>
-					<div class="card-body">
-							<div class="tab-pane fade active show" id="general" role="tabpanel" aria-labelledby="general-tab">
-								<div class="row">
-									<div class="col-md-12">
-										<input type="hidden" class="id" name="id">
-											<div class="row">
-												<div class="col-md-12">
-													<input type="hidden" class="form-control" id="sono" name="sono" aria-describedby="sono-error" value="{{$so_id}}" readonly>
-													<em id="sono-error" class="error invalid-feedback">Please enter a SO NO</em>
-													<input type="hidden" class="form-control" id="date" name="date" value="{{ date('Y-m-d H:i:s') }}" readonly>
-												<div class="form-group">
-													<select class="form-control client" style="width: 100% !important;" name="client" aria-describedby="client-error" onchange="tampilkan($(this))">
-														<option value=""></option>
-														@foreach($member as $member_option)
-														<option value="{{$member_option->id}}">{{$member_option->name}} - {{(isset($member_option->subDivision[0]['sales'])?$member_option->subDivision[0]['sales']:'')}}</option>
-														@endforeach
-													</select>
-													<em id="client-error" class="error invalid-feedback">Please enter a client</em>
-												</div>
-												<div class="form-group member_listview">
-													<select id="divisi" type="text" name="divisi" style="width: 100% !important;" class="form-control form-control-sm divisi" aria-describedby="divisi-error" required="">
-					                        		</select>
-					                        		<em id="divisi-error" class="error invalid-feedback">Please enter a client</em>
-												<input type="hidden" class="form-control" id="sales" name="sales" aria-describedby="sales-error" readonly>
-					                        	</div>
-												</div>
-											</div>
-									</div>
-								</div>
-							</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-12">
-				<!--end card -->
-				<div class="card">
-					<div class="card-header">
-						<i class="fa fa-align-justify"></i> Products
-						<small>Order </small>
-					</div>
-					<div class="card-body">
-	                	<div class="form-group input_">
-								<div class="row product-list">
-									<p class="col-md-4">
-											<select name="product[]" style="width: 100% !important;" class="form-control form-control-sm products" aria-describedby="product[]-error">
-		                        				<option value=""></option>
-						                        @foreach ($product as $product)
-						                          	<option data-code="{{$product->code}}" data-type="{{$product->type}}" value="{{$product->id}}">{{$product->code}}-{{$product->type}}-{{$product->name}}</option>
-						                        @endforeach
-				                        	</select>
-				                        <em id="product[]-error" class="error invalid-feedback"></em>
-									</p>
-									<div style="display: none;" class="col-md-2">
-									<label class="col-form-label" for="type">*Type</label>
-										<input type="text" class="form-control product-type" name="type[]" readonly>
-									</div>
-									<div style="display: none;" class="col-md-2">
-										<label class="col-form-label" for="code">*Code</label>
-										<input type="text" class="form-control" name="code[]" id="product-code" readonly>
-									</div>
-									<p class="col-md-1">
-			                            <input type="text" onkeyup="findTotal($(this))" class="form-control total number" id="total" name="total[]" placeholder="kg" aria-describedby="total-error">
-			                            <em id="total-error" class="error invalid-feedback">
-			                              Please enter a total
-			                            </em>
-				                    </p>
-									<p class="col-md-3">
-				                        <select name="packaging[]" style="width: 100% !important;" class="form-control form-control-sm packaging" aria-describedby="packaging-error" onchange="findTotal($(this))">
-					                        <option value=""></option>
-											<option data-new="250 gram" data-package="Plastik" value="0.25" >250 gram - Plastik</option>
-											<option data-new="500 gram" data-package="Plastik" value="0.5">500 gram - Plastik</option>  
-											<option data-new="1 kg" data-package="Plastik" value="1">1 kg - Plastik</option> 
-											<option data-new="250 gram" data-package="Aluminium" value="0.25" >250 gram - Aluminium</option>
-											<option data-new="500 gram" data-package="Aluminium" value="0.5">500 gram - Aluminium</option>
-											<option data-new="1 kg" data-package="Aluminium" value="1">1 kg - Aluminium</option>   
-											<option data-new="5 kg" data-package="Jerigen" value="5">5 kg - Jerigen</option>  
-											<option data-new="25 kg" data-package="Jerigen" value="25">25 kg - Jerigen</option>
-											<option data-new="30 kg" data-package="Jerigen" value="30">30 kg - Jerigen</option>
-											<option data-new="25 kg" data-package="Drum" value="25">25 kg - Drum</option>
-				                        </select>
-				                        <em id="packaging-error" class="error invalid-feedback">Please select packaging</em>
-		                    		</p>
-			                        <p class="col-md-4">
-				                        <input class="form-control" type="text" name="amount[]" id="amount" placeholder="Amount" aria-describedby="amount-error" readonly/>
-				                        <!-- <span class="input-group-text">x</span> -->
-				                    	<input type="hidden" class="form-control packages" name="new[]" readonly>
-										<input type="hidden" class="form-control packages" name="package[]" readonly>
-				                        <em id="amount-error" class="error invalid-feedback"></em>
-				                    </p>
-				                    <div class="col-md-4" style="display: none;"> 
-				                        <div class="form-group">
-				                          <label class="col-form-label" >*Realisasi (Kg)</label>
-				                          <input class="form-control" type="text" name="realisasi[]" id="realisasi" aria-describedby="realisasi-error"/>
-				                        <em id="realisasi-error" class="error invalid-feedback">Please enter a realisasi</em>
-				                        </div>
-				                    </div>
-				                    <div class="col-md-4" style="display: none;">
-				                        <div class="form-group">
-				                          <label class="col-form-label" >*Stock Kapuk</label>
-				                          <input class="form-control" type="text" name="stockk[]" id="stockk" aria-describedby="stockk-error"/>
-				                        <em id="stockk-error" class="error invalid-feedback">Please enter a stockk</em>
-				                        </div>
-				                    </div>
-				                    <div class="col-md-4" style="display: none;">
-				                        <div class="form-group">
-				                          <label class="col-form-label" >*Pending SO</label>
-				                          <input class="form-control" type="text" name="pending[]" id="pending" aria-describedby="pending-error"/>
-				                        <em id="pending-error" class="error invalid-feedback">Please enter a pending</em>
-				                        </div>
-				                    </div>
-				                    <div class="col-md-4" style="display: none;">
-				                        <div class="form-group">
-				                          <label class="col-form-label" >*Balance Stock</label>
-				                          <input class="form-control" type="text" name="balance[]" id="balance" aria-describedby="balance-error"/>
-				                        <em id="balance-error" class="error invalid-feedback">Please enter a balance</em>
-				                        </div>
-				                    </div>
-				                    <div class="col-md-4" style="display: none;">
-				                        <div class="form-group">
-				                          <label class="col-form-label" >*Pending PR</label>
-				                          <input class="form-control" type="text" name="pendingpr[]" id="pendingpr" aria-describedby="pendingpr-error"/>
-				                        <em id="pendingpr-error" class="error invalid-feedback">Please enter a pendingpr</em>
-				                        </div>
-				                    </div>
-								</div>
-								<p>
-								<!-- <hr style="border-top: 4px solid #20a8d8; "> -->
-							<div class="option-card1">
-							</div>
-						</div>
-						<button  type="button" class="btn btn-primary pull-right" id="addMe" onclick="$('.input_ .option-card1').append($('.optt').html());refProductChange();"> Add More</button>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="card">
-					<div class="card-header">
-						<i class="fa fa-align-justify"></i> Additional
-						<small>Notes </small>
-					</div>
-					<div class="card-body">
-						<div class="row">
-							<div class="col-md-12">
-								<div class="row">
-									<div class="col-md-12">
-									<div class="form-group">
-										
-										<textarea type="text" rows="5" class="form-control" id="catatan" name="catatan" placeholder="Catatan" aria-describedby="catatan-error"></textarea>
-									</div>
-									</div>
-										<input class="form-control" type="hidden" value="1" name="status" >
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-12">
-				<div class="card">
-					<div class="card-header">
-						<i class="fa fa-align-justify"></i> Shipping
-						<small>Address </small>
-					</div>
-					<div class="card-body">
-						<div class="row">
-							<div class="col-md-12">
-								<div class="row">
-									<div class="col-md-12">
-										<div class="form-group">
-											<select class="form-control shipping" style="width: 100% !important;" name="shipping" aria-describedby="shipping-error">
-												<option value=""></option>
-												@foreach ($member as $ship)
-													@foreach($ship['shipaddress'] as $member_opt)
-													<option value="{{$member_opt['shipaddress']}}">{{$member_opt['shipaddress']}}</option>
-													@endforeach
-												@endforeach
-											</select>
-											<em id="shipping-error" class="error invalid-feedback">Please enter a client</em>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-12">
-				<div class="card">
-					<p>
-					<div class="btn-group"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-					    <button type="submit" name="save" id="save" class="btn btn-success">Save</button>&nbsp;
-					    <button type="button" class="btn btn-secondary" onclick="window.history.back()">
-					    <i class="fa fa-times-rectangle"></i>&nbsp; Cancel
-					    </button>
-					</div>
-					</p>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-</form>
+<form id="jxForm" novalidate="novalidate" method="POST" action="{{ route('sales-order.store') }}" enctype="multipart/form-data">
+    {{ csrf_field() }}
+    <div class="container-fluid">
+        <div class="animate fadeIn">
+            <div class="row">
+                <div class="col-md-12">
+                    <p>
+                        <a class="btn btn-primary" href="{{ route('sales-order.index') }}">
+                            <i class="fa fa-backward"></i>&nbsp; Back to List
+                        </a>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <!--start SO data -->
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fa fa-align-justify"></i> SO
+                            <small>data</small>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" data-original-title="#format: Client Display Name - Sales"></i>
+                                                </span>
+                                            </div>
+                                            <select id="client" class="form-control" name="client" aria-describedby="client-error">
+                                                <option value=""></option>
+                                                @foreach($members as $member)
+                                                <option value="{{$member->id}}">{{$member->display_name}} - {{$member->sales[0]['detail'][count($member->sales[0]['detail'])-1]['name']}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <em id="client-error" class="error invalid-feedback"></em>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row divisi-list">
+                            </div>
+                        </div>
+                    </div>
+                    <!--end SO data -->
+                </div>
+                <div class="col-md-7">
+                    <!--start SO information -->
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fa fa-align-justify"></i> SO
+                            <small>Information</small>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <p class="col-md-12">
+                                    <input id="billing" type="text" name="billing" class="form-control" placeholder="Billing" readonly>
+                                </p>
+                            </div>
+                            <div class="row shipping-list">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="row">
+                                        <div class="input-group col-md-12">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text text-sm">Term Of Payment</span>
+                                            </div>
+                                            <input type="text" class="form-control input-number" name="TOP" placeholder="Day" aria-describedby="TOP-error">
+                                            <em id="TOP-error" class="error invalid-feedback"></em>
+                                        </div>
+                                    </div>
+                                    <br>
+                                </div>
+                                <div class="col-md-3">
+                                    <button type="button" class="btn btn-dark" style="padding-left:30px;" aria-pressed="true" disabled>
+                                        <input class="form-check-input" type="checkbox" name="whiteLabel">White Label
+                                    </button>
+                                    <br>
+                                    <br>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <textarea name="notes" rows="3" class="form-control" placeholder="Notes" style="resize: none;"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end SO information -->
+                </div>
+            </div>
 
-@include('panel.transaction-management.sales-order.fade-form-create')
-@endsection
+            <div class="row">
+                <div class="col-md-12">
+                    <!--start Product order-->
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fa fa-align-justify"></i> Products
+                            <small>Order </small>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12 product-order-list">
+                                    <div class="row div-items">
+                                        <input type="hidden" name="arrProduct[]" value="1">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">
+                                                            <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" data-original-title="#format: Product Name - Type"></i>
+                                                        </span>
+                                                    </div>
+                                                    <select class="form-control products" name="product1" aria-describedby="product1-error">
+                                                        <option value=""></option>
+                                                        @foreach($products as $product)
+                                                        <option value="{{$product->id}}">{{$product->name}} - {{$product->type}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <em id="product1-error" class="error invalid-feedback products-em"></em>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <select class="form-control packages" name="package1" aria-describedby="package1-error">
+                                                    <option value=""></option>
+                                                    <option value="Plastik">Plastik</option>
+                                                    <option value="Aluminium">Aluminium</option>
+                                                    <option value="Jerigen">Jerigen</option>
+                                                    <option value="Drum">Drum</option>
+                                                </select>
+                                                <em id="package1-error" class="error invalid-feedback packages-em"></em>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <input class="form-control text-center quantity" type="text" name="quantity1" readonly>
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">X</span>
+                                                    </div>
+                                                    <select class="form-control weights" name="weight1" aria-describedby="weight1-error" onchange="countTotal($(this))">
+                                                        <option value=""></option>
+                                                    </select>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <em id="quantity1-error" class="error invalid-feedback quantity-em text-left"></em>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <em id="weight1-error" class="error invalid-feedback weights-em text-right" style="padding-right:5px;"></em>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">=</span>
+                                                    </div>
+                                                    <input type="text" class="form-control text-center totals input-number" name="total1" placeholder="Total" aria-describedby="total1-error"
+                                                        onchange="countTotal($(this))">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text">Kg</span>
+                                                    </div>
+                                                    <em id="total1-error" class="error invalid-feedback totals-em"></em>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <div class="form-group row">
+                                                <div class="d-none">
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control text-center realisasi" name="realisasi1" placeholder="Realisasi" aria-describedby="realisasi1-error">
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">Kg</span>
+                                                        </div>
+                                                        <em id="realisasi1-error" class="error invalid-feedback realisasi-em"></em>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group fade" style="margin-right:40px;">
+                                                         <button type="button" class="btn btn-danger pull-right" style="cursor:default;">
+                                                            <i class="fa fa-remove"></i>
+                                                        </button> 
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button type="button" class="btn btn-primary pull-right" onclick="addProduct()">
+                                        <i class="fa fa-plus"></i>&nbsp; Add Product
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end Product order-->
+
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Form Button Information -->
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary" onclick="save()">
+                                <i class="fa fa-save"></i>&nbsp; Save
+                            </button>
+                            <a class="btn btn-secondary" href="{{route('sales-order.index')}}">
+                                <i class="fa fa-remove"></i>&nbsp; Cancel
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Form Button Information -->
+            </div>
+        </div>
+    </div>
+</form>
+@include('panel.transaction-management.sales-order.fade-form-create') @endsection
 <!-- /.container-fluid -->
 
-@section('myscript')
-<script src="{{ asset('fiture-style/select2/select2.min.js') }}"></script>
-@include('panel.transaction-management.sales-order.form-create-js')
-@endsection
+@section('myscript') @include('panel.transaction-management.sales-order.form-create-js') @endsection

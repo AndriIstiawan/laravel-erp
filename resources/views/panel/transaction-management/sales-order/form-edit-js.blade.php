@@ -1,252 +1,169 @@
+<script src="{{ asset('fiture-style/select2/select2.min.js') }}"></script>
 <script>
-
-    /*$(document).ready(function () {
-        var counter = 0;
-        $("#addMe").click(function () {
-            counter++;
-            if (counter == '1000000') {
-                $("#addMe").prop('disabled', true);
-                alert('You Can Only 1000000 Click Add More');
-            } else {
-                $("#addMe").prop('disabled', false);
-            }
-        });
-
-        //submit button
-        $(document).on('click', '#save', function(e) {
-            e.preventDefault();
-            if($('#jxForm1').valid()){
-                swal({
-                    title: "Are you sure want to submit the form?",
-                    text: "Please make sure all data inputted correctly",
-                    buttons: true,
-                }).then((confirm) => {
-                    if(confirm){ $('#jxForm1').submit(); }
-                });
-            }
-        });
-    });*/
-
-    function refProductChange() {
-        $('.input_ .option-card2 .products').select2({
-                theme: "bootstrap",
-                placeholder: 'Please select Product'
-            })
-            .change(function () {
-                var element = $(this).find('option:selected');
-                var productType = element.attr('data-type');
-                var productCode = element.attr('data-code');
-                $(this).parent().parent().find('input[name="type[]"]').val(productType);
-                $(this).parent().parent().find('input[name="code[]"]').val(productCode);
-                $(this).valid();
-            });
-        $('.product-list .products').select2({
-                theme: "bootstrap",
-                placeholder: 'Please select Product'
-            })
-            .change(function () {
-                var element = $(this).find('option:selected');
-                var productType = element.attr('data-type');
-                var productCode = element.attr('data-code');
-                $(this).parent().parent().find('input[name="type[]"]').val(productType);
-                $(this).parent().parent().find('input[name="code[]"]').val(productCode);
-                $(this).valid();
-            });
-
-        $('.product-list .packaging').select2({
-            theme: "bootstrap",
-            placeholder: 'Please select Packaging'
-        }).change(function () {
-            var element = $(this).find('option:selected');
-                var productType = element.attr('data-package');
-                var newType = element.attr('data-new');
-                $(this).parent().parent().find('input[name="package[]"]').val(productType);
-                $(this).parent().parent().find('input[name="new[]"]').val(newType);
-                $(this).valid();
-        });
-        
-        $('.option-card2 .packaging').select2({
-            theme: "bootstrap",
-            placeholder: 'Please select Packaging'
-        }).change(function () {
-            var element = $(this).find('option:selected');
-                var productType = element.attr('data-package');
-                var newType = element.attr('data-new');
-                $(this).parent().parent().find('input[name="package[]"]').val(productType);
-                $(this).parent().parent().find('input[name="new[]"]').val(newType);
-                $(this).valid();
-        });
-    }
-    refProductChange();
-
-    $('#tunggu').select2({
-        theme: "bootstrap",
-        placeholder: 'Please select'
-    }).change(function () {
-        $(this).valid();
-    });
-    $('#check').select2({
-        theme: "bootstrap",
-        placeholder: 'Please select'
-    }).change(function () {
-        $(this).valid();
-    });
-    $('#produksi').select2({
-        theme: "bootstrap",
-        placeholder: 'Please select'
-    }).change(function () {
-        $(this).valid();
-    });
-    $('#saless').select2({
-        theme: "bootstrap",
-        placeholder: 'Please select'
-    }).change(function () {
-        $(this).valid();
-    });
-
+    var submit = false;
+    var count = 1;
     $('#client').select2({
         theme: "bootstrap",
-        placeholder: 'Please select Client - Sales'
+        placeholder: 'Client - Sales'
     }).change(function () {
-        var element = $(this).find('option:selected');
-        var salesType = element.attr('data-new');
-        $(this).parent().parent().find('input[name="sales"]').val(salesType);
-        $(this).valid();
-    });
-
-    function findTotal(elm) {
-        var elemTotal = elm.parent().parent().find('input[name="total[]"]');
-        var elempack = elm.parent().parent().find('input[name="package[]"]');
-        var newType = elm.parent().parent().find('input[name="new[]"]');
-        var elemPackaging = elm.parent().parent().find('select[name="packaging[]"]');
-        var elemAmount = elm.parent().parent().find('input[name="amount[]"]');
-        var valueTotal = parseInt(elemTotal.val());
-        if (isNaN(valueTotal)) {
-            valueTotal = 0;
+        clientChange($(this));
+        if (submit) {
+            $(this).valid();
         }
-        var valuePack = (elempack.val());
-        var valueNew = (newType.val());
-        var valuePackaging = parseFloat(elemPackaging.find('option:selected').val());
-        if (isNaN(valuePackaging)) {
-            valuePackaging = 0;
+    });
+
+    $('.product-order-list select[name="product1"]').select2({
+        theme: "bootstrap",
+        placeholder: 'Product - Type'
+    }).change(function () {
+        if (submit) {
+            $(this).valid();
         }
-        var valueAmount = valueTotal / valuePackaging;
-        if (isNaN(valueTotal) || isNaN(valuePackaging)) {
-            valueAmount = 0;
+    });
+
+    $('.product-order-list select[name="package1"]').select2({
+        theme: "bootstrap",
+        placeholder: 'Package'
+    }).change(function () {
+        packageChange($(this));
+        if (submit) {
+            $(this).valid();
         }
-        var value = parseInt(valueAmount);
-        if (isNaN(value)) {
-            value = 0;
+    });
+
+    $('.product-order-list select[name="weight1"]').select2({
+        theme: "bootstrap",
+        placeholder: 'Weight',
+        language: {
+            noResults: function (params) {
+            return "";
+            }
         }
-        var total = value*valuePackaging
-        if (isNaN(total)) {
-            total = 0;
+    }).change(function () {
+        if (submit) {
+            $(this).valid();
         }
-        var final = value + " x "+ (valueNew) +" - " + (valuePack) + " = " +(total)+" kg";
-        elemAmount.val(final)/*.val("x").val(valuePack)*/;
-        elemAmount.valid();
-    }
-
-    $('#tunggu').on('change', function () {
-        $(this).addClass('is-valid').removeClass('is-invalid');
     });
 
-    $('#sales').on('change', function () {
-        $(this).addClass('is-valid').removeClass('is-invalid');
-    });
+    function clientChange(elm) {
+        html = "";
+        if ($('.divisi-' + elm.val()).html()) {
+            html += $('.divisi-' + elm.val()).html();
+        }
 
-    $('#produksi').on('change', function () {
-        $(this).addClass('is-valid').removeClass('is-invalid');
-    });
-
-    $('#check').on('change', function () {
-        $(this).addClass('is-valid').removeClass('is-invalid');
-    });
-
-    $('#package').on('change', function () {
-        $(this).addClass('is-valid').removeClass('is-invalid');
-    });
-
-    //add method validate "allRequired"
-    jQuery.validator.addMethod("allRequiredSelect", function (value, elem) {
-        // Use the name to get all the inputs and verify them
-        var name = elem.name;
-        return $('#jxForm1 select[name="' + name + '"]').map(function (i, obj) {
-            console.log($(obj).val());
-            return $(obj).val();
-        }).get().every(function (v) {
-            console.log(v);
-            return v;
+        $('.divisi-list').html(html);
+        $('.divisi-list select').attr('id', 'divisi');
+        $('.fa-info-circle').tooltip();
+        //-----------set divisi client
+        $('#divisi').select2({
+            theme: "bootstrap",
+            placeholder: 'Divisi - Sales'
+        }).change(function () {
+            $(this).valid();
         });
-    });
 
-    //add method validate "allRequired"
-    jQuery.validator.addMethod("allRequiredInput", function (value, elem) {
-        // Use the name to get all the inputs and verify them
-        var name = elem.name;
-        return $('#jxForm1 input[name="' + name + '"]').map(function (i, obj) {
-            console.log($(obj).val());
-            return $(obj).val();
-        }).get().every(function (v) {
-            console.log(v);
-            return v;
-        });
-    });
-
-    //add method validate "allRequired"
-    jQuery.validator.addMethod("allMinNumber", function (value, elem) {
-        // Use the name to get all the inputs and verify them
-        var name = elem.name;
-        var status = true;
-        $('#jxForm1 input[name="' + name + '"]').each(function () {
-            if(!parseInt($(this).val())){ 
-                status = false; 
-            }else if(parseInt($(this).val()) < 1){
-                status = false;
+        $('#divisi').rules("add", {
+            required: true,
+            messages: {
+                required: "Mohon pilih divisi"
             }
         });
+        //-----------end set divisi client
+
+        //-----------setting billing client
+        $('#billing').val($('.billing-' + elm.val()).html());
+        //-----------end setting billing client
+
+        //-----------setting shipping client
+        $('.shipping-list').html($('.shipping-' + elm.val()).html());
+        //set select2 divisi 
+        $('.shipping-list .shipping-valid').select2({
+            theme: "bootstrap",
+            placeholder: 'Shipping Address'
+        }).change(function () {
+            $(this).valid();
+        });
+
+        $('.shipping-list .shipping-valid').rules("add", {
+            required: true,
+            messages: {
+                required: "Mohon pilih shipment tujuan"
+            }
+        });
+        //-----------end setting shipping client
+
+    }
+
+    //add method validate "allRequired"
+    jQuery.validator.addMethod("quantityOrder", function (value, elem) {
+        var status = true;
+        var nameCount = elem.name.replace('quantity','');
+        var weight = $('.product-order-list select[name="weight'+nameCount+'"]');
+        var total = $('.product-order-list input[name="total'+nameCount+'"]');
+
+        weight = parseInt(weight.val());
+        total = parseInt(total.val())*1000;
+        if(!isNaN(weight)&&!isNaN(total)){
+            if(value == '-'){
+                status = false;
+            }
+        }
+
         return status;
     });
 
-    $("#jxForm1").validate({
+    //validation
+    $('#jxForm').validate({
         rules: {
             client: {
                 required: true
             },
-            sales: {
+            TOP: {
                 required: true
             },
-            'product[]': {
-                "allRequiredSelect": true
+            product1: {
+                required: true
             },
-            'total[]': {
-                "allRequiredInput": true
+            package1: {
+                required: true
             },
-            'packaging[]': {
-                "allRequiredSelect": true
+            quantity1: {
+                "quantityOrder": true
             },
-            'amount[]': {
-                "allMinNumber": true
+            weight1: {
+                required: true
+            },
+            total1: {
+                required: true
+            },
+            realisasi1: {
+                required: true
             },
         },
         messages: {
             client: {
-                required: 'Please select a client'
+                required: 'Mohon pilih client'
             },
-            sales: {
-                required: 'Please select a sales'
+            TOP: {
+                required: 'Mohon input terms of payment'
             },
-            'product[]': {
-                "allRequiredSelect": 'each field are required'
+            product1: {
+                required: 'Mohon pilih product'
             },
-            'total[]': {
-                "allRequiredInput": 'each field are required'
+            package1: {
+                required: 'Mohon pilih package'
             },
-            'packaging[]': {
-                "allRequiredSelect": 'each field are required'
+            quantity1: {
+                "quantityOrder": 'quantity invalid'
             },
-            'amount[]': {
-                "allMinNumber": 'each amount are required and value min 1'
+            weight1: {
+                required: 'Mohon pilih berat'
+            },
+            total1: {
+                required: 'Mohon input total'
+            },
+            realisasi1: {
+                required: 'Mohon input realisasi'
             },
         },
         errorElement: 'em',
@@ -254,16 +171,213 @@
             error.addClass('invalid-feedback');
         },
         highlight: function (element, errorClass, validClass) {
-            $('#jxForm1 input[name="' + $(element).attr('name') + '"]').addClass('is-invalid').removeClass(
-                'is-valid');
-            $('#jxForm select[name="' + $(element).attr('name') + '"]').addClass('is-invalid').removeClass(
-                'is-valid');
+            $(element).addClass('is-invalid').removeClass('is-valid');
+            if (element.name.indexOf("quantity") < 0){
+                $(element).closest('div').find('.select2-selection').attr('style',
+                'border-color:#f86c6b');
+            }
         },
         unhighlight: function (element, errorClass, validClass) {
-            $('#jxForm1 input[name="' + $(element).attr('name') + '"]').addClass('is-valid').removeClass(
-                'is-invalid');
-            $('#jxForm1 select[name="' + $(element).attr('name') + '"]').addClass('is-valid').removeClass(
-                'is-invalid');
+            $(element).addClass('is-valid').removeClass('is-invalid');
+            if (element.name.indexOf("quantity") < 0){
+                $(element).closest('div').find('.select2-selection').attr('style',
+                'border-color:#4dbd74');
+            }
         }
     });
+
+    function save(){
+        submit = true;
+        if(!$('#jxForm').valid()){
+            toastr.warning('Mohon cek kembali data inputan anda', 'Form not valid');
+        }
+    }
+
+    function addProduct(){
+        count++;
+        $('.product-order-items .arrProduct').val(count);
+        //set product items
+        $('.product-order-items .products').attr('name','product'+count).attr('aria-describedby','product'+count+'-error');
+        $('.product-order-items .products-em').attr('id','product'+count+'-error');
+
+        //set package items
+        $('.product-order-items .packages').attr('name','package'+count).attr('aria-describedby','package'+count+'-error');
+        $('.product-order-items .packages-em').attr('id','package'+count+'-error');
+
+        //set weight items
+        $('.product-order-items .quantity').attr('name','quantity'+count);
+        $('.product-order-items .quantity-em').attr('id','quantity'+count+'-error');
+        $('.product-order-items .weights').attr('name','weight'+count).attr('aria-describedby','weight'+count+'-error');
+        $('.product-order-items .weights-em').attr('id','weight'+count+'-error');
+
+        //set total value items
+        $('.product-order-items .totals').attr('name','total'+count).attr('aria-describedby','total'+count+'-error');
+        $('.product-order-items .totals-em').attr('id','total'+count+'-error');
+
+        //set realisasi items
+        $('.product-order-items .realisasi').attr('name','realisasi'+count).attr('aria-describedby','realisasi'+count+'-error');
+        $('.product-order-items .realisasi-em').attr('id','realisasi'+count+'-error');
+
+        //set to product list
+        $('.product-order-list').append($('.product-order-items').html());
+
+        //set new select2 product order
+        $('.product-order-list select[name="product'+count+'"]').select2({
+            theme: "bootstrap",
+            placeholder: 'Product - Type'
+        }).change(function () {
+            if (submit) {
+                $(this).valid();
+            }
+        });
+        $('.product-order-list select[name="package'+count+'"]').select2({
+            theme: "bootstrap",
+            placeholder: 'Package'
+        }).change(function () {
+            packageChange($(this));
+            if (submit) {
+                $(this).valid();
+            }
+        });
+        $('.product-order-list select[name="weight'+count+'"]').select2({
+            theme: "bootstrap",
+            placeholder: 'Weight'
+        }).change(function () {
+            if (submit) {
+                $(this).valid();
+            }
+        });
+
+        //validate new product order
+        $('.product-order-list select[name="product'+count+'"]').rules("add", {
+            required: true,
+            messages: {
+                required: "Mohon pilih product"
+            }
+        });
+        $('.product-order-list select[name="package'+count+'"]').rules("add", {
+            required: true,
+            messages: {
+                required: "Mohon pilih package"
+            }
+        });
+        $('.product-order-list select[name="weight'+count+'"]').rules("add", {
+            required: true,
+            messages: {
+                required: "Mohon pilih berat"
+            }
+        });
+        $('.product-order-list input[name="quantity'+count+'"]').rules("add", {
+            "quantityOrder": true,
+            messages: {
+                "quantityOrder": "quantity invalid"
+            }
+        });
+        $('.product-order-list input[name="total'+count+'"]').rules("add", {
+            required: true,
+            messages: {
+                required: "Mohon input total"
+            }
+        });
+        $('.product-order-list input[name="realisasi'+count+'"]').rules("add", {
+            required: true,
+            messages: {
+                required: "Mohon input realisasi"
+            }
+        });
+        
+        $('.fa-info-circle').tooltip();
+    }
+
+    //change select weight on change package
+    function packageChange(elm){
+        var weightClosest = elm.closest('.div-items').find('.weights');
+        var new250g = new Option('250g', '250', true, true);
+        var new500g = new Option('500g', '500', true, true);
+        var new1kg = new Option('1kg', '1000', true, true);
+        var new5kg = new Option('5kg', '5000', true, true);
+        var new25kg = new Option('25kg', '25000', true, true);
+        var new30kg = new Option('30kg', '30000', true, true);
+        //clear option
+        weightClosest.empty();
+
+        switch(elm.val()){
+            case "Plastik" :
+                weightClosest.append(new250g);
+                weightClosest.append(new500g);
+                weightClosest.append(new1kg);
+                break;
+            case "Aluminium" :
+                weightClosest.append(new250g);
+                weightClosest.append(new500g);
+                weightClosest.append(new1kg);
+                break;
+            case "Jerigen" :
+                weightClosest.append(new5kg);
+                weightClosest.append(new25kg);
+                weightClosest.append(new30kg);
+                break;
+            case "Drum" :
+                weightClosest.append(new25kg);
+                break;
+        }
+        //return empty select
+        weightClosest.val('').trigger('change');
+    }
+
+    function countTotal(elm){
+        var weight = elm.closest('.div-items').find('.weights');
+        var total = elm.closest('.div-items').find('.totals');
+        var realisasi = elm.closest('.div-items').find('.realisasi');
+        var qty = '-';
+        var realisasi = '';
+
+        weight = parseInt(weight.val());
+        total = parseInt(total.val())*1000;
+
+        if(!isNaN(weight)&&!isNaN(total)){
+            console.log('masuk weight & total number');
+            if(total/weight >= 1){
+                console.log(total/weight);
+                qty = parseInt(total/weight);
+                realisasi = (qty*weight)/1000;
+            }
+
+            elm.closest('.div-items').find('.quantity').val(qty);
+            elm.closest('.div-items').find('.realisasi').val(realisasi);
+        }
+        elm.closest('.div-items').find('.quantity').valid();
+    }
+
+    //-----------set divisi client
+    $('#divisi').select2({
+        theme: "bootstrap",
+        placeholder: 'Divisi - Sales'
+    }).change(function () {
+        $(this).valid();
+    });
+
+    $('#divisi').rules("add", {
+        required: true,
+        messages: {
+            required: "Mohon pilih divisi"
+        }
+    });
+    //-----------end set divisi client
+
+    //set select2 divisi 
+    $('.shipping-list .shipping-valid').select2({
+        theme: "bootstrap",
+        placeholder: 'Shipping Address'
+    }).change(function () {
+        $(this).valid();
+    });
+
+    $('.shipping-list .shipping-valid').rules("add", {
+        required: true,
+        messages: {
+            required: "Mohon pilih shipment tujuan"
+        }
+    });
+    //-----------end setting shipping client
 </script>

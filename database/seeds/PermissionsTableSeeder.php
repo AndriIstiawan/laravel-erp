@@ -23,17 +23,17 @@ class PermissionsTableSeeder extends Seeder
 				'created_at' => date("Y-m-d H:i:s"),
 				'updated_at' => date("Y-m-d H:i:s")
 			],
-			// [
-	        // 	'name' => 'Sales Order',
-	        // 	'slug' => 'sales-order',
-	        // 	'type' => 'module-menu',
-			// 	'icon' => 'icon-cursor',
-			// 	'parent' => null,
-			// 	'description' => 'Module Menu',
-			// 	'guard_name' => 'web',
-			// 	'created_at' => date("Y-m-d H:i:s"),
-			// 	'updated_at' => date("Y-m-d H:i:s")
-			// ],
+			[
+	        	'name' => 'Sales Order',
+	        	'slug' => 'sales-order',
+	        	'type' => 'module-menu',
+				'icon' => 'icon-cursor',
+				'parent' => null,
+				'description' => 'Module Menu',
+				'guard_name' => 'web',
+				'created_at' => date("Y-m-d H:i:s"),
+				'updated_at' => date("Y-m-d H:i:s")
+			],
 			[
 	        	'name' => 'Production',
 	        	'slug' => 'production',
@@ -57,9 +57,9 @@ class PermissionsTableSeeder extends Seeder
 				'updated_at' => date("Y-m-d H:i:s")
 			],
 			// [
-	  //       	'name' => 'Permission',
-	  //       	'slug' => 'permission',
-	  //       	'type' => 'module-menu',
+	        // 	'name' => 'Permission',
+	        // 	'slug' => 'permission',
+	        // 	'type' => 'module-menu',
 			// 	'icon' => 'icon-cursor',
 			// 	'parent' => null,
 			// 	'description' => 'Module Menu',
@@ -177,73 +177,73 @@ class PermissionsTableSeeder extends Seeder
 			// 	'created_at' => date("Y-m-d H:i:s"),
 			// 	'updated_at' => date("Y-m-d H:i:s")
 			// ],
-			/*[
-	        	'name' => 'Level',
-	        	'slug' => 'level',
-	        	'type' => 'module-menu',
-				'icon' => 'icon-cursor',
-				'parent' => null,
-				'description' => 'Module Menu',
-				'guard_name' => 'web',
-				'created_at' => date("Y-m-d H:i:s"),
-				'updated_at' => date("Y-m-d H:i:s")
-			]*//*,
-			[
-	        	'name' => 'Category',
-	        	'slug' => 'category',
-	        	'type' => 'module-menu',
-				'icon' => 'icon-cursor',
-				'parent' => null,
-				'description' => 'Module Menu',
-				'guard_name' => 'web',
-				'created_at' => date("Y-m-d H:i:s"),
-				'updated_at' => date("Y-m-d H:i:s")
-			],*//*,
+			// [
+	        // 	'name' => 'Level',
+	        // 	'slug' => 'level',
+	        // 	'type' => 'module-menu',
+			// 	'icon' => 'icon-cursor',
+			// 	'parent' => null,
+			// 	'description' => 'Module Menu',
+			// 	'guard_name' => 'web',
+			// 	'created_at' => date("Y-m-d H:i:s"),
+			// 	'updated_at' => date("Y-m-d H:i:s")
+			// ],
+			// [
+	        // 	'name' => 'Category',
+	        // 	'slug' => 'category',
+	        // 	'type' => 'module-menu',
+			// 	'icon' => 'icon-cursor',
+			// 	'parent' => null,
+			// 	'description' => 'Module Menu',
+			// 	'guard_name' => 'web',
+			// 	'created_at' => date("Y-m-d H:i:s"),
+			// 	'updated_at' => date("Y-m-d H:i:s")
+			// ],
 			
-			[
-	        	'name' => 'Promo',
-	        	'slug' => 'promo',
-	        	'type' => 'module-menu',
-				'icon' => 'icon-cursor',
-				'parent' => null,
-				'description' => 'Module Menu',
-				'guard_name' => 'web',
-				'created_at' => date("Y-m-d H:i:s"),
-				'updated_at' => date("Y-m-d H:i:s")
-			],
-			[
-	        	'name' => 'Master-Home',
-	        	'slug' => null,
-	        	'type' => 'module-menu',
-				'icon' => 'fa fa-home',
-				'parent' => null,
-				'description' => 'Module Menu',
-				'guard_name' => 'web',
-				'created_at' => date("Y-m-d H:i:s"),
-				'updated_at' => date("Y-m-d H:i:s")
-			],
-			[
-	        	'name' => 'Promo Slider',
-	        	'slug' => 'slider',
-	        	'type' => 'module-menu',
-				'icon' => 'icon-cursor',
-				'parent' => null,
-				'description' => 'Module Menu',
-				'guard_name' => 'web',
-				'created_at' => date("Y-m-d H:i:s"),
-				'updated_at' => date("Y-m-d H:i:s")
-			],
-			[
-	        	'name' => 'Brands/Partners',
-	        	'slug' => 'brands',
-	        	'type' => 'module-menu',
-				'icon' => 'icon-cursor',
-				'parent' => null,
-				'description' => 'Module Menu',
-				'guard_name' => 'web',
-				'created_at' => date("Y-m-d H:i:s"),
-				'updated_at' => date("Y-m-d H:i:s")
-			],*/
+			// [
+	        // 	'name' => 'Promo',
+	        // 	'slug' => 'promo',
+	        // 	'type' => 'module-menu',
+			// 	'icon' => 'icon-cursor',
+			// 	'parent' => null,
+			// 	'description' => 'Module Menu',
+			// 	'guard_name' => 'web',
+			// 	'created_at' => date("Y-m-d H:i:s"),
+			// 	'updated_at' => date("Y-m-d H:i:s")
+			// ],
+			// [
+	        // 	'name' => 'Master-Home',
+	        // 	'slug' => null,
+	        // 	'type' => 'module-menu',
+			// 	'icon' => 'fa fa-home',
+			// 	'parent' => null,
+			// 	'description' => 'Module Menu',
+			// 	'guard_name' => 'web',
+			// 	'created_at' => date("Y-m-d H:i:s"),
+			// 	'updated_at' => date("Y-m-d H:i:s")
+			// ],
+			// [
+	        // 	'name' => 'Promo Slider',
+	        // 	'slug' => 'slider',
+	        // 	'type' => 'module-menu',
+			// 	'icon' => 'icon-cursor',
+			// 	'parent' => null,
+			// 	'description' => 'Module Menu',
+			// 	'guard_name' => 'web',
+			// 	'created_at' => date("Y-m-d H:i:s"),
+			// 	'updated_at' => date("Y-m-d H:i:s")
+			// ],
+			// [
+	        // 	'name' => 'Brands/Partners',
+	        // 	'slug' => 'brands',
+	        // 	'type' => 'module-menu',
+			// 	'icon' => 'icon-cursor',
+			// 	'parent' => null,
+			// 	'description' => 'Module Menu',
+			// 	'guard_name' => 'web',
+			// 	'created_at' => date("Y-m-d H:i:s"),
+			// 	'updated_at' => date("Y-m-d H:i:s")
+			// ],
 			// [
 	        // 	'name' => 'Attributes',
 	        // 	'slug' => 'attributes',
