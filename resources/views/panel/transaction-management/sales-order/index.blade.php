@@ -15,13 +15,13 @@
                             New Order
                         </span>
                     </a>
-                    <button class="btn btn-success ladda-button" data-toggle="modal" data-target="#modal-exim" disabled>
+                    <a class="btn btn-success ladda-button" href="{{url('sales-order/export')}}">
                         <span class="ladda-label">
                             <i class="fa fa-cloud-download">
                             </i>
                             Export Sales Order
                         </span>
-                    </button>
+                    </a>
                 </p>
             </div>
         </div>
