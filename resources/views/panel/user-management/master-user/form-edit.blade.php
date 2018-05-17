@@ -279,7 +279,7 @@
 				if($("#jxForm1").valid()){
 					postData(formAct1,formAct2,action,sendForm);
 				}
-			}, 400);
+			}, {{env('SET_TIMEOUT', '500')}});
 		}
 		
 		//check form Tab 2 Permisssion
@@ -317,7 +317,7 @@
 						progressStat = false;
 						$('#progressModal').modal('toggle');
 						act(action);
-					}, 400);
+					}, {{env('SET_TIMEOUT', '500')}});
 				}
 			},
 			error : function(e){
@@ -325,7 +325,7 @@
 					progressStat = false;
 					$('#progressModal').modal('toggle'); 
 					alert(' Error : ' + e.statusText);
-				}, 400);
+				}, {{env('SET_TIMEOUT', '500')}});
 			}
 		});
 	}

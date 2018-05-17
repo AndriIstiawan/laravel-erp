@@ -17,7 +17,7 @@ class MasterMemberController extends Controller
     //Protected module master-member by slug
     public function __construct()
     {
-        $this->middleware('perm.acc:master-member');
+        $this->middleware('perm.acc:master-client');
     }
 
     //Public index master-member

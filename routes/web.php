@@ -15,7 +15,7 @@ Auth::routes();
 /* CoreUI templates */
 
 Route::middleware('auth')->group(function() {
-	Route::view('/', 'panel.transaction-management.sales-order.index');
+	Route::get('/', 'TransactionManagement\OrderCreateController@index');
 	
 	Route::get('profile/reset-password', 'ProfileController@resetPass');
 	Route::post('profile/change-password', 'ProfileController@changePassword');
@@ -41,7 +41,9 @@ Route::middleware('auth')->group(function() {
 	Route::post('promo/find', 'DiscountManagement\PromoController@find');
 	/* END Master deal */
 
-	/* transaction */
+    /* transaction */
+    Route::resource('order-create', 'TransactionManagement\OrderCreateController');
+
 	Route::resource('sales-order', 'TransactionManagement\SalesOrderController');
 	Route::post('sales-order/find', 'TransactionManagement\SalesOrderController@find');
 
