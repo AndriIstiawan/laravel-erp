@@ -785,7 +785,7 @@
                 <!-- Form Button Information -->
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-footer">
                             <button type="submit" class="btn btn-primary">
                                 <i class="fa fa-save"></i>&nbsp; Save
                             </button>
