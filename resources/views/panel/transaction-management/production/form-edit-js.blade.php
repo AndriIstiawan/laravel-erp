@@ -40,7 +40,7 @@
     });
 
 
-  $('#tunggu').select2({theme:"bootstrap", placeholder:'Status Tunggu Dari Bekasi'});/*
+  $('#tunggu').select2({theme:"bootstrap", placeholder:'Status Tunggu'});/*
   $('#packaging').select2({theme:"bootstrap", placeholder:'Please select'});*/
   $('#check').select2({theme:"bootstrap", placeholder:'Checker'});
   $('#produksi').select2({theme:"bootstrap", placeholder:'Produser'});
