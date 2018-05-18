@@ -23,25 +23,27 @@
 					<div class="card-header">
 						<i class="fa fa-align-justify"></i> Products Table
 					</div>
-					<div class="card-body">
-						<table class="table table-responsive-sm table-bordered table-striped table-sm datatable">
-							<thead>
-								<tr>
-									<th>Kode</th>
-									<th>Type</th>
-									<th>Value</th>
-									<th>Category</th>
-									<!-- <th>Levels</th> -->
-									<th>Members</th>
-									<th>Products</th>
-									<th>DisExpired/Hours</th>
-									<th>Date registered</th>
-									<th></th>
-								</tr>
-							</thead>
-							<tbody>
-							</tbody>
-						</table>		
+					<div class="card-body table-responsive-sm" style="width: 100%;">
+						<div class="table-responsive">
+							<table class="table table-responsive-sm table-bordered table-striped table-sm datatable" style="width: 100%;">
+								<thead>
+									<tr>
+										<th>Kode</th>
+										<th>Type</th>
+										<th>Value</th>
+										<th>Category</th>
+										<!-- <th>Levels</th> -->
+										<th>Members</th>
+										<th>Products</th>
+										<th>DisExpired/Hours</th>
+										<th>Date registered</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+								</tbody>
+							</table>	
+						</div>	
 					</div>
 				</div>
 			</div>
