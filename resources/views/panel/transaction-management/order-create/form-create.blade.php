@@ -194,11 +194,11 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <div class="form-group fade" style="margin-right:40px;">
+                                                    <!-- <div class="form-group fade" style="margin-right:40px;">
                                                          <button type="button" class="btn btn-danger pull-right" style="cursor:default;">
                                                             <i class="fa fa-remove"></i>
                                                         </button> 
-                                                    </div>
+                                                    </div> -->
                                                 </div>
                                             </div>
                                         </div>
