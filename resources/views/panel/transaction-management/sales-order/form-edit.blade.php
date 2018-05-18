@@ -60,8 +60,11 @@
                                                 <?php 
                                                     $i++;
                                                     $selected = "";
-                                                    if($i == (int)$order['divisi'][0]['index'] && $client_divisi['divisi_name'] == $order['divisi'][0]['divisi_name']
-                                                    && $client_divisi['sales'][0]['detail'][0]['_id'] == $order['divisi'][0]['sales'][0]['detail'][0]['_id']){
+                                                    $index = (isset($order['divisi'][0]['index'])?(int)$order['divisi'][0]['index']:null);
+                                                    $div_name = (isset($order['divisi'][0]['divisi_name'])?$order['divisi'][0]['divisi_name']:"");
+                                                    $div_id = (isset($order['divisi'][0]['sales'][0]['detail'][0]['_id'])?$order['divisi'][0]['sales'][0]['detail'][0]['_id']:null);
+                                                    if($i == $index && $client_divisi['divisi_name'] == $div_name
+                                                    && $client_divisi['sales'][0]['detail'][0]['_id'] == $div_id){
                                                         $selected = "selected";
                                                     }
                                                 ?>
