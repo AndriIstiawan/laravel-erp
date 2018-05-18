@@ -125,8 +125,8 @@
                         </div><br>
                     </div>
                     <div class="col-md-12">
-                        <div class="form-group">
-                                <button type="button" class="btn btn-danger" onclick="$(this).closest('.div-items').remove()">
+                        <div class="form-group" style="margin-right:40px;">
+                                <button type="button" class="btn btn-danger pull-right" onclick="$(this).closest('.div-items').remove()">
                                 <i class="fa fa-remove"></i>
                             </button> 
                         </div>
