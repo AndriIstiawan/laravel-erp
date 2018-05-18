@@ -68,7 +68,6 @@
             {
                 data: 'role.[].name',
                 name: 'status',
-                orderable: false
             },
             {
                 data: 'created_at',
