@@ -24,6 +24,8 @@ class UsersTableSeeder extends Seeder
             'email' => 'dede@gmail.com',
             'password' => bcrypt('asdasd'),
             'role' => [],
+            'accessPermissions' => [],
+            'modulePermissions' => [],
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
             ],
@@ -32,6 +34,8 @@ class UsersTableSeeder extends Seeder
             'email' => 'alamsyah@gmail.com',
             'password' => bcrypt('asdasd'),
             'role' => [],
+            'accessPermissions' => [],
+            'modulePermissions' => [],
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
             ],
@@ -40,6 +44,8 @@ class UsersTableSeeder extends Seeder
             'email' => 'wondo@gmail.com',
             'password' => bcrypt('asdasd'),
             'role' => [],
+            'accessPermissions' => [],
+            'modulePermissions' => [],
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
             ],
@@ -48,6 +54,8 @@ class UsersTableSeeder extends Seeder
             'email' => 'juliawan@gmail.com',
             'password' => bcrypt('asdasd'),
             'role' => [],
+            'accessPermissions' => [],
+            'modulePermissions' => [],
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
             ],
@@ -56,6 +64,8 @@ class UsersTableSeeder extends Seeder
             'email' => 'mgt@gmail.com',
             'password' => bcrypt('asdasd'),
             'role' => [],
+            'accessPermissions' => [],
+            'modulePermissions' => [],
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
             ],
@@ -64,6 +74,8 @@ class UsersTableSeeder extends Seeder
             'email' => 'indra@gmail.com',
             'password' => bcrypt('asdasd'),
             'role' => [],
+            'accessPermissions' => [],
+            'modulePermissions' => [],
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
             ],
@@ -72,6 +84,8 @@ class UsersTableSeeder extends Seeder
             'email' => 'drajat@gmail.com',
             'password' => bcrypt('asdasd'),
             'role' => [],
+            'accessPermissions' => [],
+            'modulePermissions' => [],
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
             ],
@@ -80,6 +94,8 @@ class UsersTableSeeder extends Seeder
             'email' => 'Afif@gmail.com',
             'password' => bcrypt('asdasd'),
             'role' => [],
+            'accessPermissions' => [],
+            'modulePermissions' => [],
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
             ],
@@ -88,6 +104,8 @@ class UsersTableSeeder extends Seeder
             'email' => 'Anang@gmail.com',
             'password' => bcrypt('asdasd'),
             'role' => [],
+            'accessPermissions' => [],
+            'modulePermissions' => [],
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
             ],
@@ -96,6 +114,8 @@ class UsersTableSeeder extends Seeder
             'email' => 'Rohim@gmail.com',
             'password' => bcrypt('asdasd'),
             'role' => [],
+            'accessPermissions' => [],
+            'modulePermissions' => [],
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
             ],
@@ -104,6 +124,8 @@ class UsersTableSeeder extends Seeder
             'email' => 'Rudi@gmail.com',
             'password' => bcrypt('asdasd'),
             'role' => [],
+            'accessPermissions' => [],
+            'modulePermissions' => [],
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
             ],
@@ -112,6 +134,8 @@ class UsersTableSeeder extends Seeder
             'email' => 'Sarah@gmail.com',
             'password' => bcrypt('asdasd'),
             'role' => [],
+            'accessPermissions' => [],
+            'modulePermissions' => [],
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
             ],
@@ -120,61 +144,31 @@ class UsersTableSeeder extends Seeder
             'email' => 'Heru@gmail.com',
             'password' => bcrypt('asdasd'),
             'role' => [],
+            'accessPermissions' => [],
+            'modulePermissions' => [],
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
             ]
         ]);
 
         $parent = DB::table('roles')->whereIn('name',['Sales'])->get();
-        DB::table('users')->whereIn('email', ['dede@gmail.com'])
-            ->update(['role' => $parent->toArray()]);
-
-        $parent = DB::table('roles')->whereIn('name',['Sales'])->get();
-        DB::table('users')->whereIn('email', ['alamsyah@gmail.com'])
-            ->update(['role' => $parent->toArray()]);
-
-        $parent = DB::table('roles')->whereIn('name',['Sales'])->get();
-        DB::table('users')->whereIn('email', ['wondo@gmail.com'])
-            ->update(['role' => $parent->toArray()]);
-
-        $parent = DB::table('roles')->whereIn('name',['Sales'])->get();
-        DB::table('users')->whereIn('email', ['juliawan@gmail.com'])
-            ->update(['role' => $parent->toArray()]);
-
-        $parent = DB::table('roles')->whereIn('name',['Sales'])->get();
-        DB::table('users')->whereIn('email', ['mgt@gmail.com'])
-            ->update(['role' => $parent->toArray()]);
-
-        $parent = DB::table('roles')->whereIn('name',['Sales'])->get();
-        DB::table('users')->whereIn('email', ['indra@gmail.com'])
-            ->update(['role' => $parent->toArray()]);
-
-        $parent = DB::table('roles')->whereIn('name',['Sales'])->get();
-        DB::table('users')->whereIn('email', ['drajat@gmail.com'])
+        DB::table('users')->whereIn('email', ['dede@gmail.com','alamsyah@gmail.com','wondo@gmail.com','juliawan@gmail.com','mgt@gmail.com','indra@gmail.com','drajat@gmail.com'])
             ->update(['role' => $parent->toArray()]);
 
         $parent = DB::table('roles')->whereIn('name',['Production'])->get();
-        DB::table('users')->whereIn('email', ['Afif@gmail.com'])
+        DB::table('users')->whereIn('email', ['Afif@gmail.com','Anang@gmail.com','Rohim@gmail.com','Rudi@gmail.com','Sarah@gmail.com','Heru@gmail.com'])
             ->update(['role' => $parent->toArray()]);
 
-        $parent = DB::table('roles')->whereIn('name',['Production'])->get();
-        DB::table('users')->whereIn('email', ['Anang@gmail.com'])
-            ->update(['role' => $parent->toArray()]);
+        //add sales permission
+        $parent = DB::table('permissions')->whereIn('name',['Transaction'])->get();
+        $parent = $parent->toArray();
+        $child = DB::table('permissions')->whereIn('slug',['order-create'])->get();
+        $parent[0]['_id'] = (string)$parent[0]['_id'];
+        $child = $child->toArray();
+        $child[0]['_id'] = (string)$child[0]['_id'];
+        $parent[0]['child'] = $child;
+        DB::table('users')->whereIn('email', ['dede@gmail.com','alamsyah@gmail.com','wondo@gmail.com','juliawan@gmail.com','mgt@gmail.com','indra@gmail.com','drajat@gmail.com'])
+            ->update(['modulePermissions' => $parent]);
 
-        $parent = DB::table('roles')->whereIn('name',['Production'])->get();
-        DB::table('users')->whereIn('email', ['Rohim@gmail.com'])
-            ->update(['role' => $parent->toArray()]);
-
-        $parent = DB::table('roles')->whereIn('name',['Production'])->get();
-        DB::table('users')->whereIn('email', ['Rudi@gmail.com'])
-            ->update(['role' => $parent->toArray()]);
-
-        $parent = DB::table('roles')->whereIn('name',['Production'])->get();
-        DB::table('users')->whereIn('email', ['Sarah@gmail.com'])
-            ->update(['role' => $parent->toArray()]);
-
-        $parent = DB::table('roles')->whereIn('name',['Production'])->get();
-        DB::table('users')->whereIn('email', ['Heru@gmail.com'])
-            ->update(['role' => $parent->toArray()]);
     }
 }

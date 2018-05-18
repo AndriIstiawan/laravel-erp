@@ -1,15 +1,15 @@
 <?php
 
 namespace App\Http\Controllers\TransactionManagement;
-
-use App\Counter;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Yajra\Datatables\Datatables;
+use App\Counter;
 use App\Member;
 use App\Product;
 use App\SalesOrder;
 use App\User;
-use Illuminate\Http\Request;
-use Yajra\Datatables\Datatables;
+use Excel;
 
 class SalesOrderController extends Controller
 {
@@ -109,7 +109,11 @@ class SalesOrderController extends Controller
         $so->status = "order";
 
         $so->save();
-        return redirect()->route('sales-order.index')->with('toastr', 'order');
+        if($request->targetUrl){
+            return redirect('/')->with('toastr', 'order');
+        }else{
+            return redirect()->route('sales-order.index')->with('toastr', 'order');
+        }
     }
 
     //list data
@@ -152,10 +156,7 @@ class SalesOrderController extends Controller
     {
         switch ($action) {
             case "export":
-                return $this->clientExport();
-                break;
-            case "import":
-                return $this->clientImport();
+                return $this->soExport();
                 break;
             default:
                 return $this->list_data();
@@ -261,29 +262,65 @@ class SalesOrderController extends Controller
         return "SO-" . $id_counter;
     }
 
-    public function orderExport(Request $request)
+    public function soExport()
     {
-        $order = SalesOrder::select('sono', 'created_at', 'client', 'sales', 'catatan', 'productattr')->get();
-        $orderarr = [];
+        $file = storage_path('exports/so-form-format.xlsx');
+        $salesorders = SalesOrder::all();
+        //load excel form and editing row
+        $excel = Excel::selectSheetsByIndex(0)->load($file, function($reader) use ($salesorders) {
+            $data = [];
+            $code = "";
+            $client = "";
+            $sales = "";
+            foreach($salesorders as $salesorder){
+                foreach($salesorder->products as $so_product){
+                    $so_code = "";
+                    $so_client = "";
+                    $so_sales = "";
+                    if($code != $salesorder->code){
+                        $code = $salesorder->code;
+                        $client = $salesorder->client[0]['display_name'];
+                        $sales = $salesorder->sales[0]['name'];
+                        $so_code = $salesorder->code;
+                        $so_client = $salesorder->client[0]['display_name'];
+                        $so_sales = $salesorder->sales[0]['name'];
+                    }
+                    switch($so_product['weight']){
+                        case 30000:
+                        case 25000:
+                        case 5000:
+                        case 1000:
+                            $so_product['weight'] = ((double)$so_product['weight']/1000)."kg";
+                        break;
+                        default:
+                            $so_product['weight'] = $so_product['weight']."g";
+                    }
 
-        for ($i = 0; $i < count($order); $i++) {
-            for ($j = 0; $j < count($order[$i]->productattr); $j++) {
-                $orderarr[] = [
-                    'SO No' => $order[$i]->sono,
-                    'created_at' => $order[$i]->created_at,
-                    'Client' => $order[$i]->client[0]['name'],
-                    'Sales' => $order[$i]->sales[0]['name'],
-                    'Type' => $order[$i]->productattr[$j]['type'],
-                    'Code' => $order[$i]->productattr[$j]['code'],
-                    'Total' => $order[$i]->productattr[$j]['total'],
-                    'Package' => $order[$i]->productattr[$j]['package'],
-                    'Final Total' => $order[$i]->productattr[$j]['amount'],
-                    'Note' => $order[$i]->catatan,
-
-                ];
+                    $data[] = [
+                        $so_code,
+                        $so_client,
+                        $so_sales,
+                        $so_product['product_detail'][0]['type'],
+                        $so_product['product_detail'][0]['code'],
+                        $so_product['quantity'],
+                        "X",
+                        $so_product['weight'],
+                        $so_product['package'],
+                        ((double)$so_product['total']/1000),
+                        $so_product['quantity']." ".$so_product['package']." ".$so_product['weight'],
+                        "",
+                        $salesorder->TOP,
+                        $salesorder->created_at,
+                        $salesorder->status,
+                    ];
+                }
             }
-        }
-        return dd($orderarr);
 
+            //editing sheet 1
+            $reader->setActiveSheetIndex(0);
+            $sheet1 = $reader->getActiveSheet();
+            $sheet1->fromArray($data, null, 'A3', false, false);
+            //$reader->getActiveSheet()->setAutoSize(true);
+        })->setFilename('so-form-export['.date("H-i-s d-m-Y")."]")->download('xlsx');
     }
 }
