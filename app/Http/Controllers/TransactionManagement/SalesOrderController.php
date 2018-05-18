@@ -100,12 +100,23 @@ class SalesOrderController extends Controller
                 "weight" => (double) $request->input('weight' . $key),
                 "total" => ((double) $request->input('total' . $key)) * 1000,
                 "realisasi" => ((double) $request->input('realisasi' . $key)) * 1000,
+                "stockk" => null,
+                "pending" => null,
+                "balance" => null,
+                "pendingpr" => null,
             ];
         }
         $so->products = $arrProduct;
         $so->total_product = count($request->arrProduct);
         $so->total_kg = $total_kg;
         $so->total_realisasi = $total_realisasi;
+
+        $checks=user::where('_id', $request->check)->get();
+        $so->check=$checks->toArray();
+
+        $produksis=user::where('_id', $request->produksi)->get();
+        $so->produksi=$produksis->toArray();
+
         $so->status = "order";
 
         $so->save();
@@ -227,6 +238,10 @@ class SalesOrderController extends Controller
                 "weight" => (double) $request->input('weight' . $key),
                 "total" => ((double) $request->input('total' . $key)) * 1000,
                 "realisasi" => ((double) $request->input('realisasi' . $key)) * 1000,
+                'stockk' => null,
+                'pending' => null,
+                'balance' => null,
+                'pendingpr' => null
             ];
         }
         $so['products'] = $arrProduct;
@@ -234,6 +249,12 @@ class SalesOrderController extends Controller
         $so['total_kg'] = $total_kg;
         $so['total_realisasi'] = $total_realisasi;
         $so['status'] = "order";
+
+        $checks=user::where('_id', $request->check)->get();
+        $so['check']=$checks->toArray();
+
+        $produksis=user::where('_id', $request->produksi)->get();
+        $so['produksi']=$produksis->toArray();
 
         $so->save();
         return redirect()->route('sales-order.index')->with('update', 'sales-order');

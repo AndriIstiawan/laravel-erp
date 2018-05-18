@@ -62,6 +62,6 @@ class User extends Moloquent implements \Illuminate\Contracts\Auth\Authenticatab
 	}
 
     public function countPOPending(){
-        return SalesOrder::where('status','1')->count();
+        return SalesOrder::where('status','order')->count();
     }
 }

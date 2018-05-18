@@ -126,7 +126,9 @@
                                         <option value=""></option>
                                         <option value="RETAIL" {{($member->segmen_pasar == 'RETAIL'?'selected':'')}}>RETAIL</option>
                                         <option value="INDUSTRI" {{($member->segmen_pasar == 'INDUSTRI'?'selected':'')}}>INDUSTRI</option>
-                                        @if($member->segmen_pasar != 'RETAIL' && $member->segmen_pasar != 'INDUSTRI')
+                                        <option value="EXPORT" {{($member->segmen_pasar == 'EXPORT'?'selected':'')}}>EXPORT</option>
+                                        @if($member->segmen_pasar != 'RETAIL' && $member->segmen_pasar != 'INDUSTRI'
+                                        && $member->segmen_pasar != 'EXPORT')
                                         <option value="{{$member->segmen_pasar}}" selected>{{$member->segmen_pasar}}</option>
                                         @endif
                                     </select>

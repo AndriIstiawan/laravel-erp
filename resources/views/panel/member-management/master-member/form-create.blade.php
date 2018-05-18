@@ -117,6 +117,7 @@
                                         <option value=""></option>
                                         <option value="RETAIL">RETAIL</option>
                                         <option value="INDUSTRI">INDUSTRI</option>
+                                        <option value="EXPORT">EXPORT</option>
                                     </select>
                                 </div>
                             </div>

@@ -24,9 +24,9 @@
                             <table class="table table-responsive-sm table-bordered table-striped table-sm datatable" style="width: 100%;">
                                 <thead>
                                     <tr>
-                                        <th>SO No</th>
+                                        <th>SO Code</th>
                                         <th>Product</th>
-                                        <th>Catatan</th>
+                                        <th>White_label</th>
                                         <th>Checker</th>
                                         <th>Produser</th>
                                         <th>Status</th>
@@ -60,16 +60,16 @@
         serverSide: true,
         ajax: '{{ route("production.index") }}/list-data',
         columns: [{
-                data: 'sono',
-                name: 'sono'
+                data: 'code',
+                name: 'code'
             },
             {
-                data: 'productattr.[<br>].name',
+                data: 'products.[<br>].name',
                 name: 'name'
             },
             {
-                data: 'catatan',
-                name: 'catatan'
+                data: 'white_label',
+                name: 'white_label'
             },
             {
                 data: 'check.[].name',

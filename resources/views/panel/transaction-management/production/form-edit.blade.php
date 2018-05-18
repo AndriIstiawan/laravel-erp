@@ -8,165 +8,284 @@
 <div class="container-fluid">
 	<div class="animate fadeIn">
 		<div class="row">
-			<div class="col-md-6">
-				<p>
-					<button type="button" class="btn btn-primary" onclick="window.history.back()">
-							<i class="fa fa-backward"></i>&nbsp; Back to List
-					</button>
-				</p>
+            <div class="col-md-12">
+                <p>
+                    <a class="btn btn-primary" href="{{ route('sales-order.index') }}">
+                        <i class="fa fa-backward"></i>&nbsp; Back to List
+                    </a>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
 				<!--start card -->
-				
 				<div class="card">
 					<div class="card-header">
 						<i class="fa fa-align-justify"></i> SO
 						<small>data </small>
 					</div>
 					<div class="card-body">
-							<div class="tab-pane fade active show" id="general" role="tabpanel" aria-labelledby="general-tab">
-								<div class="row">
-									<div class="col-md-12">
-										<input type="hidden" class="id" name="id">
-											<div class="row">
-												<div class="col-md-12">
-												<div class="input-group">
-													<input type="hidden" class="form-control " id="sono" name="sono" value="{{$order->sono}}" readonly="">
-												</div>
-												<div class="input-group">
-													<input type="hidden" class="form-control " id="date" name="date" value="{{$order->date}}" readonly>
-												</div>
-												<div class="input-group">
-													@foreach($order->client as $client)
-													<input type="hidden" class="form-control " id="client" name="client" value="{{$client['_id']}}" readonly="">
-													<input class="form-control" placeholder="{{$client['name']}} - {{(isset($client['sales'][0]['name'])?$client['sales'][0]['name']:'')}}" aria-describedby="sales-error" readonly="">
-													@endforeach
-												</div>
-												</div>
-											</div>
-									</div>
-								</div>
-							</div>
-					</div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" data-original-title="#format: Client Display Name - Sales"></i>
+                                                </span>
+                                            </div>
+                                            <!-- <select id="client" class="form-control" name="client" aria-describedby="client-error">
+                                                <option value=""></option>
+                                                @foreach($members as $member)
+                                                <option value="{{$member->id}}" {{($client['id']==$member->id?'selected':'')}}>{{$member->display_name}} - {{$member->sales[0]['detail'][count($member->sales[0]['detail'])-1]['name']}}</option>
+                                                @endforeach
+                                            </select> -->
+                                            <input class="form-control" placeholder=" {{$member->display_name}} - {{$member->sales[0]['detail'][count($member->sales[0]['detail'])-1]['name']}}" readonly>
+                                            <input type="hidden" class="form-control" name="client" value="{{$member->id}}">
+                                        </div>
+                                        <em id="client-error" class="error invalid-feedback"></em>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 				</div>
-			</div>
-			<div class="col-md-12">
 				<!--end card -->
-				<div class="card">
-					<div class="card-header">
-						<i class="fa fa-align-justify"></i> Products
-						<small>Order </small>
-					</div>
-					<div class="card-body">
-              			<div type="hidden" id="theCount" value="0"></div>
-              		<div class="option-card type-attr_3">
-                	<div class="form-group input_">
-                  	<div class="option-card">
-					    @foreach ($order->productattr as $product)
-						<div class="row">
-							<div class="col-md-4">
-							<label class="col-form-label" for="type"></label>
-									<input type="hidden" id="product" value="{{$product['id']}}" name="product[]" class="form-control form-control-sm" aria-describedby="product-error">
-									<input placeholder="{{$product['code']}}-{{$product['type']}}-{{$product['name']}}" class="form-control" aria-describedby="product-error" readonly="">
-							</div>
-							<div class="col-md-2">
-							<label class="col-form-label" for="type"></label>
-	                          		<input type="text" class="form-control" id="total" name="total[]" value="{{$product['total']}} kg" placeholder="00" aria-describedby="totals-error" readonly="">
-		                    </div>
-							<div class="col-md-3">
-							<label class="col-form-label" for="type"></label>
-			                        <input type="hidden" id="packaging" name="packaging[]" class="form-control" aria-describedby="packaging-error" value="{{$product['packaging']}}" readonly="">
-			                        <input class="form-control" aria-describedby="packaging-error" value="{{$product['packaging']}} kg - {{$product['package']}}" readonly="">
-                    		</div>
-	                        <div class="col-md-3">
-							<label class="col-form-label" for="type"></label>
-		                          <input class="form-control" placeholder="{{$product['amount']}}" value="{{$product['amount']}}" type="text" name="amount[]" id="amount" placeholder="00" readonly/>
-		                    </div>
-		                    <div class="col-md-4" style="display: none;">
-							<label class="col-form-label" for="type">*Package</label>
-								<input type="text" value="{{$product['package']}}" class="form-control packages" name="package[]" readonly>
-							</div>
-		                    <div class="col-md-3">
-		                        <div class="form-group">
-		                          <label class="col-form-label" ></label>
-		                          <input class="form-control number" type="text" name="realisasi[]" id="realisasi" aria-describedby="realisasi-error" value="{{$product['realisasi']}}" placeholder="Realisasi (Kg)" required="" />
-		                        <em id="realisasi-error" class="error invalid-feedback">Please enter a realisasi</em>
-		                        </div>
-		                    </div>
-		                    <div class="col-md-3">
-		                        <div class="form-group">
-		                          <label class="col-form-label" ></label>
-		                          <input class="form-control number" type="text" name="stockk[]" id="stockk" aria-describedby="stockk-error" value="{{$product['stockk']}}" placeholder="Stock Kapuk" required="" />
-		                        <em id="stockk-error" class="error invalid-feedback">Please enter a stockk</em>
-		                        </div>
-		                    </div>
-		                    <div class="col-md-2">
-		                        <div class="form-group">
-		                          <label class="col-form-label" ></label>
-		                          <input class="form-control number" type="text" name="pending[]" id="pending" aria-describedby="pending-error" value="{{$product['pending']}}" placeholder="Pending SO" required="" />
-		                        <em id="pending-error" class="error invalid-feedback">Please enter a pending</em>
-		                        </div>
-		                    </div>
-		                    <div class="col-md-2">
-		                        <div class="form-group">
-		                          <label class="col-form-label" ></label>
-		                          <input class="form-control number" type="text" name="balance[]" id="balance" aria-describedby="balance-error" value="{{$product['balance']}}" placeholder="Balance Stock" required="" />
-		                        <em id="balance-error" class="error invalid-feedback">Please enter a balance</em>
-		                        </div>
-		                    </div>
-		                    <div class="col-md-2">
-		                        <div class="form-group">
-		                          <label class="col-form-label" ></label>
-		                          <input class="form-control number" type="text" name="pendingpr[]" id="pendingpr" aria-describedby="pendingpr-error" value="{{$product['pendingpr']}}" placeholder="Pending PR" required="" />
-		                        <em id="pendingpr-error" class="error invalid-feedback">Please enter a pendingpr</em>
-		                        </div>
-		                    </div>
-						</div>
-						<hr style="border-top: 4px solid #20a8d8; ">
-						@endforeach
-					</div>
-					<div class="option-card1">
-					</div>
-					</div>
-					</div>
-					</div>
-				</div>
 			</div>
-			<div class="col-md-6">
+			<div class="col-md-7">
+                <!--start SO information -->
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fa fa-align-justify"></i> SO
+                        <small>Information</small>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <p class="col-md-12">
+                                <textarea id="billing" type="text" name="billing" class="form-control" placeholder="Billing" readonly value="{{$order['billing']}}">Billing ( {{$order['billing']}} )</textarea>
+                            </p>
+                        </div>
+                        <div class="row shipping-list">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="input-group"><!-- 
+                                        <select class="form-control shipping-valid" name="shipping" aria-describedby="shipping-error">
+                                            <option value=""></option>
+                                            <?php $i=-1; ?>
+                                            @foreach($client['shipping_address'] as $shipping_list)
+                                            <?php $i++; ?>
+                                            <option value="{{$i}}" {{ ($order['shipping']==$shipping_list['address']?'selected':'') }}>{{$shipping_list['address']}}</option>
+                                            @endforeach
+                                        </select> -->
+                                        <textarea id="billing" type="text" name="shipping" class="form-control" placeholder="Shipping" readonly value="{{$order['shipping']}}">Shipping ( {{$order['shipping']}} )</textarea>
+                                    </div>
+                                    <em id="shipping-error" class="error invalid-feedback"></em>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="row">
+                                    <div class="input-group col-md-12">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text text-sm">Term Of Payment</span>
+                                        </div>
+                                        <input type="text" class="form-control input-number" name="TOP" placeholder="Day" value="{{$order['TOP']}}" aria-describedby="TOP-error" readonly="">
+                                        <em id="TOP-error" class="error invalid-feedback"></em>
+                                    </div>
+                                </div>
+                                <br>
+                            </div>
+                            <div class="col-md-3">
+                                <button type="button" class="btn btn-dark" style="padding-left:30px;" aria-pressed="true" disabled>
+                                    <input class="form-check-input" type="checkbox" name="whiteLabel" {{($order['white_label']!=null?'checked':'')}} readonly>White Label
+                                </button>
+                                <br>
+                                <br>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <textarea name="notes" rows="3" class="form-control" placeholder="Notes" style="resize: none;" readonly="">{{$order['notes']}}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end SO information -->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <!--start Product order-->
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fa fa-align-justify"></i> Products
+                        <small>Order </small>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12 product-order-list">
+                                <?php $i=0; ?>
+                                @foreach($order['products'] as $product_list)
+                                <?php $i++; ?>
+                                <div class="row div-items">
+                                    <input type="hidden" name="arrProduct[]" value="{{$i}}">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" data-original-title="#format: Product Name - Type"></i>
+                                                    </span>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="{{$product_list['name']}}" readonly>
+                                                <input type="hidden" value="{{$product_list['product_id']}}" name="product{{$i}}">
+                                            </div>
+                                            <em id="product{{$i}}-error" class="error invalid-feedback products-em"></em>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" value="{{$product_list['package']}}" readonly>
+                                            <input type="hidden" class="form-control" name="package{{$i}}" value="{{$product_list['package']}}" readonly>
+                                            <em id="package{{$i}}-error" class="error invalid-feedback packages-em"></em>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <input class="form-control text-center quantity" type="text" name="quantity{{$i}}" value="{{$product_list['quantity']}}" readonly>
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">X</span>
+                                                </div>
+                                                <input type="text" class="form-control" value="{{$product_list['weight']/1000}}kg" readonly>
+                                            	<input type="hidden" class="form-control" name="weight{{$i}}" value="{{$product_list['weight']}}" readonly>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <em id="quantity{{$i}}-error" class="error invalid-feedback quantity-em text-left"></em>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <em id="weight{{$i}}-error" class="error invalid-feedback weights-em text-right" style="padding-right:5px;"></em>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">=</span>
+                                                </div>
+                                                <input type="text" class="form-control text-center totals input-number" name="total{{$i}}" placeholder="Total" aria-describedby="total{{$i}}-error"
+                                                    onchange="countTotal($(this))" value="{{(double)$product_list['total']/1000}}" readonly="">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">Kg</span>
+                                                </div>
+                                                <em id="total{{$i}}-error" class="error invalid-feedback totals-em"></em>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control text-center realisasi" name="realisasi{{$i}}" placeholder="Realisasi" aria-describedby="realisasi1{{$i}}-error"
+                                                        value="{{(double)$product_list['realisasi']/1000}}" required="">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text">Kg</span>
+                                                    </div>
+                                                    <em id="realisasi{{$i}}-error" class="invalid-feedback realisasi-em">Mohon input realisasi</em>
+                                                </div><!-- 
+                                            <div class="col-md-12">
+                                                <div class="form-group" style="padding-left:10px;">
+                                                     <button type="button" class="btn btn-danger pull-right" style="cursor:default;">
+                                                        <i class="fa fa-remove"></i>
+                                                    </button> 
+                                                </div>
+                                            </div> -->
+                                        </div>
+                                    </div>
+				                    <div class="col-md-2">
+				                        <div class="form-group">
+				                        	<div class="input-group">
+					                          	<input class="form-control number" type="text" name="stockk{{$i}}" id="stockk" aria-describedby="stockk{{$i}}-error" placeholder="Stock Kapuk" required="" value="{{(double)$product_list['stockk']}}" />
+					                          	<div class="input-group-append">
+                                                    <span class="input-group-text">Kg</span>
+                                                </div>
+					                        	<em id="stockk{{$i}}-error" class="invalid-feedback">Mohon input stock</em>
+					                    	</div>
+				                        </div>
+				                    </div>
+				                    <div class="col-md-2">
+				                        <div class="form-group">
+				                        	<div class="input-group">
+						                        <input class="form-control number" type="text" name="pending{{$i}}" id="pending" aria-describedby="pending{{$i}}-error"  placeholder="Pending SO" required="" value="{{(double)$product_list['pending']}}"/>
+						                        <div class="input-group-append">
+                                                    <span class="input-group-text">Kg</span>
+                                                </div>
+						                        <em id="pending{{$i}}-error" class="invalid-feedback">Mohon input pending SO</em>
+				                        	</div>
+				                        </div>
+				                    </div>
+				                    <div class="col-md-2">
+				                        <div class="form-group">
+				                        	<div class="input-group">
+					                          	<input class="form-control number" type="text" name="balance{{$i}}" id="balance" aria-describedby="balance{{$i}}-error"  placeholder="Balance Stock" required="" value="{{(double)$product_list['balance']}}"/>
+					                          	<div class="input-group-append">
+                                                    <span class="input-group-text">Kg</span>
+                                                </div>
+					                        <em id="balance{{$i}}-error" class="invalid-feedback">Mohon input balance stock</em>
+					                        </div>
+				                        </div>
+				                    </div>
+				                    <div class="col-md-2">
+				                        <div class="form-group">
+				                        	<div class="input-group">
+				                          		<input class="form-control number" type="text" name="pendingpr{{$i}}" id="pendingpr" aria-describedby="pendingpr{{$i}}-error" placeholder="Pending PR" required="" value="{{(double)$product_list['pendingpr']}}"/>
+				                          		<div class="input-group-append">
+                                                    <span class="input-group-text">Kg</span>
+                                                </div>
+				                        	<em id="pendingpr{{$i}}-error" class="invalid-feedback">mohon input pending PR</em>
+				                        	</div>
+				                        </div>
+				                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div><!-- 
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button type="button" class="btn btn-primary pull-right" onclick="addProduct()">
+                                    <i class="fa fa-plus"></i>&nbsp; Add Product
+                                </button>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+                <!--end Product order-->
+            </div>
+        </div>
+        <div class="row">
+			<div class="col-md-12">
 				<div class="card">
 					<div class="card-header">
-						<i class="fa fa-align-justify"></i> Additional
-						<small>Notes</small>
+						<i class="fa fa-align-justify"></i> Data
+						<small>Production</small>
 					</div>
 					<div class="card-body">
 						<div class="row">
 							<div class="col-md-12">
 								<div class="row">
-									<div class="col-md-12">
-									<div class="form-group">
-										<label class="col-form-label" for="catatan">Catatan</label>
-										<textarea type="text" rows="5" class="form-control" id="catatan" name="catatan" placeholder="Catatan" value="{{$order->catatan}}" aria-describedby="catatan-error" readonly=""> {{$order->catatan}}</textarea>
+									<div class="col-md-4">
+										<div class="form-group ">
+											<select id="tunggu" class="form-control" style="width: 100% !important;" name="tunggu" aria-describedby="tunggu-error">
+												<option value=""></option>
+												<option value="Ada" {{($order->tunggu == 'Ada'?'selected':'')}}>Ada</option>
+												<option value="Tidak Ada" {{($order->tunggu == 'Tidak Ada'?'selected':'')}}>Tidak Ada</option>
+											</select>
+											<em id="tunggu-error" class="error invalid-feedback">Please select a status</em>
+										</div>
 									</div>
-									</div>
-									<div class="col-md-12" style="display: none;">
-									<div class="form-group">
-										<label class="col-form-label" for="status">*Status</label>
-										<input class="form-control" type="hidden" value="2" name="status" >
-									</div>
-									</div>
-									<div class="col-md-6">
-									<div class="form-group ">
-										<label class="col-form-label" for="tunggu">*Stok tunggu dari bekasi</label>
-										<select id="tunggu" class="form-control" style="width: 100% !important;" name="tunggu" aria-describedby="tunggu-error">
-											<option value=""></option>
-											<option value="Ada" {{($order->tunggu == 'Ada'?'selected':'')}}>Ada</option>
-											<option value="Tidak Ada" {{($order->tunggu == 'Tidak Ada'?'selected':'')}}>Tidak Ada</option>
-										</select>
-										<em id="tunggu-error" class="error invalid-feedback">Please select a status</em>
-									</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="form-group col-md-6">
-										<label class="col-form-label" for="check">*Dicheck Oleh,</label>
+									<div class="form-group col-md-4">
 										<select id="check" class="form-control" style="width: 100% !important;" name="check" aria-describedby="check-error">
 											<option value=""></option>
 										@foreach($order->check as $check)
@@ -178,8 +297,7 @@
 										</select>
 										<em id="check-error" class="error invalid-feedback">Please select a check</em>
 									</div>
-									<div class="form-group col-md-6">
-										<label class="col-form-label" for="produksi">*Diproduksi Oleh,</label>
+									<div class="form-group col-md-4">
 										<select id="produksi" class="form-control" style="width: 100% !important;" name="produksi" aria-describedby="produksi-error">
 											<option value=""></option>
 										@foreach($order->produksi as $produksi)
@@ -197,11 +315,15 @@
 					</div>
 				</div>
 			</div>
+		</div>
+		<div class="row">
 			<div class="col-md-12">
 				<div class="card">
 					<p>
 					<div class="btn-group"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-					    <button type="submit" id="save" class="btn btn-success">Save</button>&nbsp;
+					    <button type="submit" class="btn btn-primary" onclick="save()">
+                            <i class="fa fa-save"></i>&nbsp; Save
+                        </button>&nbsp;
 					    <button type="button" class="btn btn-secondary" onclick="window.history.back()">
 					    <i class="fa fa-times-rectangle"></i>&nbsp; Cancel
 					    </button>
@@ -209,6 +331,7 @@
 					</p>
 				</div>
 			</div>
+		</div>
 		</div>
 	</div>
 </div>

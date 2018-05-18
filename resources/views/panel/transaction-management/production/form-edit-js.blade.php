@@ -40,10 +40,10 @@
     });
 
 
-  $('#tunggu').select2({theme:"bootstrap", placeholder:'Please select'});/*
+  $('#tunggu').select2({theme:"bootstrap", placeholder:'Status Tunggu Dari Bekasi'});/*
   $('#packaging').select2({theme:"bootstrap", placeholder:'Please select'});*/
-  $('#check').select2({theme:"bootstrap", placeholder:'Please select'});
-  $('#produksi').select2({theme:"bootstrap", placeholder:'Please select'});
+  $('#check').select2({theme:"bootstrap", placeholder:'Checker'});
+  $('#produksi').select2({theme:"bootstrap", placeholder:'Produser'});
   $('#sales').select2({theme:"bootstrap", placeholder:'Please select'});/*
   $('#package').select2({theme:"bootstrap", placeholder:'Please select'}); 
   $('#packages').select2({theme:"bootstrap", placeholder:'Please select'});  */
@@ -128,11 +128,11 @@
       },
       packaging:{ required:'Please select a packaging' 
       },
-      tunggu:{ required:'Please select a status' 
+      tunggu:{ required:'mohon pilih status' 
       },
-      check:{ required:'Please select a checked' 
+      check:{ required:'mohon pilih checked' 
       },
-      produksi:{ required:'Please select a produksi' 
+      produksi:{ required:'mohon pilih produksi' 
       },
       package:{ required:'Please select a package' 
       },
@@ -158,5 +158,12 @@
       $(element).addClass('is-valid').removeClass('is-invalid');
     }
   });
+
+  function save(){
+        submit = true;
+        if(!$('#jxForm1').valid()){
+            toastr.warning('Mohon cek kembali data inputan anda', 'Form not valid');
+        }
+    }
   
 </script>
