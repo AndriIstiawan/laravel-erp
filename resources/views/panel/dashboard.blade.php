@@ -254,7 +254,11 @@
                       labels: ["", "", "", "", ""],
                       datasets: [{
                               backgroundColor: ["#266a8b", "#317ea4","#3b8fb8","#8db2cd","#a4bed2"],
-                              data: [584,393,365,339,289]
+                              data: 
+                              [@foreach($chart as $charts)
+                              {{$charts->total_kg}}/1000,
+                              @endforeach]
+                              
                       }]
                   },
                   options: {

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Charts;
-use App\Product;
+use App\SalesOrder;
 use App\Discounts;
 
 class DashboardController extends Controller
@@ -17,7 +17,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $chart = Discounts::select('value')->get();
+        $chart = SalesOrder::select('total_kg')->get();
         return view('panel.dashboard')->with(['chart'=>$chart]);
     }
 
