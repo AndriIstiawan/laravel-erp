@@ -16,7 +16,7 @@ Auth::routes();
 
 Route::middleware('auth')->group(function() {
 	Route::get('/', 'TransactionManagement\OrderCreateController@index');
-	
+	Route::get('dashbord', 'DashboardController@index');	
 	Route::get('profile/reset-password', 'ProfileController@resetPass');
 	Route::post('profile/change-password', 'ProfileController@changePassword');
 

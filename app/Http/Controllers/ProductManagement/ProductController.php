@@ -161,7 +161,7 @@ class ProductController extends Controller
         ];
         
         $product->save();
-        return redirect()->route('product.index')->with('new', 'product');
+        return redirect()->route('product.index')->with('toastr', 'new');
     }
 
     //for getting datatable at index
