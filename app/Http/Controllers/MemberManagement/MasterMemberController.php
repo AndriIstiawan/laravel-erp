@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use Excel;
 use Auth;
+use Session;
 
 class MasterMemberController extends Controller
 {
@@ -290,20 +291,22 @@ class MasterMemberController extends Controller
     //import data
     public function ImportData(Request $request)
     {
+        $limit_chunk = 1000000000000000;
         $file = $request->import->getRealPath();
         $filename = 'client-form-import['.date("H-i-s d-m-Y")."][".Auth::user()->email."]";
-        $excel = Excel::selectSheetsByIndex(0)->load($file, function($reader) use ($filename) {
-            $data = [];
-            $results = $reader->get();
-            //read sheet 1
+        $excel = Excel::selectSheetsByIndex(0)->load($file)->setFilename($filename)->store('xlsx', false, true);
+        $file = storage_path('exports/'.$filename.".xlsx");
+        $excel = Excel::filter('chunk')->selectSheetsByIndex(0)->load($file)->chunk($limit_chunk, function($results){
+            $data = 'array(';
             foreach($results as $listData){ //result[0] if load multiple sheet selectSheetsByIndex(0,1)
                 //check parent column value
                 if(!isset($listData['code'])||!isset($listData['displayname'])||!isset($listData['companyname'])||!isset($listData['title'])
                 ||!isset($listData['fullname'])||!isset($listData['salesemail'])||!isset($listData['billingaddress'])||!isset($listData['shippingaddress'])
                 ||!isset($listData['email'])||!isset($listData['mobile'])||!isset($listData['phone'])||!isset($listData['remarks'])||!isset($listData['kota'])
                 ||!isset($listData['provinsi'])||!isset($listData['negara'])||!isset($listData['segmenpasar'])||!isset($listData['dateregister'])){
-                    $data[] = array('parent column not valid');
+                    $data .= 'array("parent column not valid"),';
                 }else{
+                    $data .= 'array(';
                     $code = trim($listData['code']);
                     $displayname = trim($listData['displayname']);
                     $companyname = trim($listData['companyname']);
@@ -321,22 +324,25 @@ class MasterMemberController extends Controller
                     $negara = trim($listData['negara']);
                     $segmenpasar = trim($listData['segmenpasar']);
                     $dateregister = trim($listData['dateregister']);
+                    $data .= '"'.$code.'","'.$displayname.'","'.$companyname.'","'.$title.'","'.$fullname.'","'.$salesemail.'",';
+                    $data .= '"'.$billingaddress.'","'.$shippingaddress.'","'.$email.'","'.$mobile.'","'.$phone.'","'.$remarks.'",';
+                    $data .= '"'.$kota.'","'.$provinsi.'","'.$negara.'","'.$segmenpasar.'","'.$dateregister.'",';
 
                     if($code==""||$displayname==""||$title==""||$fullname==""||$salesemail==""||$billingaddress==""||$shippingaddress==""||$mobile==""){
-                        $data[] = array('error import => require data is empty [code,displayname,titlefullname,salesemail,billingaddress,shippingaddress,mobile]');
+                        $data .= '"error import => require data is empty [code,displayname,titlefullname,salesemail,billingaddress,shippingaddress,mobile]"),';
                     }else{
                         $sales = User::where('role', 'elemMatch', array('name' => 'Sales'))->where('email', $salesemail)->first();
                         if(!$sales){
-                            $data[] = array('error import => sales email is not valid');
+                            $data .= '"error import => sales email is not valid"),';
                         }else{
                             if (($timestamp = strtotime($dateregister)) == false && $dateregister != "") {
-                                $data[] = array('error import => date register is not valid');
+                                $data .= '"error import => date register is not valid"),';
                             } else {
                                 $member = Member::where('code', $code)->first();
                                 if($member){
-                                    $data[] = array('edit client successfuly.');
+                                    $data .= '"edit client successfuly."),';
                                 }else{
-                                    $data[] = array('new client successfuly insert.');
+                                    $data .= '"new client successfuly insert."),';
                                     $member = new Member();
                                 }
                                 $member['code'] = $code;
@@ -392,9 +398,20 @@ class MasterMemberController extends Controller
                     }
                 }
             }
+            $data .= ')';
+            Session::put('result_status',$data);
+        });
+
+        $result_status = eval('return ' . Session::get('result_status') . ';');
+        for($i=0; $i < count($result_status); $i++){
+            $result_status[$i][9] = '="'.$result_status[$i][9].'"';
+            $result_status[$i][10] = '="'.$result_status[$i][10].'"';
+        }
+        Session::forget('result_status');
+        $excel = Excel::selectSheetsByIndex(0)->load($file, function($reader) use ($filename,$result_status) {
             //editing sheet 1
             $sheet0 = $reader->setActiveSheetIndex(0);
-            $reader->getActiveSheet()->fromArray($data, null, 'R3', false, false); //D6 is note columns
+            $reader->getActiveSheet()->fromArray($result_status, null, 'A3', false, false);
         })->setFilename($filename)->store('xlsx', false, true);
         return $filename.'.xlsx';
     }
