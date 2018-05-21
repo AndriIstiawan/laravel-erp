@@ -235,7 +235,7 @@ class MasterMemberController extends Controller
         }
         $member->divisi = $divisi;
         $member->save();
-        return redirect()->route('master-client.index')->with('edit', 'client');
+        return redirect()->route('master-client.index')->with('update', 'client');
     }
 
     public function clientExport()

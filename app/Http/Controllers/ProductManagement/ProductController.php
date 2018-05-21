@@ -161,7 +161,7 @@ class ProductController extends Controller
         ];
         
         $product->save();
-        return redirect()->route('product.index')->with('new', 'product');
+        return redirect()->route('product.index')->with('toastr', 'product');
     }
 
     //for getting datatable at index
@@ -337,7 +337,7 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         $product->delete();
-        return redirect()->route('product.index')->with('dlt', 'Products updated!');
+        return redirect()->route('product.index')->with('dlt', 'Products deleted!');
     }
 
     public function productExport()
