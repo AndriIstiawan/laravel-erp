@@ -108,38 +108,34 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-2">
-                <div class="form-group">
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">=</span>
-                        </div>
-                        <input type="text" class="form-control text-center totals" name="total1" 
-                            placeholder="Total" aria-describedby="total1-error" onchange="countTotal($(this))">
-                        <div class="input-group-append">
-                            <span class="input-group-text">Kg</span>
-                        </div>
-                        <em id="total1-error" class="error invalid-feedback totals-em"></em>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-1">
-                <div class="form-group row">
-                    <div class="d-none">
+            <div class="col-md-3">
+                <div class="row">
+                    <div class="form-group col-md-12">
                         <div class="input-group">
-                            <input type="text" class="form-control text-center realisasi" name="realisasi1" placeholder="Realisasi" aria-describedby="realisasi1-error">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">=</span>
+                            </div>
+                            <input type="text" class="form-control text-center totals input-number" name="total1" placeholder="Total" aria-describedby="total1-error"
+                                    onchange="countTotal($(this))">
                             <div class="input-group-append">
                                 <span class="input-group-text">Kg</span>
                             </div>
-                            <em id="realisasi1-error" class="error invalid-feedback realisasi-em"></em>
-                        </div><br>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group" style="margin-right:40px;">
-                                <button type="button" class="btn btn-danger pull-right" onclick="$(this).closest('.div-items').remove()">
-                                <i class="fa fa-remove"></i>
-                            </button> 
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-danger" style="margin:0 20px 0 25px;">
+                                    <i class="fa fa-remove"></i>
+                                </button>
+                            </span>
+                            <em id="total1-error" class="error invalid-feedback totals-em"></em>
                         </div>
+                    </div>
+                </div>
+                <div class="" style="display:none;">
+                    <div class="input-group">
+                        <input type="text" class="form-control text-center realisasi" name="realisasi1" placeholder="Realisasi" aria-describedby="realisasi1-error">
+                        <div class="input-group-append">
+                            <span class="input-group-text">Kg</span>
+                        </div>
+                        <em id="realisasi1-error" class="error invalid-feedback realisasi-em"></em>
                     </div>
                 </div>
             </div>

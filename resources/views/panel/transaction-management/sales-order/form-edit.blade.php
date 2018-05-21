@@ -234,39 +234,35 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text">=</span>
-                                                    </div>
-                                                    <input type="text" class="form-control text-center totals input-number" name="total{{$i}}" placeholder="Total" aria-describedby="total{{$i}}-error"
-                                                        onchange="countTotal($(this))" value="{{(double)$product_list['total']/1000}}">
-                                                    <div class="input-group-append">
-                                                        <span class="input-group-text">Kg</span>
-                                                    </div>
-                                                    <em id="total{{$i}}-error" class="error invalid-feedback totals-em"></em>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-1">
-                                            <div class="form-group row">
-                                                <div class="d-none">
+                                        <div class="col-md-3">
+                                            <div class="row">
+                                                <div class="form-group col-md-12">
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control text-center realisasi" name="realisasi{{$i}}" placeholder="Realisasi" aria-describedby="realisasi1-error"
-                                                            value="{{(double)$product_list['realisasi']/1000}}">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">=</span>
+                                                        </div>
+                                                        <input type="text" class="form-control text-center totals input-number" name="total{{$i}}" placeholder="Total" aria-describedby="total{{$i}}-error"
+                                                                onchange="countTotal($(this))" value="{{(double)$product_list['total']/1000}}">
                                                         <div class="input-group-append">
                                                             <span class="input-group-text">Kg</span>
                                                         </div>
-                                                        <em id="realisasi{{$i}}-error" class="error invalid-feedback realisasi-em"></em>
+                                                        <span class="input-group-btn">
+                                                            <button type="button" class="btn btn-danger" style="margin:0 20px 0 25px;">
+                                                                <i class="fa fa-remove"></i>
+                                                            </button>
+                                                        </span>
+                                                        <em id="total{{$i}}-error" class="error invalid-feedback totals-em"></em>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-12">
-                                                    <!-- <div class="form-group" style="padding-left:10px;">
-                                                         <button type="button" class="btn btn-danger pull-right" style="cursor:default;">
-                                                            <i class="fa fa-remove"></i>
-                                                        </button> 
-                                                    </div> -->
+                                            </div>
+                                            <div class="" style="display:none;">
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control text-center realisasi" name="realisasi{{$i}}" placeholder="Realisasi" aria-describedby="realisasi{{$i}}-error"
+                                                    value="{{(double)$product_list['realisasi']/1000}}">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text">Kg</span>
+                                                    </div>
+                                                    <em id="realisasi{{$i}}-error" class="error invalid-feedback realisasi-em"></em>
                                                 </div>
                                             </div>
                                         </div>
