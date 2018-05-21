@@ -61,7 +61,7 @@
                             </div>
                             <div class="form-group row">
                                 <div class="input-group col-md-8">
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" aria-describedby="email-error">
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Email (optional)" aria-describedby="email-error">
                                     <div class="input-group-append">
                                         <span class="input-group-text">
                                             <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" data-original-title="ex: ahamd.rusdi@gmail.com"></i>
@@ -98,7 +98,7 @@
                         <div class="card-body">
                             <div class="form-group row">
                                 <div class="input-group col-md-12">
-                                    <input type="text" class="form-control" id="company" name="company" placeholder="Company">
+                                    <input type="text" class="form-control" id="company" name="company" placeholder="Company (optional)">
                                     <div class="input-group-append">
                                         <span class="input-group-text">
                                             <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" data-original-title="ex: Toko Ramawangi"></i>
@@ -712,7 +712,7 @@
                             </div>
                             <div class="form-group row">
                                 <div class="input-group col-md-12">
-                                    <input type="text" class="form-control" id="remarks" name="remarks" placeholder="Remarks">
+                                    <input type="text" class="form-control" id="remarks" name="remarks" placeholder="Remarks (optional)">
                                     <div class="input-group-append">
                                         <span class="input-group-text">
                                             <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" data-original-title="ex: 'Sales : Alamsyah'"></i>
@@ -881,27 +881,27 @@
 
     $('#segmenPasar').select2({
         theme: "bootstrap",
-        placeholder: 'Segmen Pasar',
+        placeholder: 'Segmen Pasar (optional)',
         tags: true
     });
     $('#phone').select2({
         theme: "bootstrap",
-        placeholder: 'Phone number',
+        placeholder: 'Phone number (optional)',
         tags: true
     });
     $('#negara').select2({
         theme: "bootstrap",
-        placeholder: 'Negara',
+        placeholder: 'Negara (optional)',
         tags: true
     });
     $('#provinsi').select2({
         theme: "bootstrap",
-        placeholder: 'Provinsi',
+        placeholder: 'Provinsi (optional)',
         tags: true
     });
     $('#kota').select2({
         theme: "bootstrap",
-        placeholder: 'Kota',
+        placeholder: 'Kota (optional)',
         tags: true
     });
     $('#sales').select2({
