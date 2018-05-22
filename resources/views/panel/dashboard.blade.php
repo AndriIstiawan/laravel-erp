@@ -4,6 +4,13 @@
 <div class="container-fluid">
   <div class="animated fadeIn">
     <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title"><center>HIGLIGHTED FACTS (APR 2018)</center></h4>
+          </div>
+        </div>
+      </div>
     <!-- card -->
     <div class="col-md-6">
       <div class="card">
@@ -607,7 +614,7 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title"><center>SALES PERFORMANCE </center></h4>
+          <h4 class="card-title"><center>SALES PERFORMANCE BY MARKET SEGMENTATION</center></h4>
         </div>
       </div>
     </div>
@@ -615,7 +622,7 @@
     <div class="col-md-6">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title"><center>TOP 10 CUSTOMER SALES LOSS (IDR)</center></h4>
+          <h4 class="card-title" style="color: #1f487b;"><b><center>SALES</center></b></h4>
           <div class="chart-wrapper" style="height:300px;margin-top:0px; width: 100%;" >
             <div class="row">
               <div class="col-md-12">
@@ -631,7 +638,7 @@
     <div class="col-md-6">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title"><center>TOP 10 CUSTOMER SALES LOSS (IDR)</center></h4>
+          <h4 class="card-title" style="color: #a6433f;"><b><center>SALES LOSS</center></b></h4>
           <div class="chart-wrapper" style="height:300px;margin-top:0px; width: 100%;" >
             <div class="row">
               <div class="col-md-12">

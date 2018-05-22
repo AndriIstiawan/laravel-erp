@@ -19,9 +19,9 @@
 				<div class="dropdown-header text-center">
 					<strong>Setting Account</strong>
 				</div>
-				<!-- <a class="dropdown-item" href="javascript:void(0)" data-toggle="modal" data-target="#primaryModal" data-link="{{url('profile/reset-password')}}"
+				<a class="dropdown-item" href="javascript:void(0)" data-toggle="modal" data-target="#primaryModal" data-link="{{url('profile/reset-password')}}"
 				    onclick="funcModal($(this))">
-					<i class="fa fa-lock"></i> Reset Password </a> -->
+					<i class="fa fa-lock"></i> Reset Password </a>
 				<a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
 					<i class="fa fa-sign-out"></i> Logout
 				</a>
