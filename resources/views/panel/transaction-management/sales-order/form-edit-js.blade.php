@@ -155,7 +155,7 @@
         //set new select2 product order
         $('.product-order-list select[name="product'+count+'"]').select2({
             theme: "bootstrap",
-            placeholder: 'Product - Type'
+            placeholder: 'Code - Product - Type'
         }).change(function () {
             if (submit) {
                 $(this).valid();
@@ -318,7 +318,7 @@
     count = parseInt('{{$i}}');
     $('.product-order-list select[name="product{{$i}}"]').select2({
         theme: "bootstrap",
-        placeholder: 'Product - Type'
+        placeholder: 'Code - Product - Type'
     }).change(function () {
         if (submit) {
             $(this).valid();
