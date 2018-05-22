@@ -170,7 +170,7 @@
                                                     <select class="form-control products" name="product{{$i}}" aria-describedby="product{{$i}}-error">
                                                         <option value=""></option>
                                                         @foreach($products as $product)
-                                                        <option value="{{$product->id}}" {{ ($product_list['product_id']==$product->id?'selected':'') }}>{{$product->name}} - {{$product->type}}</option>
+                                                        <option value="{{$product->id}}" {{ ($product_list['product_id']==$product->id?'selected':'') }}>{{$product->code}} - {{$product->name}} - {{$product->type}}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>

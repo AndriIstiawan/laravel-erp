@@ -87,7 +87,7 @@
     function save() {
         if ($('#jxForm').valid()){
             $('.progress-modal').removeClass('d-none');
-            $('#jxForm button').prop('disabled', true);
+            $('.btn').prop('disabled', true);
             $.ajax({
                 xhr: function () {
                     var xhr = new window.XMLHttpRequest();
@@ -116,7 +116,7 @@
                 contentType: false,
                 data: new FormData($('#jxForm')[0]),
                 success: function (response) {
-                    $('#jxForm button').prop('disabled', false);
+                    $('.btn').prop('disabled', false);
                     toastr.success('Please check download file for detail data input', 'Import file success..');
                     $('.progress-modal').addClass('d-none');
                     window.open("{{url('/download-storage')}}/true/"+response, "_blank");
@@ -125,7 +125,7 @@
 					}, 3000);
                 },
                 error: function (e) { 
-                    $('#jxForm button').prop('disabled', false);
+                    $('.btn').prop('disabled', false);
                     toastr.warning('Please check download file for detail data input', 'Import file failed..');
                     $('.progress-modal').addClass('d-none');
                 }
