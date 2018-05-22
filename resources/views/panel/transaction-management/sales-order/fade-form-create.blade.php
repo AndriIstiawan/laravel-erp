@@ -58,7 +58,7 @@
                         <select class="form-control products" name="product1" aria-describedby="product1-error">
                             <option value=""></option>
                             @foreach($products as $product)
-                            <option value="{{$product->id}}">{{$product->name}} - {{$product->type}}</option>
+                            <option value="{{$product->id}}">{{$product->code}} - {{$product->name}} - {{$product->type}}</option>
                             @endforeach
                         </select>
                     </div>

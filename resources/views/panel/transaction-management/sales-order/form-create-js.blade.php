@@ -14,7 +14,7 @@
 
     $('.product-order-list select[name="product1"]').select2({
         theme: "bootstrap",
-        placeholder: 'Product - Type'
+        placeholder: 'Code - Product - Type'
     }).change(function () {
         if (submit) {
             $(this).valid();
@@ -224,7 +224,7 @@
         //set new select2 product order
         $('.product-order-list select[name="product'+count+'"]').select2({
             theme: "bootstrap",
-            placeholder: 'Product - Type'
+            placeholder: 'Code - Product - Type'
         }).change(function () {
             if (submit) {
                 $(this).valid();
