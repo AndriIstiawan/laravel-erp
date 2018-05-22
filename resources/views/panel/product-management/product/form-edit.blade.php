@@ -125,52 +125,52 @@
                         <div class="card-body">
                             <div class="row">
                                 <p class="input-group col-md-2">
-                                    <input type="text" class="form-control usd-format" name="250gPlastik" placeholder="250g Plastik" 
+                                    <input type="text" class="form-control idr-currency" name="250gPlastik" placeholder="250g Plastik" 
                                         id="250gPlastik" aria-describedby="250gPlastik-error" value="{{($product->price[0]['price']!='0'?$product->price[0]['price']:'')}}">
                                     <em id="250gPlastik-error" class="error invalid-feedback"></em>
                                 </p>
                                 <p class="input-group col-md-2">
-                                    <input type="text" class="form-control usd-format" name="250gAluminium" placeholder="250g Aluminium" 
+                                    <input type="text" class="form-control idr-currency" name="250gAluminium" placeholder="250g Aluminium" 
                                         id="250gAluminium" aria-describedby="250gAluminium-error" value="{{($product->price[1]['price']!='0'?$product->price[1]['price']:'')}}">
                                     <em id="250gAluminium-error" class="error invalid-feedback"></em>
                                 </p>
                                 <p class="input-group col-md-2">
-                                    <input type="text" class="form-control usd-format" name="500gPlastik" placeholder="500g Plastik" 
+                                    <input type="text" class="form-control idr-currency" name="500gPlastik" placeholder="500g Plastik" 
                                         id="500gPlastik" aria-describedby="500gPlastik-error" value="{{($product->price[2]['price']!='0'?$product->price[2]['price']:'')}}">
                                     <em id="500gPlastik-error" class="error invalid-feedback"></em>
                                 </p>
                                 <p class="input-group col-md-2">
-                                    <input type="text" class="form-control usd-format" name="500gAluminium" placeholder="500g Aluminium" 
+                                    <input type="text" class="form-control idr-currency" name="500gAluminium" placeholder="500g Aluminium" 
                                         id="500gAluminium" aria-describedby="500gAluminium-error" value="{{($product->price[3]['price']!='0'?$product->price[3]['price']:'')}}">
                                     <em id="500gAluminium-error" class="error invalid-feedback"></em>
                                 </p>
                                 <p class="input-group col-md-2">
-                                    <input type="text" class="form-control usd-format" name="1kgPlastik" placeholder="1kg Plastik" 
+                                    <input type="text" class="form-control idr-currency" name="1kgPlastik" placeholder="1kg Plastik" 
                                         id="1kgPlastik" aria-describedby="1kgPlastik-error" value="{{($product->price[4]['price']!='0'?$product->price[4]['price']:'')}}">
                                     <em id="1kgPlastik-error" class="error invalid-feedback"></em>
                                 </p>
                                 <p class="input-group col-md-2">
-                                    <input type="text" class="form-control usd-format" name="1kgAluminium" placeholder="1kg Aluminium" 
+                                    <input type="text" class="form-control idr-currency" name="1kgAluminium" placeholder="1kg Aluminium" 
                                         id="1kgAluminium" aria-describedby="1kgAluminium-error" value="{{($product->price[5]['price']!='0'?$product->price[5]['price']:'')}}">
                                     <em id="1kgAluminium-error" class="error invalid-feedback"></em>
                                 </p>
                                 <p class="input-group col-md-2">
-                                    <input type="text" class="form-control usd-format" name="5kgJerigen" placeholder="5kg Jerigen" 
+                                    <input type="text" class="form-control idr-currency" name="5kgJerigen" placeholder="5kg Jerigen" 
                                         id="5kgJerigen" aria-describedby="5kgJerigen-error" value="{{($product->price[6]['price']!='0'?$product->price[6]['price']:'')}}">
                                     <em id="5kgJerigen-error" class="error invalid-feedback"></em>
                                 </p>
                                 <p class="input-group col-md-2">
-                                    <input type="text" class="form-control usd-format" name="25kgJerigen" placeholder="25kg Jerigen" 
+                                    <input type="text" class="form-control idr-currency" name="25kgJerigen" placeholder="25kg Jerigen" 
                                         id="25kgJerigen" aria-describedby="25kgJerigen-error" value="{{($product->price[7]['price']!='0'?$product->price[7]['price']:'')}}">
                                     <em id="25kgJerigen-error" class="error invalid-feedback"></em>
                                 </p>
                                 <p class="input-group col-md-2">
-                                    <input type="text" class="form-control usd-format" name="25kgDrum" placeholder="25kg Drum" 
+                                    <input type="text" class="form-control idr-currency" name="25kgDrum" placeholder="25kg Drum" 
                                         id="25kgDrum" aria-describedby="25kgDrum-error" value="{{($product->price[8]['price']!='0'?$product->price[8]['price']:'')}}">
                                     <em id="25kgDrum-error" class="error invalid-feedback"></em>
                                 </p>
                                 <p class="input-group col-md-2">
-                                    <input type="text" class="form-control usd-format" name="30kgJerigen" placeholder="30kg Jerigen" 
+                                    <input type="text" class="form-control idr-currency" name="30kgJerigen" placeholder="30kg Jerigen" 
                                         id="30kgJerigen" aria-describedby="30kgJerigen-error" value="{{($product->price[9]['price']!='0'?$product->price[9]['price']:'')}}">
                                     <em id="30kgJerigen-error" class="error invalid-feedback"></em>
                                 </p>
