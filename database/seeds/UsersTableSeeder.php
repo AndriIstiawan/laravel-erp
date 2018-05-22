@@ -22,7 +22,7 @@ class UsersTableSeeder extends Seeder
             [
             'name' => 'DEDE',
             'email' => 'dede@macbrame.com',
-            'password' => bcrypt('asdasd'),
+            'password' => bcrypt('dedemacbrame'),
             'role' => [],
             'accessPermissions' => [],
             'modulePermissions' => [],
@@ -32,7 +32,7 @@ class UsersTableSeeder extends Seeder
             [
             'name' => 'ALAMSYAH',
             'email' => 'alamsyah@macbrame.com',
-            'password' => bcrypt('asdasd'),
+            'password' => bcrypt('alamsyahmacbrame'),
             'role' => [],
             'accessPermissions' => [],
             'modulePermissions' => [],
@@ -42,7 +42,7 @@ class UsersTableSeeder extends Seeder
             [
             'name' => 'WONDO',
             'email' => 'wondo@macbrame.com',
-            'password' => bcrypt('asdasd'),
+            'password' => bcrypt('wondomacbrame'),
             'role' => [],
             'accessPermissions' => [],
             'modulePermissions' => [],
@@ -52,7 +52,7 @@ class UsersTableSeeder extends Seeder
             [
             'name' => 'JULIAWAN',
             'email' => 'juliawan@macbrame.com',
-            'password' => bcrypt('asdasd'),
+            'password' => bcrypt('juliawanmacbrame'),
             'role' => [],
             'accessPermissions' => [],
             'modulePermissions' => [],
@@ -62,7 +62,7 @@ class UsersTableSeeder extends Seeder
             [
             'name' => 'MGT',
             'email' => 'mgt@macbrame.com',
-            'password' => bcrypt('asdasd'),
+            'password' => bcrypt('mgtmacbrame'),
             'role' => [],
             'accessPermissions' => [],
             'modulePermissions' => [],
@@ -72,7 +72,7 @@ class UsersTableSeeder extends Seeder
             [
             'name' => 'INDRA',
             'email' => 'indra@macbrame.com',
-            'password' => bcrypt('asdasd'),
+            'password' => bcrypt('indramacbrame'),
             'role' => [],
             'accessPermissions' => [],
             'modulePermissions' => [],
@@ -82,7 +82,7 @@ class UsersTableSeeder extends Seeder
             [
             'name' => 'DRAJAT',
             'email' => 'drajat@macbrame.com',
-            'password' => bcrypt('asdasd'),
+            'password' => bcrypt('drajatmacbrame'),
             'role' => [],
             'accessPermissions' => [],
             'modulePermissions' => [],
@@ -92,7 +92,7 @@ class UsersTableSeeder extends Seeder
             [
             'name' => 'REMBRANT',
             'email' => 'rembrant@macbrame.com',
-            'password' => bcrypt('asdasd'),
+            'password' => bcrypt('rembrantmacbrame'),
             'role' => [],
             'accessPermissions' => [],
             'modulePermissions' => [],
@@ -102,7 +102,7 @@ class UsersTableSeeder extends Seeder
             [
             'name' => 'Afif',
             'email' => 'afif@macbrame.com',
-            'password' => bcrypt('asdasd'),
+            'password' => bcrypt('afifmacbrame'),
             'role' => [],
             'accessPermissions' => [],
             'modulePermissions' => [],
@@ -112,7 +112,7 @@ class UsersTableSeeder extends Seeder
             [
             'name' => 'Anang',
             'email' => 'anang@macbrame.com',
-            'password' => bcrypt('asdasd'),
+            'password' => bcrypt('anangmacbrame'),
             'role' => [],
             'accessPermissions' => [],
             'modulePermissions' => [],
@@ -122,7 +122,7 @@ class UsersTableSeeder extends Seeder
             [
             'name' => 'Rohim',
             'email' => 'rohim@macbrame.com',
-            'password' => bcrypt('asdasd'),
+            'password' => bcrypt('rohimmacbrame'),
             'role' => [],
             'accessPermissions' => [],
             'modulePermissions' => [],
@@ -132,7 +132,7 @@ class UsersTableSeeder extends Seeder
             [
             'name' => 'Rudi',
             'email' => 'rudi@macbrame.com',
-            'password' => bcrypt('asdasd'),
+            'password' => bcrypt('rudimacbrame'),
             'role' => [],
             'accessPermissions' => [],
             'modulePermissions' => [],
@@ -142,7 +142,7 @@ class UsersTableSeeder extends Seeder
             [
             'name' => 'Sarah',
             'email' => 'sarah@macbrame.com',
-            'password' => bcrypt('asdasd'),
+            'password' => bcrypt('sarahmacbrame'),
             'role' => [],
             'accessPermissions' => [],
             'modulePermissions' => [],
@@ -152,7 +152,7 @@ class UsersTableSeeder extends Seeder
             [
             'name' => 'Heru',
             'email' => 'heru@macbrame.com',
-            'password' => bcrypt('asdasd'),
+            'password' => bcrypt('herumacbrame'),
             'role' => [],
             'accessPermissions' => [],
             'modulePermissions' => [],
