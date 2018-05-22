@@ -21,7 +21,7 @@ class UsersTableSeeder extends Seeder
             ],
             [
             'name' => 'DEDE',
-            'email' => 'dede@gmail.com',
+            'email' => 'dede@macbrame.com',
             'password' => bcrypt('asdasd'),
             'role' => [],
             'accessPermissions' => [],
@@ -31,7 +31,7 @@ class UsersTableSeeder extends Seeder
             ],
             [
             'name' => 'ALAMSYAH',
-            'email' => 'alamsyah@gmail.com',
+            'email' => 'alamsyah@macbrame.com',
             'password' => bcrypt('asdasd'),
             'role' => [],
             'accessPermissions' => [],
@@ -41,7 +41,7 @@ class UsersTableSeeder extends Seeder
             ],
             [
             'name' => 'WONDO',
-            'email' => 'wondo@gmail.com',
+            'email' => 'wondo@macbrame.com',
             'password' => bcrypt('asdasd'),
             'role' => [],
             'accessPermissions' => [],
@@ -51,7 +51,7 @@ class UsersTableSeeder extends Seeder
             ],
             [
             'name' => 'JULIAWAN',
-            'email' => 'juliawan@gmail.com',
+            'email' => 'juliawan@macbrame.com',
             'password' => bcrypt('asdasd'),
             'role' => [],
             'accessPermissions' => [],
@@ -61,7 +61,7 @@ class UsersTableSeeder extends Seeder
             ],
             [
             'name' => 'MGT',
-            'email' => 'mgt@gmail.com',
+            'email' => 'mgt@macbrame.com',
             'password' => bcrypt('asdasd'),
             'role' => [],
             'accessPermissions' => [],
@@ -71,7 +71,7 @@ class UsersTableSeeder extends Seeder
             ],
             [
             'name' => 'INDRA',
-            'email' => 'indra@gmail.com',
+            'email' => 'indra@macbrame.com',
             'password' => bcrypt('asdasd'),
             'role' => [],
             'accessPermissions' => [],
@@ -81,7 +81,7 @@ class UsersTableSeeder extends Seeder
             ],
             [
             'name' => 'DRAJAT',
-            'email' => 'drajat@gmail.com',
+            'email' => 'drajat@macbrame.com',
             'password' => bcrypt('asdasd'),
             'role' => [],
             'accessPermissions' => [],
@@ -91,7 +91,7 @@ class UsersTableSeeder extends Seeder
             ],
             [
             'name' => 'Afif',
-            'email' => 'Afif@gmail.com',
+            'email' => 'Afif@macbrame.com',
             'password' => bcrypt('asdasd'),
             'role' => [],
             'accessPermissions' => [],
@@ -101,7 +101,7 @@ class UsersTableSeeder extends Seeder
             ],
             [
             'name' => 'Anang',
-            'email' => 'Anang@gmail.com',
+            'email' => 'Anang@macbrame.com',
             'password' => bcrypt('asdasd'),
             'role' => [],
             'accessPermissions' => [],
@@ -111,7 +111,7 @@ class UsersTableSeeder extends Seeder
             ],
             [
             'name' => 'Rohim',
-            'email' => 'Rohim@gmail.com',
+            'email' => 'Rohim@macbrame.com',
             'password' => bcrypt('asdasd'),
             'role' => [],
             'accessPermissions' => [],
@@ -121,7 +121,7 @@ class UsersTableSeeder extends Seeder
             ],
             [
             'name' => 'Rudi',
-            'email' => 'Rudi@gmail.com',
+            'email' => 'Rudi@macbrame.com',
             'password' => bcrypt('asdasd'),
             'role' => [],
             'accessPermissions' => [],
@@ -131,7 +131,7 @@ class UsersTableSeeder extends Seeder
             ],
             [
             'name' => 'Sarah',
-            'email' => 'Sarah@gmail.com',
+            'email' => 'Sarah@macbrame.com',
             'password' => bcrypt('asdasd'),
             'role' => [],
             'accessPermissions' => [],
@@ -141,7 +141,7 @@ class UsersTableSeeder extends Seeder
             ],
             [
             'name' => 'Heru',
-            'email' => 'Heru@gmail.com',
+            'email' => 'Heru@macbrame.com',
             'password' => bcrypt('asdasd'),
             'role' => [],
             'accessPermissions' => [],
@@ -152,11 +152,11 @@ class UsersTableSeeder extends Seeder
         ]);
 
         $parent = DB::table('roles')->whereIn('name',['Sales'])->get();
-        DB::table('users')->whereIn('email', ['dede@gmail.com','alamsyah@gmail.com','wondo@gmail.com','juliawan@gmail.com','mgt@gmail.com','indra@gmail.com','drajat@gmail.com'])
+        DB::table('users')->whereIn('email', ['dede@macbrame.com','alamsyah@macbrame.com','wondo@macbrame.com','juliawan@macbrame.com','mgt@macbrame.com','indra@macbrame.com','drajat@macbrame.com'])
             ->update(['role' => $parent->toArray()]);
 
         $parent = DB::table('roles')->whereIn('name',['Production'])->get();
-        DB::table('users')->whereIn('email', ['Afif@gmail.com','Anang@gmail.com','Rohim@gmail.com','Rudi@gmail.com','Sarah@gmail.com','Heru@gmail.com'])
+        DB::table('users')->whereIn('email', ['Afif@macbrame.com','Anang@macbrame.com','Rohim@macbrame.com','Rudi@macbrame.com','Sarah@macbrame.com','Heru@macbrame.com'])
             ->update(['role' => $parent->toArray()]);
 
         //add sales permission
@@ -167,7 +167,7 @@ class UsersTableSeeder extends Seeder
         $child = $child->toArray();
         $child[0]['_id'] = (string)$child[0]['_id'];
         $parent[0]['child'] = $child;
-        DB::table('users')->whereIn('email', ['dede@gmail.com','alamsyah@gmail.com','wondo@gmail.com','juliawan@gmail.com','mgt@gmail.com','indra@gmail.com','drajat@gmail.com'])
+        DB::table('users')->whereIn('email', ['dede@macbrame.com','alamsyah@macbrame.com','wondo@macbrame.com','juliawan@macbrame.com','mgt@macbrame.com','indra@macbrame.com','drajat@macbrame.com'])
             ->update(['modulePermissions' => $parent]);
 
     }
