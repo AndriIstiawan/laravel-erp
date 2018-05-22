@@ -17,8 +17,9 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $chart = SalesOrder::select('total_kg')->get();
-        return view('panel.dashboard')->with(['chart'=>$chart]);
+        $chart = SalesOrder::select('total_kg','products')->orderBy('total_kg','DESC')->get();
+        $chartLabel = SalesOrder::select('total_kg','products')->orderBy('total_kg','DESC')->LIMIT(5)->get();
+        return view('panel.dashboard')->with(['chart'=>$chart,'chartLabel'=> $chartLabel]);
     }
 
     /**

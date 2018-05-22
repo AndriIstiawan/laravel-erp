@@ -80,43 +80,43 @@
                         <div class="card-body">
                             <div class="row">
                                 <p class="input-group col-md-2">
-                                    <input type="text" class="form-control usd-format" name="250gPlastik" placeholder="250g Plastik" id="250gPlastik" aria-describedby="250gPlastik-error">
+                                    <input type="text" class="form-control idr-currency" name="250gPlastik" placeholder="250g Plastik" id="250gPlastik" aria-describedby="250gPlastik-error">
                                     <em id="250gPlastik-error" class="error invalid-feedback"></em>
                                 </p>
                                 <p class="input-group col-md-2">
-                                    <input type="text" class="form-control usd-format" name="250gAluminium" placeholder="250g Aluminium" id="250gAluminium" aria-describedby="250gAluminium-error">
+                                    <input type="text" class="form-control idr-currency" name="250gAluminium" placeholder="250g Aluminium" id="250gAluminium" aria-describedby="250gAluminium-error">
                                     <em id="250gAluminium-error" class="error invalid-feedback"></em>
                                 </p>
                                 <p class="input-group col-md-2">
-                                    <input type="text" class="form-control usd-format" name="500gPlastik" placeholder="500g Plastik" id="500gPlastik" aria-describedby="500gPlastik-error">
+                                    <input type="text" class="form-control idr-currency" name="500gPlastik" placeholder="500g Plastik" id="500gPlastik" aria-describedby="500gPlastik-error">
                                     <em id="500gPlastik-error" class="error invalid-feedback"></em>
                                 </p>
                                 <p class="input-group col-md-2">
-                                    <input type="text" class="form-control usd-format" name="500gAluminium" placeholder="500g Aluminium" id="500gAluminium" aria-describedby="500gAluminium-error">
+                                    <input type="text" class="form-control idr-currency" name="500gAluminium" placeholder="500g Aluminium" id="500gAluminium" aria-describedby="500gAluminium-error">
                                     <em id="500gAluminium-error" class="error invalid-feedback"></em>
                                 </p>
                                 <p class="input-group col-md-2">
-                                    <input type="text" class="form-control usd-format" name="1kgPlastik" placeholder="1kg Plastik" id="1kgPlastik" aria-describedby="1kgPlastik-error">
+                                    <input type="text" class="form-control idr-currency" name="1kgPlastik" placeholder="1kg Plastik" id="1kgPlastik" aria-describedby="1kgPlastik-error">
                                     <em id="1kgPlastik-error" class="error invalid-feedback"></em>
                                 </p>
                                 <p class="input-group col-md-2">
-                                    <input type="text" class="form-control usd-format" name="1kgAluminium" placeholder="1kg Aluminium" id="1kgAluminium" aria-describedby="1kgAluminium-error">
+                                    <input type="text" class="form-control idr-currency" name="1kgAluminium" placeholder="1kg Aluminium" id="1kgAluminium" aria-describedby="1kgAluminium-error">
                                     <em id="1kgAluminium-error" class="error invalid-feedback"></em>
                                 </p>
                                 <p class="input-group col-md-2">
-                                    <input type="text" class="form-control usd-format" name="5kgJerigen" placeholder="5kg Jerigen" id="5kgJerigen" aria-describedby="5kgJerigen-error">
+                                    <input type="text" class="form-control idr-currency" name="5kgJerigen" placeholder="5kg Jerigen" id="5kgJerigen" aria-describedby="5kgJerigen-error">
                                     <em id="5kgJerigen-error" class="error invalid-feedback"></em>
                                 </p>
                                 <p class="input-group col-md-2">
-                                    <input type="text" class="form-control usd-format" name="25kgJerigen" placeholder="25kg Jerigen" id="25kgJerigen" aria-describedby="25kgJerigen-error">
+                                    <input type="text" class="form-control idr-currency" name="25kgJerigen" placeholder="25kg Jerigen" id="25kgJerigen" aria-describedby="25kgJerigen-error">
                                     <em id="25kgJerigen-error" class="error invalid-feedback"></em>
                                 </p>
                                 <p class="input-group col-md-2">
-                                    <input type="text" class="form-control usd-format" name="25kgDrum" placeholder="25kg Drum" id="25kgDrum" aria-describedby="25kgDrum-error">
+                                    <input type="text" class="form-control idr-currency" name="25kgDrum" placeholder="25kg Drum" id="25kgDrum" aria-describedby="25kgDrum-error">
                                     <em id="25kgDrum-error" class="error invalid-feedback"></em>
                                 </p>
                                 <p class="input-group col-md-2">
-                                    <input type="text" class="form-control usd-format" name="30kgJerigen" placeholder="30kg Jerigen" id="30kgJerigen" aria-describedby="30kgJerigen-error">
+                                    <input type="text" class="form-control idr-currency" name="30kgJerigen" placeholder="30kg Jerigen" id="30kgJerigen" aria-describedby="30kgJerigen-error">
                                     <em id="30kgJerigen-error" class="error invalid-feedback"></em>
                                 </p>
                             </div>
