@@ -10,6 +10,7 @@ use App\Product;
 use App\SalesOrder;
 use App\User;
 use Excel;
+use DateTime;
 
 class SalesOrderController extends Controller
 {
@@ -128,10 +129,19 @@ class SalesOrderController extends Controller
     }
 
     //list data
-    public function list_data()
+    public function list_data(Request $request)
     {
-        $orders = SalesOrder::all();
+        if($request->dateStart == null){
+            $orders = SalesOrder::all();
+        }else{
+            $orders = SalesOrder::where('created_at','>=',new DateTime($request->dateStart))
+                ->where('created_at','<=',new DateTime($request->dateEnd." 23:59:59"))->get();
+        }
+        
         return Datatables::of($orders)
+            ->addColumn('checkbox', function ($order) {
+                return '<input id="'.$order->id.'" class="data-list" value="'.$order->id.'" type="checkbox" onchange="selected(this)"/>';
+            })
             ->addColumn('conv_total_kg', function ($order) {
                 return ((double)$order->total_kg/1000)." KG";
             })
@@ -158,7 +168,7 @@ class SalesOrderController extends Controller
                 }
                 return $edit;
             })
-            ->rawColumns(['status', 'action', 'conv_total_kg'])
+            ->rawColumns(['status','action','conv_total_kg','checkbox'])
             ->make(true);
     }
 
@@ -167,10 +177,10 @@ class SalesOrderController extends Controller
     {
         switch ($action) {
             case "export":
-                return $this->soExport();
+                return $this->soExport($request);
                 break;
             default:
-                return $this->list_data();
+                return $this->list_data($request);
         }
     }
 
@@ -283,12 +293,17 @@ class SalesOrderController extends Controller
         return "SO-" . $id_counter;
     }
 
-    public function soExport()
+    public function soExport(Request $request)
     {
         $file = storage_path('exports/so-form-format.xlsx');
-        $salesorders = SalesOrder::all();
+        $filename = 'so-form-export['.date("H-i-s d-m-Y")."]";
+        if(isset($request->arrList)){
+            $salesorders = SalesOrder::whereIn('_id',$request->arrList)->get();
+        }else{
+            $salesorders = SalesOrder::all();
+        }
         //load excel form and editing row
-        $excel = Excel::selectSheetsByIndex(0)->load($file, function($reader) use ($salesorders) {
+        $excel = Excel::selectSheetsByIndex(0)->load($file, function($reader) use ($filename,$salesorders) {
             $data = [];
             $code = "";
             $client = "";
@@ -342,6 +357,13 @@ class SalesOrderController extends Controller
             $sheet1 = $reader->getActiveSheet();
             $sheet1->fromArray($data, null, 'A3', false, false);
             //$reader->getActiveSheet()->setAutoSize(true);
-        })->setFilename('so-form-export['.date("H-i-s d-m-Y")."]")->download('xlsx');
+        });
+        
+        if(isset($request->arrList)){
+            $excel->setFilename($filename)->store('xlsx', false, true);
+            return $filename.".xlsx";
+        }else{
+            $excel->setFilename($filename)->download('xlsx');
+        }
     }
 }
