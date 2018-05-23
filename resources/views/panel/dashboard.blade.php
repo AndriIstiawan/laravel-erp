@@ -650,6 +650,84 @@
       </div>
     </div>
     <!-- end card  -->
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title"><center>SALES PERFORMANCE BY CATEGORY</center></h4>
+        </div>
+      </div>
+    </div>
+    <!-- card -->
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title" style="color: #1f487b;"><b><center>SALES</center></b></h4>
+          <div class="chart-wrapper" style="height:300px;margin-top:0px; width: 100%;" >
+            <div class="row">
+              <div class="col-md-12">
+                <canvas id="pie-chart2" width="800" height="450"></canvas>    
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end card  -->
+    <!-- card -->
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title" style="color: #a6433f;"><b><center>SALES LOSS</center></b></h4>
+          <div class="chart-wrapper" style="height:300px;margin-top:0px; width: 100%;" >
+            <div class="row">
+              <div class="col-md-12">
+                <canvas id="pie-chart3" width="800" height="450"></canvas>    
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end card  -->
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title"><center>SALES PERFORMANCE BY MARKET SECTOR</center></h4>
+        </div>
+      </div>
+    </div>
+    <!-- card -->
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title" style="color: #1f487b;"><b><center>SALES</center></b></h4>
+          <div class="chart-wrapper" style="height:300px;margin-top:0px; width: 100%;" >
+            <div class="row">
+              <div class="col-md-12">
+                <canvas id="pie-chart4" width="800" height="450"></canvas>    
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end card  -->
+    <!-- card -->
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title" style="color: #a6433f;"><b><center>SALES LOSS</center></b></h4>
+          <div class="chart-wrapper" style="height:300px;margin-top:0px; width: 100%;" >
+            <div class="row">
+              <div class="col-md-12">
+                <canvas id="pie-chart5" width="800" height="450"></canvas>    
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end card  -->
     </div>
   </div>
 </div>
@@ -847,8 +925,80 @@
               data: {
                 labels: ["BODY PERFUME", "LAUNDRY", "AIR CARE"],
                 datasets: [{
-                  backgroundColor: ["#3670b7", "#8e5ea2","#3cba9f"],
-                  data: [88.8,9.3,1.6]
+                  backgroundColor: ["#b03431", "#d78583 ","#e6c6c6"],
+                  data: [96,3]
+                }]
+              },
+              options: {
+                title: {
+                  display: false,
+                  text: 'Predicted world population (millions) in 2050'
+                }
+              }
+            });
+        });
+        $(document).ready(function(){
+          var ctx = document.getElementById("pie-chart2");
+          var myChart = new Chart(ctx, {
+              type: 'pie',
+              data: {
+                labels: ["VERY FAST MOVING", "FAST MOVING", "MODERATE","SLOW MOVING", "NON MOVING"],
+                datasets: [{
+                  backgroundColor: ["#3b7ac6", "#b73734","#96be45","#72569b","#32a7c6"],
+                  data: [35,12,19,20,15]
+                }]
+              },
+              options: {
+                title: {
+                  display: false,
+                  text: 'Predicted world population (millions) in 2050'
+                }
+              }
+            });
+          var ctx = document.getElementById("pie-chart3");
+          var myChart = new Chart(ctx, {
+              type: 'pie',
+              data: {
+                labels: ["VERY FAST MOVING", "FAST MOVING", "MODERATE","SLOW MOVING", "NON MOVING"],
+                datasets: [{
+                  backgroundColor: ["#dfbbbb", "#d19292","#c0504d","#aa4643","#903938"],
+                  data: [24,11,13,6,46]
+                }]
+              },
+              options: {
+                title: {
+                  display: false,
+                  text: 'Predicted world population (millions) in 2050'
+                }
+              }
+            });
+        });
+        $(document).ready(function(){
+          var ctx = document.getElementById("pie-chart4");
+          var myChart = new Chart(ctx, {
+              type: 'pie',
+              data: {
+                labels: ["RETAIL", "INDUSTRI", "EXPORT"],
+                datasets: [{
+                  backgroundColor: ["#3877c1", "#b53633","#94bb44"],
+                  data: [89,7,4]
+                }]
+              },
+              options: {
+                title: {
+                  display: false,
+                  text: 'Predicted world population (millions) in 2050'
+                }
+              }
+            });
+          var ctx = document.getElementById("pie-chart5");
+          var myChart = new Chart(ctx, {
+              type: 'pie',
+              data: {
+                labels: ["RETAIL", "INDUSTRI", "EXPORT"],
+                datasets: [{
+                  backgroundColor: ["#942a28", "#cb3d39","#d09796"],
+                  data: [82,14,4]
                 }]
               },
               options: {
