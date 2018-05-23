@@ -121,7 +121,7 @@
                                 <span class="input-group-text">Kg</span>
                             </div>
                             <span class="input-group-btn">
-                                <button type="button" class="btn btn-danger" style="margin:0 20px 0 25px;">
+                                <button type="button" class="btn btn-danger" style="margin:0 20px 0 25px;" onclick="$(this).closest('.div-items').remove()">
                                     <i class="fa fa-remove"></i>
                                 </button>
                             </span>

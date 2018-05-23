@@ -1,5 +1,6 @@
 @extends('master') @section('content')
 <link href="{{ asset('fiture-style/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+<link href="{{ asset('fiture-style/daterangepicker/daterangepicker.min.css') }}" rel="stylesheet">
 <div class="container-fluid">
     <div class="animate fadeIn">
         <div class="row">
@@ -19,9 +20,16 @@
                         <span class="ladda-label">
                             <i class="fa fa-cloud-download">
                             </i>
-                            Export Sales Order
+                            Export All Sales Order
                         </span>
                     </a>
+                    <button type="button" class="btn btn-success ladda-button" onclick="downloadSelected()">
+                        <span class="ladda-label">
+                            <i class="fa fa-file-excel-o">
+                            </i>
+                            &nbsp;Export Selected
+                        </span>
+                    </button>
                 </p>
             </div>
         </div>
@@ -31,13 +39,30 @@
                 <div class="card">
                     <div class="card-header">
                         <i class="fa fa-align-justify"></i> Sales Order Table
-
                     </div>
                     <div class="card-body table-responsive-sm" style="width: 100%;">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="form-group col-md-7">
+                                        <div class="input-group">
+                                            <input type="text" id="date-filter" class="form-control" name="daterange">
+                                            <span class="input-group-append">
+                                                <button type="button" class="btn btn-primary" onclick="filter()">
+                                                    <i class="fa fa-filter"></i>&nbsp;Filter Date</button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="table-responsive">
                             <table class="table table-responsive-sm table-bordered table-striped table-sm datatable" style="width: 100%;">
                                 <thead>
                                     <tr>
+                                        <th style="padding:0 10px 5px 10px;">
+                                            <input name="select_all" value="1" id="example-select-all" type="checkbox" />
+                                        </th>
                                         <th>SO Code</th>
                                         <th>Client</th>
                                         <th>Sales</th>
@@ -57,41 +82,6 @@
                 </div>
             </div>
         </div>
-
-        <div class="modal" id="modal-exim" tabindex="1" role="dialog" aria-hidden="true" data-backdrop="static">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3 class="modal-title">Export Sales Order</h3>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times; </span>
-                        </button>
-                    </div>
-                    <form method="get" action="" novalidate="novalidate">
-                        {{ csrf_field() }}
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-md-5">
-                                        <label>From</label>
-                                        <input type="date" name="from" class="form-control" required>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <label>To</label>
-                                        <input type="date" name="to" id="EndDate" class="form-control" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <button type="submit" class="btn btn-success pull-right">Export</button>
-                                    <br>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        
     </div>
 </div>
 @endsection
@@ -100,13 +90,39 @@
 @section('myscript')
 <script src="{{ asset('fiture-style/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('fiture-style/datatables/dataTables.bootstrap4.min.js') }}"></script>
+<!-- date range picker -->
+<script src="{{ asset('fiture-style/daterangepicker/moment.js') }}"></script>
+<script src="{{ asset('fiture-style/daterangepicker/daterangepicker.js') }}"></script>
 <script>
+    var dateStart = "";
+    var dateEnd = "";
+    var arrList = [];
+    $('#date-filter').daterangepicker({
+        opens: 'right',
+        ranges: {
+            Today: [moment(), moment()],
+            Yesterday: [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+            'This Month': [moment().startOf('month'), moment().endOf('month')],
+            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf(
+                'month')]
+        }
+    }).change(function () {
+        var daterange = $(this).val().split(' - ');
+        dateStart = daterange[0];
+        dateEnd = daterange[1];
+    });
+
     //DATATABLES
-    $('.datatable').DataTable({
+    var table = $('.datatable').DataTable({
         processing: true,
         serverSide: true,
-        ajax: '{{ route("sales-order.index") }}/list-data',
-        columns: [
+        ajax: '{{ route("sales-order.index") }}/list-data?dateStart=' + dateStart + '&dateEnd=' + dateEnd,
+        columns: [{
+                data: 'checkbox',
+                name: 'checkbox'
+            },
             {
                 data: 'code',
                 name: 'code'
@@ -146,13 +162,22 @@
                 searchable: false,
             }
         ],
-        "columnDefs": [
-            {
-                "targets": 3,
-                "className": "text-center"
+        "columnDefs": [{
+                "targets": 0,
+                'searchable': false,
+                'orderable': false,
+                'className': 'dt-body-center text-center',
             },
             {
                 "targets": 4,
+                "className": "text-center"
+            },
+            {
+                "targets": 5,
+                "className": "text-center"
+            },
+            {
+                "targets": 7,
                 "className": "text-center"
             },
             {
@@ -160,15 +185,93 @@
                 "className": "text-center"
             },
             {
-                "targets": 7,
+                "targets": 9,
                 "className": "text-center"
             },
         ],
         "order": [
             [6, 'desc']
-        ]
+        ],
+        "drawCallback": function (settings) {
+            $('#example-select-all').prop('checked',true);
+            var status = $('.data-list').map(function(){
+                if($.inArray(this.value, arrList) != -1){
+                    $(this).prop('checked',true);
+                }else{
+                    $('#example-select-all').prop('checked',false);
+                }
+            });
+        }
     });
     $('.datatable').attr('style', 'border-collapse: collapse !important');
+
+    // Handle click on "Select all" control
+    $('#example-select-all').on('click', function () {
+        // Check/uncheck all checkboxes in the table
+        var rows = table.rows({
+            'search': 'applied'
+        }).nodes();
+        $('input[type="checkbox"]', rows).prop('checked', this.checked);
+
+        if(this.checked === true){
+            $('.data-list').map(function(){ 
+                var data = $(this).attr('id');
+                if($.inArray(data, arrList) == -1){
+                    arrList.push(data);
+                }
+            });
+        }else{
+            $('.data-list').map(function(){ 
+                var data = $(this).attr('id');
+                arrList.splice( $.inArray(data, arrList), 1 );
+            });
+        }
+        console.log(arrList);
+    });
+
+    var daterange = $('#date-filter').val().split(' - ');
+    dateStart = daterange[0];
+    dateEnd = daterange[1];
+
+    function filter() {
+        if (dateStart != "") {
+            $('.datatable').DataTable().ajax.url('{{ route("sales-order.index") }}/list-data?dateStart=' + dateStart +
+                '&dateEnd=' + dateEnd).load();
+        }
+    }
+
+    function selected(elm){
+        if(elm.checked === true){
+            arrList.push(elm.value);
+        }else{
+            arrList.splice( $.inArray(elm.value, arrList), 1 );
+        }
+
+        $('#example-select-all').prop('checked',true);
+        var status = $('.data-list').map(function(){ 
+            if(this.checked === false){
+                $('#example-select-all').prop('checked',false);
+            }
+        });
+    }
+
+    function downloadSelected(){
+        if(arrList.length > 0){
+            $.ajax({
+            	url : "{{url('sales-order/export')}}",
+            	type: 'GET',
+            	data : {arrList: arrList},
+            	success : function(response){
+                    window.open("{{url('/download-storage')}}/true/"+response, "_blank");
+            	},
+            	error : function(e){
+                    toastr.warning('Error processing export, please report technical..', 'Export selected failed..');
+            	}
+            });
+        }else{
+            toastr.warning('No data selected, please select data..', 'Export selected failed..');
+        }
+    }
 </script>
 
 @endsection
