@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Charts;
 use App\SalesOrder;
+use App\Product;
 use App\Discounts;
 
 class DashboardController extends Controller
@@ -18,6 +19,7 @@ class DashboardController extends Controller
     public function index()
     {
         $chart = SalesOrder::select('total_kg','products')->orderBy('total_kg','DESC')->get();
+        /*$product = Product::where('_id', array_column($chart['products'], 'product_id'))->get();*/
         $chartLabel = SalesOrder::select('total_kg','products')->orderBy('total_kg','DESC')->LIMIT(5)->get();
         return view('panel.dashboard')->with(['chart'=>$chart,'chartLabel'=> $chartLabel]);
     }
