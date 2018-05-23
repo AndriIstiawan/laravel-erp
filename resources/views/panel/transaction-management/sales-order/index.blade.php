@@ -190,7 +190,7 @@
             },
         ],
         "order": [
-            [6, 'desc']
+            [7, 'desc']
         ],
         "drawCallback": function (settings) {
             $('#example-select-all').prop('checked',true);
