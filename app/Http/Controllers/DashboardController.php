@@ -19,9 +19,12 @@ class DashboardController extends Controller
     public function index()
     {
         $chart = SalesOrder::select('total_kg','products')->orderBy('total_kg','DESC')->get();
+        $so = SalesOrder::select('code')->orderBy('code','DESC')->LIMIT(5)->get();
+        $sor = SalesOrder::where('status', 'order')->count('code');
+        $prod = SalesOrder::where('status', 'production')->count('code');
         /*$product = Product::where('_id', array_column($chart['products'], 'product_id'))->get();*/
         $chartLabel = SalesOrder::select('total_kg','products')->orderBy('total_kg','DESC')->LIMIT(5)->get();
-        return view('panel.dashboard')->with(['chart'=>$chart,'chartLabel'=> $chartLabel]);
+        return view('panel.dashboard')->with(['chart'=>$chart,'chartLabel'=> $chartLabel, 'so' => $so , 'sor' => $sor, 'prod'=>$prod]);
     }
 
     /**

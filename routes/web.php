@@ -52,7 +52,7 @@ Route::middleware('auth')->group(function() {
 	/* END Master deal */
 
     /* transaction */
-    Route::resource('order-create', 'TransactionManagement\OrderCreateController');
+    Route::resource('buat-so', 'TransactionManagement\OrderCreateController');
 
 	Route::resource('sales-order', 'TransactionManagement\SalesOrderController');
 	Route::post('sales-order/find', 'TransactionManagement\SalesOrderController@find');

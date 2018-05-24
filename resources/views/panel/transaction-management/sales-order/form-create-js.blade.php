@@ -4,7 +4,7 @@
     var count = 1;
     $('#client').select2({
         theme: "bootstrap",
-        placeholder: 'Client - Sales'
+        placeholder: 'Nama Customer'
     }).change(function () {
         clientChange($(this));
         if (submit) {
@@ -14,7 +14,7 @@
 
     $('.product-order-list select[name="product1"]').select2({
         theme: "bootstrap",
-        placeholder: 'Code - Product - Type'
+        placeholder: 'Kode - Produk - Tipe'
     }).change(function () {
         if (submit) {
             $(this).valid();
@@ -23,7 +23,7 @@
 
     $('.product-order-list select[name="package1"]').select2({
         theme: "bootstrap",
-        placeholder: 'Package'
+        placeholder: 'Jenis Kemasan'
     }).change(function () {
         packageChange($(this));
         if (submit) {
@@ -33,7 +33,7 @@
 
     $('.product-order-list select[name="weight1"]').select2({
         theme: "bootstrap",
-        placeholder: 'Weight',
+        placeholder: 'Kemasan',
         language: {
             noResults: function (params) {
             return "";
@@ -79,7 +79,7 @@
         //set select2 divisi 
         $('.shipping-list .shipping-valid').select2({
             theme: "bootstrap",
-            placeholder: 'Shipping Address'
+            placeholder: 'Alamat Pengiriman'
         }).change(function () {
             $(this).valid();
         });
@@ -292,12 +292,12 @@
     //change select weight on change package
     function packageChange(elm){
         var weightClosest = elm.closest('.div-items').find('.weights');
-        var new250g = new Option('250g', '250', true, true);
-        var new500g = new Option('500g', '500', true, true);
-        var new1kg = new Option('1kg', '1000', true, true);
-        var new5kg = new Option('5kg', '5000', true, true);
-        var new25kg = new Option('25kg', '25000', true, true);
-        var new30kg = new Option('30kg', '30000', true, true);
+        var new250g = new Option('250 gr', '250', true, true);
+        var new500g = new Option('500 gr', '500', true, true);
+        var new1kg = new Option('1 kg', '1000', true, true);
+        var new5kg = new Option('5 kg', '5000', true, true);
+        var new25kg = new Option('25 kg', '25000', true, true);
+        var new30kg = new Option('30 kg', '30000', true, true);
         //clear option
         weightClosest.empty();
 
