@@ -15,8 +15,18 @@ Auth::routes();
 /* CoreUI templates */
 
 Route::middleware('auth')->group(function() {
-	Route::get('/', 'TransactionManagement\OrderCreateController@index');
-	Route::get('dashboard', 'DashboardController@index');	
+	Route::get('/', function(){
+		if (Auth::user()->email == env('ROOT_USERNAME')) {
+			return App::call('App\Http\Controllers\DashboardController@index');
+		}else if (Auth::user()->role[0]['name'] == 'Sales') {
+			return App::call('App\Http\Controllers\TransactionManagement\OrderCreateController@index');
+		}else{
+			return App::call('App\Http\Controllers\TransactionManagement\ProductionController@index');	
+		}
+ 	});
+
+	/*Route::get('/', 'TransactionManagement\OrderCreateController@index');
+	Route::get('dashboard', 'DashboardController@index');	*/
 	Route::get('profile/reset-password', 'ProfileController@resetPass');
 	Route::post('profile/change-password', 'ProfileController@changePassword');
 

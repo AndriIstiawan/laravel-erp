@@ -10,7 +10,7 @@
 		<div class="row">
             <div class="col-md-12">
                 <p>
-                    <a class="btn btn-primary" href="{{ route('sales-order.index') }}">
+                    <a class="btn btn-primary" href="{{ route('production.index') }}">
                         <i class="fa fa-backward"></i>&nbsp; Back to List
                     </a>
                 </p>
@@ -95,10 +95,13 @@
                                 </div>
                                 <br>
                             </div>
-                            <div class="col-md-3">
-                                <button type="button" class="btn btn-dark" style="padding-left:30px;" aria-pressed="true" disabled>
+                            <div class="col-md-4">
+                                <!-- <button type="button" class="btn btn-dark" style="padding-left:30px;" aria-pressed="true" disabled>
                                     <input class="form-check-input" type="checkbox" name="whiteLabel" {{($order['white_label']!=null?'checked':'')}} readonly>White Label
-                                </button>
+                                </button> -->
+                                @if($order['white_label']!=null) White Label YES 
+                                @else White Label NO
+                                @endif
                                 <br>
                                 <br>
                             </div>

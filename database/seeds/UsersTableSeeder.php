@@ -179,6 +179,16 @@ class UsersTableSeeder extends Seeder
         $parent[0]['child'] = $child;
         DB::table('users')->whereIn('email', ['dede@macbrame.com','alamsyah@macbrame.com','wondo@macbrame.com','juliawan@macbrame.com','mgt@macbrame.com','indra@macbrame.com','drajat@macbrame.com'])
             ->update(['modulePermissions' => $parent]);
+            
+        $parent = DB::table('permissions')->whereIn('name',['Transaction'])->get();
+        $parent = $parent->toArray();
+        $child = DB::table('permissions')->whereIn('slug',['production'])->get();
+        $parent[0]['_id'] = (string)$parent[0]['_id'];
+        $child = $child->toArray();
+        $child[0]['_id'] = (string)$child[0]['_id'];
+        $parent[0]['child'] = $child;
+        DB::table('users')->whereIn('email', ['afif@macbrame.com','anang@macbrame.com','rohim@macbrame.com','rudi@macbrame.com','sarah@macbrame.com','heru@macbrame.com'])
+            ->update(['modulePermissions' => $parent]);
 
     }
 }
