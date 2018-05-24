@@ -17,6 +17,8 @@
 					<a class="nav-link {{(count($lmp['child'])>0?'nav-dropdown-toggle':'')}}" @if($lmp['slug'] !='' && Route::has($lmp[
 					    'slug']. '.index')) href="{{route($lmp['slug'].'.index')}}" @else href="#" @endif>
 						<i class="{{$lmp['icon']}}"></i>{{$lmp['name']}}
+
+						@if(Auth::user()->email == env('ROOT_USERNAME'))
 						<?php
                         if($lmp['name'] == "Transaction"){
                             echo '<span id="notif-erp">';
@@ -26,6 +28,19 @@
                             echo '</span>';
                         }
                         ?>
+                        @elseif (Auth::user()->role[0]['name'] == 'Production')
+	                        <?php
+	                        if($lmp['name'] == "Transaction"){
+	                            echo '<span id="notif-erp">';
+	                            if(Auth::user()->countPOPending() > 0){
+	                                echo '<span class="badge badge-pill badge-warning"><i class="fa fa-info"></i></span>';
+	                            }
+	                            echo '</span>';
+	                        }
+	                        ?>
+	                    @else
+                        @endif
+                        
 					</a>
 					<ul class="nav-dropdown-items">
 						@foreach($lmp['child'] as $lmp2)

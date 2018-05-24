@@ -7,6 +7,62 @@
 		<span class="navbar-toggler-icon"></span>
 	</button>
 	<ul class="nav navbar-nav ml-auto">
+		@if(Auth::user()->email == env('ROOT_USERNAME'))
+		<li class="nav-item dropdown d-md-down-none show">
+			<a class="nav-link" href="#" role="button" data-toggle="dropdown" data-placement="top" title="" data-original-title="New Pending PO">
+				<i class="icon-list"></i>
+				<?php
+                    echo '<span id="notif-erp-pending">';
+                    if(Auth::user()->countPOPending() > 0){
+                        echo '<span class="badge badge-pill badge-warning" style="margin-right: 15px;">'.Auth::user()->countPOPending().'</span>';
+                    }
+                    echo '</span>';
+                ?>
+			</a>
+			@if(Auth::user()->countPOPending() > 0)
+			<div class="dropdown-menu dropdown-menu-right dropdown-menu-lg show">
+			<a class="dropdown-header text-center" href="{{route('sales-order.index')}}">
+			<strong>You have new <?php
+                    echo '<span id="notif-erp-pending">';
+                    if(Auth::user()->countPOPending() > 0){
+                        echo Auth::user()->countPOPending();
+                    }
+                    echo '</span>';
+                ?> order</strong>
+			</a>
+			</div>
+			@else
+			@endif
+		</li>
+		@elseif (Auth::user()->role[0]['name'] == 'Production')
+		<li class="nav-item dropdown d-md-down-none show">
+			<a class="nav-link" href="#" role="button" data-toggle="dropdown" data-placement="top" title="" data-original-title="New Pending PO">
+				<i class="icon-list"></i>
+				<?php
+                    echo '<span id="notif-erp-pending">';
+                    if(Auth::user()->countPOPending() > 0){
+                        echo '<span class="badge badge-pill badge-warning" style="margin-right: 15px;">'.Auth::user()->countPOPending().'</span>';
+                    }
+                    echo '</span>';
+                ?>
+			</a>
+			@if(Auth::user()->countPOPending() > 0)
+			<div class="dropdown-menu dropdown-menu-right dropdown-menu-lg show">
+			<a class="dropdown-header text-center" href="{{route('production.index')}}">
+			<strong>You have new <?php
+                    echo '<span id="notif-erp-pending">';
+                    if(Auth::user()->countPOPending() > 0){
+                        echo Auth::user()->countPOPending();
+                    }
+                    echo '</span>';
+                ?> order</strong>
+			</a>
+			</div>
+			@else
+			@endif
+		</li>
+		@else 
+		@endif
 		<li class="nav-item d-md-down-none">
 			Hello, {{Auth::user()->name}}
 		</li>
