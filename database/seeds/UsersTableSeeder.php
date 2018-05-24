@@ -172,7 +172,7 @@ class UsersTableSeeder extends Seeder
         //add sales permission
         $parent = DB::table('permissions')->whereIn('name',['Transaction'])->get();
         $parent = $parent->toArray();
-        $child = DB::table('permissions')->whereIn('slug',['order-create'])->get();
+        $child = DB::table('permissions')->whereIn('slug',['buat-so'])->get();
         $parent[0]['_id'] = (string)$parent[0]['_id'];
         $child = $child->toArray();
         $child[0]['_id'] = (string)$child[0]['_id'];

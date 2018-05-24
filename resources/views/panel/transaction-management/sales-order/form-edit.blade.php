@@ -91,7 +91,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <p class="col-md-12">
-                                    <input id="billing" type="text" name="billing" class="form-control" placeholder="Billing" readonly value="{{$order['billing']}}">
+                                    <input id="billing" type="hidden" name="billing" class="form-control" placeholder="Billing" readonly value="{{$order['billing']}}">
                                 </p>
                             </div>
                             <div class="row shipping-list">
@@ -116,9 +116,9 @@
                                     <div class="row">
                                         <div class="input-group col-md-12">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text text-sm">Term Of Payment</span>
+                                                <span class="input-group-text text-sm">TOP</span>
                                             </div>
-                                            <input type="text" class="form-control input-number" name="TOP" placeholder="Day" value="{{$order['TOP']}}" aria-describedby="TOP-error">
+                                            <input type="text" class="form-control input-number" name="TOP" placeholder="Hari" value="{{$order['TOP']}}" aria-describedby="TOP-error">
                                             <em id="TOP-error" class="error invalid-feedback"></em>
                                         </div>
                                     </div>
@@ -126,7 +126,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <button type="button" class="btn btn-dark" style="padding-left:30px;" aria-pressed="true" disabled>
-                                        <input class="form-check-input" type="checkbox" name="whiteLabel" {{($order['white_label']!=null?'checked':'')}}>White Label
+                                        <input class="form-check-input" type="checkbox" name="whiteLabel" {{($order['white_label']!=null?'checked':'')}}>Label Polos
                                     </button>
                                     <br>
                                     <br>

@@ -326,10 +326,10 @@ class SalesOrderController extends Controller
                         case 25000:
                         case 5000:
                         case 1000:
-                            $so_product['weight'] = ((double)$so_product['weight']/1000)."kg";
+                            $so_product['weight'] = ((double)$so_product['weight']/1000)." kg";
                         break;
                         default:
-                            $so_product['weight'] = $so_product['weight']."g";
+                            $so_product['weight'] = $so_product['weight']." gr";
                     }
 
                     $data[] = [

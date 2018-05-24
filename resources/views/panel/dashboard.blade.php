@@ -4,10 +4,100 @@
 <div class="container-fluid">
   <div class="animated fadeIn">
     <div class="row">
+    <div class="col-sm-4">
+      <div class="card bg-primary">
+        <div class="card-title">
+          <center><b>Total Produksi</center></b>
+        </div>
+        <div class="card-body" style="height:130px;margin-top:0px; width: 100%;" >
+            <h1><center><strong><big><b><font size="8">{{$prod}}</font></b></big></strong></center></h1>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="card bg-primary">
+        <div class="card-title">
+          <center><b>Total Sales Order</center></b>
+        </div>
+        <div class="card-body" style="height:130px;margin-top:0px; width: 100%;" >
+            <h1><center><strong><big><b><font size="8">{{$sor}}</font></b></big></strong></center></h1>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="card bg-primary">
+        <div class="card-title">
+          <center><b>Omset</center></b>
+        </div>
+        <div class="form-grup" style="height:130px;margin-top:0px; width: 100%;" >
+        @foreach ($so as $salesorder3)
+          <li style="list-style: decimal; padding-left: 10px;">
+            <strong>{{$salesorder3['code']}}</strong>
+          </li>
+        @endforeach
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="card bg-primary">
+        <div class="card-title">
+          <center><b>New Sales Order</center></b>
+        </div>
+        <div class="form-grup" style="height:130px;margin-top:0px; width: 100%;" >
+        @foreach ($so as $salesorder)
+          <li style="list-style: decimal; padding-left: 10px;">
+            <strong>{{$salesorder['code']}}</strong>
+          </li>
+        @endforeach
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="card bg-primary">
+        <div class="card-title">
+          <center><b>New Sales Order</center></b>
+        </div>
+        <div class="form-grup" style="height:130px;margin-top:0px; width: 100%;" >
+        @foreach ($so as $salesorde)
+          <li style="list-style: decimal; padding-left: 10px;">
+            <strong>{{$salesorde['code']}}</strong>
+          </li>
+        @endforeach
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="card bg-primary">
+        <div class="card-title">
+          <center><b>New Sales Order</center></b>
+        </div>
+        <div class="form-grup" style="height:130px;margin-top:0px; width: 100%;" >
+        @foreach ($so as $salesord)
+          <li style="list-style: decimal; padding-left: 10px;">
+            <strong>{{$salesord['code']}}</strong>
+          </li>
+        @endforeach
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="card bg-primary">
+        <div class="card-title">
+          <center><b>New Sales Order</center></b>
+        </div>
+        <div class="form-grup" style="height:130px;margin-top:0px; width: 100%;" >
+        @foreach ($so as $salesor)
+          <li style="list-style: decimal; padding-left: 10px;">
+            <strong>{{$salesor['code']}}</strong>
+          </li>
+        @endforeach
+        </div>
+      </div>
+    </div>
       <div class="col-md-12">
         <div class="card">
           <div class="card-body">
-            <h4 class="card-title"><center>HIGLIGHTED FACTS (APR 2018)</center></h4>
+            <h4 class="card-title"><center>HIGLIGHTED FACTS</center></h4>
           </div>
         </div>
       </div>
@@ -662,10 +752,10 @@
       <div class="card">
         <div class="card-body">
           <h4 class="card-title" style="color: #1f487b;"><b><center>SALES</center></b></h4>
-          <div class="chart-wrapper" style="height:300px;margin-top:0px; width: 100%;" >
+          <div class="chart-wrapper" style="height:400px;margin-top:0px; width: 100%;" >
             <div class="row">
               <div class="col-md-12">
-                <canvas id="pie-chart2" width="800" height="450"></canvas>    
+                <canvas id="pie-chart2" width="700" height="600"></canvas>    
               </div>
             </div>
           </div>
@@ -678,10 +768,10 @@
       <div class="card">
         <div class="card-body">
           <h4 class="card-title" style="color: #a6433f;"><b><center>SALES LOSS</center></b></h4>
-          <div class="chart-wrapper" style="height:300px;margin-top:0px; width: 100%;" >
+          <div class="chart-wrapper" style="height:400px;margin-top:0px; width: 100%;" >
             <div class="row">
               <div class="col-md-12">
-                <canvas id="pie-chart3" width="800" height="450"></canvas>    
+                <canvas id="pie-chart3" width="700" height="600"></canvas>    
               </div>
             </div>
           </div>
