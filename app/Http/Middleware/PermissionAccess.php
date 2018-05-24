@@ -20,23 +20,28 @@ class PermissionAccess
 		$count = User::where('_id', Auth::user()->id)
 			->where('accessPermissions', 'elemMatch', array('slug' => $role))->count();
 		if($count == 0){
-			
 			$count = User::where('_id', Auth::user()->id)
-				->where('modulePermissions', 'elemMatch', array('slug' => $role))->count();
+                ->where('modulePermissions', 'elemMatch', array('slug' => $role))->count();
+            if($role == 'sales-order'){
+                $count = User::where('_id', Auth::user()->id)
+                    ->where('modulePermissions', 'elemMatch', array('slug' => 'order-create'))->count();
+            }
 			
 			if($count == 0){
 				$count = User::where('_id', Auth::user()->id)
-					->where('modulePermissions.child', 'elemMatch', array('slug' => $role))->count();
+                    ->where('modulePermissions.child', 'elemMatch', array('slug' => $role))->count();
+                if($role == 'sales-order'){
+                    $count = User::where('_id', Auth::user()->id)
+                        ->where('modulePermissions.child', 'elemMatch', array('slug' => 'order-create'))->count();
+                }
 				
-
-				if($count == 0){ 
+				if($count == 0){
 					if(Auth::user()->email != env('ROOT_USERNAME')){
 						return redirect('/');	
-					} 
+					}
 				}
 			}
 		}
-		
         return $next($request);
     }
 }
