@@ -84,6 +84,13 @@ class SalesOrderController extends Controller
         $so->shipping = $client['shipping_address'][(int) $request->shipping]['address'];
         $so->TOP = $request->TOP;
         $so->white_label = $request->whiteLabel;
+
+        if ($request->packkayu == '') {
+            $so->pack_kayu = 'Tidak';
+        }else{
+            $so->pack_kayu = 'Ya';
+        }
+
         $so->notes = $request->notes;
         $arrProduct = [];
         $total_kg = 0;
@@ -105,6 +112,9 @@ class SalesOrderController extends Controller
                 "pending" => null,
                 "balance" => null,
                 "pendingpr" => null,
+                "tunggu" => null,
+                "check" => null,
+                "produksi" => null,
             ];
         }
         $so->products = $arrProduct;
@@ -112,20 +122,23 @@ class SalesOrderController extends Controller
         $so->total_kg = $total_kg;
         $so->total_realisasi = $total_realisasi;
 
-        $checks=user::where('_id', $request->check)->get();
+        /*$checks=user::where('_id', $request->check)->get();
         $so->check=$checks->toArray();
 
         $produksis=user::where('_id', $request->produksi)->get();
-        $so->produksi=$produksis->toArray();
+        $so->produksi=$produksis->toArray();*/
 
         $so->status = "order";
 
         $so->save();
+
         if($request->targetUrl){
             return redirect('/')->with('toastr', 'order');
         }else{
             return redirect()->route('sales-order.index')->with('toastr', 'order');
         }
+
+        /*return dd($so);*/
     }
 
     //list data
@@ -231,6 +244,14 @@ class SalesOrderController extends Controller
         $so['shipping'] = $client['shipping_address'][(int) $request->shipping]['address'];
         $so['TOP'] = $request->TOP;
         $so['white_label'] = $request->whiteLabel;
+        $so['pack_kayu'] = $request->packkayu;
+        
+        if ($request->packkayu == '') {
+            $so['pack_kayu'] = 'Tidak';
+        }else{
+            $so['pack_kayu'] = 'Ya';
+        }
+
         $so['notes'] = $request->notes;
         $arrProduct = [];
         $total_kg = 0;
@@ -251,7 +272,10 @@ class SalesOrderController extends Controller
                 'stockk' => null,
                 'pending' => null,
                 'balance' => null,
-                'pendingpr' => null
+                'pendingpr' => null,
+                "tunggu" => null,
+                "check" => null,
+                "produksi" => null,
             ];
         }
         $so['products'] = $arrProduct;
@@ -338,12 +362,14 @@ class SalesOrderController extends Controller
                         $so_sales,
                         $so_product['product_detail'][0]['type'],
                         $so_product['product_detail'][0]['code'],
+                        $so_product['product_detail'][0]['name'],
                         $so_product['quantity'],
                         "X",
                         $so_product['weight'],
                         $so_product['package'],
                         ((double)$so_product['total']/1000),
                         $so_product['quantity']." ".$so_product['package']." ".$so_product['weight'],
+                        $salesorder->pack_kayu,
                         "",
                         $salesorder->TOP,
                         $salesorder->created_at,

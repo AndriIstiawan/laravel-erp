@@ -251,6 +251,36 @@
 				                        	</div>
 				                        </div>
 				                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group ">
+                                            <select class="form-control tunggu" name="tunggu{{$i}}" aria-describedby="tunggu{{$i}}-error">
+                                                <option value=""></option>
+                                                <option value="Ada" {{($product_list['tunggu'] == 'Ada'?'selected':'')}}>Ada</option>
+                                                <option value="Tidak Ada" {{($product_list['tunggu'] == 'Tidak Ada'?'selected':'')}}>Tidak Ada</option>
+                                            </select>
+                                            <em id="tunggu{{$i}}-error" class="invalid-feedback">Please select a status</em>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <select class="form-control check" name="check{{$i}}" aria-describedby="check{{$i}}-error">
+                                            <option value=""></option>
+                                        @foreach($user as $user)
+                                            <option value="{{$user['name']}}" {{
+                                            ($product_list['check'] == $user['name']?'selected':'') }}>{{$user['name']}}</option>
+                                        @endforeach
+                                        </select>
+                                        <em id="check{{$i}}-error" class="invalid-feedback">Please select a check</em>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <select class="form-control produksi" name="produksi{{$i}}" aria-describedby="produksi{{$i}}-error">
+                                            <option value=""></option>
+                                        @foreach($users as $users)
+                                            <option value="{{$users['name']}}" {{
+                                            ($product_list['produksi'] == $users['name']?'selected':'') }}>{{$users['name']}}</option>
+                                        @endforeach
+                                        </select>
+                                        <em id="produksi{{$i}}-error" class="invalid-feedback">Please select a produksi</em>
+                                    </div>
                                 </div>
                                 @endforeach
                             </div>
@@ -267,58 +297,7 @@
                 <!--end Product order-->
             </div>
         </div>
-        <div class="row">
-			<div class="col-md-12">
-				<div class="card">
-					<div class="card-header">
-						<i class="fa fa-align-justify"></i> Data
-						<small>Production</small>
-					</div>
-					<div class="card-body">
-						<div class="row">
-							<div class="col-md-12">
-								<div class="row">
-									<div class="col-md-4">
-										<div class="form-group ">
-											<select id="tunggu" class="form-control" style="width: 100% !important;" name="tunggu" aria-describedby="tunggu-error">
-												<option value=""></option>
-												<option value="Ada" {{($order->tunggu == 'Ada'?'selected':'')}}>Ada</option>
-												<option value="Tidak Ada" {{($order->tunggu == 'Tidak Ada'?'selected':'')}}>Tidak Ada</option>
-											</select>
-											<em id="tunggu-error" class="error invalid-feedback">Please select a status</em>
-										</div>
-									</div>
-									<div class="form-group col-md-4">
-										<select id="check" class="form-control" style="width: 100% !important;" name="check" aria-describedby="check-error">
-											<option value=""></option>
-										@foreach($order->check as $check)
-											<option value="{{$check['_id']}}" selected="">{{$check['name']}}</option>
-										@endforeach
-										@foreach($user as $user)
-											<option value="{{$user->id}}">{{$user->name}}</option>
-										@endforeach
-										</select>
-										<em id="check-error" class="error invalid-feedback">Please select a check</em>
-									</div>
-									<div class="form-group col-md-4">
-										<select id="produksi" class="form-control" style="width: 100% !important;" name="produksi" aria-describedby="produksi-error">
-											<option value=""></option>
-										@foreach($order->produksi as $produksi)
-											<option value="{{$produksi['_id']}}" selected="">{{$produksi['name']}}</option>
-										@endforeach
-										@foreach($users as $users)
-											<option value="{{$users->id}}">{{$users->name}}</option>
-										@endforeach
-										</select>
-										<em id="produksi-error" class="error invalid-feedback">Please select a produksi</em>
-									</div>
-								</div>	
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+        
 		<div class="row">
 			<div class="col-md-12">
 				<div class="card">

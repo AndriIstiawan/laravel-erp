@@ -25,6 +25,30 @@
             }
         });
   });*/
+
+    <?php $i=-1; ?>
+    @foreach($order['products'] as $product_list)
+    <?php $i++; ?>
+    count = parseInt('{{$i}}');
+    $('.product-order-list .check').select2({
+        theme: "bootstrap",
+        placeholder: 'Checker'
+    }).change(function () {
+            $(this).valid();
+    });
+    $('.product-order-list .tunggu').select2({
+        theme: "bootstrap",
+        placeholder: 'Status Tunggu'
+    }).change(function () {
+            $(this).valid();
+    });
+    $('.product-order-list .produksi').select2({
+        theme: "bootstrap",
+        placeholder: 'Produksi'
+    }).change(function () {
+            $(this).valid();
+    });
+    @endforeach
       
   $('#product')/*.select2({theme:"bootstrap", placeholder:'Please select'})*/
     .change(function(){
@@ -40,10 +64,10 @@
     });
 
 
-  $('#tunggu').select2({theme:"bootstrap", placeholder:'Status Tunggu'});/*
+  /*$('#tunggu').select2({theme:"bootstrap", placeholder:'Status Tunggu'});*//*
   $('#packaging').select2({theme:"bootstrap", placeholder:'Please select'});*/
-  $('#check').select2({theme:"bootstrap", placeholder:'Checker'});
-  $('#produksi').select2({theme:"bootstrap", placeholder:'Produser'});
+/*  $('#check').select2({theme:"bootstrap", placeholder:'Checker'});
+  $('#produksi').select2({theme:"bootstrap", placeholder:'Produser'});*/
   $('#sales').select2({theme:"bootstrap", placeholder:'Please select'});/*
   $('#package').select2({theme:"bootstrap", placeholder:'Please select'}); 
   $('#packages').select2({theme:"bootstrap", placeholder:'Please select'});  */
@@ -66,7 +90,7 @@
 
   $("#picture").change(function (){ readURL(this); });
 
-    $('#tunggu').on('change', function(){
+    /*$('#tunggu').on('change', function(){
     $(this).addClass('is-valid').removeClass('is-invalid');
     });
 
@@ -88,7 +112,7 @@
 
     $('#package').on('change', function(){
     $(this).addClass('is-valid').removeClass('is-invalid');
-    });
+    });*/
 
   $("#jxForm1").validate({
     rules:{

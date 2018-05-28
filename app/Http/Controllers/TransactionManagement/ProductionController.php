@@ -92,7 +92,7 @@ class ProductionController extends Controller
                 'stockk' => $request->stockk[$i],
                 'pending' => $request->pending[$i],
                 'balance' => $request->balance[$i],
-                'pendingpr' => $request->pendingpr[$i]
+                'pendingpr' => $request->pendingpr[$i],
             ];
         }
         $order->productattr=$productss;
@@ -180,26 +180,29 @@ class ProductionController extends Controller
                 "stockk" => $request->input('stockk' . $key),
                 "pending" => $request->input('pending' . $key),
                 "balance" => $request->input('balance' . $key),
-                "pendingpr" => $request->input('pendingpr' . $key)
+                "pendingpr" => $request->input('pendingpr' . $key),
+                "tunggu" => $request->input('tunggu' . $key),
+                "check" => $request->input('check' . $key),
+                "produksi" => $request->input('produksi' . $key),
             ];
         }
         $order['products'] = $arrProduct;
         
         $order->tunggu = $request->tunggu;
 
-        $checks=user::where('_id', $request->check)->get();
+        /*$checks=user::where('_id', $request->check)->get();
         $order->check=$checks->toArray();
 
         $produksis=user::where('_id', $request->produksi)->get();
-        $order->produksi=$produksis->toArray();
+        $order->produksi=$produksis->toArray();*/
 
         $order['status'] = "production";
 
-        $order->save();
+        /*$order->save();
         
-        return redirect()->route('production.index')->with('update', 'sales-order');
+        return redirect()->route('production.index')->with('update', 'sales-order');*/
 
-        /*return dd($order);*/
+        return dd($order);
     }
 
     //delete data discount

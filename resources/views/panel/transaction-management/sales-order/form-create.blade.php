@@ -83,6 +83,13 @@
                                     <br>
                                     <br>
                                 </div>
+                                <div class="col-md-3">
+                                    <button type="button" class="btn btn-dark" style="padding-left:30px;" aria-pressed="true" disabled>
+                                        <input class="form-check-input" type="checkbox" name="packkayu">Kemasan Kayu
+                                    </button>
+                                    <br>
+                                    <br>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">

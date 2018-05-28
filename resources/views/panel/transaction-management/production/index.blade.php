@@ -72,11 +72,11 @@
                 name: 'white_label'
             },
             {
-                data: 'check.[].name',
+                data: 'products.[].check',
                 name: 'check'
             },
             {
-                data: 'produksi.[].name',
+                data: 'products.[].produksi',
                 name: 'produksi'
             },
             {
