@@ -30,11 +30,19 @@
                 <div class="input-group">
                     <select class="form-control shipping-valid" name="shipping" aria-describedby="shipping-error">
                         <option value=""></option>
-                        <?php $i=-1; ?>
-                        @foreach($member->shipping_address as $member_shipping)
-                        <?php $i++; ?>
-                        <option value="{{$i}}">{{$member_shipping['address']}}</option>
-                        @endforeach
+                        @if($memberssss == 1)
+                            <?php $i=-1; ?>
+                            @foreach($member->shipping_address as $member_shipping)
+                            <?php $i++; ?>
+                            <option value="{{$i}}" selected="">{{$member_shipping['address']}}</option>
+                            @endforeach
+                        @else
+                            <?php $j=-1; ?>
+                            @foreach($member->shipping_address as $member_shippings)
+                            <?php $j++; ?>
+                            <option value="{{$j}}">{{$member_shippings['address']}}</option>
+                            @endforeach
+                        @endif
                     </select>
                 </div>
                 <em id="shipping-error" class="error invalid-feedback"></em>
