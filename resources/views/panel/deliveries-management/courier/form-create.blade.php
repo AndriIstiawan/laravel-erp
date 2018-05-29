@@ -4,76 +4,24 @@
   </div>
   <div class="modal-body">
       {{ csrf_field() }}
-        <div class="row">
-          <div class="col-md-12">
-            <div class="form-group">
-                <label class="col-form-label" for="name">*Name</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Name" 
-                  aria-describedby="name-error">
-                <em id="name-error" class="error invalid-feedback">Please enter a name carriers</em>
-            </div>
-              <!-- <div class="COD box">
-                <div class="row">
-                  <div class="col-md-6">
-                  <div class="form-group">
-                      <label class="col-form-label" for="to">*To</label>
-                          <input type="to" class="form-control" id="to" name="to" placeholder="JAKARTA" 
-                        aria-describedby="name-error">
-                      <em id="to-error" class="error invalid-feedback">Please enter a to</em>
-                  </div>
-                  </div>
-                  <div class="col-md-6">
-                      <label class="col-form-label" for="price">*Price</label>
-                  <div class="input-group">
-                          <span class="input-group-text">Rp</span>
-                          <input type="number" class="form-control" id="price" name="price" placeholder="Price" 
-                        aria-describedby="api-error">
-                      <em id="api-error" class="error invalid-feedback">Please enter a api</em>
-                  </div>
-                  </div>
-                </div>
-              </div> -->
-              <!-- <div class="Courier box">
-                <div class="row">
-                  <div class="col-md-6">
-                  <div class="form-group">
-                      <label class="col-form-label" for="name">*Name</label>
-                          <input type="text" class="form-control" id="name" name="name" placeholder="Name" 
-                        aria-describedby="name-error">
-                      <em id="name-error" class="error invalid-feedback">Please enter a name carriers</em>
-                  </div>
-                  </div>
-                  <div class="col-md-6">
-                  <div class="form-group">
-                      <label class="col-form-label" for="api">*API Key</label>
-                          <input type="text" class="form-control" id="api" name="api" placeholder="API" 
-                        aria-describedby="api-error">
-                      <em id="api-error" class="error invalid-feedback">Please enter a api</em>
-                  </div>
-                  </div>
-                </div>
-              </div> -->
-            <div class="form-group">
-              <label class="col-form-label" for="status">Status</label> <p>
-                <label class="switch switch-text switch-pill switch-info">
-                <input type="checkbox" class="switch-input" id="status" name="status" >
-                <span class="switch-label" data-on="On" data-off="Off"></span>
-                <span class="switch-handle"></span>
-                </label>
-            </div>
-          </div>
-        </div>
-        <!-- <div class="form-group">
-            <label class="col-form-label" for="prices">*Prices</label>
-                <input type="number" class="form-control" id="prices" name="price" aria-describedby="prices-error" required>
-            <em id="prices-error" class="error invalid-feedback">Please enter a prices</em>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+            <label class="col-form-label" for="name">*Name</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Name" 
+              aria-describedby="name-error">
+            <em id="name-error" class="error invalid-feedback">Please enter a name carriers</em>
         </div>
         <div class="form-group">
-            <label class="col-form-label" for="delivery">*Delivery Text</label>
-                <input type="text" class="form-control" id="delivery" name="delivery"  
-              aria-describedby="delivery-error">
-            <em id="delivery-error" class="error invalid-feedback">Please enter a delivery text</em>
-        </div> -->
+          <label class="col-form-label" for="status">Status</label> <p>
+            <label class="switch switch-text switch-pill switch-info">
+            <input type="checkbox" class="switch-input" name="status" >
+            <span class="switch-label" data-on="On" data-off="Off"></span>
+            <span class="switch-handle"></span>
+            </label>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="modal-footer">
     <div class="form-group">
@@ -98,7 +46,6 @@
       to:{required:true,minlength:2},
       prices:{required:true},
       api:{required:true},
-      status:{required:true},
     },
     messages:{
       name:{
@@ -117,9 +64,6 @@
       }, 
       api:{
         required:'Please select a api'
-      }, 
-      status:{
-        required:'Please enter a status'
       }
     },
     errorElement:'em',
