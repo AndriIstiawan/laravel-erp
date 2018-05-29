@@ -90,6 +90,17 @@
                                     <br>
                                     <br>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <select id="delivery" class="form-control" name="delivery" aria-describedby="delivery-error">
+                                            <option value=""></option>
+                                            @foreach($carrier as $carriers)
+                                            <option value="{{$carriers->id}}">{{$carriers->name}}</option>
+                                            @endforeach
+                                        </select>
+                                        <em id="delivery-error" class="error invalid-feedback"></em>
+                                    </div>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">

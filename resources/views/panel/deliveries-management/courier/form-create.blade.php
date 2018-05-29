@@ -7,15 +7,12 @@
         <div class="row">
           <div class="col-md-12">
             <div class="form-group">
-              <label class="col-form-label" for="type">*Type</label>
-              <select id="type" name="type" class="form-control" style="width: 100%;" aria-describedby="type-error" required>
-                <option value=""></option>
-                <option value="COD">COD</option>
-                <option value="Courier"> Courier</option>
-              </select>
-              <em id="type-error" class="error invalid-feedback">Please enter a type</em>
+                <label class="col-form-label" for="name">*Name</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Name" 
+                  aria-describedby="name-error">
+                <em id="name-error" class="error invalid-feedback">Please enter a name carriers</em>
             </div>
-              <div class="COD box">
+              <!-- <div class="COD box">
                 <div class="row">
                   <div class="col-md-6">
                   <div class="form-group">
@@ -35,8 +32,8 @@
                   </div>
                   </div>
                 </div>
-              </div>
-              <div class="Courier box">
+              </div> -->
+              <!-- <div class="Courier box">
                 <div class="row">
                   <div class="col-md-6">
                   <div class="form-group">
@@ -55,9 +52,9 @@
                   </div>
                   </div>
                 </div>
-              </div>
+              </div> -->
             <div class="form-group">
-              <label class="col-form-label" for="status">*Status</label> <p>
+              <label class="col-form-label" for="status">Status</label> <p>
                 <label class="switch switch-text switch-pill switch-info">
                 <input type="checkbox" class="switch-input" id="status" name="status" >
                 <span class="switch-label" data-on="On" data-off="Off"></span>

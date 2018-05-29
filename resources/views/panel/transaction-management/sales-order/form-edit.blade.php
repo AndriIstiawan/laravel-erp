@@ -109,6 +109,23 @@
                                         </div>
                                         <em id="shipping-error" class="error invalid-feedback"></em>
                                     </div>
+                                    <div class="form-group row">
+                                        <div class="input-group col-md-6">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    Rp
+                                                </span>
+                                            </div>
+                                            <input type="text" class="form-control idr-currency" id="limit" name="limit" placeholder="00" aria-describedby="limit-error"
+                                                value="{{(isset($client['limit'])?$client['limit']:'')}}" readonly="">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    Limit Hutang
+                                                </span>
+                                            </div>
+                                            <em id="limit-error" class="error invalid-feedback"></em>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
@@ -137,6 +154,17 @@
                                     </button>
                                     <br>
                                     <br>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <select id="delivery" class="form-control" name="delivery" aria-describedby="delivery-error">
+                                            <option value=""></option>
+                                                @foreach($carrier as $carriers)
+                                                <option value="{{$carriers->_id}}" {{($delivery['id']==$carriers->id?'selected':'')}}>{{$carriers->name}}</option>
+                                                @endforeach
+                                        </select>
+                                        <em id="delivery-error" class="error invalid-feedback"></em>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">

@@ -29,11 +29,7 @@
 						<table class="table table-responsive-sm table-bordered table-striped table-sm datatable">
 							<thead>
 								<tr>
-									<th>Type</th>
-									<th>To</th>
-									<th>Price</th>
 									<th>Name</th>
-									<th>API Key</th>
 									<th>Status</th>
 									<th>Date registered</th>
 									<th></th>
@@ -76,19 +72,15 @@
 	        serverSide: true,
 	        ajax: '{!! url()->current() !!}/data',
 	        columns: [
-	            {data: 'type', name: 'type'},
-	            {data: 'to', name: 'to'},
-	            {data: 'price', name: 'price'},
 	            {data: 'name', name: 'name'},
-	            {data: 'api', name: 'api'},
 	            {data: 'status', name: 'status'},
 	            {data: 'created_at', name: 'created_at'},
 	            {data: 'action', name: 'action', orderable: false, searchable: false, width:'20%'}
 	        ],
 			"columnDefs": [
-				{"targets": 7,"className": "text-center"}
+				{"targets": 3,"className": "text-center"}
 			],
-			"order":[[6, 'desc']]
+			"order":[[2, 'desc']]
 		});
 		$('.datatable').attr('style','border-collapse: collapse !important');
 		

@@ -59,11 +59,6 @@
                         <small>Information</small>
                     </div>
                     <div class="card-body">
-                        <div class="row">
-                            <p class="col-md-12">
-                                <textarea id="billing" type="text" name="billing" class="form-control" placeholder="Billing" readonly value="{{$order['billing']}}">Billing ( {{$order['billing']}} )</textarea>
-                            </p>
-                        </div>
                         <div class="row shipping-list">
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -87,7 +82,7 @@
                                 <div class="row">
                                     <div class="input-group col-md-12">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text text-sm">Term Of Payment</span>
+                                            <span class="input-group-text text-sm">TOP</span>
                                         </div>
                                         <input type="text" class="form-control input-number" name="TOP" placeholder="Day" value="{{$order['TOP']}}" aria-describedby="TOP-error" readonly="">
                                         <em id="TOP-error" class="error invalid-feedback"></em>
@@ -99,10 +94,11 @@
                                 <!-- <button type="button" class="btn btn-dark" style="padding-left:30px;" aria-pressed="true" disabled>
                                     <input class="form-check-input" type="checkbox" name="whiteLabel" {{($order['white_label']!=null?'checked':'')}} readonly>White Label
                                 </button> -->
-                                @if($order['white_label']!=null) White Label YES 
-                                @else White Label NO
+                                @if($order['white_label']!=null) 
+                                <input type="text" value="Label Polos Iya" class="form-control" readonly=""> 
+                                @else 
+                                <input type="text" value="Label Polos Tidak" class="form-control" readonly="">
                                 @endif
-                                <br>
                                 <br>
                             </div>
                         </div>

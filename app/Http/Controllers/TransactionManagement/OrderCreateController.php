@@ -5,6 +5,7 @@ namespace App\Http\Controllers\TransactionManagement;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Counter;
+use App\Carriers;
 use App\SalesOrder;
 use App\User;
 use App\Member;
@@ -23,10 +24,14 @@ class OrderCreateController extends Controller
         $user = Auth::user();
         $members = Member::all();
         $products = Product::all();
+        $carrier = Carriers::all();
+        $member = Member::groupBy('code')->count('shipping_address');
         return view('panel.transaction-management.order-create.form-create')->with([
             'user' => $user,
             'members' => $members,
             'products' => $products,
+            'memberssss' => $member,
+            'carrier' => $carrier
         ]);
     }
 

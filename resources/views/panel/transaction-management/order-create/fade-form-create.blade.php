@@ -40,14 +40,39 @@
                 <div class="input-group">
                     <select class="form-control shipping-valid" name="shipping" aria-describedby="shipping-error">
                         <option value=""></option>
-                        <?php $i=-1; ?>
-                        @foreach($member->shipping_address as $member_shipping)
-                        <?php $i++; ?>
-                        <option value="{{$i}}">{{$member_shipping['address']}}</option>
-                        @endforeach
+                        @if($memberssss == 1)
+                            <?php $i=-1; ?>
+                            @foreach($member->shipping_address as $member_shipping)
+                            <?php $i++; ?>
+                            <option value="{{$i}}" selected="">{{$member_shipping['address']}}</option>
+                            @endforeach
+                        @else
+                            <?php $j=-1; ?>
+                            @foreach($member->shipping_address as $member_shippings)
+                            <?php $j++; ?>
+                            <option value="{{$j}}">{{$member_shippings['address']}}</option>
+                            @endforeach
+                        @endif
                     </select>
                 </div>
                 <em id="shipping-error" class="error invalid-feedback"></em>
+            </div>
+            <div class="form-group row">
+                <div class="input-group col-md-6">
+                    <div class="input-group-append">
+                        <span class="input-group-text">
+                            Rp
+                        </span>
+                    </div>
+                    <input type="text" class="form-control idr-currency" id="limit" name="limit" placeholder="00" aria-describedby="limit-error"
+                        value="{{(isset($member->limit)?$member->limit:'')}}" readonly="">
+                    <div class="input-group-append">
+                        <span class="input-group-text">
+                            Limit Hutang
+                        </span>
+                    </div>
+                    <em id="limit-error" class="error invalid-feedback"></em>
+                </div>
             </div>
         </div>
     </div>
