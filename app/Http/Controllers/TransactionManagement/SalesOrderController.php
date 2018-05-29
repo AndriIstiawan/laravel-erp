@@ -88,7 +88,12 @@ class SalesOrderController extends Controller
         $so->billing = $request->billing;
         $so->shipping = $client['shipping_address'][(int) $request->shipping]['address'];
         $so->TOP = $request->TOP;
-        $so->white_label = $request->whiteLabel;
+
+        if ($request->whiteLabel == ''){
+            $so->white_label = 'Tidak';
+        }else{
+            $so->white_label = 'Ya';
+        }
 
         $deliverys=Carriers::where('_id', $request->delivery)->get();
         $so->delivery = $deliverys->toArray();
@@ -257,7 +262,12 @@ class SalesOrderController extends Controller
         $so['billing']= $request->billing;
         $so['shipping'] = $client['shipping_address'][(int) $request->shipping]['address'];
         $so['TOP'] = $request->TOP;
-        $so['white_label'] = $request->whiteLabel;
+
+        if ($request->whiteLabel == ''){
+            $so['white_label'] = 'Tidak';
+        }else{
+            $so['white_label'] = 'Ya';
+        }
         
         $deliverys=Carriers::where('_id', $request->delivery)->get();
         $so['delivery'] = $deliverys->toArray();
@@ -391,6 +401,7 @@ class SalesOrderController extends Controller
                         $salesorder['delivery'][0]['name'],
                         "",
                         $salesorder->TOP,
+                        $salesorder['client'][0]['limit'],
                         $salesorder->created_at,
                         $salesorder->status,
                     ];

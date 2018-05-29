@@ -143,7 +143,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <button type="button" class="btn btn-dark" style="padding-left:30px;" aria-pressed="true" disabled>
-                                        <input class="form-check-input" type="checkbox" name="whiteLabel" {{($order['white_label']!=null?'checked':'')}}>Label Polos
+                                        <input class="form-check-input" type="checkbox" name="whiteLabel" {{($order['white_label']=='Ya'?'checked':'')}}>Label Polos
                                     </button>
                                     <br>
                                     <br>
