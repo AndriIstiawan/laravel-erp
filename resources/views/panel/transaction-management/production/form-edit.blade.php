@@ -94,7 +94,7 @@
                                 <!-- <button type="button" class="btn btn-dark" style="padding-left:30px;" aria-pressed="true" disabled>
                                     <input class="form-check-input" type="checkbox" name="whiteLabel" {{($order['white_label']!=null?'checked':'')}} readonly>White Label
                                 </button> -->
-                                @if($order['white_label']!=null) 
+                                @if($order['white_label'] == 'Iya') 
                                 <input type="text" value="Label Polos Iya" class="form-control" readonly=""> 
                                 @else 
                                 <input type="text" value="Label Polos Tidak" class="form-control" readonly="">
