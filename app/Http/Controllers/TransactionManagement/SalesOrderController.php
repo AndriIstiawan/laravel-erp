@@ -219,7 +219,7 @@ class SalesOrderController extends Controller
         $member = Member::groupBy('code')->count('shipping_address');
         $products = Product::all();
         $delivery = Carriers::find($order['delivery'][0]['_id']);
-        $carrier = Carriers::all();
+        $carrier = Carriers::where('status', 'on')->get();
         return view('panel.transaction-management.sales-order.form-edit')->with([
             'order' => $order,
             'client' => $client,
