@@ -177,6 +177,17 @@ class PermissionsTableSeeder extends Seeder
 				'created_at' => date("Y-m-d H:i:s"),
 				'updated_at' => date("Y-m-d H:i:s")
 			],
+			[
+	        	'name' => 'Courier',
+	        	'slug' => 'courier',
+	        	'type' => 'module-menu',
+				'icon' => 'fa fa-truck',
+				'parent' => null,
+				'description' => 'Module Menu',
+				'guard_name' => 'web',
+				'created_at' => date("Y-m-d H:i:s"),
+				'updated_at' => date("Y-m-d H:i:s")
+			],
             // [
 	        // 	'name' => 'Location',
 	        // 	'slug' => 'location',
@@ -336,17 +347,6 @@ class PermissionsTableSeeder extends Seeder
 			[
 	        	'name' => 'View Deliveries',
 	        	'slug' => 'deliveries',
-	        	'type' => 'module-menu',
-				'icon' => 'icon-cursor',
-				'parent' => null,
-				'description' => 'Module Menu',
-				'guard_name' => 'web',
-				'created_at' => date("Y-m-d H:i:s"),
-				'updated_at' => date("Y-m-d H:i:s")
-			],
-			[
-	        	'name' => 'Courier & COD',
-	        	'slug' => 'courier',
 	        	'type' => 'module-menu',
 				'icon' => 'icon-cursor',
 				'parent' => null,
@@ -528,9 +528,9 @@ class PermissionsTableSeeder extends Seeder
 		DB::table('permissions')->whereIn('slug', ['payment','payment-method','paymentpo'])
 			->update(['parent' => (string)$parent['_id']]);
 
-		$parent = DB::table('permissions')->where('name','Deliveries')->first();
+		/*$parent = DB::table('permissions')->where('name','Deliveries')->first();
 		DB::table('permissions')->whereIn('slug', ['deliveries','courier'])
-			->update(['parent' => (string)$parent['_id']]);
+			->update(['parent' => (string)$parent['_id']]);*/
 
 		$parent = DB::table('permissions')->where('name','Master Client')->first();
 		DB::table('permissions')->whereIn('slug', ['master-client', 'location'/*,'level'*//*,'archievement'*/])

@@ -48,11 +48,7 @@ class CarriersController extends Controller
     public function store(Request $request)
     {
         $taxes = new Carriers();
-        $taxes->type = $request->type;
-        $taxes->to = $request->to;
-        $taxes->price = $request->price;
         $taxes->name = $request->name;
-        $taxes->api = $request->api;
         $taxes->status = $request->status;
         $taxes->save();
         
@@ -77,7 +73,7 @@ class CarriersController extends Controller
                         <i class="fa fa-pencil-square-o"></i>&nbsp;Edit</button>'.
                     '<form style="display:inline;" method="POST" action="'.
                         route('courier.destroy',['id' => $carriers->id]).'">'.method_field('DELETE').csrf_field().
-                    '<button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-remove"></i>&nbsp;Remove</button></form>';
+                    '<button type="button" class="btn btn-danger btn-sm" onclick="removeList($(this))"><i class="fa fa-remove"></i>&nbsp;Remove</button></form>';
             })
             ->rawColumns(['status', 'action'])
             ->make(true);
@@ -107,15 +103,11 @@ class CarriersController extends Controller
     public function update(Request $request, $id)
     {
         $taxes = Carriers::find($id);
-        $taxes->type = $request->type;
-        $taxes->to = $request->to;
-        $taxes->price = $request->price;
         $taxes->name = $request->name;
-        $taxes->api = $request->api;
         $taxes->status = $request->status;
         
         $taxes->save();
-        return redirect()->route('courier.index')->with('update', 'Carriers updated!');
+        return redirect()->route('courier.index')->with('update', 'Courier updated!');
     }
 
     /**
