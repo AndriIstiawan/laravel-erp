@@ -401,7 +401,7 @@ class SalesOrderController extends Controller
                         $salesorder['delivery'][0]['name'],
                         "",
                         $salesorder->TOP,
-                        $salesorder['client'][0]['limit'],
+                        isset($salesorder['client'][0]['limit']),
                         $salesorder->created_at,
                         $salesorder->status,
                     ];
