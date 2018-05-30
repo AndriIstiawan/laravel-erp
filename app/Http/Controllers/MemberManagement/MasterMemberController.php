@@ -264,10 +264,10 @@ class MasterMemberController extends Controller
                     implode(' / ', array_column($member->shipping_address, 'address')),
                     $member->email,
                     $member->limit,
-                    /*'="'.$data_mobile.'"',
-                    '="'.$data_phone.'"',*/
-                    $data_mobile,
-                    $data_phone,
+                    '="'.$data_mobile.'"',
+                    '="'.$data_phone.'"',
+                    /*$data_mobile,
+                    $data_phone,*/
                     $member->remarks,
                     $member->kota,
                     $member->provinsi,
@@ -334,7 +334,7 @@ class MasterMemberController extends Controller
                     $data .= '"'.$billingaddress.'","'.$shippingaddress.'","'.$email.'","'.$limit.'","'.$mobile.'","'.$phone.'","'.$remarks.'",';
                     $data .= '"'.$kota.'","'.$provinsi.'","'.$negara.'","'.$segmenpasar.'","'.$dateregister.'",';
 
-                    if($code==""||$displayname==""||$title==""||$fullname==""||$salesemail==""||$billingaddress==""||$shippingaddress==""||$limit==""||$mobile==""){
+                    if($code==""||$displayname==""||$title==""||$fullname==""||$salesemail==""||$billingaddress==""||$shippingaddress==""||$mobile==""){
                         $data .= '"error import => require data is empty [code,displayname,titlefullname,salesemail,billingaddress,shippingaddress,mobile]"),';
                     }else{
                         $sales = User::where('role', 'elemMatch', array('name' => 'Sales'))->where('email', $salesemail)->first();
