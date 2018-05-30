@@ -755,7 +755,7 @@
           <div class="chart-wrapper" style="height:400px;margin-top:0px; width: 100%;" >
             <div class="row">
               <div class="col-md-12">
-                <canvas id="pie-chart2" width="700" height="600"></canvas>    
+                <canvas id="pie-chart2" width="700" height="550"></canvas>    
               </div>
             </div>
           </div>
@@ -771,7 +771,7 @@
           <div class="chart-wrapper" style="height:400px;margin-top:0px; width: 100%;" >
             <div class="row">
               <div class="col-md-12">
-                <canvas id="pie-chart3" width="700" height="600"></canvas>    
+                <canvas id="pie-chart3" width="700" height="550"></canvas>    
               </div>
             </div>
           </div>
