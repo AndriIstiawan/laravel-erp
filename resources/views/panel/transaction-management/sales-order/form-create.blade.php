@@ -77,18 +77,14 @@
                                     <br>
                                 </div>
                                 <div class="col-md-3">
-                                    <button type="button" class="btn btn-dark" style="padding-left:30px;" aria-pressed="true" disabled>
+                                    <div class="form-group" style="padding-left:30px;">
                                         <input class="form-check-input" type="checkbox" name="whiteLabel">Label Polos
-                                    </button>
-                                    <br>
-                                    <br>
+                                    </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <button type="button" class="btn btn-dark" style="padding-left:30px;" aria-pressed="true" disabled>
+                                    <div class="form-group" style="padding-left:30px;">
                                         <input class="form-check-input" type="checkbox" name="packkayu">Kemasan Kayu
-                                    </button>
-                                    <br>
-                                    <br>
+                                    </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">

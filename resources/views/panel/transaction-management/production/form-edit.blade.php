@@ -188,7 +188,7 @@
                                         <div class="form-group">
                                                 <div class="input-group">
                                                     <input type="text" class="form-control text-center realisasi" name="realisasi{{$i}}" placeholder="Realisasi" aria-describedby="realisasi1{{$i}}-error"
-                                                        value="{{(double)$product_list['realisasi']/1000}}" required="">
+                                                        required="">
                                                     <div class="input-group-append">
                                                         <span class="input-group-text">Kg</span>
                                                     </div>
@@ -203,50 +203,6 @@
                                             </div> -->
                                         </div>
                                     </div>
-				                    <div class="col-md-2">
-				                        <div class="form-group">
-				                        	<div class="input-group">
-					                          	<input class="form-control number" type="text" name="stockk{{$i}}" id="stockk" aria-describedby="stockk{{$i}}-error" placeholder="Stock Kapuk" required="" value="{{(double)$product_list['stockk']}}" />
-					                          	<div class="input-group-append">
-                                                    <span class="input-group-text">Kg</span>
-                                                </div>
-					                        	<em id="stockk{{$i}}-error" class="invalid-feedback">Mohon input stock</em>
-					                    	</div>
-				                        </div>
-				                    </div>
-				                    <div class="col-md-2">
-				                        <div class="form-group">
-				                        	<div class="input-group">
-						                        <input class="form-control number" type="text" name="pending{{$i}}" id="pending" aria-describedby="pending{{$i}}-error"  placeholder="Pending SO" required="" value="{{(double)$product_list['pending']}}"/>
-						                        <div class="input-group-append">
-                                                    <span class="input-group-text">Kg</span>
-                                                </div>
-						                        <em id="pending{{$i}}-error" class="invalid-feedback">Mohon input pending SO</em>
-				                        	</div>
-				                        </div>
-				                    </div>
-				                    <div class="col-md-2">
-				                        <div class="form-group">
-				                        	<div class="input-group">
-					                          	<input class="form-control number" type="text" name="balance{{$i}}" id="balance" aria-describedby="balance{{$i}}-error"  placeholder="Balance Stock" required="" value="{{(double)$product_list['balance']}}"/>
-					                          	<div class="input-group-append">
-                                                    <span class="input-group-text">Kg</span>
-                                                </div>
-					                        <em id="balance{{$i}}-error" class="invalid-feedback">Mohon input balance stock</em>
-					                        </div>
-				                        </div>
-				                    </div>
-				                    <div class="col-md-2">
-				                        <div class="form-group">
-				                        	<div class="input-group">
-				                          		<input class="form-control number" type="text" name="pendingpr{{$i}}" id="pendingpr" aria-describedby="pendingpr{{$i}}-error" placeholder="Pending PR" required="" value="{{(double)$product_list['pendingpr']}}"/>
-				                          		<div class="input-group-append">
-                                                    <span class="input-group-text">Kg</span>
-                                                </div>
-				                        	<em id="pendingpr{{$i}}-error" class="invalid-feedback">mohon input pending PR</em>
-				                        	</div>
-				                        </div>
-				                    </div>
                                     <div class="col-md-4">
                                         <div class="form-group ">
                                             <select class="form-control tunggu" name="tunggu{{$i}}" aria-describedby="tunggu{{$i}}-error">
@@ -256,16 +212,6 @@
                                             </select>
                                             <em id="tunggu{{$i}}-error" class="invalid-feedback">Please select a status</em>
                                         </div>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <select class="form-control check" name="check{{$i}}" aria-describedby="check{{$i}}-error">
-                                            <option value=""></option>
-                                        @foreach($user as $user)
-                                            <option value="{{$user['name']}}" {{
-                                            ($product_list['check'] == $user['name']?'selected':'') }}>{{$user['name']}}</option>
-                                        @endforeach
-                                        </select>
-                                        <em id="check{{$i}}-error" class="invalid-feedback">Please select a check</em>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <select class="form-control produksi" name="produksi{{$i}}" aria-describedby="produksi{{$i}}-error">

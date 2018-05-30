@@ -100,11 +100,11 @@ class ProductionController extends Controller
         $order->catatan = $request->catatan;
         $order->tunggu = $request->tunggu;
 
-        $checks=user::where('_id', $request->check)->get();
+        /*$checks=user::where('_id', $request->check)->get();
         $order->check=$checks->toArray();
 
         $produksis=user::where('_id', $request->produksi)->get();
-        $order->produksi=$produksis->toArray();
+        $order->produksi=$produksis->toArray();*/
 
         $order->status = "production";
 
@@ -177,10 +177,6 @@ class ProductionController extends Controller
                 "weight" => (double) $request->input('weight' . $key),
                 "total" => ((double) $request->input('total' . $key)) * 1000,
                 "realisasi" => ((double) $request->input('realisasi' . $key)) * 1000,
-                "stockk" => $request->input('stockk' . $key),
-                "pending" => $request->input('pending' . $key),
-                "balance" => $request->input('balance' . $key),
-                "pendingpr" => $request->input('pendingpr' . $key),
                 "tunggu" => $request->input('tunggu' . $key),
                 "check" => $request->input('check' . $key),
                 "produksi" => $request->input('produksi' . $key),

@@ -121,12 +121,7 @@ class SalesOrderController extends Controller
                 "weight" => (double) $request->input('weight' . $key),
                 "total" => ((double) $request->input('total' . $key)) * 1000,
                 "realisasi" => ((double) $request->input('realisasi' . $key)) * 1000,
-                "stockk" => null,
-                "pending" => null,
-                "balance" => null,
-                "pendingpr" => null,
                 "tunggu" => null,
-                "check" => null,
                 "produksi" => null,
             ];
         }
@@ -295,12 +290,7 @@ class SalesOrderController extends Controller
                 "weight" => (double) $request->input('weight' . $key),
                 "total" => ((double) $request->input('total' . $key)) * 1000,
                 "realisasi" => ((double) $request->input('realisasi' . $key)) * 1000,
-                'stockk' => null,
-                'pending' => null,
-                'balance' => null,
-                'pendingpr' => null,
                 "tunggu" => null,
-                "check" => null,
                 "produksi" => null,
             ];
         }
