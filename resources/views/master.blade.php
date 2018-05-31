@@ -88,6 +88,7 @@
   @include('panel.scripts')
   <script src="{{ asset('fiture-style/toastr/toastr.min.js') }}"></script>
   <script src="{{ asset('fiture-style/validation/jquery.validate.min.js') }}"></script>
+  <script src="{{ asset('fiture-style/jquery.priceformat.min.js') }}"></script>
   @yield('myscript')
 
 </body>
