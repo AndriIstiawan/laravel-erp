@@ -270,7 +270,7 @@
         var realisasi = '';
 
         weight = parseInt(weight.val());
-        total = parseInt(total.val())*1000;
+        total = parseFloat(total.val())*1000;
 
         if(!isNaN(weight)&&!isNaN(total)){
             console.log('masuk weight & total number');
