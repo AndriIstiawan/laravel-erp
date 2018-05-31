@@ -53,7 +53,7 @@ class PackagingController extends Controller
     ->except(['_token'])
     ->merge([
       'created_by' => auth()->user()->_id,
-      'price' => intval($request->price)
+      'price' => rollbackPrice($request->price)
     ])
     ->all();
     $packaging = Packaging::create($data);
@@ -132,7 +132,7 @@ class PackagingController extends Controller
       ->except(['_token'])
       ->merge([
         'updated_by' => auth()->user()->_id,
-        'price' => intval($request->price)
+        'price' => rollbackPrice($request->price)
       ])
       ->all();
       $packaging = Packaging::find($id);
