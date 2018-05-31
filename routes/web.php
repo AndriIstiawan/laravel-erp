@@ -21,7 +21,7 @@ Route::middleware('auth')->group(function() {
 		}else if (Auth::user()->role[0]['name'] == 'Sales') {
 			return App::call('App\Http\Controllers\TransactionManagement\OrderCreateController@index');
 		}else{
-			return App::call('App\Http\Controllers\TransactionManagement\ProductionController@index');	
+			return App::call('App\Http\Controllers\TransactionManagement\ProductionController@index');
 		}
  	});
 
@@ -38,11 +38,11 @@ Route::middleware('auth')->group(function() {
 
 	Route::resource('role', 'UserManagement\RoleController');
 	Route::post('role/find', 'UserManagement\RoleController@find');
-		
+
 	Route::resource('master-user', 'UserManagement\MasterUserController');
 	Route::post('master-user/find', 'UserManagement\MasterUserController@find');
 	/* END Master User */
-	
+
 	/* Master deal */
 	Route::resource('discount', 'DiscountManagement\DiscountController');
 	Route::post('discount/find', 'DiscountManagement\DiscountController@find');
@@ -67,7 +67,7 @@ Route::middleware('auth')->group(function() {
 	/* Master home */
 	Route::resource('slider', 'MasterhomeManagement\SliderController');
 	Route::post('slider/find', 'MasterhomeManagement\SliderController@find');
-	
+
 	Route::resource('brands', 'MasterhomeManagement\BrandController');
 	Route::post('brands/find', 'MasterhomeManagement\BrandController@find');
 	/* END Master home */
@@ -90,7 +90,7 @@ Route::middleware('auth')->group(function() {
     // import
     Route::post('import', 'ProductManagement\ProductController@productImport')->name('product.import');
     // end export import
-    
+
 	Route::resource('product', 'ProductManagement\ProductController');
     Route::post('product/find', 'ProductManagement\ProductController@find');
     Route::post('product/import-data', 'ProductManagement\ProductController@ImportData');
@@ -151,7 +151,7 @@ Route::middleware('auth')->group(function() {
 	Route::post('segment-attributes/find', 'FooterManagement\SegmentAttributesController@find');
 
 	Route::resource('footer', 'FooterManagement\FooterController');
-	Route::post('footer/find', 'FooterManagement\FooterController@find');	
+	Route::post('footer/find', 'FooterManagement\FooterController@find');
 
     Route::resource('image-upload', 'ImageManagement\ImageUploadController');
 
@@ -180,3 +180,9 @@ Route::middleware('auth')->group(function() {
 // Section Pages
 Route::view('/sample/error404','errors.404')->name('error404');
 Route::view('/sample/error500','errors.500')->name('error500');
+
+//RouteGroupMasterPackaging
+Route::group(['namespace' => 'MasterPackagings'], function(){
+	Route::resource('packaging', 'PackagingController');
+	Route::post('packaging/find', 'PackagingController@find');
+});

@@ -20,7 +20,7 @@ class DiscountController extends Controller
     {
         $this->middleware('perm.acc:discount');
     }
-    
+
     //public index discount
     public function index()
     {
@@ -45,7 +45,7 @@ class DiscountController extends Controller
 
     //view form create
     public function create()
-    {   
+    {
         $product=Product::all();
         $level=Levels::all();
         $member=Member::all();
@@ -56,7 +56,7 @@ class DiscountController extends Controller
             'member'=>$member,
             'category'=>$category
             ]);
-        
+
     }
 
     //store data discount
@@ -99,10 +99,10 @@ class DiscountController extends Controller
     //for getting datatable at index
     public function show(Request $request, $action){
         $discounts = Discounts::all();
-        
+
         return Datatables::of($discounts)
             ->addColumn('action', function ($discount) {
-                return 
+                return
                     '<a class="btn btn-success btn-sm"  href="'.route('discount.edit',['id' => $discount->id]).'">
                         <i class="fa fa-pencil-square-o"></i>&nbsp;Edit</a>'.
                     '<form style="display:inline;" method="POST" action="'.
@@ -112,7 +112,7 @@ class DiscountController extends Controller
             ->rawColumns(['status', 'action'])
             ->make(true);
     }
-    
+
     //view form edit
     public function edit($id)
     {

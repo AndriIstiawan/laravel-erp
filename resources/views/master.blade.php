@@ -19,6 +19,7 @@
   <!-- Styles required by this views -->
   <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
   <link href="{{ asset('fiture-style/toastr/toastr.min.css') }}" rel="stylesheet">
+  @yield('css')
 </head>
 <!-- BODY options, add following classes to body to change options
 '.header-fixed' - Fixed Header
@@ -37,7 +38,7 @@
 
 <body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
   @include('panel.navbar')
-  
+
   <div class="app-body">
     @include('panel.sidebar')
     <!-- Main content -->
@@ -85,6 +86,8 @@
   @include('panel.footer')
 
   @include('panel.scripts')
+  <script src="{{ asset('fiture-style/toastr/toastr.min.js') }}"></script>
+  <script src="{{ asset('fiture-style/validation/jquery.validate.min.js') }}"></script>
   @yield('myscript')
 
 </body>
