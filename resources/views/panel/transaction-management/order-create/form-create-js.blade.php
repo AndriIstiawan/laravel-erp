@@ -236,7 +236,7 @@
         //set new select2 product order
         $('.product-order-list select[name="product'+count+'"]').select2({
             theme: "bootstrap",
-            placeholder: 'Code - Product - Type'
+            placeholder: 'Kode - Produk - Tipe'
         }).change(function () {
             if (submit) {
                 $(this).valid();
@@ -244,7 +244,7 @@
         });
         $('.product-order-list select[name="package'+count+'"]').select2({
             theme: "bootstrap",
-            placeholder: 'Package'
+            placeholder: 'Jenis Kemasan'
         }).change(function () {
             packageChange($(this));
             if (submit) {
@@ -253,7 +253,7 @@
         });
         $('.product-order-list select[name="weight'+count+'"]').select2({
             theme: "bootstrap",
-            placeholder: 'Weight'
+            placeholder: 'Kemasan'
         }).change(function () {
             if (submit) {
                 $(this).valid();

@@ -324,7 +324,7 @@
     count = parseInt('{{$i}}');
     $('.product-order-list select[name="product{{$i}}"]').select2({
         theme: "bootstrap",
-        placeholder: 'Code - Product - Type'
+        placeholder: 'Kode - Produk - Tipe'
     }).change(function () {
         if (submit) {
             $(this).valid();

@@ -49,6 +49,7 @@ class CarriersController extends Controller
     {
         $taxes = new Carriers();
         $taxes->name = $request->name;
+        $taxes->prices = $request->prices;
         $taxes->status = $request->status;
         $taxes->save();
         
@@ -104,6 +105,7 @@ class CarriersController extends Controller
     {
         $taxes = Carriers::find($id);
         $taxes->name = $request->name;
+        $taxes->prices = $request->prices;
         $taxes->status = $request->status;
         
         $taxes->save();
