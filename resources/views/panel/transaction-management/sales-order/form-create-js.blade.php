@@ -1,7 +1,7 @@
 <script src="{{ asset('fiture-style/select2/select2.min.js') }}"></script>
 <script>
     
-    $('#delivery').select2({theme:"bootstrap", placeholder:'Dikirim via',tags: true});
+    $('#delivery').select2({theme:"bootstrap", placeholder:'Dikirim via'/*,tags: true*/});
     $('#delivery').on('change', function(){
        $(this).addClass('is-valid').removeClass('is-invalid');
     });
