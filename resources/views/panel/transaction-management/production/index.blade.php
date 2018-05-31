@@ -27,7 +27,6 @@
                                         <th>SO Code</th>
                                         <th>Product</th>
                                         <th>White_label</th>
-                                        <th>Checker</th>
                                         <th>Produser</th>
                                         <th>Status</th>
                                         <th>Date registered</th>
@@ -72,11 +71,7 @@
                 name: 'white_label'
             },
             {
-                data: 'products.[].check',
-                name: 'check'
-            },
-            {
-                data: 'products.[].produksi',
+                data: 'products.[<br>].produksi',
                 name: 'produksi'
             },
             {
@@ -97,16 +92,16 @@
             }
         ],
         "columnDefs": [{
-                "targets": 7,
+                "targets": 6,
                 "className": "text-center"
             },
             {
-                "targets": 5,
+                "targets": 4,
                 "className": "text-center"
             }
         ],
         "order": [
-            [6, 'desc']
+            [5, 'desc']
         ]
     });
     $('.datatable').attr('style', 'border-collapse: collapse !important');

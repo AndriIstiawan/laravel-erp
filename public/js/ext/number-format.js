@@ -16,9 +16,9 @@ $('.idr-currency').on('change', function(){
 
 $('.input-number').on('change', function(){
     var number = $(this).val();
-    if(parseInt(number)){
-        number = parseInt(number);
-        if(number < 1 ){ number = ''; }
+    if(parseFloat(number)){
+        number = parseFloat(number);
+        if(number < 0 ){ number = ''; }
     }else{
         number = '';
     }

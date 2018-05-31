@@ -8,6 +8,7 @@ use App\Counter;
 use App\Member;
 use App\Product;
 use App\SalesOrder;
+use App\Carriers;
 use App\User;
 use Excel;
 use DateTime;
@@ -45,9 +46,13 @@ class SalesOrderController extends Controller
     {
         $members = Member::all();
         $products = Product::all();
+        $carrier = Carriers::where('status', 'on')->get();
+        $member = Member::groupBy('code')->count('shipping_address');
         return view('panel.transaction-management.sales-order.form-create')->with([
             'members' => $members,
             'products' => $products,
+            'memberssss' => $member,
+            'carrier' => $carrier
         ]);
     }
 
@@ -83,7 +88,15 @@ class SalesOrderController extends Controller
         $so->billing = $request->billing;
         $so->shipping = $client['shipping_address'][(int) $request->shipping]['address'];
         $so->TOP = $request->TOP;
-        $so->white_label = $request->whiteLabel;
+
+        if ($request->whiteLabel == ''){
+            $so->white_label = 'Tidak';
+        }else{
+            $so->white_label = 'Ya';
+        }
+
+        $deliverys=Carriers::where('_id', $request->delivery)->get();
+        $so->delivery = $deliverys->toArray();
 
         if ($request->packkayu == '') {
             $so->pack_kayu = 'Tidak';
@@ -108,12 +121,7 @@ class SalesOrderController extends Controller
                 "weight" => (double) $request->input('weight' . $key),
                 "total" => ((double) $request->input('total' . $key)) * 1000,
                 "realisasi" => ((double) $request->input('realisasi' . $key)) * 1000,
-                "stockk" => null,
-                "pending" => null,
-                "balance" => null,
-                "pendingpr" => null,
                 "tunggu" => null,
-                "check" => null,
                 "produksi" => null,
             ];
         }
@@ -203,12 +211,18 @@ class SalesOrderController extends Controller
         $order = SalesOrder::find($id);
         $client = Member::find($order['client'][0]['_id']);
         $members = Member::all();
+        $member = Member::groupBy('code')->count('shipping_address');
         $products = Product::all();
+        $delivery = Carriers::find($order['delivery'][0]['_id']);
+        $carrier = Carriers::where('status', 'on')->get();
         return view('panel.transaction-management.sales-order.form-edit')->with([
             'order' => $order,
             'client' => $client,
             'members' => $members,
             'products' => $products,
+            'carrier' => $carrier,
+            'memberssss' => $member,
+            'delivery' => $delivery
         ]);
     }
 
@@ -243,8 +257,15 @@ class SalesOrderController extends Controller
         $so['billing']= $request->billing;
         $so['shipping'] = $client['shipping_address'][(int) $request->shipping]['address'];
         $so['TOP'] = $request->TOP;
-        $so['white_label'] = $request->whiteLabel;
-        $so['pack_kayu'] = $request->packkayu;
+
+        if ($request->whiteLabel == ''){
+            $so['white_label'] = 'Tidak';
+        }else{
+            $so['white_label'] = 'Ya';
+        }
+        
+        $deliverys=Carriers::where('_id', $request->delivery)->get();
+        $so['delivery'] = $deliverys->toArray();
         
         if ($request->packkayu == '') {
             $so['pack_kayu'] = 'Tidak';
@@ -269,12 +290,7 @@ class SalesOrderController extends Controller
                 "weight" => (double) $request->input('weight' . $key),
                 "total" => ((double) $request->input('total' . $key)) * 1000,
                 "realisasi" => ((double) $request->input('realisasi' . $key)) * 1000,
-                'stockk' => null,
-                'pending' => null,
-                'balance' => null,
-                'pendingpr' => null,
                 "tunggu" => null,
-                "check" => null,
                 "produksi" => null,
             ];
         }
@@ -284,14 +300,16 @@ class SalesOrderController extends Controller
         $so['total_realisasi'] = $total_realisasi;
         $so['status'] = "order";
 
-        $checks=user::where('_id', $request->check)->get();
+        /*$checks=user::where('_id', $request->check)->get();
         $so['check']=$checks->toArray();
 
         $produksis=user::where('_id', $request->produksi)->get();
-        $so['produksi']=$produksis->toArray();
+        $so['produksi']=$produksis->toArray();*/
 
         $so->save();
         return redirect()->route('sales-order.index')->with('update', 'sales-order');
+
+        /*return dd($so);*/
     }
 
     //delete data discount
@@ -370,8 +388,10 @@ class SalesOrderController extends Controller
                         ((double)$so_product['total']/1000),
                         $so_product['quantity']." ".$so_product['package']." ".$so_product['weight'],
                         $salesorder->pack_kayu,
+                        $salesorder['delivery'][0]['name'],
                         "",
                         $salesorder->TOP,
+                        isset($salesorder['client'][0]['limit']),
                         $salesorder->created_at,
                         $salesorder->status,
                     ];

@@ -83,6 +83,22 @@
                                     <em id="mobile-error" class="error invalid-feedback"></em>
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <div class="input-group col-md-12">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">
+                                            Rp
+                                        </span>
+                                    </div>
+                                    <input type="text" class="form-control idr-currency" id="limit" name="limit" placeholder="Limit" aria-describedby="limit-error">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">
+                                            <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" data-original-title="ex: 10000"></i>
+                                        </span>
+                                    </div>
+                                    <em id="limit-error" class="error invalid-feedback"></em>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -927,6 +943,9 @@
             displayName: {
                 required: true
             },
+            limit: {
+                required: true
+            },
             fullname: {
                 required: true
             },
@@ -952,6 +971,9 @@
         messages: {
             displayName: {
                 required: 'Please enter display name'
+            },
+            limit: {
+                required: 'Please enter limit'
             },
             fullname: {
                 required: 'Please enter fullname'

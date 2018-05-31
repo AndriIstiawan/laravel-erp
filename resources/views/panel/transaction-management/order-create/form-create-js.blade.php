@@ -1,5 +1,11 @@
 <script src="{{ asset('fiture-style/select2/select2.min.js') }}"></script>
 <script>
+
+    $('#delivery').select2({theme:"bootstrap", placeholder:'Dikirim via',tags: true});
+    $('#delivery').on('change', function(){
+       $(this).addClass('is-valid').removeClass('is-invalid');
+    });
+    
     var submit = false;
     var count = 1;
     $('#client').select2({
@@ -118,6 +124,9 @@
             client: {
                 required: true
             },
+            delivery: {
+                required: true
+            },
             TOP: {
                 required: true
             },
@@ -143,6 +152,9 @@
         messages: {
             client: {
                 required: 'Mohon pilih client'
+            },
+            delivery: {
+                required: 'Mohon pilih kurir pengiriman'
             },
             TOP: {
                 required: 'Mohon input terms of payment'
@@ -333,7 +345,7 @@
         var realisasi = '';
 
         weight = parseInt(weight.val());
-        total = parseInt(total.val())*1000;
+        total = parseFloat(total.val())*1000;
 
         if(!isNaN(weight)&&!isNaN(total)){
             console.log('masuk weight & total number');
