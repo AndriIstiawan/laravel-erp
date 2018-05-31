@@ -36,10 +36,10 @@
                                                     }
                                                     ?>
                                                     @if(!$user['role'] || $user['role'][0]['name'] == 'Admin' )
-                                                    <option value="{{$member->id}}">{{$member->display_name}} - {{$sales_member['name']}}</option>
+                                                    <option value="{{$member->id}}">{{$member->display_name}} - {{$member['sales'][0]['name']}}</option>
                                                     @else
                                                         @if($user['email'] == $sales_member['email'] || $status)
-                                                        <option value="{{$member->id}}">{{$member->display_name}} - {{$sales_member['name']}}</option>
+                                                        <option value="{{$member->id}}">{{$member->display_name}} - {{$member['sales'][0]['name']}}</option>
                                                         @endif
                                                     @endif
                                                     

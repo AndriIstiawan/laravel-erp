@@ -34,7 +34,7 @@
                                             <select id="client" class="form-control" name="client" aria-describedby="client-error">
                                                 <option value=""></option>
                                                 @foreach($members as $member)
-                                                <option value="{{$member->id}}">{{$member->display_name}} - {{$member->sales[0]['detail'][count($member->sales[0]['detail'])-1]['name']}}</option>
+                                                <option value="{{$member->id}}">{{$member->display_name}} - {{$member->sales[0]['name']}}</option>
                                                 @endforeach
                                             </select>
                                         </div>

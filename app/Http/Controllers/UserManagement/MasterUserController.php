@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Permission;
 use App\Role;
 use App\User;
+use App\Member;
+use App\SalesOrder;
 use Auth;
 use File;
 use Illuminate\Http\Request;
@@ -60,6 +62,8 @@ class MasterUserController extends Controller
         //if id != '' => user edit, else => user create new
         if ($request->id != '') {
             $user = User::find($request->id);
+            Member::where('sales', 'elemMatch', array('_id' => $request->id))->update(array('sales.0.name' => $request->name));
+            // SalesOrder::where('sales', 'elemMatch', array('_id' => $request->id))->update(array('sales.0.name' => $request->name));
         } else {
             $user = new User();
         }
