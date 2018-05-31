@@ -11,6 +11,7 @@ class PermissionsTableSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('permissions')->truncate();
         DB::table('permissions')->insert([
 			[
 	        	'name' => 'Transaction',
@@ -188,6 +189,28 @@ class PermissionsTableSeeder extends Seeder
 				'created_at' => date("Y-m-d H:i:s"),
 				'updated_at' => date("Y-m-d H:i:s")
 			],
+      [
+        'name' => 'Master Packaging',
+        'slug' => null,
+        'type' => 'module-menu',
+        'icon' => 'fa fa-dropbox',
+        'parent' => null,
+        'description' => 'Module Menu',
+        'guard_name' => 'web',
+        'created_at' => date("Y-m-d H:i:s"),
+        'updated_at' => date("Y-m-d H:i:s")
+      ],
+      [
+        'name' => 'Packaging',
+        'slug' => 'packaging',
+        'type' => 'module-menu',
+        'icon' => 'icon-cursor',
+        'parent' => null,
+        'description' => 'Module Menu',
+        'guard_name' => 'web',
+        'created_at' => date("Y-m-d H:i:s"),
+        'updated_at' => date("Y-m-d H:i:s")
+      ],
             // [
 	        // 	'name' => 'Location',
 	        // 	'slug' => 'location',
@@ -221,7 +244,7 @@ class PermissionsTableSeeder extends Seeder
 			// 	'created_at' => date("Y-m-d H:i:s"),
 			// 	'updated_at' => date("Y-m-d H:i:s")
 			// ],
-			
+
 			// [
 	        // 	'name' => 'Promo',
 	        // 	'slug' => 'promo',
@@ -499,45 +522,45 @@ class PermissionsTableSeeder extends Seeder
 				'updated_at' => date("Y-m-d H:i:s")
 			]*/
 		]);
-		
-		$parent = DB::table('permissions')->where('name','User Management')->first();
-		DB::table('permissions')->whereIn('slug', ['role', 'master-user'])
-			->update(['parent' => (string)$parent['_id']]);
 
-		$parent = DB::table('permissions')->where('name','Transaction')->first();
-		DB::table('permissions')->whereIn('slug', ['sales-order','production','buat-so'])
-			->update(['parent' => (string)$parent['_id']]);
+$parent = DB::table('permissions')->where('name','User Management')->first();
+DB::table('permissions')->whereIn('slug', ['role', 'master-user'])
+->update(['parent' => (string)$parent['_id']]);
 
-		$parent = DB::table('permissions')->where('name','Master-Deal')->first();
-		DB::table('permissions')->whereIn('slug', ['discount','promo'])
-			->update(['parent' => (string)$parent['_id']]);
+$parent = DB::table('permissions')->where('name','Transaction')->first();
+DB::table('permissions')->whereIn('slug', ['sales-order','production','buat-so'])
+->update(['parent' => (string)$parent['_id']]);
 
-		$parent = DB::table('permissions')->where('name','Master-Home')->first();
-		DB::table('permissions')->whereIn('slug', ['slider','brands'])
-			->update(['parent' => (string)$parent['_id']]);
+$parent = DB::table('permissions')->where('name','Master-Deal')->first();
+DB::table('permissions')->whereIn('slug', ['discount','promo'])
+->update(['parent' => (string)$parent['_id']]);
 
-		$parent = DB::table('permissions')->where('name','Product Management')->first();
-		DB::table('permissions')->whereIn('slug', ['product','type'])
-			->update(['parent' => (string)$parent['_id']]);
+$parent = DB::table('permissions')->where('name','Master-Home')->first();
+DB::table('permissions')->whereIn('slug', ['slider','brands'])
+->update(['parent' => (string)$parent['_id']]);
 
-		$parent = DB::table('permissions')->where('name','Orders Management')->first();
-		DB::table('permissions')->whereIn('slug', ['orderstatuses','orders','cart'])
-			->update(['parent' => (string)$parent['_id']]);
+$parent = DB::table('permissions')->where('name','Product Management')->first();
+DB::table('permissions')->whereIn('slug', ['product','type'])
+->update(['parent' => (string)$parent['_id']]);
 
-		$parent = DB::table('permissions')->where('name','Payment')->first();
-		DB::table('permissions')->whereIn('slug', ['payment','payment-method','paymentpo'])
-			->update(['parent' => (string)$parent['_id']]);
+$parent = DB::table('permissions')->where('name','Payment')->first();
+DB::table('permissions')->whereIn('slug', ['payment','payment-method','paymentpo'])
+->update(['parent' => (string)$parent['_id']]);
 
-		/*$parent = DB::table('permissions')->where('name','Deliveries')->first();
-		DB::table('permissions')->whereIn('slug', ['deliveries','courier'])
-			->update(['parent' => (string)$parent['_id']]);*/
+// $parent = DB::table('permissions')->where('name','Deliveries')->first();
+// DB::table('permissions')->whereIn('slug', ['deliveries','courier'])
+// ->update(['parent' => (string)$parent['_id']]);
 
-		$parent = DB::table('permissions')->where('name','Master Client')->first();
-		DB::table('permissions')->whereIn('slug', ['master-client', 'location'/*,'level'*//*,'archievement'*/])
-			->update(['parent' => (string)$parent['_id']]);
+$parent = DB::table('permissions')->where('name','Master Client')->first();
+DB::table('permissions')->whereIn('slug', ['master-client', 'location'/*,'level'*//*,'archievement'*/])
+->update(['parent' => (string)$parent['_id']]);
 
-		$parent = DB::table('permissions')->where('name','Footer Management')->first();
-		DB::table('permissions')->whereIn('slug', ['footer','segment','segment-attributes'])
-			->update(['parent' => (string)$parent['_id']]);
-    }
+$parent = DB::table('permissions')->where('name','Footer Management')->first();
+DB::table('permissions')->whereIn('slug', ['footer','segment','segment-attributes'])
+->update(['parent' => (string)$parent['_id']]);
+
+$parent = DB::table('permissions')->where('name','Master Packaging')->first();
+DB::table('permissions')->whereIn('slug', ['packaging'])
+->update(['parent' => (string)$parent['_id']]);
+}
 }
