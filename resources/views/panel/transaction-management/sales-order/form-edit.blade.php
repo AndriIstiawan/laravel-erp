@@ -165,7 +165,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <textarea name="notes" rows="3" class="form-control" placeholder="Notes" style="resize: none;">{{$order['notes']}}</textarea>
+                                    <textarea name="notes" rows="3" class="form-control" placeholder="Catatan" style="resize: none;">{{$order['notes']}}</textarea>
                                 </div>
                             </div>
                         </div>

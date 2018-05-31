@@ -108,7 +108,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <textarea name="notes" rows="3" class="form-control" placeholder="Notes" style="resize: none;"></textarea>
+                                    <textarea name="notes" rows="3" class="form-control" placeholder="Catatan" style="resize: none;"></textarea>
                                 </div>
                             </div>
                         </div>
