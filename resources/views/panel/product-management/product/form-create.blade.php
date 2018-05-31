@@ -283,6 +283,8 @@
 @section('myscript')
 <script>
 $(function(){
+  $('.input-float').keypress(validateNumber);
+  $('.idr-currency').keypress(validateNumber);
   $('.idr-currency').priceFormat({
          prefix:'',
          centsSeparator:'',
