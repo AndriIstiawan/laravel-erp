@@ -13,6 +13,10 @@
             <em id="name-error" class="error invalid-feedback">Please enter a name carriers</em>
         </div>
         <div class="form-group">
+            <label class="col-form-label" for="name">Prices (optional)</label>
+                <input type="text" class="form-control idr-currency" name="prices" placeholder="0" >
+        </div>
+        <div class="form-group">
           <label class="col-form-label" for="status">Status</label> <p>
             <label class="switch switch-text switch-pill switch-info">
             <input type="checkbox" class="switch-input" name="status" >
@@ -35,6 +39,22 @@
 
 <script>
 
+  $('.idr-currency').on('change', function(){
+    var number = $(this).val();
+    number = number.replace('.',''); number = number.replace(',','.');
+    if(parseFloat(number)){
+        number = parseFloat(number);
+    }else{
+        number = parseFloat("0");
+    }
+    if(number == '0'){ 
+        number = ''; 
+    }else{
+        number = number.toLocaleString('id-ID')
+    }
+    $(this).val(number);
+    });
+
   $('#type').select2({theme:"bootstrap", placeholder:'Please select'});
   $('#type').on('change', function(){
     $(this).addClass('is-valid').removeClass('is-invalid');
@@ -44,7 +64,6 @@
       name:{required:true,minlength:2},
       type:{required:true},
       to:{required:true,minlength:2},
-      prices:{required:true},
       api:{required:true},
     },
     messages:{
@@ -55,9 +74,6 @@
       to:{
         required:'Please enter a to',
         minlength:'Name must consist of at least 2 characters'
-      },
-      prices:{
-        required:'Please select a prices'
       },
       type:{
         required:'Please select a type'

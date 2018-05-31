@@ -11,15 +11,19 @@
               <label class="col-form-label" for="name">*Name</label>
                   <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{$carriers['name']}}" aria-describedby="name-error">
               <em id="name-error" class="error invalid-feedback">Please enter a name courier</em>
-          </div>
-          <div class="form-group">
-            <label class="col-form-label" for="status">Status</label> <p>
-              <label class="switch switch-text switch-pill switch-info">
-              <input type="checkbox" class="switch-input" id="status" name="status" {{($carriers->status? 'checked': '')}} tabindex="-1">
-              <span class="switch-label" data-on="On" data-off="Off"></span>
-              <span class="switch-handle"></span>
-              </label>
-          </div>
+          	</div>
+          	<div class="form-group">
+	            <label class="col-form-label" for="name">Prices (optional)</label>
+	                <input type="text" class="form-control idr-currency" value="{{$carriers['prices']}}" name="prices" placeholder="0" >
+	        </div>
+	        <div class="form-group">
+	            <label class="col-form-label" for="status">Status</label> <p>
+	              	<label class="switch switch-text switch-pill switch-info">
+	              	<input type="checkbox" class="switch-input" id="status" name="status" {{($carriers->status? 'checked': '')}} tabindex="-1">
+	              	<span class="switch-label" data-on="On" data-off="Off"></span>
+	              	<span class="switch-handle"></span>
+	            </label>
+	        </div>
       	</div>
     </div>
 	</div>
@@ -34,6 +38,22 @@
 <script src="{{ asset('fiture-style/select2/select2.min.js') }}"></script>
 
 <script>
+	$('.idr-currency').on('change', function(){
+    var number = $(this).val();
+    number = number.replace('.',''); number = number.replace(',','.');
+    if(parseFloat(number)){
+        number = parseFloat(number);
+    }else{
+        number = parseFloat("0");
+    }
+    if(number == '0'){ 
+        number = ''; 
+    }else{
+        number = number.toLocaleString('id-ID')
+    }
+    $(this).val(number);
+    });
+
 	$('#jxForm').validate({
 		rules:{
 			name:{required:true,minlength:2},

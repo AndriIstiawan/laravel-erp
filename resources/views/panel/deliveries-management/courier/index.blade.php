@@ -30,6 +30,7 @@
 							<thead>
 								<tr>
 									<th>Name</th>
+									<th>Prices</th>
 									<th>Status</th>
 									<th>Date registered</th>
 									<th></th>
@@ -73,6 +74,7 @@
 	        ajax: '{!! url()->current() !!}/data',
 	        columns: [
 	            {data: 'name', name: 'name'},
+	            {data: 'prices', name: 'prices'},
 	            {data: 'status', name: 'status'},
 	            {data: 'created_at', name: 'created_at'},
 	            {data: 'action', name: 'action', orderable: false, searchable: false, width:'20%'}
