@@ -73,6 +73,7 @@ class SalesOrderController extends Controller
                 $get_divisi,
             ];
             $sales = [
+                '_id' => $client['divisi'][(int) $request->divisi]['sales'][0]['_id'],
                 'name' => $client['divisi'][(int) $request->divisi]['sales'][0]['name'],
                 'detail' => $client['divisi'][(int) $request->divisi]['sales'][0]['detail'][0],
             ];
@@ -243,6 +244,7 @@ class SalesOrderController extends Controller
                 $get_divisi,
             ];
             $sales = [
+                '_id' => $client['divisi'][(int) $request->divisi]['sales'][0]['_id'],
                 'name' => $client['divisi'][(int) $request->divisi]['sales'][0]['name'],
                 'detail' => $client['divisi'][(int) $request->divisi]['sales'][0]['detail'][0],
             ];

@@ -35,7 +35,7 @@
                                             <select id="client" class="form-control" name="client" aria-describedby="client-error">
                                                 <option value=""></option>
                                                 @foreach($members as $member)
-                                                <option value="{{$member->id}}" {{($client['id']==$member->id?'selected':'')}}>{{$member->display_name}} - {{$member->sales[0]['detail'][count($member->sales[0]['detail'])-1]['name']}}</option>
+                                                <option value="{{$member->id}}" {{($client['id']==$member->id?'selected':'')}}>{{$member->display_name}} - {{$member->sales[0]['name']}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -165,7 +165,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <textarea name="notes" rows="3" class="form-control" placeholder="Notes" style="resize: none;">{{$order['notes']}}</textarea>
+                                    <textarea name="notes" rows="3" class="form-control" placeholder="Catatan" style="resize: none;">{{$order['notes']}}</textarea>
                                 </div>
                             </div>
                         </div>

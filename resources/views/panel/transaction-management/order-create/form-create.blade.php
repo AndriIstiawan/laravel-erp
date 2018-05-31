@@ -36,10 +36,10 @@
                                                     }
                                                     ?>
                                                     @if(!$user['role'] || $user['role'][0]['name'] == 'Admin' )
-                                                    <option value="{{$member->id}}">{{$member->display_name}} - {{$sales_member['name']}}</option>
+                                                    <option value="{{$member->id}}">{{$member->display_name}} - {{$member['sales'][0]['name']}}</option>
                                                     @else
                                                         @if($user['email'] == $sales_member['email'] || $status)
-                                                        <option value="{{$member->id}}">{{$member->display_name}} - {{$sales_member['name']}}</option>
+                                                        <option value="{{$member->id}}">{{$member->display_name}} - {{$member['sales'][0]['name']}}</option>
                                                         @endif
                                                     @endif
                                                     
@@ -108,7 +108,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <textarea name="notes" rows="3" class="form-control" placeholder="Notes" style="resize: none;"></textarea>
+                                    <textarea name="notes" rows="3" class="form-control" placeholder="Catatan" style="resize: none;"></textarea>
                                 </div>
                             </div>
                         </div>
