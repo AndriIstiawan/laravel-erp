@@ -1,3 +1,10 @@
 $(function(){
-  $('#price').keypress(validateNumber)
+  $('#price').keypress(validateNumber);
+  $('#price').priceFormat({
+         prefix:'',
+         centsSeparator:'',
+         centsLimit:'',
+         clearPrefix:true,
+         thousandsSeparator:'.'
+     });
 });

@@ -79,43 +79,43 @@ class ProductController extends Controller
         $product->price = [
             [
                 'name' => '250g Plastik',
-                'price' => (double) str_replace(',', '', $request->input('250gPlastik')),
+                'price' => rollbackPrice($request->input('250gPlastik')),
             ],
             [
                 'name' => '250g Aluminium',
-                'price' => (double) str_replace(',', '', $request->input('250gAluminium')),
+                'price' => rollbackPrice($request->input('250gAluminium')),
             ],
             [
                 'name' => '500g Plastik',
-                'price' => (double) str_replace(',', '', $request->input('500gPlastik')),
+                'price' => rollbackPrice($request->input('500gPlastik')),
             ],
             [
                 'name' => '500g Aluminium',
-                'price' => (double) str_replace(',', '', $request->input('500gAluminium')),
+                'price' => rollbackPrice($request->input('500gAluminium')),
             ],
             [
                 'name' => '1kg Plastik',
-                'price' => (double) str_replace(',', '', $request->input('1kgPlastik')),
+                'price' => rollbackPrice($request->input('1kgPlastik')),
             ],
             [
                 'name' => '1kg Aluminium',
-                'price' => (double) str_replace(',', '', $request->input('1kgAluminium')),
+                'price' => rollbackPrice($request->input('1kgAluminium')),
             ],
             [
                 'name' => '5kg Jerigen',
-                'price' => (double) str_replace(',', '', $request->input('5kgJerigen')),
+                'price' => rollbackPrice($request->input('5kgJerigen')),
             ],
             [
                 'name' => '25kg Jerigen',
-                'price' => (double) str_replace(',', '', $request->input('25kgJerigen')),
+                'price' => rollbackPrice($request->input('25kgJerigen')),
             ],
             [
                 'name' => '25kg Drum',
-                'price' => (double) str_replace(',', '', $request->input('25kgDrum')),
+                'price' => rollbackPrice($request->input('25kgDrum')),
             ],
             [
                 'name' => '30kg Jerigen',
-                'price' => (double) str_replace(',', '', $request->input('30kgJerigen')),
+                'price' => rollbackPrice($request->input('30kgJerigen')),
             ],
         ];
         $product->stock = [
