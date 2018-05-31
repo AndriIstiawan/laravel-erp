@@ -35,6 +35,14 @@
 	@if(Session::get('dlt'))
 		toastr.success('Successful {{Session::get('dlt')}} deleted..', 'An {{Session::get('dlt')}} has been deleted.');
 	@endif
+	@if(Session::get('danger'))
+		//tambahan untk throw exeption gagal simpan n update
+		toastr.error('New {{Session::get('danger')}} failed to save', 'An error has occured');
+	@endif
+	@if(Session::get('danger-del'))
+		//tmbhn untuk throw exception gagal hapus
+		toastr.error('Data {{Session::get('danger')}} failed to delete', 'An error has occured');
+	@endif
 </script>
 
 <!-- Remove List Datatable -->
@@ -63,7 +71,7 @@
         }
     }
     var timeoutTime = 5000;
-    var timeoutTimer = setInterval(function(){ 
+    var timeoutTimer = setInterval(function(){
         $.ajax({
             url: "{{url('notif-erp')}}",
             type: 'GET',
@@ -76,7 +84,7 @@
     $(document).ready(function() {
         $('body').bind('mousedown keydown', function(event) {
             clearInterval(timeoutTimer);
-            timeoutTimer = setInterval(function(){ 
+            timeoutTimer = setInterval(function(){
                 $.ajax({
                     url: "{{url('notif-erp')}}",
                     type: 'GET',
