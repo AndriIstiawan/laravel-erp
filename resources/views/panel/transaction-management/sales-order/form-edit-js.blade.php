@@ -262,6 +262,17 @@
         weightClosest.val('').trigger('change');
     }
 
+    $('.input-number').on('change', function(){
+    var number = $(this).val();
+    if(parseFloat(number)){
+        number = parseFloat(number);
+        if(number < 0 ){ number = ''; }
+    }else{
+        number = '';
+    }
+    $(this).val(number);
+    });
+
     function countTotal(elm){
         var weight = elm.closest('.div-items').find('.weights');
         var total = elm.closest('.div-items').find('.totals');
