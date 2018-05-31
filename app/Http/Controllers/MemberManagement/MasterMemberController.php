@@ -88,6 +88,7 @@ class MasterMemberController extends Controller
         $member->phone = $phone;
         $sales = User::where('_id', $request->sales)->first();
         $member->sales = [[
+            '_id' => $sales['_id'],
             'name' => $sales['name'],
             'detail' => [
                 $sales->toArray(),
@@ -204,6 +205,7 @@ class MasterMemberController extends Controller
         $sales = User::where('_id', $request->sales)->first();
         $detail_sales[] = $sales->toArray();
         $member->sales = [[
+            '_id' => $sales['_id'],
             'name' => $sales['name'],
             'detail' => $detail_sales,
         ]];
@@ -366,6 +368,7 @@ class MasterMemberController extends Controller
                                 $member['divisi'] = [];
                                 $member['billing_address'] = $billingaddress;
                                 $member['sales'] = [[
+                                    '_id' => $sales['_id'],
                                     'name' => $sales['name'],
                                     'detail' => [$sales->toArray()],
                                 ]];
