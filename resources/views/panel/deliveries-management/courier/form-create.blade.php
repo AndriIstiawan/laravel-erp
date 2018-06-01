@@ -3,57 +3,56 @@
   <div class="modal-header"><h4 class="modal-title">Create New</h4>
   </div>
   <div class="modal-body">
-      {{ csrf_field() }}
+    {{ csrf_field() }}
     <div class="row">
       <div class="col-md-12">
         <div class="form-group">
-            <label class="col-form-label" for="name">*Name</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="Name" 
-              aria-describedby="name-error">
-            <em id="name-error" class="error invalid-feedback">Please enter a name carriers</em>
+          <label class="col-form-label" for="name">*Name</label>
+          <input type="text" class="form-control" id="name" name="name" placeholder="Name"
+          aria-describedby="name-error">
+          <em id="name-error" class="error invalid-feedback">Please enter a name carriers</em>
         </div>
         <div class="form-group">
-            <label class="col-form-label" for="name">Prices (optional)</label>
-                <input type="text" class="form-control idr-currency" name="prices" placeholder="0" >
+          <label class="col-form-label" for="price">Prices (optional)</label>
+          <input type="text" class="form-control idr-currency" name="price" placeholder="0" value="0">
         </div>
         <div class="form-group">
           <label class="col-form-label" for="status">Status</label> <p>
             <label class="switch switch-text switch-pill switch-info">
-            <input type="checkbox" class="switch-input" name="status" >
-            <span class="switch-label" data-on="On" data-off="Off"></span>
-            <span class="switch-handle"></span>
+              <input type="checkbox" class="switch-input" name="status" >
+              <span class="switch-label" data-on="On" data-off="Off"></span>
+              <span class="switch-handle"></span>
             </label>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="modal-footer">
-    <div class="form-group">
-      <button type="submit" class="btn btn-primary" name="signup" value="Sign up">Add New</button>
-      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <div class="modal-footer">
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary" name="signup" value="Sign up">Add New</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
     </div>
-  </div>
-</form>
+  </form>
+  @section('myscript')
+  <script src="{{ asset('fiture-style/select2/select2.min.js') }}"></script>
 
-<script src="{{ asset('fiture-style/select2/select2.min.js') }}"></script>
-
-<script>
-
+  <script>
   $('.idr-currency').on('change', function(){
     var number = $(this).val();
     number = number.replace('.',''); number = number.replace(',','.');
     if(parseFloat(number)){
-        number = parseFloat(number);
+      number = parseFloat(number);
     }else{
-        number = parseFloat("0");
+      number = parseFloat("0");
     }
-    if(number == '0'){ 
-        number = ''; 
+    if(number == '0'){
+      number = '';
     }else{
-        number = number.toLocaleString('id-ID')
+      number = number.toLocaleString('id-ID')
     }
     $(this).val(number);
-    });
+  });
 
   $('#type').select2({theme:"bootstrap", placeholder:'Please select'});
   $('#type').on('change', function(){
@@ -77,7 +76,7 @@
       },
       type:{
         required:'Please select a type'
-      }, 
+      },
       api:{
         required:'Please select a api'
       }
@@ -94,22 +93,24 @@
     }
   });
 
-$(document).ready(function(){
-$("select").change(function(){
-    $(this).find("option:selected").each(function(){
+  $(document).ready(function(){
+
+    $("select").change(function(){
+      $(this).find("option:selected").each(function(){
         if($(this).attr("value")=="Courier"){
-            $(".box").not(".Courier").hide();
-            $(".Courier").show();
+          $(".box").not(".Courier").hide();
+          $(".Courier").show();
         }else if($(this).attr("value")=="COD"){
-            $(".box").not(".COD").hide();
-            $(".COD").show();
+          $(".box").not(".COD").hide();
+          $(".COD").show();
         }else if($(this).attr("value")=="multiselect"){
-            $(".box").not(".multiselect").hide();
-            $(".multiselect").show();
+          $(".box").not(".multiselect").hide();
+          $(".multiselect").show();
         }else{
-            $(".box").hide();
+          $(".box").hide();
         }
-    });
-}).change();
-});
+      });
+    }).change();
+  });
 </script>
+@endsection

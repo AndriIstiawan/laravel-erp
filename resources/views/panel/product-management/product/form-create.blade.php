@@ -281,6 +281,7 @@
 <!-- /.container-fluid -->
 
 @section('myscript')
+<script src="{{ asset('js/medivh.js') }}"></script>
 <script>
 $(function(){
   $('.input-float').keypress(validateNumber);

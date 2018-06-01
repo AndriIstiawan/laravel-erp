@@ -119,6 +119,7 @@
 @endsection
 
 @section('myscript')
+<script src="{{ asset('js/medivh.js') }}"></script>
 <script src="{{ asset('fiture-style/select2/select2.min.js') }}"></script>
 <script>
 
@@ -165,7 +166,7 @@
 	$('#category').on('change', function(){
     $(this).addClass('is-valid').removeClass('is-invalid');
 	  });
-	  
+
 	  $('#level').select2({theme:"bootstrap", placeholder:'Please select'});
 	$('#level').on('change', function(){
     $(this).addClass('is-valid').removeClass('is-invalid');
@@ -175,12 +176,12 @@
 	$('#product').on('change', function(){
     $(this).addClass('is-valid').removeClass('is-invalid');
 	  });
-	  
+
 	  $('#member').select2({theme:"bootstrap", placeholder:'Please select'});
 	$('#member').on('change', function(){
     $(this).addClass('is-valid').removeClass('is-invalid');
   	});
-	
+
 	$('#jxForm').validate({
 		rules:{
 			type:{required:true},
@@ -226,6 +227,7 @@
 		}
 	});
 $(document).ready(function(){
+	$('.value').keypress(validateNumber);
 $("select").change(function(){
     $(this).find("option:selected").each(function(){
         if($(this).attr("value")=="Price"){

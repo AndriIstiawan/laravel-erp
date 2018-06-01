@@ -13,8 +13,8 @@
               <em id="name-error" class="error invalid-feedback">Please enter a name courier</em>
           	</div>
           	<div class="form-group">
-	            <label class="col-form-label" for="name">Prices (optional)</label>
-	                <input type="text" class="form-control idr-currency" value="{{$carriers['prices']}}" name="prices" placeholder="0" >
+	            <label class="col-form-label" for="price">Prices (optional)</label>
+	                <input type="text" class="form-control idr-currency" value="{{$carriers['price']}}" name="price" placeholder="0" >
 	        </div>
 	        <div class="form-group">
 	            <label class="col-form-label" for="status">Status</label> <p>
@@ -46,8 +46,8 @@
     }else{
         number = parseFloat("0");
     }
-    if(number == '0'){ 
-        number = ''; 
+    if(number == '0'){
+        number = '';
     }else{
         number = number.toLocaleString('id-ID')
     }
