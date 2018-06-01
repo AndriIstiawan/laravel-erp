@@ -47,7 +47,7 @@ class SalesOrderController extends Controller
         $members = Member::all();
         $products = Product::all();
         $carrier = Carriers::where('status', 'on')->get();
-        $member = Member::groupBy('code')->count('shipping_address');
+        $member = Member::all();
         return view('panel.transaction-management.sales-order.form-create')->with([
             'members' => $members,
             'products' => $products,
