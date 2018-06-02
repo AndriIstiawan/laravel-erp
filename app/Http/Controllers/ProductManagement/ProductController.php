@@ -384,7 +384,7 @@ class ProductController extends Controller
             $reader->setActiveSheetIndex(0);
             $sheet1 = $reader->getActiveSheet();
             $sheet1->fromArray($data, null, 'A3', false, false);
-        })->setFilename('client-form-export[' . date("H-i-s d-m-Y") . "]")->download('xlsx');
+        })->setFilename('product-form-export[' . date("H-i-s d-m-Y") . "]")->download('xlsx');
     }
 
     //view form import
