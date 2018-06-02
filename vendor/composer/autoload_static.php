@@ -397,6 +397,7 @@ class ComposerStaticInitd80677642af87e169186fc7d444a9776
         'App\\CodeMember' => __DIR__ . '/../..' . '/app/CodeMember.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Counter' => __DIR__ . '/../..' . '/app/Counter.php',
+        'App\\Couriers' => __DIR__ . '/../..' . '/app/Couriers.php',
         'App\\Custom' => __DIR__ . '/../..' . '/app/Custom.php',
         'App\\Deliveries' => __DIR__ . '/../..' . '/app/Deliveries.php',
         'App\\Discounts' => __DIR__ . '/../..' . '/app/Discounts.php',
