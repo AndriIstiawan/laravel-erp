@@ -4,7 +4,7 @@ namespace App\Http\Controllers\DeliveriesManagement;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Carriers;
+use App\Couriers;
 use App\Taxes;
 use Yajra\Datatables\Datatables;
 
@@ -47,13 +47,26 @@ class CarriersController extends Controller
   //store data courier
   public function store(Request $request)
   {
-    $taxes = new Carriers();
-    $taxes->name = $request->name;
-    $taxes->price = $request->price;
-    $taxes->status = $request->status;
-    $taxes->save();
+    $data = collect($request->all())
+    ->except(['_token'])
+    ->all();
+    if($request->id){
+      $carriers = Couriers::find($request->id);
+      if($carriers){
+        $carriers->update($data);
+        return redirect()->route('courier.index')->with('update', 'courier');
+      }else{
+        return redirect()->route('courier.index')->with('danger', 'courier');
+      }
+    }else{
+      $carriers = Couriers::create($data);
 
-    return redirect()->route('courier.index')->with('toastr', 'new');
+      if($carriers){
+        return redirect()->route('courier.index')->with('toastr', 'new');
+      }else{
+        return redirect()->route('courier.index')->with('danger', 'courier');
+      }
+    }
   }
 
   /**
@@ -64,7 +77,7 @@ class CarriersController extends Controller
   */
   //for getting datatable at index
   public function show(Request $request, $action){
-    $carriers = carriers::all();
+    $carriers = Couriers::all();
 
     return Datatables::of($carriers)
     ->editColumn('name', function($index){
@@ -73,10 +86,16 @@ class CarriersController extends Controller
     ->editColumn('price', function($index){
       return formatPrice($index->price);
     })
+    ->editColumn('status', function($index){
+      if($index->status){
+        return ucwords($index->status);
+      }else{
+        return ucwords('off');
+      }
+    })
     ->addColumn('action', function ($carriers) {
       return
-      '<center><button class="btn btn-success btn-sm"  data-toggle="modal" data-target="#primaryModal"
-      onclick="funcModal($(this))" data-link="'.route('courier.edit',['id' => $carriers->id]).'">
+      '<center><button class="btn btn-success btn-sm edit" idt="'.$carriers->id.'">
       <i class="fa fa-pencil-square-o"></i>&nbsp;Edit</button> '.
       '<form style="display:inline;" method="POST" action="'.
       route('courier.destroy',['id' => $carriers->id]).'">'.method_field('DELETE').csrf_field().
@@ -95,8 +114,7 @@ class CarriersController extends Controller
   //view form edit
   public function edit($id)
   {
-    $carriers = Carriers::find($id);
-    return view('panel.deliveries-management.courier.form-edit')->with(['carriers'=>$carriers]);
+    return Couriers::find($id);
   }
 
   /**
@@ -127,7 +145,7 @@ class CarriersController extends Controller
   //delete data carriers
   public function destroy($id)
   {
-    $taxes = Carriers::find($id);
+    $taxes = Couriers::find($id);
     $taxes->delete();
 
     return redirect()->route('courier.index')->with('dlt', 'Courier deleted!');

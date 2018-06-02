@@ -14,6 +14,7 @@ return array(
     'App\\CodeMember' => $baseDir . '/app/CodeMember.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Counter' => $baseDir . '/app/Counter.php',
+    'App\\Couriers' => $baseDir . '/app/Couriers.php',
     'App\\Custom' => $baseDir . '/app/Custom.php',
     'App\\Deliveries' => $baseDir . '/app/Deliveries.php',
     'App\\Discounts' => $baseDir . '/app/Discounts.php',

@@ -1,4 +1,4 @@
-<link href="{{ asset('fiture-style/select2/select2.min.css') }}" rel="stylesheet">
+
 <form id="jxForm" novalidate="novalidate" method="POST" action="{{ route('courier.index') }}">
   <div class="modal-header"><h4 class="modal-title">Create New</h4>
   </div>
