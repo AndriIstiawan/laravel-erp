@@ -266,10 +266,10 @@ class MasterMemberController extends Controller
                     implode(' / ', array_column($member->shipping_address, 'address')),
                     $member->email,
                     $member->limit,
-                    '="'.$data_mobile.'"',
-                    '="'.$data_phone.'"',
-                    /*$data_mobile,
-                    $data_phone,*/
+                    /*'="'.$data_mobile.'"',
+                    '="'.$data_phone.'"',*/
+                    $data_mobile,
+                    $data_phone,
                     $member->remarks,
                     $member->kota,
                     $member->provinsi,
