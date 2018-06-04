@@ -47,8 +47,8 @@
 					<div class="modal-content">
 							<form enctype="multipart/form-data" id="jxForm" novalidate="novalidate" role="form" method="POST" action="{{ route('courier.store') }}">
 		        			<input type="hidden" name="_token" value="{{ csrf_token() }}">
-		        				<div class="modal-header" style="background-color:#1a75ff;">
-											<h4>New Courier</h4>
+		        				<div class="modal-header" style="background-color:#20a8d8;">
+											<h4 style="color:white !important;">New Courier</h4>
 		          				<button type="button" class="close" data-dismiss="modal" ><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 		        				</div>
 		        				<div class="modal-body">
