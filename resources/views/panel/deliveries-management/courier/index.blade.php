@@ -25,12 +25,13 @@
 							<table class="table table-responsive-sm table-bordered table-striped table-sm datatable">
 								<thead>
 									<tr>
+										<th>#</th>
 										<th>Name</th>
 										<th>Currency</th>
 										<th>Prices</th>
 										<th>Status</th>
 										<th>Date registered</th>
-										<th></th>
+										<th>Action</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -58,14 +59,16 @@
 		            						</div>
 		          					</div>
 												<div class="form-group">
-			          					<label class="col-form-label" for="name">*Name</label>
+			          					<label class="col-form-label" for="name">*Name
+														 <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="Name"></i>
+													</label>
 			          					<input type="text" class="form-control" id="name" name="name" placeholder="Name"
 			          					aria-describedby="name-error">
 			          					<em id="name-error" class="error invalid-feedback">Please enter a name carriers</em>
 								        </div>
 												<div class="form-group">
 						              <label class="col-form-label" for="code">*Currency (optional)
-						                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="Price"></i>
+						                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="Currency"></i>
 						              </label>
 						              <div class="col-sm-9">
 						                <select id="currency" name="currency" style="width:100%; height:50%;">
@@ -78,11 +81,15 @@
 						              <em id="currency-error" class="error invalid-feedback">Please enter a valid currency</em>
 						            </div>
 												<div class="form-group">
-			          					<label class="col-form-label" for="price">Prices (optional)</label>
+			          					<label class="col-form-label" for="price">*Prices (optional)
+														 <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="Price"></i>
+													</label>
 			          					<input type="text" class="form-control idr-currency" name="price" placeholder="0">
 			        					</div>
 			        					<div class="form-group">
-			          					<label class="col-form-label" for="status">Status</label><p>
+			          					<label class="col-form-label" for="status">*Status
+														 <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="Status"></i>
+													</label><p>
 			            				<label class="switch switch-text switch-pill switch-info">
 			              			<input type="checkbox" class="switch-input" name="status" >
 			              			<span class="switch-label" data-on="On" data-off="Off"></span>
@@ -128,7 +135,7 @@
       	'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     	},
   	});
-		//$('#currency').select2({theme:"bootstrap",placeholder:'Please select currency'});
+		$('#currency').select2({theme:"bootstrap"});
 		$(document).off('click', '.new').on('click', '.new', function(e){
 			modalShow();
 		});
@@ -144,14 +151,15 @@
   			success: function (response){
   			$("[name='id']").val(response._id);
   			$("[name='name']").val(response.name);
-				$("[name='currency']").val(response.currency);
+				$('#currency').val(response.currency).trigger('change');
 				$("[name='price']").val(response.price);
-				//$("[name='status']").val(response.status);
+
 				if(response.status == "on"){
 					$("[name='status']").prop('checked', true);
 				}else{
 					$("[name='status']").prop('checked', false);
 				}
+				//$('#currency option[value="'+response.currency+'"]').prop('selected', true);
   			modalShow();
   			}
   		});
@@ -213,6 +221,7 @@
 					serverSide: true,
 					ajax: '{!! url()->current() !!}/data',
 					columns: [
+							{data: 'nomor',name: 'nomor',orderable: false, searchable: false, render: function(data, type, row, meta) {  return meta.row + meta.settings._iDisplayStart + 1; }},
 							{data: 'name', name: 'name'},
 							{data: 'currency', name: 'currency'},
 							{data: 'price', name: 'price',sClass: "AlignR"},

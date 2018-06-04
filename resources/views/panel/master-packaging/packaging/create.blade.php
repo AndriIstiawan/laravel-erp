@@ -46,6 +46,7 @@
                 <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="Price"></i>
               </label>
                 <select id="currency" name="currency" style="width:100%">
+                  <option value=""></option>
                   @foreach(app('currency')->options() as $option)
                   <option value="{{ $option->label }}">{{ $option->label }}</option>
                   @endforeach
@@ -106,13 +107,13 @@ $('#jxForm').validate({
       remote:'Kode already in use. Please use other code.'
     },
     name:{
-      required:'Please select a type',
+      required:'Please select a name',
     },
     description:{
-      required:'Please enter a description'
+      required:'Please enter a description',
     },
     price:{
-      required:'Please enter a price'
+      required:'Please enter a price',
     }
   },
   errorElement:'em',
