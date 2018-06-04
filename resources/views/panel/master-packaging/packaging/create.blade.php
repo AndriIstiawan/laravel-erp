@@ -69,9 +69,10 @@
 <script>
 $('#jxForm').validate({
   rules:{
-    type:{required:true},
-    value:{required:true},
-    kode:{
+    name:{required:true},
+    price:{required:true},
+    description:{required:true},
+    code:{
       required:true,
       remote:{
         url: '{{ route('packaging.index') }}/find',
