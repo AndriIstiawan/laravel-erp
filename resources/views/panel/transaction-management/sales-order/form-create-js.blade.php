@@ -3,7 +3,12 @@
     
     $('#delivery').select2({theme:"bootstrap", placeholder:'Dikirim via'/*,tags: true*/});
     $('#delivery').on('change', function(){
-       $(this).addClass('is-valid').removeClass('is-invalid');
+       $(this).valid();
+    });
+
+$('#packkayu').select2({theme:"bootstrap", placeholder:'Kemasan'/*,tags: true*/});
+    $('#packkayu').on('change', function(){
+       $(this).valid();
     });
 
     var submit = false;

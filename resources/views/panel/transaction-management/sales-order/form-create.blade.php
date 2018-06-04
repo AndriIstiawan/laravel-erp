@@ -76,17 +76,17 @@
                                     </div>
                                     <br>
                                 </div>
-                                <div class="col-md-3">
+                                <!-- <div class="col-md-3">
                                     <div class="form-group" style="padding-left:30px;">
                                         <input class="form-check-input" type="checkbox" name="whiteLabel">Label Polos
                                     </div>
-                                </div>
-                                <div class="col-md-3">
+                                </div> -->
+                                <!-- <div class="col-md-6">
                                     <div class="form-group" style="padding-left:30px;">
                                         <input class="form-check-input" type="checkbox" name="packkayu">Kemasan Kayu
                                     </div>
-                                </div>
-                                <div class="col-md-6">
+                                </div> -->
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <select id="delivery" class="form-control" name="delivery" aria-describedby="delivery-error">
                                             <option value=""></option>
@@ -95,6 +95,17 @@
                                             @endforeach
                                         </select>
                                         <em id="delivery-error" class="error invalid-feedback"></em>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <select id="packkayu" class="form-control" name="packkayu" aria-describedby="packkayu-error">
+                                            <option value=""></option>
+                                            @foreach($packaging as $packagings)
+                                            <option value="{{$packagings->name}}">{{$packagings->name}}</option>
+                                            @endforeach
+                                        </select>
+                                        <em id="packkayu-error" class="error invalid-feedback"></em>
                                     </div>
                                 </div>
                             </div>

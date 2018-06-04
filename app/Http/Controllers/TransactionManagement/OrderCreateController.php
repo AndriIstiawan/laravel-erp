@@ -8,6 +8,7 @@ use App\Counter;
 use App\Carriers;
 use App\SalesOrder;
 use App\User;
+use App\Packaging;
 use App\Member;
 use App\Product;
 use Auth;
@@ -24,6 +25,7 @@ class OrderCreateController extends Controller
         $user = Auth::user();
         $members = Member::all();
         $products = Product::all();
+        $packaging = Packaging::all();
         $carrier = Carriers::all();
         $member = Member::groupBy('code')->count('shipping_address');
         return view('panel.transaction-management.order-create.form-create')->with([
@@ -31,7 +33,8 @@ class OrderCreateController extends Controller
             'members' => $members,
             'products' => $products,
             'memberssss' => $member,
-            'carrier' => $carrier
+            'carrier' => $carrier,
+            'packaging' => $packaging
         ]);
     }
 

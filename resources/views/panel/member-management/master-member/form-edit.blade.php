@@ -92,6 +92,15 @@
                                     <em id="mobile-error" class="error invalid-feedback"></em>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <!-- Order information -->
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fa fa-align-justify"></i> Order
+                            <small>Information </small>
+                        </div>
+                        <div class="card-body">
                             <div class="form-group row">
                                 <div class="input-group col-md-12">
                                     <div class="input-group-append">
@@ -109,8 +118,12 @@
                                     <em id="limit-error" class="error invalid-feedback"></em>
                                 </div>
                             </div>
+                            <div class="form-group" style="padding-left:30px;">
+                                <input class="form-check-input" type="checkbox" name="whiteLabel" {{($member['white_label']=='Ya'?'checked':'')}}>Label Polos
+                            </div>
                         </div>
                     </div>
+                    <!-- End Order information -->
                 </div>
                 <!-- End General information -->
 
