@@ -45,6 +45,21 @@
                     <em id="description-error" class="error invalid-feedback">Please enter a valid description</em>
                   </div>
                   <div class="form-group">
+                    <label class="col-form-label" for="code">*Currency
+                      <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="Price"></i>
+                    </label>
+                      <select id="currency" name="currency" style="width:100%">
+                        @foreach(app('currency')->options() as $option)
+                        @if($packaging->currency == $option->label)
+                        <option value="{{ $option->label }}" selected>{{ $option->label }}</option>
+                        @else
+                        <option value="{{ $option->label }}">{{ $option->label }}</option>
+                        @endif
+                        @endforeach
+                      </select>
+                    <em id="currency-error" class="error invalid-feedback">Please enter a valid currency</em>
+                  </div>
+                  <div class="form-group">
                     <label class="col-form-label" for="code">*Price
                       <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="Price"></i>
                     </label>

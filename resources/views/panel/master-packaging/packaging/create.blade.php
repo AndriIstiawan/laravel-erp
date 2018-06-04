@@ -42,6 +42,17 @@
               <em id="description-error" class="error invalid-feedback">Please enter a valid description</em>
             </div>
             <div class="form-group">
+              <label class="col-form-label" for="code">*Currency
+                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="Price"></i>
+              </label>
+                <select id="currency" name="currency" style="width:100%">
+                  @foreach(app('currency')->options() as $option)
+                  <option value="{{ $option->label }}">{{ $option->label }}</option>
+                  @endforeach
+                </select>
+              <em id="currency-error" class="error invalid-feedback">Please enter a valid currency</em>
+            </div>
+            <div class="form-group">
               <label class="col-form-label" for="code">*Price
                 <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="Price"></i>
               </label>
@@ -62,10 +73,13 @@
   </div>
 </form>
 @endsection
-
+@section('css')
+<link href="{{ asset('fiture-style/select2/select2.min.css') }}" rel="stylesheet">
+@endsection
 @section('myscript')
 <script src="{{ asset('js/medivh.js') }}"></script>
 <script src="{{ asset('js/master/packaging/createform.js') }}"></script>
+<script src="{{ asset('fiture-style/select2/select2.min.js') }}"></script>
 <script>
 $('#jxForm').validate({
   rules:{

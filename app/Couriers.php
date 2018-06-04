@@ -13,7 +13,7 @@ class Couriers extends Moloquent
 
   protected $table = 'couriers';
   protected $fillable = [
-    'name', 'price','status',
+    'name', 'price','status','currency',
     'created_at', 'updated_at', 'deleted_at'
   ];
   protected $hidden = [

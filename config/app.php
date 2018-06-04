@@ -176,12 +176,13 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-		Spatie\Permission\PermissionServiceProvider::class,
-		Yajra\DataTables\DataTablesServiceProvider::class,
-		Pimlie\DataTables\MongodbDataTablesServiceProvider::class,
+		    Spatie\Permission\PermissionServiceProvider::class,
+		    Yajra\DataTables\DataTablesServiceProvider::class,
+		    Pimlie\DataTables\MongodbDataTablesServiceProvider::class,
         Jenssegers\Mongodb\MongodbServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        SSD\Currency\CurrencyServiceProvider::class,
 
     ],
 
@@ -230,10 +231,11 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-		'DataTables' => Yajra\Datatables\Facades\DataTables::class,
+		    'DataTables' => Yajra\Datatables\Facades\DataTables::class,
         'Moloquent' => Jenssegers\Mongodb\Eloquent\Model::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'Currency'  => SSD\Currency\CurrencyFacade::class,
 
     ],
 

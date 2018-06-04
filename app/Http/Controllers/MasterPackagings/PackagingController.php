@@ -9,6 +9,7 @@ use App\Packaging;
 use DataTables;
 use Mail;
 use Auth;
+use Currency;
 use Carbon\Carbon;
 
 
@@ -56,6 +57,7 @@ class PackagingController extends Controller
       'price' => rollbackPrice($request->price)
     ])
     ->all();
+
     $packaging = Packaging::create($data);
 
     if($packaging){
@@ -79,7 +81,8 @@ class PackagingController extends Controller
         'code',
         'name',
         'description',
-        'price'
+        'price',
+        'currency'
         ])->get();
 
         return DataTables::of($index)
@@ -115,7 +118,6 @@ class PackagingController extends Controller
     {
       $data['title'] = 'Edit Packaging';
       $data['packaging'] = Packaging::find($id);
-      //dd($data['packaging']);exit();
       return view('panel.master-packaging.packaging.edit',$data);
     }
 
