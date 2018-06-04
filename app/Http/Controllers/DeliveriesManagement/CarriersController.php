@@ -51,7 +51,8 @@ class CarriersController extends Controller
       $data = collect($request->all())
       ->except(['_token'])
       ->merge([
-        'price' => rollbackPrice($request->price)
+        'price' => rollbackPrice($request->price),
+
       ])
       ->all();
     }else{
@@ -92,7 +93,7 @@ class CarriersController extends Controller
   */
   //for getting datatable at index
   public function show(Request $request, $action){
-    $carriers = Couriers::all();
+    $carriers = Couriers::orderBy('created_at','ASC')->get();
 
     return Datatables::of($carriers)
     ->editColumn('name', function($index){

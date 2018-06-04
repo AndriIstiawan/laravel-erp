@@ -84,10 +84,13 @@
 </form>
 
 @endsection
-
+@section('css')
+<link href="{{ asset('fiture-style/select2/select2.min.css') }}" rel="stylesheet">
+@endsection
 @section('myscript')
 <script src="{{ asset('js/medivh.js') }}"></script>
 <script src="{{ asset('js/master/packaging/createform.js') }}"></script>
+<script src="{{ asset('fiture-style/select2/select2.min.js') }}"></script>
 <script>
 $('#jxForm').validate({
   rules:{
@@ -113,7 +116,7 @@ $('#jxForm').validate({
       remote:'Kode already in use. Please use other code.'
     },
     name:{
-      required:'Please select a type',
+      required:'Please select a name',
     },
     description:{
       required:'Please enter a description'
