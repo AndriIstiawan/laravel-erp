@@ -72,6 +72,7 @@ class ComposerStaticInitd80677642af87e169186fc7d444a9776
             'Symfony\\Component\\Console\\' => 26,
             'SuperClosure\\' => 13,
             'Spatie\\Permission\\' => 18,
+            'SSD\\Currency\\' => 13,
         ),
         'R' => 
         array (
@@ -235,6 +236,10 @@ class ComposerStaticInitd80677642af87e169186fc7d444a9776
         array (
             0 => __DIR__ . '/..' . '/spatie/laravel-permission/src',
         ),
+        'SSD\\Currency\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/sebastiansulinski/laravel-currency/src',
+        ),
         'Ramsey\\Uuid\\' => 
         array (
             0 => __DIR__ . '/..' . '/ramsey/uuid/src',
@@ -395,6 +400,7 @@ class ComposerStaticInitd80677642af87e169186fc7d444a9776
         'App\\Carriers' => __DIR__ . '/../..' . '/app/Carriers.php',
         'App\\Categories' => __DIR__ . '/../..' . '/app/Categories.php',
         'App\\CodeMember' => __DIR__ . '/../..' . '/app/CodeMember.php',
+        'App\\Components\\Currencies\\IDR' => __DIR__ . '/../..' . '/app/Components/Currencies/IDR.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Counter' => __DIR__ . '/../..' . '/app/Counter.php',
         'App\\Couriers' => __DIR__ . '/../..' . '/app/Couriers.php',
@@ -3542,6 +3548,18 @@ class ComposerStaticInitd80677642af87e169186fc7d444a9776
         'Ramsey\\Uuid\\UuidFactoryInterface' => __DIR__ . '/..' . '/ramsey/uuid/src/UuidFactoryInterface.php',
         'Ramsey\\Uuid\\UuidInterface' => __DIR__ . '/..' . '/ramsey/uuid/src/UuidInterface.php',
         'RolesTableSeeder' => __DIR__ . '/../..' . '/database/seeds/RolesTableSeeder.php',
+        'SSD\\Currency\\Config' => __DIR__ . '/..' . '/sebastiansulinski/laravel-currency/src/Config.php',
+        'SSD\\Currency\\Currencies\\BaseCurrency' => __DIR__ . '/..' . '/sebastiansulinski/laravel-currency/src/Currencies/BaseCurrency.php',
+        'SSD\\Currency\\Currencies\\EUR' => __DIR__ . '/..' . '/sebastiansulinski/laravel-currency/src/Currencies/EUR.php',
+        'SSD\\Currency\\Currencies\\GBP' => __DIR__ . '/..' . '/sebastiansulinski/laravel-currency/src/Currencies/GBP.php',
+        'SSD\\Currency\\Currencies\\USD' => __DIR__ . '/..' . '/sebastiansulinski/laravel-currency/src/Currencies/USD.php',
+        'SSD\\Currency\\Currency' => __DIR__ . '/..' . '/sebastiansulinski/laravel-currency/src/Currency.php',
+        'SSD\\Currency\\CurrencyFacade' => __DIR__ . '/..' . '/sebastiansulinski/laravel-currency/src/CurrencyFacade.php',
+        'SSD\\Currency\\CurrencyServiceProvider' => __DIR__ . '/..' . '/sebastiansulinski/laravel-currency/src/CurrencyServiceProvider.php',
+        'SSD\\Currency\\Option' => __DIR__ . '/..' . '/sebastiansulinski/laravel-currency/src/Option.php',
+        'SSD\\Currency\\Providers\\BaseProvider' => __DIR__ . '/..' . '/sebastiansulinski/laravel-currency/src/Providers/BaseProvider.php',
+        'SSD\\Currency\\Providers\\CookieProvider' => __DIR__ . '/..' . '/sebastiansulinski/laravel-currency/src/Providers/CookieProvider.php',
+        'SSD\\Currency\\Providers\\SessionProvider' => __DIR__ . '/..' . '/sebastiansulinski/laravel-currency/src/Providers/SessionProvider.php',
         'SebastianBergmann\\CodeCoverage\\CodeCoverage' => __DIR__ . '/..' . '/phpunit/php-code-coverage/src/CodeCoverage.php',
         'SebastianBergmann\\CodeCoverage\\CoveredCodeNotExecutedException' => __DIR__ . '/..' . '/phpunit/php-code-coverage/src/Exception/CoveredCodeNotExecutedException.php',
         'SebastianBergmann\\CodeCoverage\\Driver\\Driver' => __DIR__ . '/..' . '/phpunit/php-code-coverage/src/Driver/Driver.php',

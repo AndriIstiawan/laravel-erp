@@ -47,9 +47,24 @@ class CarriersController extends Controller
   //store data courier
   public function store(Request $request)
   {
-    $data = collect($request->all())
-    ->except(['_token'])
-    ->all();
+    if($request->status){
+      $data = collect($request->all())
+      ->except(['_token'])
+      ->merge([
+        'price' => rollbackPrice($request->price)
+      ])
+      ->all();
+    }else{
+      $data = collect($request->all())
+      ->except(['_token'])
+      ->merge([
+        'price' => rollbackPrice($request->price),
+        'status' => 'off'
+      ])
+      ->all();
+    }
+
+    //dd($data);exit();
     if($request->id){
       $carriers = Couriers::find($request->id);
       if($carriers){
@@ -86,12 +101,15 @@ class CarriersController extends Controller
     ->editColumn('price', function($index){
       return formatPrice($index->price);
     })
-    ->editColumn('status', function($index){
-      if($index->status){
-        return ucwords($index->status);
+    ->editColumn('currency', function($index){
+      if($index->currency){
+        return $index->currency;
       }else{
-        return ucwords('off');
+        return '--';
       }
+    })
+    ->editColumn('status', function($index){
+        return ucwords($index->status);
     })
     ->addColumn('action', function ($carriers) {
       return

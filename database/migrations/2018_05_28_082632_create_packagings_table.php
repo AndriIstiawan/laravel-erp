@@ -19,6 +19,7 @@ class CreatePackagingsTable extends Migration
           $table->string('code')->nullable();
           $table->string('name')->nullable();
           $table->string('description')->nullable();
+          $table->string('currency')->nullable();
           $table->integer('price')->nullable();
           $table->string('created_by')->nullable();
           $table->string('updated_by')->nullable();

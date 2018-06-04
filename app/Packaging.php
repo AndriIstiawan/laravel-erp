@@ -13,7 +13,7 @@ class Packaging extends Moloquent
 
   protected $table = 'packagings';
   protected $fillable = [
-    'code', 'name', 'description', 'price','created_by', 'updated_by',
+    'code', 'name', 'description', 'price', 'currency', 'created_by', 'updated_by',
     'deleted_by', 'created_at', 'updated_at', 'deleted_at'
   ];
   protected $hidden = [
