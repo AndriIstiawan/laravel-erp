@@ -21,7 +21,7 @@
 					<div class="card-header">
 						<i class="fa fa-align-justify"></i> {{$title}}
 					</div>
-					<div class="card-body table-responsive-sm" style="width: 100%;">
+					<div class="card-body" style="width: 100%;">
 						<div class="table-responsive">
 							<table class="table table-responsive-sm table-bordered table-striped table-sm" style="width: 100%;">
 								<thead>
@@ -30,6 +30,7 @@
 										<th style="text-align:center">Code</th>
 										<th style="text-align:center">Name</th>
 										<th style="text-align:center">Description</th>
+										<th style="text-align:center">Currency</th>
                     <th style="text-align:center">Price</th>
 										<th style="text-align:center">Action</th>
 									</tr>

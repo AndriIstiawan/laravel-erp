@@ -16,6 +16,7 @@
         "maatwebsite/excel": "~2.1.0",
         "nesbot/carbon": "^1.29",
         "pimlie/laravel-datatables-mongodb": "^1.1",
+        "sebastiansulinski/laravel-currency": "^2.0",
         "spatie/laravel-permission": "^2.9",
         "yajra/laravel-datatables-oracle": "^8.4"
     },

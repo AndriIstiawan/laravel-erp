@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "306417e75042de6fadf02d5017a8c258",
+    "content-hash": "36d37675fdd239763bee599c6c73a688",
     "packages": [
         {
             "name": "components/jquery",
@@ -1944,6 +1944,48 @@
                 "uuid"
             ],
             "time": "2018-01-20T00:28:24+00:00"
+        },
+        {
+            "name": "sebastiansulinski/laravel-currency",
+            "version": "v2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastiansulinski/laravel-currency.git",
+                "reference": "e3d3e01b2092bdc987b6d644cc9397044d07869b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastiansulinski/laravel-currency/zipball/e3d3e01b2092bdc987b6d644cc9397044d07869b",
+                "reference": "e3d3e01b2092bdc987b6d644cc9397044d07869b",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/http": "^5.5",
+                "illuminate/support": "^5.5",
+                "php": "^7.1"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.0",
+                "phpunit/phpunit": "^6.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "SSD\\Currency\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sebastian Sulinski",
+                    "email": "info@ssdtutorials.com"
+                }
+            ],
+            "description": "Currency component for Laravel 5+",
+            "time": "2018-05-21T09:16:22+00:00"
         },
         {
             "name": "spatie/laravel-permission",

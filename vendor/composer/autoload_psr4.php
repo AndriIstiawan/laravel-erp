@@ -31,6 +31,7 @@ return array(
     'Symfony\\Component\\Console\\' => array($vendorDir . '/symfony/console'),
     'SuperClosure\\' => array($vendorDir . '/jeremeamia/SuperClosure/src'),
     'Spatie\\Permission\\' => array($vendorDir . '/spatie/laravel-permission/src'),
+    'SSD\\Currency\\' => array($vendorDir . '/sebastiansulinski/laravel-currency/src'),
     'Ramsey\\Uuid\\' => array($vendorDir . '/ramsey/uuid/src'),
     'Psy\\' => array($vendorDir . '/psy/psysh/src'),
     'Psr\\SimpleCache\\' => array($vendorDir . '/psr/simple-cache/src'),

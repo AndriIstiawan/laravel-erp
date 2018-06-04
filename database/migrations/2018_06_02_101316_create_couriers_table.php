@@ -17,6 +17,7 @@ class CreateCouriersTable extends Migration
         Schema::create('couriers', function (Blueprint $table) {
           $table->increments('id');
           $table->string('name')->nullable();
+          $table->string('currency')->nullable();
           $table->integer('price')->nullable();
           $table->string('status')->nullable();
           $table->timestamps();

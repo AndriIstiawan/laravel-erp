@@ -26,6 +26,7 @@
 								<thead>
 									<tr>
 										<th>Name</th>
+										<th>Currency</th>
 										<th>Prices</th>
 										<th>Status</th>
 										<th>Date registered</th>
@@ -46,7 +47,8 @@
 					<div class="modal-content">
 							<form enctype="multipart/form-data" id="jxForm" novalidate="novalidate" role="form" method="POST" action="{{ route('courier.store') }}">
 		        			<input type="hidden" name="_token" value="{{ csrf_token() }}">
-		        				<div class="modal-header">
+		        				<div class="modal-header" style="background-color:#1a75ff;">
+											<h4>New Courier</h4>
 		          				<button type="button" class="close" data-dismiss="modal" ><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 		        				</div>
 		        				<div class="modal-body">
@@ -61,6 +63,20 @@
 			          					aria-describedby="name-error">
 			          					<em id="name-error" class="error invalid-feedback">Please enter a name carriers</em>
 								        </div>
+												<div class="form-group">
+						              <label class="col-form-label" for="code">*Currency (optional)
+						                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="Price"></i>
+						              </label>
+						              <div class="col-sm-9">
+						                <select id="currency" name="currency" style="width:100%; height:50%;">
+															<option value="">Please Select Currency</option>
+						                  @foreach(app('currency')->options() as $option)
+						                  <option value="{{ $option->label }}">{{ $option->label }}</option>
+						                  @endforeach
+						                </select>
+						              </div>
+						              <em id="currency-error" class="error invalid-feedback">Please enter a valid currency</em>
+						            </div>
 												<div class="form-group">
 			          					<label class="col-form-label" for="price">Prices (optional)</label>
 			          					<input type="text" class="form-control idr-currency" name="price" placeholder="0">
@@ -102,6 +118,7 @@
 	<script src="{{ asset('fiture-style/datatables/dataTables.bootstrap4.min.js') }}"></script>
 	<script src="{{ asset('fiture-style/toastr/toastr.min.js') }}"></script>
 	<script src="{{ asset('fiture-style/validation/jquery.validate.min.js') }}"></script>
+	<script src="{{ asset('fiture-style/select2/select2.min.js') }}"></script>
 	<script src="{{ asset('js/medivh.js') }}"></script>
 	<script>
 	$(function(){
@@ -111,7 +128,7 @@
       	'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     	},
   	});
-
+		//$('#currency').select2({theme:"bootstrap",placeholder:'Please select currency'});
 		$(document).off('click', '.new').on('click', '.new', function(e){
 			modalShow();
 		});
@@ -127,8 +144,14 @@
   			success: function (response){
   			$("[name='id']").val(response._id);
   			$("[name='name']").val(response.name);
+				$("[name='currency']").val(response.currency);
 				$("[name='price']").val(response.price);
-				$("[name='status']").val(response.status);
+				//$("[name='status']").val(response.status);
+				if(response.status == "on"){
+					$("[name='status']").prop('checked', true);
+				}else{
+					$("[name='status']").prop('checked', false);
+				}
   			modalShow();
   			}
   		});
@@ -191,6 +214,7 @@
 					ajax: '{!! url()->current() !!}/data',
 					columns: [
 							{data: 'name', name: 'name'},
+							{data: 'currency', name: 'currency'},
 							{data: 'price', name: 'price',sClass: "AlignR"},
 							{data: 'status', name: 'status'},
 							{data: 'created_at', name: 'created_at'},
