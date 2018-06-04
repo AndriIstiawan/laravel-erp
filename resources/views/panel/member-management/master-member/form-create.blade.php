@@ -83,7 +83,7 @@
                                     <em id="mobile-error" class="error invalid-feedback"></em>
                                 </div>
                             </div>
-                            <div class="form-group row">
+                            <!-- <div class="form-group row">
                                 <div class="input-group col-md-12">
                                     <div class="input-group-append">
                                         <span class="input-group-text">
@@ -99,8 +99,42 @@
                                     <em id="limit-error" class="error invalid-feedback"></em>
                                 </div>
                             </div>
+                            <div class="form-group row col-md-12">
+                                <div class="form-group" style="padding-left:30px;">
+                                    <input class="form-check-input" type="checkbox" name="whiteLabel">Label Polos
+                                </div>
+                            </div> -->
                         </div>
                     </div>
+                    <!-- Order information -->
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fa fa-align-justify"></i> Order
+                            <small>Information </small>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <div class="input-group col-md-12">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">
+                                            Rp
+                                        </span>
+                                    </div>
+                                    <input type="text" class="form-control idr-currency" id="limit" name="limit" placeholder="Limit Hutang" aria-describedby="limit-error">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">
+                                            <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" data-original-title="ex: 10000"></i>
+                                        </span>
+                                    </div>
+                                    <em id="limit-error" class="error invalid-feedback"></em>
+                                </div>
+                            </div>
+                            <div class="form-group" style="padding-left:30px;">
+                                <input class="form-check-input" type="checkbox" name="whiteLabel">Label Polos
+                            </div>
+                        </div>
+                    </div>
+                <!-- End Order information -->
                 </div>
                 <!-- End General information -->
 

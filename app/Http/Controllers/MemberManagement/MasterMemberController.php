@@ -63,6 +63,13 @@ class MasterMemberController extends Controller
         $member->title = $request->title;
         $member->email = $request->email;
         $member->limit = $request->limit;
+
+        if ($request->whiteLabel == ''){
+            $member->white_label = 'Tidak';
+        }else{
+            $member->white_label = 'Ya';
+        }
+
         $mobile = [];
         if ($request->mobile != null) {
             foreach ($request->mobile as $mobile_list) {
@@ -125,6 +132,8 @@ class MasterMemberController extends Controller
         $member->divisi = $divisi;
         $member->save();
         return redirect()->route('master-client.index')->with('toastr', 'client');
+
+        /*return dd($member);*/
     }
 
     public function list_data()
@@ -178,6 +187,13 @@ class MasterMemberController extends Controller
         $member->title = $request->title;
         $member->email = $request->email;
         $member->limit = $request->limit;
+
+        if ($request->whiteLabel == ''){
+            $member->white_label = 'Tidak';
+        }else{
+            $member->white_label = 'Ya';
+        }
+
         $mobile = [];
         if ($request->mobile != null) {
             foreach ($request->mobile as $mobile_list) {
@@ -266,6 +282,7 @@ class MasterMemberController extends Controller
                     implode(' / ', array_column($member->shipping_address, 'address')),
                     $member->email,
                     $member->limit,
+                    $member->white_label,
                     /*'="'.$data_mobile.'"',
                     '="'.$data_phone.'"',*/
                     $data_mobile,
@@ -309,7 +326,7 @@ class MasterMemberController extends Controller
                 //check parent column value
                 if(!isset($listData['code'])||!isset($listData['displayname'])||!isset($listData['companyname'])||!isset($listData['title'])
                 ||!isset($listData['fullname'])||!isset($listData['salesemail'])||!isset($listData['billingaddress'])||!isset($listData['shippingaddress'])
-                ||!isset($listData['email'])||!isset($listData['limit'])||!isset($listData['mobile'])||!isset($listData['phone'])||!isset($listData['remarks'])||!isset($listData['kota'])
+                ||!isset($listData['email'])||!isset($listData['limit'])||!isset($listData['white_label'])||!isset($listData['mobile'])||!isset($listData['phone'])||!isset($listData['remarks'])||!isset($listData['kota'])
                 ||!isset($listData['provinsi'])||!isset($listData['negara'])||!isset($listData['segmenpasar'])||!isset($listData['dateregister'])){
                     $data .= 'array("parent column not valid"),';
                 }else{
@@ -324,6 +341,7 @@ class MasterMemberController extends Controller
                     $shippingaddress = trim($listData['shippingaddress']);
                     $email = trim($listData['email']);
                     $limit = trim($listData['limit']);
+                    $white_label = trim($listData['white_label']);
                     $mobile = trim($listData['mobile']);
                     $phone = trim($listData['phone']);
                     $remarks = trim($listData['remarks']);
@@ -333,7 +351,7 @@ class MasterMemberController extends Controller
                     $segmenpasar = trim($listData['segmenpasar']);
                     $dateregister = trim($listData['dateregister']);
                     $data .= '"'.$code.'","'.$displayname.'","'.$companyname.'","'.$title.'","'.$fullname.'","'.$salesemail.'",';
-                    $data .= '"'.$billingaddress.'","'.$shippingaddress.'","'.$email.'","'.$limit.'","'.$mobile.'","'.$phone.'","'.$remarks.'",';
+                    $data .= '"'.$billingaddress.'","'.$shippingaddress.'","'.$email.'","'.$limit.'","'.$white_label.'","'.$mobile.'","'.$phone.'","'.$remarks.'",';
                     $data .= '"'.$kota.'","'.$provinsi.'","'.$negara.'","'.$segmenpasar.'","'.$dateregister.'",';
 
                     if($code==""||$displayname==""||$title==""||$fullname==""||$salesemail==""||$billingaddress==""||$shippingaddress==""||$mobile==""){
@@ -359,6 +377,7 @@ class MasterMemberController extends Controller
                                 $member['title'] = $title;
                                 $member['email'] = $email;
                                 $member['limit'] = $limit;
+                                $member['white_label'] = $white_label;
                                 $member['company'] = $companyname;
                                 $member['segmen_pasar'] = $segmenpasar;
                                 $member['negara'] = $negara;

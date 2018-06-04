@@ -9,6 +9,7 @@ use App\Member;
 use App\Product;
 use App\SalesOrder;
 use App\Carriers;
+use App\Packaging;
 use App\User;
 use Excel;
 use DateTime;
@@ -48,11 +49,13 @@ class SalesOrderController extends Controller
         $products = Product::all();
         $carrier = Carriers::where('status', 'on')->get();
         $member = Member::all();
+        $packaging = Packaging::all();
         return view('panel.transaction-management.sales-order.form-create')->with([
             'members' => $members,
             'products' => $products,
             'memberssss' => $member,
-            'carrier' => $carrier
+            'carrier' => $carrier,
+            'packaging' => $packaging
         ]);
     }
 
@@ -147,7 +150,7 @@ class SalesOrderController extends Controller
             return redirect()->route('sales-order.index')->with('toastr', 'order');
         }
 
-        /*return dd($so);*/
+        return dd($so);
     }
 
     //list data
@@ -214,6 +217,7 @@ class SalesOrderController extends Controller
         $members = Member::all();
         $member = Member::groupBy('code')->count('shipping_address');
         $products = Product::all();
+        $packaging = Packaging::all();
         $delivery = Carriers::find($order['delivery'][0]['_id']);
         $carrier = Carriers::where('status', 'on')->get();
         return view('panel.transaction-management.sales-order.form-edit')->with([
@@ -223,7 +227,8 @@ class SalesOrderController extends Controller
             'products' => $products,
             'carrier' => $carrier,
             'memberssss' => $member,
-            'delivery' => $delivery
+            'delivery' => $delivery,
+            'packaging' => $packaging
         ]);
     }
 
@@ -350,18 +355,22 @@ class SalesOrderController extends Controller
         $excel = Excel::selectSheetsByIndex(0)->load($file, function($reader) use ($filename,$salesorders) {
             $data = [];
             $code = "";
+            $id_client = "";
             $client = "";
             $sales = "";
             foreach($salesorders as $salesorder){
                 foreach($salesorder->products as $so_product){
                     $so_code = "";
+                    $so_idclient = "";
                     $so_client = "";
                     $so_sales = "";
                     if($code != $salesorder->code){
                         $code = $salesorder->code;
+                        $id_client = $salesorder->client[0]['code'];
                         $client = $salesorder->client[0]['display_name'];
                         $sales = $salesorder->sales[0]['name'];
                         $so_code = $salesorder->code;
+                        $so_idclient = $salesorder->client[0]['code'];
                         $so_client = $salesorder->client[0]['display_name'];
                         $so_sales = $salesorder->sales[0]['name'];
                     }
@@ -378,6 +387,7 @@ class SalesOrderController extends Controller
 
                     $data[] = [
                         $so_code,
+                        $so_idclient,
                         $so_client,
                         $so_sales,
                         $so_product['product_detail'][0]['type'],
