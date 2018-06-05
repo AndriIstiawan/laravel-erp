@@ -95,6 +95,13 @@ class PackagingController extends Controller
         ->editColumn('price', function($index){
           return formatPrice($index->price);
         })
+        ->editColumn('currency', function($index){
+          if($index->currency){
+            return $index->currency;
+          }else{
+            return '--';
+          }
+        })
         ->addColumn('action', function($index){
           return
               '<center><a class="btn btn-success btn-sm"  href="'.route('packaging.edit',['id' => $index->id]).'">
