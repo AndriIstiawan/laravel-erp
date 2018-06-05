@@ -105,7 +105,8 @@ class SalesOrderController extends Controller
         if ($request->packkayu == '') {
             $so->pack_kayu = 'Tidak';
         }else{
-            $so->pack_kayu = $request->packkayu;
+            $so->pack_kayu = 'Ya';
+            /*$so->pack_kayu = $request->packkayu;*/
         }
 
         $so->notes = $request->notes;
@@ -277,7 +278,8 @@ class SalesOrderController extends Controller
         if ($request->packkayu == '') {
             $so['pack_kayu'] = 'Tidak';
         }else{
-            $so['pack_kayu'] = $request->packkayu;
+            $so->pack_kayu = 'Ya';
+            /*$so['pack_kayu'] = $request->packkayu;*/
         }
 
         $so['notes'] = $request->notes;

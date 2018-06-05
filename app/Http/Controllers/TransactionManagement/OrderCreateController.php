@@ -100,7 +100,8 @@ class OrderCreateController extends Controller
         if ($request->packkayu == '') {
             $so->pack_kayu = 'Tidak';
         }else{
-            $so->pack_kayu = $request->packkayu;
+            $so->pack_kayu = 'Ya';
+            /*$so->pack_kayu = $request->packkayu;*/
         }
 
         $so->notes = $request->notes;
@@ -193,7 +194,7 @@ class OrderCreateController extends Controller
     {
         //
     }
-    
+
     public function generateSO()
     {
         $id_counter = Counter::first()->generateSO('so_counter');

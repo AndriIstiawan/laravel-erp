@@ -146,11 +146,6 @@
                                     </div>
                                     <br>
                                 </div>
-                                <!-- <div class="col-md-6">
-                                    <div class="form-group" style="padding-left:30px;">
-                                        <input class="form-check-input" type="checkbox" name="packkayu" {{($order['pack_kayu']=='Ya'?'checked':'')}}>Kemasan Kayu
-                                    </div>
-                                </div> -->
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <select id="delivery" class="form-control" name="delivery" aria-describedby="delivery-error">
@@ -163,6 +158,11 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4">
+                                    <div class="form-group" style="padding-left:30px;">
+                                        <input class="form-check-input" type="checkbox" name="packkayu" {{($order['pack_kayu']=='Ya'?'checked':'')}}>Kemasan Kayu
+                                    </div>
+                                </div>
+                                <!-- <div class="col-md-4">
                                     <div class="form-group">
                                         <select id="packkayu" class="form-control" name="packkayu" aria-describedby="delivery-error">
                                             <option value=""></option>
@@ -172,7 +172,7 @@
                                         </select>
                                         <em id="delivery-error" class="error invalid-feedback"></em>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
