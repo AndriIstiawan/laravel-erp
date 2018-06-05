@@ -150,7 +150,7 @@ class SalesOrderController extends Controller
             return redirect()->route('sales-order.index')->with('toastr', 'order');
         }
 
-        return dd($so);
+        /*return dd($so);*/
     }
 
     //list data
