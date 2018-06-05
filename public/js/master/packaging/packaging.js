@@ -18,7 +18,7 @@ function getData(){
             {data: 'code', name: 'code', orderable: true, searchable: true},
             {data: 'name', name: 'name', orderable: true, searchable: false},
             {data: 'description', name: 'description', orderable: true, searchable: false},
-            {data: 'currency', name: 'currency', orderable: true, searchable: false},
+            {data: 'currency', name: 'currency', orderable: true, searchable: false, sClass: "AlignC"},
             {data: 'price', name: 'price', orderable: true, searchable: false, sClass: "AlignR"},
             {data: 'action', name: 'action', orderable: false, searchable: false},
         ],
