@@ -55,6 +55,11 @@
                     </div>
                     <em id="limit-error" class="error invalid-feedback"></em>
                 </div>
+                <div class="col-md-3">
+                    <div class="form-group" style="padding-left:30px;">
+                        <input class="form-check-input" type="checkbox" name="whiteLabel" {{($member['white_label']=='Ya'?'checked':'')}}>Label Polos
+                    </div>
+                </div>
             </div>
         </div>
     </div>

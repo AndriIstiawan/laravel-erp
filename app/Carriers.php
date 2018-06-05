@@ -15,7 +15,12 @@ class Carriers extends Moloquent
      *
      * @var array
      */
-    protected $fillable = [
-        'name', 'price','delivery',
-    ];
+    protected $table = 'carriers';
+  protected $fillable = [
+    'name', 'price','status','currency',
+    'created_at', 'updated_at', 'deleted_at'
+  ];
+  protected $hidden = [
+    'updated_at', 'deleted_at'
+  ];
 }

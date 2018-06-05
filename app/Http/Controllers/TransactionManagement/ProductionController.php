@@ -194,11 +194,11 @@ class ProductionController extends Controller
 
         $order['status'] = "production";
 
-        /*$order->save();
+        $order->save();
         
-        return redirect()->route('production.index')->with('update', 'sales-order');*/
+        return redirect()->route('production.index')->with('update', 'sales-order');
 
-        return dd($order);
+        /*return dd($order);*/
     }
 
     //delete data discount

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\DeliveriesManagement;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Couriers;
+use App\Carriers;
 use App\Taxes;
 use Yajra\Datatables\Datatables;
 
@@ -67,7 +67,7 @@ class CarriersController extends Controller
 
     //dd($data);exit();
     if($request->id){
-      $carriers = Couriers::find($request->id);
+      $carriers = Carriers::find($request->id);
       if($carriers){
         $carriers->update($data);
         return redirect()->route('courier.index')->with('update', 'courier');
@@ -75,7 +75,7 @@ class CarriersController extends Controller
         return redirect()->route('courier.index')->with('danger', 'courier');
       }
     }else{
-      $carriers = Couriers::create($data);
+      $carriers = Carriers::create($data);
 
       if($carriers){
         return redirect()->route('courier.index')->with('toastr', 'new');
@@ -93,7 +93,7 @@ class CarriersController extends Controller
   */
   //for getting datatable at index
   public function show(Request $request, $action){
-    $carriers = Couriers::orderBy('created_at','ASC')->get();
+    $carriers = Carriers::orderBy('created_at','ASC')->get();
 
     return Datatables::of($carriers)
     ->editColumn('name', function($index){
@@ -133,7 +133,7 @@ class CarriersController extends Controller
   //view form edit
   public function edit($id)
   {
-    return Couriers::find($id);
+    return Carriers::find($id);
   }
 
   /**
@@ -146,13 +146,13 @@ class CarriersController extends Controller
   //update data courier
   public function update(Request $request, $id)
   {
-    $taxes = Carriers::find($id);
+   /* $taxes = Carriers::find($id);
     $taxes->name = $request->name;
     $taxes->prices = $request->prices;
     $taxes->status = $request->status;
 
     $taxes->save();
-    return redirect()->route('courier.index')->with('update', 'Courier updated!');
+    return redirect()->route('courier.index')->with('update', 'Courier updated!');*/
   }
 
   /**
@@ -164,7 +164,7 @@ class CarriersController extends Controller
   //delete data carriers
   public function destroy($id)
   {
-    $taxes = Couriers::find($id);
+    $taxes = Carriers::find($id);
     $taxes->delete();
 
     return redirect()->route('courier.index')->with('dlt', 'Courier deleted!');
