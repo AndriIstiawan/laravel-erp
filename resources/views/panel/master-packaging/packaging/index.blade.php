@@ -52,6 +52,9 @@
 .AlignR{
 	text-align: right;
 }
+.AlignC{
+	text-align: center;
+}
 </style>
 @endsection
 @section('myscript')

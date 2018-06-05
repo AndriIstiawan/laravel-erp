@@ -42,7 +42,7 @@
               <em id="description-error" class="error invalid-feedback">Please enter a valid description</em>
             </div>
             <div class="form-group">
-              <label class="col-form-label" for="code">*Currency
+              <label class="col-form-label" for="code">*Currency (optional)
                 <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="Price"></i>
               </label>
                 <select id="currency" name="currency" style="width:100%">
@@ -54,7 +54,7 @@
               <em id="currency-error" class="error invalid-feedback">Please enter a valid currency</em>
             </div>
             <div class="form-group">
-              <label class="col-form-label" for="code">*Price
+              <label class="col-form-label" for="code">*Price (optional)
                 <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="Price"></i>
               </label>
               <input type="text" class="form-control" id="price" name="price" placeholder="" aria-describedby="price-error">
@@ -85,7 +85,7 @@
 $('#jxForm').validate({
   rules:{
     name:{required:true},
-    price:{required:true},
+    //price:{required:true},
     description:{required:true},
     code:{
       required:true,
@@ -111,10 +111,10 @@ $('#jxForm').validate({
     },
     description:{
       required:'Please enter a description',
-    },
-    price:{
-      required:'Please enter a price',
     }
+    /*price:{
+      required:'Please enter a price',
+    }*/
   },
   errorElement:'em',
   errorPlacement:function(error,element){

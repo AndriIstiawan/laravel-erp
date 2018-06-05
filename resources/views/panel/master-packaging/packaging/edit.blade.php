@@ -49,6 +49,7 @@
                       <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="Price"></i>
                     </label>
                       <select id="currency" name="currency" style="width:100%">
+                        <option value=""></option>
                         @foreach(app('currency')->options() as $option)
                         @if($packaging->currency == $option->label)
                         <option value="{{ $option->label }}" selected>{{ $option->label }}</option>
@@ -94,9 +95,9 @@
 <script>
 $('#jxForm').validate({
   rules:{
-    type:{required:true},
-    value:{required:true},
-    kode:{
+    name:{required:true},
+    description:{required:true},
+    code:{
       required:true,
       remote:{
         url: '{{ route('packaging.index') }}/find',
@@ -113,17 +114,17 @@ $('#jxForm').validate({
   messages:{
     code:{
       required:'Please enter a code',
-      remote:'Kode already in use. Please use other code.'
+      remote:'Code already in use. Please use other code.'
     },
     name:{
       required:'Please select a name',
     },
     description:{
       required:'Please enter a description'
-    },
-    price:{
-      required:'Please enter a price'
     }
+    /*price:{
+      required:'Please enter a price'
+    }*/
   },
   errorElement:'em',
   errorPlacement:function(error,element){
