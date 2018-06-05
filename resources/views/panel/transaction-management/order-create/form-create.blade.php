@@ -1,6 +1,6 @@
 @extends('master') @section('content')
 <link href="{{ asset('fiture-style/select2/select2.min.css') }}" rel="stylesheet">
-<form id="jxForm" novalidate="novalidate" method="POST" action="{{ route('sales-order.store') }}" enctype="multipart/form-data">
+<form id="jxForm" novalidate="novalidate" method="POST" action="{{ route('buat-so.store') }}" enctype="multipart/form-data">
     {{ csrf_field() }}
     <input type="hidden" name="targetUrl" value="/">
     <div class="container-fluid">
