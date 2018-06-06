@@ -401,6 +401,7 @@ class SalesOrderController extends Controller
                         $so_product['package'],
                         ((double)$so_product['total']/1000),
                         $so_product['quantity']." ".$so_product['package']." ".$so_product['weight'],
+                        $salesorder->white_label,
                         $salesorder->pack_kayu,
                         $salesorder['delivery'][0]['name'],
                         "",
