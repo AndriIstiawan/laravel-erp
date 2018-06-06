@@ -74,6 +74,11 @@
                         <input class="form-check-input" type="checkbox" name="whiteLabel" {{($member['white_label']=='Ya'?'checked':'')}}>Label Polos
                     </div>
                 </div>
+                <div class="col-md-3">
+                    <div class="form-group" style="padding-left:30px;">
+                        <input class="form-check-input" type="checkbox" name="packkayu" {{($member['pack_kayu']=='Ya'?'checked':'')}}>Kemasan Kayu
+                    </div>
+                </div>
             </div>
         </div>
     </div>
