@@ -434,7 +434,7 @@ class ProductController extends Controller
                     $data .= '"'.$listData['1kg_aluminium_stock'].'","'.$listData['5kg_jerigen_stock'].'","'.$listData['25kg_jerigen_stock'].'",';
                     $data .= '"'.$listData['25kg_drum_stock'].'","'.$listData['30kg_jerigen_stock'].'",';
 
-                    if ($code == "" || $product_name == "" || $type == "" || $commercialstatus == "" || $currency == "") {
+                    if ($code == "" || $product_name == "" || $type == "" /*|| $commercialstatus == ""*/ || $currency == "") {
                         $data .= '"error import => require data is empty [code,product,type,commercialstatus,currency]"),';
                     }else{
                         $type = Type::where('name', $type)->first();

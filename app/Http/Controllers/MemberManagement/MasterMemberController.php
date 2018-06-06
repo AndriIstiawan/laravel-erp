@@ -70,6 +70,12 @@ class MasterMemberController extends Controller
             $member->white_label = 'Ya';
         }
 
+        if ($request->packkayu == ''){
+            $member->pack_kayu = 'Tidak';
+        }else{
+            $member->pack_kayu = 'Ya';
+        }
+
         $mobile = [];
         if ($request->mobile != null) {
             foreach ($request->mobile as $mobile_list) {
@@ -194,6 +200,12 @@ class MasterMemberController extends Controller
             $member->white_label = 'Ya';
         }
 
+        if ($request->packkayu == ''){
+            $member->pack_kayu = 'Tidak';
+        }else{
+            $member->pack_kayu = 'Ya';
+        }
+
         $mobile = [];
         if ($request->mobile != null) {
             foreach ($request->mobile as $mobile_list) {
@@ -283,6 +295,7 @@ class MasterMemberController extends Controller
                     $member->email,
                     $member->limit,
                     $member->white_label,
+                    /*$member->pack_kayu,*/
                     /*'="'.$data_mobile.'"',
                     '="'.$data_phone.'"',*/
                     $data_mobile,
@@ -326,7 +339,8 @@ class MasterMemberController extends Controller
                 //check parent column value
                 if(!isset($listData['code'])||!isset($listData['displayname'])||!isset($listData['companyname'])||!isset($listData['title'])
                 ||!isset($listData['fullname'])||!isset($listData['salesemail'])||!isset($listData['billingaddress'])||!isset($listData['shippingaddress'])
-                ||!isset($listData['email'])||!isset($listData['limit'])||!isset($listData['white_label'])||!isset($listData['mobile'])||!isset($listData['phone'])||!isset($listData['remarks'])||!isset($listData['kota'])
+                ||!isset($listData['email'])||!isset($listData['limit'])||!isset($listData['white_label'])/*||!isset($listData['pack_kayu'])*/
+                ||!isset($listData['mobile'])||!isset($listData['phone'])||!isset($listData['remarks'])||!isset($listData['kota'])
                 ||!isset($listData['provinsi'])||!isset($listData['negara'])||!isset($listData['segmenpasar'])||!isset($listData['dateregister'])){
                     $data .= 'array("parent column not valid"),';
                 }else{
@@ -342,6 +356,7 @@ class MasterMemberController extends Controller
                     $email = trim($listData['email']);
                     $limit = trim($listData['limit']);
                     $white_label = trim($listData['white_label']);
+                    /*$pack_kayu = trim($listData['pack_kayu']);*/
                     $mobile = trim($listData['mobile']);
                     $phone = trim($listData['phone']);
                     $remarks = trim($listData['remarks']);
@@ -378,6 +393,7 @@ class MasterMemberController extends Controller
                                 $member['email'] = $email;
                                 $member['limit'] = $limit;
                                 $member['white_label'] = $white_label;
+                                /*$member['pack_kayu'] = $pack_kayu;*/
                                 $member['company'] = $companyname;
                                 $member['segmen_pasar'] = $segmenpasar;
                                 $member['negara'] = $negara;
@@ -433,8 +449,8 @@ class MasterMemberController extends Controller
 
         $result_status = eval('return ' . Session::get('result_status') . ';');
         for($i=0; $i < count($result_status); $i++){
-            $result_status[$i][9] = '="'.$result_status[$i][9].'"';
-            $result_status[$i][10] = '="'.$result_status[$i][10].'"';
+            $result_status[$i][12] = '="'.$result_status[$i][12].'"';
+            $result_status[$i][13] = '="'.$result_status[$i][13].'"';
         }
         Session::forget('result_status');
         $excel = Excel::selectSheetsByIndex(0)->load($file, function($reader) use ($filename,$result_status) {

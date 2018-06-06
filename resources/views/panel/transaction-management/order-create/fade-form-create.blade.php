@@ -49,21 +49,25 @@
                 </div>
                 <em id="shipping-error" class="error invalid-feedback"></em>
             </div>
-            <div class="form-group row">
-                <div class="input-group col-md-6">
-                    <div class="input-group-append">
-                        <span class="input-group-text">
-                            Rp
-                        </span>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <div class="input-group col-md-12">
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    Rp
+                                </span>
+                            </div>
+                            <input type="text" class="form-control idr-currency" id="limit" name="limit" placeholder="00" aria-describedby="limit-error"
+                                value="{{(isset($member->limit)?$member->limit:'')}}" readonly="">
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    Limit Hutang
+                                </span>
+                            </div>
+                            <em id="limit-error" class="error invalid-feedback"></em>
+                        </div>
                     </div>
-                    <input type="text" class="form-control idr-currency" id="limit" name="limit" placeholder="00" aria-describedby="limit-error"
-                        value="{{(isset($member->limit)?$member->limit:'')}}" readonly="">
-                    <div class="input-group-append">
-                        <span class="input-group-text">
-                            Limit Hutang
-                        </span>
-                    </div>
-                    <em id="limit-error" class="error invalid-feedback"></em>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group" style="padding-left:30px;">
