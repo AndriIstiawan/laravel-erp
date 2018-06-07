@@ -407,6 +407,7 @@ class SalesOrderController extends Controller
                         "",
                         $salesorder->TOP,
                         ((double)$salesorder['client'][0]['limit']),
+                        $salesorder->shipping,
                         $salesorder->created_at,
                         $salesorder->status,
                     ];
