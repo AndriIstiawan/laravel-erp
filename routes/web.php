@@ -62,6 +62,8 @@ Route::middleware('auth')->group(function() {
 
 	Route::resource('production', 'TransactionManagement\ProductionController');
 	Route::post('production/find', 'TransactionManagement\ProductionController@find');
+	Route::get('production/proses/{id}', 'TransactionManagement\ProductionController@proses')->name('production.proses');
+	Route::get('production/selesai/{id}', 'TransactionManagement\ProductionController@selesai')->name('production.selesai');
 	/* END Transaction  */
 
 	/* Master home */

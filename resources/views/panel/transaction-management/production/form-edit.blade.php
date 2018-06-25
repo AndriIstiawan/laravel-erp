@@ -34,12 +34,6 @@
                                                     <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" data-original-title="#format: Client Display Name - Sales"></i>
                                                 </span>
                                             </div>
-                                            <!-- <select id="client" class="form-control" name="client" aria-describedby="client-error">
-                                                <option value=""></option>
-                                                @foreach($members as $member)
-                                                <option value="{{$member->id}}" {{($client['id']==$member->id?'selected':'')}}>{{$member->display_name}} - {{$member->sales[0]['detail'][count($member->sales[0]['detail'])-1]['name']}}</option>
-                                                @endforeach
-                                            </select> -->
                                             <input class="form-control" placeholder=" {{$member->display_name}} - {{$member->sales[0]['detail'][count($member->sales[0]['detail'])-1]['name']}}" readonly>
                                             <input type="hidden" class="form-control" name="client" value="{{$member->id}}">
                                         </div>
@@ -62,7 +56,7 @@
                         <div class="row shipping-list">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <div class="input-group"><!-- 
+                                    <div class="input-group"><!--
                                         <select class="form-control shipping-valid" name="shipping" aria-describedby="shipping-error">
                                             <option value=""></option>
                                             <?php $i=-1; ?>
@@ -95,8 +89,8 @@
                                     <input class="form-check-input" type="checkbox" name="whiteLabel" {{($order['white_label']!=null?'checked':'')}} readonly>White Label
                                 </button> -->
                                 @if($order['white_label'] == 'Ya')
-                                <input type="text" value="Label Polos Iya" class="form-control" readonly=""> 
-                                @else 
+                                <input type="text" value="Label Polos Iya" class="form-control" readonly="">
+                                @else
                                 <input type="text" value="Label Polos Tidak" class="form-control" readonly="">
                                 @endif
                                 <br>
@@ -193,12 +187,12 @@
                                                         <span class="input-group-text">Kg</span>
                                                     </div>
                                                     <em id="realisasi{{$i}}-error" class="invalid-feedback realisasi-em">Mohon input realisasi</em>
-                                                </div><!-- 
+                                                </div><!--
                                             <div class="col-md-12">
                                                 <div class="form-group" style="padding-left:10px;">
                                                      <button type="button" class="btn btn-danger pull-right" style="cursor:default;">
                                                         <i class="fa fa-remove"></i>
-                                                    </button> 
+                                                    </button>
                                                 </div>
                                             </div> -->
                                         </div>
@@ -226,7 +220,7 @@
                                 </div>
                                 @endforeach
                             </div>
-                        </div><!-- 
+                        </div><!--
                         <div class="row">
                             <div class="col-md-12">
                                 <button type="button" class="btn btn-primary pull-right" onclick="addProduct()">
@@ -239,7 +233,7 @@
                 <!--end Product order-->
             </div>
         </div>
-        
+
 		<div class="row">
 			<div class="col-md-12">
 				<div class="card">

@@ -16,21 +16,25 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <i class="fa fa-align-justify"></i> Sales Order Table
-                        
+                        <i class="fa fa-align-justify"> Production Order</i>
                     </div>
-                    <div class="card-body table-responsive-sm" style="width: 100%;">
+                    <div class="card-body" style="width: 100%;">
                         <div class="table-responsive">
                             <table class="table table-responsive-sm table-bordered table-striped table-sm datatable" style="width: 100%;">
                                 <thead>
                                     <tr>
                                         <th>SO Code</th>
-                                        <th>Product</th>
-                                        <th>White_label</th>
-                                        <th>Produser</th>
-                                        <th>Status</th>
+                                        <th style="width:50%">Product</th>
+                                        <th>White Label</th>
                                         <th>Date registered</th>
-                                        <th></th>
+                                        <th>Package</th>
+                                        <th>Qty</th>
+                                        <th>W/Pkg</th>
+                                        <th>Total</th>
+                                        <th>Realisasi</th>
+                                        <th>Status</th>
+                                        <th>Waktu Proses</th>
+                                        <th style="width:50%; text-align:center;">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -53,57 +57,31 @@
 <script src="{{ asset('fiture-style/validation/jquery.validate.min.js') }}"></script>
 
 <script>
-    //DATATABLES
+
     $('.datatable').DataTable({
+        dom: "lBfrtip",
         processing: true,
         serverSide: true,
+        destroy: true,
+        bFilter:true,
+        searching: true,
+        order: [],
         ajax: '{{ route("production.index") }}/list-data',
-        columns: [{
-                data: 'code',
-                name: 'code'
-            },
-            {
-                data: 'products.[<br>].name',
-                name: 'name'
-            },
-            {
-                data: 'white_label',
-                name: 'white_label'
-            },
-            {
-                data: 'products.[<br>].produksi',
-                name: 'produksi'
-            },
-            {
-                data: 'status',
-                name: 'status',
-                orderable: false
-            },
-            {
-                data: 'created_at',
-                name: 'created_at'
-            },
-            {
-                data: 'action',
-                name: 'action',
-                orderable: false,
-                searchable: false,
-                width: '20%'
-            }
+        columns: [
+          {data: 'so', name: 'so', orderable: true, searchable: true},
+          {data: 'product_name', name: 'product_name', orderable: true, searchable: true},
+          {data: 'white_label', name: 'white_label', orderable: true, searchable: true},
+          {data: 'created_at', name: 'created_at', orderable: true, searchable: true},
+          {data: 'package', name: 'package', orderable: true, searchable: true},
+          {data: 'quantity', name: 'quantity', orderable: true, searchable: true},
+          {data: 'weight', name: 'weight', orderable: true, searchable: true},
+          {data: 'total', name: 'total', orderable: true, searchable: false},
+          {data: 'realisasi', name: 'realisasi', orderable: true, searchable: false},
+          {data: 'status', name: 'status', orderable: false, searchable: true},
+          {data: 'waktu', name: 'watu', orderable: false, searchable: false},
+          {data: 'action', name: 'action', orderable: false, searchable: false},
         ],
-        "columnDefs": [{
-                "targets": 6,
-                "className": "text-center"
-            },
-            {
-                "targets": 4,
-                "className": "text-center"
-            }
-        ],
-        "order": [
-            [5, 'desc']
-        ]
-    });
+      });
     $('.datatable').attr('style', 'border-collapse: collapse !important');
 </script>
 
