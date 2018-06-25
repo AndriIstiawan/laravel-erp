@@ -63,9 +63,28 @@ class MasterUserController extends Controller
         if ($request->id != '') {
             $user = User::find($request->id);
             Member::where('sales', 'elemMatch', array('_id' => $request->id))->update(array('sales.0.name' => $request->name));
+            /*$arrKemasan = [];
+            if ($request->kemasan != null) {
+                foreach ($request->kemasan as $kemasan_list){
+                    $arrKemasan[] = [
+                        'jenis_kemasan' => $kemasan_list,
+                    ];  
+                }
+            }
+            $user->kemasan = $arrKemasan;*/
             // SalesOrder::where('sales', 'elemMatch', array('_id' => $request->id))->update(array('sales.0.name' => $request->name));
         } else {
             $user = new User();
+
+            /*$arrKemasan = [];
+            if ($request->kemasan != null) {
+                foreach ($request->kemasan as $kemasan_list){
+                    $arrKemasan[] = [
+                        'jenis_kemasan' => $kemasan_list,
+                    ];  
+                }
+            }
+            $user->kemasan = $arrKemasan;*/
         }
 
         if ($request->email) {
@@ -73,6 +92,7 @@ class MasterUserController extends Controller
             $role = Role::find($request->role);
             $user->name = $request->name;
             $user->email = $request->email;
+
             if ($request->hasFile('picture')) {
                 $pictureFile = $request->file('picture');
                 $extension = $pictureFile->getClientOriginalExtension();

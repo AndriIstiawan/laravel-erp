@@ -1,6 +1,6 @@
 @extends('master') @section('content')
 <link href="{{ asset('fiture-style/select2/select2.min.css') }}" rel="stylesheet">
-<form id="jxForm" novalidate="novalidate" method="POST" action="{{ route('sales-order.store') }}" enctype="multipart/form-data">
+<form id="jxForm" novalidate="novalidate" method="POST" action="{{ route('buat-so.store') }}" enctype="multipart/form-data">
     {{ csrf_field() }}
     <input type="hidden" name="targetUrl" value="/">
     <div class="container-fluid">
@@ -72,7 +72,7 @@
                             <div class="row shipping-list">
                             </div>
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <div class="row">
                                         <div class="input-group col-md-12">
                                             <div class="input-group-prepend">
@@ -89,12 +89,7 @@
                                         <input class="form-check-input" type="checkbox" name="whiteLabel">Label Polos
                                     </div>
                                 </div> -->
-                                <!-- <div class="col-md-6">
-                                    <div class="form-group" style="padding-left:30px;">
-                                        <input class="form-check-input" type="checkbox" name="packkayu">Kemasan Kayu
-                                    </div>
-                                </div> -->
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <select id="delivery" class="form-control" name="delivery" aria-describedby="delivery-error">
                                             <option value=""></option>
@@ -105,7 +100,12 @@
                                         <em id="delivery-error" class="error invalid-feedback"></em>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <!-- <div class="col-md-4">
+                                    <div class="form-group" style="padding-left:30px;">
+                                        <input class="form-check-input" type="checkbox" name="packkayu">Kemasan Kayu
+                                    </div>
+                                </div> -->
+                                <!-- <div class="col-md-4">
                                     <div class="form-group">
                                         <select id="packkayu" class="form-control" name="packkayu" aria-describedby="packkayu-error">
                                             <option value=""></option>
@@ -115,7 +115,7 @@
                                         </select>
                                         <em id="packkayu-error" class="error invalid-feedback"></em>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="row">
                                 <div class="col-md-12">

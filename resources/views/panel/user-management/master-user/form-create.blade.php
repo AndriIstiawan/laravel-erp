@@ -66,6 +66,8 @@
 													</select>
 													<em id="role-error" class="error invalid-feedback">Please select role</em>
 												</div>
+												<!-- <div class="row shipping-list">
+                            					</div> -->
 												</div>
 												<div class="col-md-6">
 												<div class="text-center">
@@ -190,18 +192,45 @@
 		</div>
 	</div>
 </div>
+@include('panel.user-management.master-user.fade-form-create') 
 @endsection
 <!-- /.container-fluid -->
 
 @section('myscript')
 <script src="{{ asset('fiture-style/select2/select2.min.js') }}"></script>
 <script>
+
 	var progressStat = false;
+	var submit = false;
 	
-	$('#role').select2({theme:"bootstrap", placeholder:'Please select'});
-	$('#role').on('change', function(){
-		$(this).addClass('is-valid').removeClass('is-invalid');
-	});
+	$('#role').select2({theme:"bootstrap", placeholder:'Please select'})
+	.change(function () {
+        clientChange($(this));
+        if (submit) {
+            $(this).valid();
+        }
+    });
+
+    function clientChange(elm) {
+        html = "";
+    $('.shipping-list').html($('.shipping-' + elm.val()).html());
+    //set select2 divisi 
+        $('.shipping-list .shipping-valid').select2({
+            theme: "bootstrap",
+            placeholder: 'Kemasan'
+        }).change(function () {
+            $(this).valid();
+        });
+
+        $('.shipping-list .shipping-valid').rules("add", {
+            required: true,
+            messages: {
+                required: "Mohon pilih Kemasan"
+            }
+        });
+        //-----------end setting shipping client
+
+    }
 	
 	function readURL(input) {
 		if (input.files && input.files[0]) {

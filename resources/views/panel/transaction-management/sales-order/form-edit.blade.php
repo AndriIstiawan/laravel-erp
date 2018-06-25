@@ -109,25 +109,34 @@
                                         </div>
                                         <em id="shipping-error" class="error invalid-feedback"></em>
                                     </div>
-                                    <div class="form-group row">
-                                        <div class="input-group col-md-6">
-                                            <div class="input-group-append">
-                                                <span class="input-group-text">
-                                                    Rp
-                                                </span>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <div class="input-group col-md-12">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text">
+                                                            Rp
+                                                        </span>
+                                                    </div>
+                                                    <input type="text" class="form-control idr-currency" id="limit" name="limit" placeholder="00" aria-describedby="limit-error"
+                                                        value="{{(isset($client['limit'])?$client['limit']:'')}}" readonly="">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text">
+                                                            Limit Hutang
+                                                        </span>
+                                                    </div>
+                                                    <em id="limit-error" class="error invalid-feedback"></em>
+                                                </div>
                                             </div>
-                                            <input type="text" class="form-control idr-currency" id="limit" name="limit" placeholder="00" aria-describedby="limit-error"
-                                                value="{{(isset($client['limit'])?$client['limit']:'')}}" readonly="">
-                                            <div class="input-group-append">
-                                                <span class="input-group-text">
-                                                    Limit Hutang
-                                                </span>
-                                            </div>
-                                            <em id="limit-error" class="error invalid-feedback"></em>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group" style="padding-left:30px;">
                                                 <input class="form-check-input" type="checkbox" name="whiteLabel" {{($order['white_label']=='Ya'?'checked':'')}}>Label Polos
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group" style="padding-left:30px;">
+                                                <input class="form-check-input" type="checkbox" name="packkayu" {{($order['pack_kayu']=='Ya'?'checked':'')}}>Kemasan Kayu
                                             </div>
                                         </div>
                                     </div>
@@ -146,12 +155,7 @@
                                     </div>
                                     <br>
                                 </div>
-                                <!-- <div class="col-md-6">
-                                    <div class="form-group" style="padding-left:30px;">
-                                        <input class="form-check-input" type="checkbox" name="packkayu" {{($order['pack_kayu']=='Ya'?'checked':'')}}>Kemasan Kayu
-                                    </div>
-                                </div> -->
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <select id="delivery" class="form-control" name="delivery" aria-describedby="delivery-error">
                                             <option value=""></option>
@@ -162,7 +166,12 @@
                                         <em id="delivery-error" class="error invalid-feedback"></em>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <!-- <div class="col-md-4">
+                                    <div class="form-group" style="padding-left:30px;">
+                                        <input class="form-check-input" type="checkbox" name="packkayu" {{($order['pack_kayu']=='Ya'?'checked':'')}}>Kemasan Kayu
+                                    </div>
+                                </div> -->
+                                <!-- <div class="col-md-4">
                                     <div class="form-group">
                                         <select id="packkayu" class="form-control" name="packkayu" aria-describedby="delivery-error">
                                             <option value=""></option>
@@ -172,7 +181,7 @@
                                         </select>
                                         <em id="delivery-error" class="error invalid-feedback"></em>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="row">
                                 <div class="col-md-12">

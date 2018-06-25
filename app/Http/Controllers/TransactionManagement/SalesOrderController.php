@@ -105,7 +105,8 @@ class SalesOrderController extends Controller
         if ($request->packkayu == '') {
             $so->pack_kayu = 'Tidak';
         }else{
-            $so->pack_kayu = $request->packkayu;
+            $so->pack_kayu = 'Ya';
+            /*$so->pack_kayu = $request->packkayu;*/
         }
 
         $so->notes = $request->notes;
@@ -153,7 +154,7 @@ class SalesOrderController extends Controller
             return redirect()->route('sales-order.index')->with('toastr', 'order');
         }
 
-        return dd($so);
+        /*return dd($so);*/
     }
 
     //list data
@@ -280,7 +281,8 @@ class SalesOrderController extends Controller
         if ($request->packkayu == '') {
             $so['pack_kayu'] = 'Tidak';
         }else{
-            $so['pack_kayu'] = $request->packkayu;
+            $so->pack_kayu = 'Ya';
+            /*$so['pack_kayu'] = $request->packkayu;*/
         }
 
         $so['notes'] = $request->notes;
@@ -402,11 +404,13 @@ class SalesOrderController extends Controller
                         $so_product['package'],
                         ((double)$so_product['total']/1000),
                         $so_product['quantity']." ".$so_product['package']." ".$so_product['weight'],
+                        $salesorder->white_label,
                         $salesorder->pack_kayu,
                         $salesorder['delivery'][0]['name'],
                         "",
                         $salesorder->TOP,
                         ((double)$salesorder['client'][0]['limit']),
+                        $salesorder->shipping,
                         $salesorder->created_at,
                         $salesorder->status,
                     ];
