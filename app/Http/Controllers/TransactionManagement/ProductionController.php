@@ -14,6 +14,7 @@ use Image;
 use datetime;
 use App\Counter;
 use App\Member;
+use Carbon\Carbon;
 
 class ProductionController extends Controller
 {
@@ -33,7 +34,7 @@ class ProductionController extends Controller
                 return 'true';
             }
         }else{
-            return (SalesOrder::where('name', $request->name)->first() ? 'false' : 'true' );    
+            return (SalesOrder::where('name', $request->name)->first() ? 'false' : 'true' );
         }
     }
 
@@ -46,166 +47,169 @@ class ProductionController extends Controller
     //view form create
     public function create()
     {
-        date_default_timezone_set('Asia/Jakarta');
-        $order=SalesOrder::all();
-        $product= Product::all();
-        $products= Product::all();
-        $modUser = User::where('role', 'elemMatch', array('name' => 'Sales'))->get();
-        $user= User::where('role', 'elemMatch', array('name' => 'Production'))->get();
-        $users= User::where('role', 'elemMatch', array('name' => 'Production'))->get();
-        return view('panel.transaction-management.sales-order.form-create')->with([
-            'order' => $order, 
-            'product' => $product,
-            'products' => $products,
-            'user' => $user,
-            'users' => $users,
-            'modUser' => $modUser,
-        ]);
+
     }
 
     //store data sales order
     public function store(Request $request)
-    {   
-        $order = new SalesOrder();
-        $order->sono = $request->sono;
-        $order->date = $request->date;
-        $order->client = $request->client;
+    {
+      //dd($request->all());
+      if($request->realisasi){
+        $data = SalesOrder::where('_id',$request->id)->update(array('products.'.$request->index.'.selesai_proses' =>thisday(),
+                                  'products.'.$request->index.'.status_produksi' => 'selesai',
+                                  'products.'.$request->index.'.realisasi' => (double)$request->realisasi *1000));
+      }else{
+        $data = SalesOrder::where('_id',$request->id)->update(array('products.'.$request->index.'.selesai_proses' =>thisday(),
+                                  'products.'.$request->index.'.status_produksi' => 'selesai'));
+      }
 
-        $sales=user::where('_id', $request->sales)->get();
-        $order->sales=$sales->toArray();
-
-        
-
-        $productss =[];
-        for($i=0; $i < count($request->total); $i++){
-            $products=Product::where('_id', $request->product[$i])->first();
-            $productss[] =[
-                'id'=> $products['id'],
-                'name'=>$products['name'],
-                'type'=>$products['type'],
-                'code'=>$products['code'],
-                'total' => $request->total[$i],
-                'packaging' => $request->packaging[$i],
-                'amount' => $request->amount[$i],
-                'package' => $request->package[$i],
-                'realisasi' => $request->realisasi[$i],
-                'stockk' => $request->stockk[$i],
-                'pending' => $request->pending[$i],
-                'balance' => $request->balance[$i],
-                'pendingpr' => $request->pendingpr[$i],
-            ];
-        }
-        $order->productattr=$productss;
-
-        $order->catatan = $request->catatan;
-        $order->tunggu = $request->tunggu;
-
-        /*$checks=user::where('_id', $request->check)->get();
-        $order->check=$checks->toArray();
-
-        $produksis=user::where('_id', $request->produksi)->get();
-        $order->produksi=$produksis->toArray();*/
-
-        $order->status = "production";
-
-        return dd($order);
+      if($data){
+        return redirect()->route('production.index')->with('update', 'Production');
+      }else{
+        return redirect()->route('production.index')->with('danger', 'Production');
+      }
     }
 
     //for getting datatable at index
     public function show(Request $request, $action){
+
         $orders = SalesOrder::all();
-        
-        return Datatables::of($orders)
-            ->addColumn('status', function ($order) {
-                switch($order->status){
-                    case "order":
-                        return '<span class="badge badge-success" style="padding:9px;">&nbsp;&nbsp;'.$order->status.'&nbsp;&nbsp;</span>';
-                        break;
-                    case "production":
-                        return '<span class="badge badge-warning" style="padding:9px;">&nbsp;&nbsp;'.$order->status.'&nbsp;&nbsp;</span>';
-                        break;
-                    default:
-                        return '<span class="badge badge-success" style="padding:9px;">&nbsp;&nbsp;'.$order->status.'&nbsp;&nbsp;</span>';
+
+        $arrProductList = [];
+        foreach($orders as $order_detail){
+            foreach($order_detail->products as $key => $product_detail){
+                $arrProductList[] = [
+                    'so' => $order_detail['code'],
+                    'product_name' => $product_detail['name'],
+                    'created_at' => $order_detail->created_at->format('d-m-Y'),
+                    'id' => $order_detail['id'],
+                    'white_label' =>$order_detail['white_label'],
+                    'package'=>$product_detail['package'],
+                    'quantity'=>$product_detail['quantity'],
+                    'weight'=>$product_detail['weight'],
+                    'total'=>$product_detail['total'],
+                    'realisasi'=>$product_detail['realisasi'],
+                    'product_id'=>$product_detail['product_id'],
+                    'status_produksi'=>$product_detail['status_produksi'],
+                    'mulai_proses'=>$product_detail['mulai_proses'],
+                    'selesai_proses'=>$product_detail['selesai_proses'],
+                    'petugas_produksi'=>$product_detail['petugas_produksi'],
+                    'index'=>$key
+                ];
+            }
+        }
+        $arrProduct = collect($arrProductList);
+            return Datatables::of($arrProduct)
+            ->editColumn('white_label', function($arrProduct){
+              if($arrProduct['white_label']){
+                return ucwords($arrProduct['white_label']);
+              }else{
+                return '--';
+              }
+            })
+            ->editColumn('weight', function($arrProduct){
+                $temp = ((double)$arrProduct['weight'])/1000;
+                return $temp.' Kg';
+            })
+            ->editColumn('total', function($arrProduct){
+                $temp = ((double)$arrProduct['total'])/1000;
+                return $temp.' Kg';
+            })
+            ->editColumn('realisasi', function($arrProduct){
+                $temp = ((double)$arrProduct['realisasi'])/1000;
+                return $temp.' Kg';
+            })
+            ->addColumn('action', function($arrProduct){
+                if($arrProduct['status_produksi']){
+                  if($arrProduct['status_produksi'] == 'sedang diproses'){
+                    return
+                        '<center><a class="btn btn-success btn-sm" href="'.route('production.selesai',['id' => $arrProduct['id'],'index' => $arrProduct['index'], 'petugas_produksi' => $arrProduct['petugas_produksi'], 'product_name' => $arrProduct['product_name'], 'package'=>$arrProduct['package'],
+                        'quantity'=>$arrProduct['quantity'], 'weight'=>$arrProduct['weight'], 'total'=>$arrProduct['total'], 'white_label'=>$arrProduct['white_label']]).'">
+                            <i class="fa fa-check-circle"></i>&nbsp;Selesai?</a></center>';
+                  }elseif($arrProduct['status_produksi'] == 'selesai'){
+                    return
+                        '<center><a class="btn btn-warning btn-sm">
+                            &nbsp;ProsesQC</a></center>';
+                  }
+                }else{
+                  return
+                      '<center><a class="btn btn-primary btn-sm"  href="'.route('production.proses',['id' => $arrProduct['id'], 'user_id' => auth()->user()->_id, 'index' => $arrProduct['index']]).'">
+                          <i class="fa fa-refresh"></i>&nbsp;Proses</a></center>';
                 }
             })
-            ->addColumn('action', function ($order) {
-                return 
-                    '<a class="btn btn-success btn-sm" href="'.route('production.edit',['id' => $order->id]).'">
-                        <i class="fa fa-pencil-square-o"></i>&nbsp;Edit</a>';
+            ->addColumn('status', function($arrProduct){
+                $user['name']= User::where('_id',$arrProduct['petugas_produksi'])->pluck('name');
+                if($arrProduct['status_produksi']){
+                  if($arrProduct['status_produksi'] == 'sedang diproses'){
+                    return ucwords($arrProduct['status_produksi'].' oleh '.$user['name']);
+                  }elseif($arrProduct['status_produksi'] == 'selesai'){
+                    return ucwords($arrProduct['status_produksi'].' diproses oleh '.$user['name']);
+                  }
+                }else{
+                  /*$tag = "<center><a class='btn btn-danger btn-sm'>
+                      <i class='fa fa-refresh'></i>Belum Diproses</a></center>";
+                  return $tag;*/
+                  return 'Belum Diproses';
+                }
             })
-            ->rawColumns(['status', 'action'])
+            ->addColumn('waktu', function($arrProduct){
+                if($arrProduct['selesai_proses']){
+                  $waktu = Carbon::parse($arrProduct['selesai_proses'])->diffForHumans(Carbon::parse($arrProduct['mulai_proses']));
+                  return str_replace('setelah','', $waktu);
+                }else{
+                  return '--';
+                }
+            })
             ->make(true);
     }
-    
+
     //view form edit
     public function edit($id)
     {
-        $order = SalesOrder::find($id);
-        $client = Member::find($order['client'][0]['_id']);
-        $members = Member::all();
-        $products = Product::all();
-        $user= User::where('role', 'elemMatch', array('name' => 'Production'))->get();
-        $users= User::where('role', 'elemMatch', array('name' => 'Production'))->get();
-        return view('panel.transaction-management.production.form-edit')->with([
-            'order' => $order,
-            'client' => $client,
-            'members' => $members,
-            'products' => $products,
-            'user' => $user,
-            'users' => $users,
-        ]);
+
     }
 
     //update data
     public function update(Request $request, $id)
     {
-        $order = SalesOrder::find($id);
 
-        $arrProduct = [];
-        $total_kg = 0;
-        $total_realisasi = 0;
-        foreach ($request->arrProduct as $key) {
-            $product = Product::find($request->input('product' . $key));
-            $total_kg = $total_kg + (((double) $request->input('total' . $key)) * 1000);
-            $total_realisasi = $total_realisasi + (((double) $request->input('realisasi' . $key)) * 1000);
-            $arrProduct[] = [
-                "product_id" => $product['_id'],
-                "name" => $product['name'] . " - " . $product['type'],
-                "product_detail" => [$product->toArray()],
-                "package" => $request->input('package' . $key),
-                "quantity" => $request->input('quantity' . $key),
-                "weight" => (double) $request->input('weight' . $key),
-                "total" => ((double) $request->input('total' . $key)) * 1000,
-                "realisasi" => ((double) $request->input('realisasi' . $key)) * 1000,
-                "tunggu" => $request->input('tunggu' . $key),
-                "check" => $request->input('check' . $key),
-                "produksi" => $request->input('produksi' . $key),
-            ];
-        }
-        $order['products'] = $arrProduct;
-        
-        $order->tunggu = $request->tunggu;
-
-        /*$checks=user::where('_id', $request->check)->get();
-        $order->check=$checks->toArray();
-
-        $produksis=user::where('_id', $request->produksi)->get();
-        $order->produksi=$produksis->toArray();*/
-
-        $order['status'] = "production";
-
-        $order->save();
-        
-        return redirect()->route('production.index')->with('update', 'sales-order');
-
-        /*return dd($order);*/
     }
 
     //delete data discount
     public function destroy($id)
     {
-        $order = SalesOrder::find($id);
-        $order->delete();
-        return redirect()->route('production.index')->with('dlt', 'sales-order');
+
+    }
+
+    public function proses(Request $request){
+
+      $data = SalesOrder::where('_id',$request->id)->update(array('products.'.$request->index.'.petugas_produksi' => $request->user_id,
+                            'products.'.$request->index.'.status_produksi' => 'sedang diproses',
+                            'products.'.$request->index.'.mulai_proses' =>thisday() ));
+      if($data){
+        return redirect()->route('production.index')->with('update', 'Production');
+      }else{
+        return redirect()->route('production.index')->with('danger', 'Production');
+      }
+      return view('panel.transaction-management.production.index');
+    }
+
+    public function selesai(Request $request){
+      /*
+      return view('panel.transaction-management.production.index');*/
+      //dd($request->all());
+      if($request->petugas_produksi == auth()->user()->id){
+        $data['id'] = $request->id;
+        $data['index'] = $request->index;
+        $data['product_name'] = $request->product_name;
+        $data['package'] = $request->package;
+        $data['quantity'] = $request->quantity;
+        $data['weight'] = $request->weight/1000;
+        $data['total'] = $request->total/1000;
+        $data['white_label'] = $request->white_label;
+        return view('panel.transaction-management.production.proses',$data);
+      }else{
+        return redirect()->route('production.index')->with('error', 'Proses');
+      }
     }
 }

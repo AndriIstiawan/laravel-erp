@@ -43,6 +43,10 @@
 		//tmbhn untuk throw exception gagal hapus
 		toastr.error('Data {{Session::get('danger')}} failed to delete', 'An error has occured');
 	@endif
+	@if(Session::get('error'))
+		//tambahan untk throw exeption selesai produksi
+		toastr.error('{{Session::get('error')}} hanya dapat diselesaikan oleh petugas yang berkaitan', 'An error has occured');
+	@endif
 </script>
 
 <!-- Remove List Datatable -->
