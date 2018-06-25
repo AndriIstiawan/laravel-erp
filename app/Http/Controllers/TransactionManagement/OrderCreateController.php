@@ -26,7 +26,7 @@ class OrderCreateController extends Controller
         $members = Member::all();
         $products = Product::all();
         $packaging = Packaging::all();
-        $carrier = Carriers::all();
+        $carrier = Carriers::where('status', 'on')->get();
         $member = Member::groupBy('code')->count('shipping_address');
         return view('panel.transaction-management.order-create.form-create')->with([
             'user' => $user,
