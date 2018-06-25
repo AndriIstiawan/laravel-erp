@@ -16,7 +16,7 @@ function rollbackPrice($price){
 	return (int) str_replace(['.'], '', $price);
 }
 function thisday(){
-	$data = Carbon::now('Asia/Jakarta')->format('Y-m-d G:H:i');
+	$data = Carbon::now('Asia/Jakarta')->format('Y-m-d H:i');
 	return $data;
 }
 ?>
