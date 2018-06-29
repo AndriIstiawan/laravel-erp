@@ -127,10 +127,7 @@ class SalesOrderController extends Controller
                 "total" => ((double) $request->input('total' . $key)) * 1000,
                 "realisasi" => ((double) $request->input('realisasi' . $key)) * 1000,
                 "tunggu" => null,
-                "petugas_produksi" => null,
-                "status_produksi" => null,
-                "mulai_proses"=>null,
-                "selesai_proses"=>null
+                "produksi" => null,
             ];
         }
         $so->products = $arrProduct;
@@ -166,7 +163,7 @@ class SalesOrderController extends Controller
             $orders = SalesOrder::where('created_at','>=',new DateTime($request->dateStart))
                 ->where('created_at','<=',new DateTime($request->dateEnd." 23:59:59"))->get();
         }
-
+        
         return Datatables::of($orders)
             ->addColumn('checkbox', function ($order) {
                 return '<input id="'.$order->id.'" class="data-list" value="'.$order->id.'" type="checkbox" onchange="selected(this)"/>';
@@ -274,10 +271,10 @@ class SalesOrderController extends Controller
         }else{
             $so['white_label'] = 'Ya';
         }
-
+        
         $deliverys=Carriers::where('_id', $request->delivery)->get();
         $so['delivery'] = $deliverys->toArray();
-
+        
         if ($request->packkayu == '') {
             $so['pack_kayu'] = 'Tidak';
         }else{
@@ -423,7 +420,7 @@ class SalesOrderController extends Controller
             $sheet1->fromArray($data, null, 'A3', false, false);
             //$reader->getActiveSheet()->setAutoSize(true);
         });
-
+        
         if(isset($request->arrList)){
             $excel->setFilename($filename)->store('xlsx', false, true);
             return $filename.".xlsx";
