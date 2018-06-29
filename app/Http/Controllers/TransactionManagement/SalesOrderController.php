@@ -127,7 +127,10 @@ class SalesOrderController extends Controller
                 "total" => ((double) $request->input('total' . $key)) * 1000,
                 "realisasi" => ((double) $request->input('realisasi' . $key)) * 1000,
                 "tunggu" => null,
-                "produksi" => null,
+                "petugas_produksi" => null,
+                "status_produksi" => null,
+                "mulai_proses"=>null,
+                "selesai_proses"=>null
             ];
         }
         $so->products = $arrProduct;
