@@ -3172,6 +3172,8 @@ return array(
     'SSD\\Currency\\Providers\\BaseProvider' => $vendorDir . '/sebastiansulinski/laravel-currency/src/Providers/BaseProvider.php',
     'SSD\\Currency\\Providers\\CookieProvider' => $vendorDir . '/sebastiansulinski/laravel-currency/src/Providers/CookieProvider.php',
     'SSD\\Currency\\Providers\\SessionProvider' => $vendorDir . '/sebastiansulinski/laravel-currency/src/Providers/SessionProvider.php',
+    'SalesOrderChange' => $baseDir . '/database/seeds/SalesOrderChange.php',
+    'SalesOrderSetting' => $baseDir . '/database/seeds/SalesOrderSetting.php',
     'SebastianBergmann\\CodeCoverage\\CodeCoverage' => $vendorDir . '/phpunit/php-code-coverage/src/CodeCoverage.php',
     'SebastianBergmann\\CodeCoverage\\CoveredCodeNotExecutedException' => $vendorDir . '/phpunit/php-code-coverage/src/Exception/CoveredCodeNotExecutedException.php',
     'SebastianBergmann\\CodeCoverage\\Driver\\Driver' => $vendorDir . '/phpunit/php-code-coverage/src/Driver/Driver.php',
