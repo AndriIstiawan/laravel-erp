@@ -122,7 +122,14 @@ class OrderCreateController extends Controller
                 "total" => ((double) $request->input('total' . $key)) * 1000,
                 "realisasi" => ((double) $request->input('realisasi' . $key)) * 1000,
                 "tunggu" => null,
-                "produksi" => null,
+                "petugas_produksi" => null,
+                "petugas_qc" => null,
+                "status_produksi" => null,
+                "mulai_proses"=>null,
+                "selesai_proses"=>null,
+                "tgl_pass"=>null,
+                "tgl_reject"=>null,
+                "note_reject"=>null
             ];
         }
         $so->products = $arrProduct;
