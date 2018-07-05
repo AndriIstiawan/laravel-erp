@@ -3560,6 +3560,8 @@ class ComposerStaticInitd80677642af87e169186fc7d444a9776
         'SSD\\Currency\\Providers\\BaseProvider' => __DIR__ . '/..' . '/sebastiansulinski/laravel-currency/src/Providers/BaseProvider.php',
         'SSD\\Currency\\Providers\\CookieProvider' => __DIR__ . '/..' . '/sebastiansulinski/laravel-currency/src/Providers/CookieProvider.php',
         'SSD\\Currency\\Providers\\SessionProvider' => __DIR__ . '/..' . '/sebastiansulinski/laravel-currency/src/Providers/SessionProvider.php',
+        'SalesOrderChange' => __DIR__ . '/../..' . '/database/seeds/SalesOrderChange.php',
+        'SalesOrderSetting' => __DIR__ . '/../..' . '/database/seeds/SalesOrderSetting.php',
         'SebastianBergmann\\CodeCoverage\\CodeCoverage' => __DIR__ . '/..' . '/phpunit/php-code-coverage/src/CodeCoverage.php',
         'SebastianBergmann\\CodeCoverage\\CoveredCodeNotExecutedException' => __DIR__ . '/..' . '/phpunit/php-code-coverage/src/Exception/CoveredCodeNotExecutedException.php',
         'SebastianBergmann\\CodeCoverage\\Driver\\Driver' => __DIR__ . '/..' . '/phpunit/php-code-coverage/src/Driver/Driver.php',

@@ -205,7 +205,9 @@ $('#packkayu').select2({theme:"bootstrap", placeholder:'Kemasan'/*,tags: true*/}
 
     function save(){
         submit = true;
+        $('.fa-save').prop('disabled', true);
         if(!$('#jxForm').valid()){
+            $('.fa-save').prop('disabled', false);
             toastr.warning('Mohon cek kembali data inputan anda', 'Form not valid');
         }
     }
