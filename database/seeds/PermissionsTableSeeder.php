@@ -57,6 +57,17 @@ class PermissionsTableSeeder extends Seeder
 				'created_at' => date("Y-m-d H:i:s"),
 				'updated_at' => date("Y-m-d H:i:s")
 			],
+      [
+	        	'name' => 'QC',
+	        	'slug' => 'qc',
+	        	'type' => 'module-menu',
+				'icon' => 'icon-cursor',
+				'parent' => null,
+				'description' => 'Module Menu',
+				'guard_name' => 'web',
+				'created_at' => date("Y-m-d H:i:s"),
+				'updated_at' => date("Y-m-d H:i:s")
+			],
 			[
 	        	'name' => 'User Management',
 	        	'slug' => null,
@@ -179,8 +190,8 @@ class PermissionsTableSeeder extends Seeder
 				'updated_at' => date("Y-m-d H:i:s")
 			],
 			[
-	        	'name' => 'Courier',
-	        	'slug' => 'courier',
+	        	'name' => 'Master Deliveries',
+	        	'slug' => null,
 	        	'type' => 'module-menu',
 				'icon' => 'fa fa-truck',
 				'parent' => null,
@@ -189,28 +200,204 @@ class PermissionsTableSeeder extends Seeder
 				'created_at' => date("Y-m-d H:i:s"),
 				'updated_at' => date("Y-m-d H:i:s")
 			],
-      [
-        'name' => 'Master Packaging',
-        'slug' => null,
-        'type' => 'module-menu',
-        'icon' => 'fa fa-dropbox',
-        'parent' => null,
-        'description' => 'Module Menu',
-        'guard_name' => 'web',
-        'created_at' => date("Y-m-d H:i:s"),
-        'updated_at' => date("Y-m-d H:i:s")
-      ],
-      [
-        'name' => 'Packaging',
-        'slug' => 'packaging',
-        'type' => 'module-menu',
-        'icon' => 'icon-cursor',
-        'parent' => null,
-        'description' => 'Module Menu',
-        'guard_name' => 'web',
-        'created_at' => date("Y-m-d H:i:s"),
-        'updated_at' => date("Y-m-d H:i:s")
-      ],
+			[
+	        	'name' => 'Courier',
+	        	'slug' => 'courier',
+	        	'type' => 'module-menu',
+				'icon' => 'icon-cursor',
+				'parent' => null,
+				'description' => 'Module Menu',
+				'guard_name' => 'web',
+				'created_at' => date("Y-m-d H:i:s"),
+				'updated_at' => date("Y-m-d H:i:s")
+			],
+			[
+	        	'name' => 'View Deliveries',
+	        	'slug' => 'deliveries',
+	        	'type' => 'module-menu',
+				'icon' => 'icon-cursor',
+				'parent' => null,
+				'description' => 'Module Menu',
+				'guard_name' => 'web',
+				'created_at' => date("Y-m-d H:i:s"),
+				'updated_at' => date("Y-m-d H:i:s")
+			],
+			[
+	        	'name' => 'Master Sales',
+	        	'slug' => null,
+	        	'type' => 'module-menu',
+				'icon' => 'fa fa-user',
+				'parent' => null,
+				'description' => 'Module Menu',
+				'guard_name' => 'web',
+				'created_at' => date("Y-m-d H:i:s"),
+				'updated_at' => date("Y-m-d H:i:s")
+			],
+			[
+	        	'name' => 'Sales Staff',
+	        	'slug' => 'sales-staff',
+	        	'type' => 'module-menu',
+				'icon' => 'icon-cursor',
+				'parent' => null,
+				'description' => 'Module Menu',
+				'guard_name' => 'web',
+				'created_at' => date("Y-m-d H:i:s"),
+				'updated_at' => date("Y-m-d H:i:s")
+			],
+			[
+	        	'name' => 'Dispatch Bonuses',
+	        	'slug' => 'dispatch-bonuses',
+	        	'type' => 'module-menu',
+				'icon' => 'icon-cursor',
+				'parent' => null,
+				'description' => 'Module Menu',
+				'guard_name' => 'web',
+				'created_at' => date("Y-m-d H:i:s"),
+				'updated_at' => date("Y-m-d H:i:s")
+			],
+			[
+	        	'name' => 'Reward Points',
+	        	'slug' => 'reward-points',
+	        	'type' => 'module-menu',
+				'icon' => 'icon-cursor',
+				'parent' => null,
+				'description' => 'Module Menu',
+				'guard_name' => 'web',
+				'created_at' => date("Y-m-d H:i:s"),
+				'updated_at' => date("Y-m-d H:i:s")
+			],
+			[
+	        	'name' => 'Master Productions',
+	        	'slug' => null,
+	        	'type' => 'module-menu',
+				'icon' => 'fa fa-user',
+				'parent' => null,
+				'description' => 'Module Menu',
+				'guard_name' => 'web',
+				'created_at' => date("Y-m-d H:i:s"),
+				'updated_at' => date("Y-m-d H:i:s")
+			],
+			[
+	        	'name' => 'Productions Staff',
+	        	'slug' => 'productions-staff',
+	        	'type' => 'module-menu',
+				'icon' => 'icon-cursor',
+				'parent' => null,
+				'description' => 'Module Menu',
+				'guard_name' => 'web',
+				'created_at' => date("Y-m-d H:i:s"),
+				'updated_at' => date("Y-m-d H:i:s")
+			],
+			[
+	        	'name' => 'Points Performance',
+	        	'slug' => 'points-performance',
+	        	'type' => 'module-menu',
+				'icon' => 'icon-cursor',
+				'parent' => null,
+				'description' => 'Module Menu',
+				'guard_name' => 'web',
+				'created_at' => date("Y-m-d H:i:s"),
+				'updated_at' => date("Y-m-d H:i:s")
+			],
+			[
+	        	'name' => 'Master QC',
+	        	'slug' => null,
+	        	'type' => 'module-menu',
+				'icon' => 'fa fa-user',
+				'parent' => null,
+				'description' => 'Module Menu',
+				'guard_name' => 'web',
+				'created_at' => date("Y-m-d H:i:s"),
+				'updated_at' => date("Y-m-d H:i:s")
+			],
+			[
+	        	'name' => 'QC Staff',
+	        	'slug' => 'qc-staff',
+	        	'type' => 'module-menu',
+				'icon' => 'icon-cursor',
+				'parent' => null,
+				'description' => 'Module Menu',
+				'guard_name' => 'web',
+				'created_at' => date("Y-m-d H:i:s"),
+				'updated_at' => date("Y-m-d H:i:s")
+			],
+			[
+	        	'name' => 'Product Review',
+	        	'slug' => 'product-review',
+	        	'type' => 'module-menu',
+				'icon' => 'icon-cursor',
+				'parent' => null,
+				'description' => 'Module Menu',
+				'guard_name' => 'web',
+				'created_at' => date("Y-m-d H:i:s"),
+				'updated_at' => date("Y-m-d H:i:s")
+			],
+			[
+	        	'name' => 'Master Warehouse',
+	        	'slug' => null,
+	        	'type' => 'module-menu',
+				'icon' => 'fa fa-list-alt',
+				'parent' => null,
+				'description' => 'Module Menu',
+				'guard_name' => 'web',
+				'created_at' => date("Y-m-d H:i:s"),
+				'updated_at' => date("Y-m-d H:i:s")
+			],
+			[
+	        	'name' => 'Warehouse Rack',
+	        	'slug' => 'warehouse-rack',
+	        	'type' => 'module-menu',
+				'icon' => 'icon-cursor',
+				'parent' => null,
+				'description' => 'Module Menu',
+				'guard_name' => 'web',
+				'created_at' => date("Y-m-d H:i:s"),
+				'updated_at' => date("Y-m-d H:i:s")
+			],
+			[
+	        	'name' => 'Warehouse Branch',
+	        	'slug' => 'warehouse-branch',
+	        	'type' => 'module-menu',
+				'icon' => 'icon-cursor',
+				'parent' => null,
+				'description' => 'Module Menu',
+				'guard_name' => 'web',
+				'created_at' => date("Y-m-d H:i:s"),
+				'updated_at' => date("Y-m-d H:i:s")
+			]
+			/*[
+	        	'name' => 'Brands/Partners',
+	        	'slug' => 'brands',
+	        	'type' => 'module-menu',
+				'icon' => 'fa fa-list-alt',
+				'parent' => null,
+				'description' => 'Module Menu',
+				'guard_name' => 'web',
+				'created_at' => date("Y-m-d H:i:s"),
+				'updated_at' => date("Y-m-d H:i:s")
+			],*/
+		      /*[
+		        'name' => 'Master Packaging',
+		        'slug' => null,
+		        'type' => 'module-menu',
+		        'icon' => 'fa fa-dropbox',
+		        'parent' => null,
+		        'description' => 'Module Menu',
+		        'guard_name' => 'web',
+		        'created_at' => date("Y-m-d H:i:s"),
+		        'updated_at' => date("Y-m-d H:i:s")
+		      ],
+		      [
+		        'name' => 'Packaging',
+		        'slug' => 'packaging',
+		        'type' => 'module-menu',
+		        'icon' => 'icon-cursor',
+		        'parent' => null,
+		        'description' => 'Module Menu',
+		        'guard_name' => 'web',
+		        'created_at' => date("Y-m-d H:i:s"),
+		        'updated_at' => date("Y-m-d H:i:s")
+		      ],*/
             // [
 	        // 	'name' => 'Location',
 	        // 	'slug' => 'location',
@@ -248,39 +435,6 @@ class PermissionsTableSeeder extends Seeder
 			// [
 	        // 	'name' => 'Promo',
 	        // 	'slug' => 'promo',
-	        // 	'type' => 'module-menu',
-			// 	'icon' => 'icon-cursor',
-			// 	'parent' => null,
-			// 	'description' => 'Module Menu',
-			// 	'guard_name' => 'web',
-			// 	'created_at' => date("Y-m-d H:i:s"),
-			// 	'updated_at' => date("Y-m-d H:i:s")
-			// ],
-			// [
-	        // 	'name' => 'Master-Home',
-	        // 	'slug' => null,
-	        // 	'type' => 'module-menu',
-			// 	'icon' => 'fa fa-home',
-			// 	'parent' => null,
-			// 	'description' => 'Module Menu',
-			// 	'guard_name' => 'web',
-			// 	'created_at' => date("Y-m-d H:i:s"),
-			// 	'updated_at' => date("Y-m-d H:i:s")
-			// ],
-			// [
-	        // 	'name' => 'Promo Slider',
-	        // 	'slug' => 'slider',
-	        // 	'type' => 'module-menu',
-			// 	'icon' => 'icon-cursor',
-			// 	'parent' => null,
-			// 	'description' => 'Module Menu',
-			// 	'guard_name' => 'web',
-			// 	'created_at' => date("Y-m-d H:i:s"),
-			// 	'updated_at' => date("Y-m-d H:i:s")
-			// ],
-			// [
-	        // 	'name' => 'Brands/Partners',
-	        // 	'slug' => 'brands',
 	        // 	'type' => 'module-menu',
 			// 	'icon' => 'icon-cursor',
 			// 	'parent' => null,
@@ -361,17 +515,6 @@ class PermissionsTableSeeder extends Seeder
 	        	'slug' => null,
 	        	'type' => 'module-menu',
 				'icon' => 'fa fa-bars',
-				'parent' => null,
-				'description' => 'Module Menu',
-				'guard_name' => 'web',
-				'created_at' => date("Y-m-d H:i:s"),
-				'updated_at' => date("Y-m-d H:i:s")
-			],
-			[
-	        	'name' => 'View Deliveries',
-	        	'slug' => 'deliveries',
-	        	'type' => 'module-menu',
-				'icon' => 'icon-cursor',
 				'parent' => null,
 				'description' => 'Module Menu',
 				'guard_name' => 'web',
@@ -528,15 +671,27 @@ DB::table('permissions')->whereIn('slug', ['role', 'master-user'])
 ->update(['parent' => (string)$parent['_id']]);
 
 $parent = DB::table('permissions')->where('name','Transaction')->first();
-DB::table('permissions')->whereIn('slug', ['sales-order','production','buat-so'])
+DB::table('permissions')->whereIn('slug', ['sales-order','production','buat-so','qc'])
 ->update(['parent' => (string)$parent['_id']]);
 
 $parent = DB::table('permissions')->where('name','Master-Deal')->first();
 DB::table('permissions')->whereIn('slug', ['discount','promo'])
 ->update(['parent' => (string)$parent['_id']]);
 
-$parent = DB::table('permissions')->where('name','Master-Home')->first();
-DB::table('permissions')->whereIn('slug', ['slider','brands'])
+$parent = DB::table('permissions')->where('name','Master Deliveries')->first();
+DB::table('permissions')->whereIn('slug', ['courier', 'deliveries'])
+->update(['parent' => (string)$parent['_id']]);
+
+$parent = DB::table('permissions')->where('name','Master Sales')->first();
+DB::table('permissions')->whereIn('slug', ['sales-staff','dispatch-bonuses','reward-points'])
+->update(['parent' => (string)$parent['_id']]);
+
+$parent = DB::table('permissions')->where('name','Master Productions')->first();
+DB::table('permissions')->whereIn('slug', ['productions-staff','points-performance'])
+->update(['parent' => (string)$parent['_id']]);
+
+$parent = DB::table('permissions')->where('name','Master QC')->first();
+DB::table('permissions')->whereIn('slug', ['qc-staff','product-review'])
 ->update(['parent' => (string)$parent['_id']]);
 
 $parent = DB::table('permissions')->where('name','Product Management')->first();
@@ -561,6 +716,10 @@ DB::table('permissions')->whereIn('slug', ['footer','segment','segment-attribute
 
 $parent = DB::table('permissions')->where('name','Master Packaging')->first();
 DB::table('permissions')->whereIn('slug', ['packaging'])
+->update(['parent' => (string)$parent['_id']]);
+
+$parent = DB::table('permissions')->where('name','Master Warehouse')->first();
+DB::table('permissions')->whereIn('slug', ['warehouse-rack', 'warehouse-branch'])
 ->update(['parent' => (string)$parent['_id']]);
 }
 }
