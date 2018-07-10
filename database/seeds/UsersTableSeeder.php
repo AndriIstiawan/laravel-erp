@@ -11,16 +11,19 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('users')->truncate();
         DB::table('users')->insert([
             [
             'name' => env('ROOT_NAME'),
+            'username' => env('ROOT_NAME'),
             'email' => env('ROOT_USERNAME'),
             'password' => bcrypt(env('ROOT_PASSWORD')),
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-            'name' => 'DEDE',
+            'name' => 'dede',
+            'username' => 'dede',
             'email' => 'dede@macbrame.com',
             'password' => bcrypt('12345'),
             'role' => [],
@@ -30,7 +33,8 @@ class UsersTableSeeder extends Seeder
             'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-            'name' => 'ALAMSYAH',
+            'name' => 'alamsyah',
+            'username' => 'alamsyah',
             'email' => 'alamsyah@macbrame.com',
             'password' => bcrypt('12345'),
             'role' => [],
@@ -40,7 +44,8 @@ class UsersTableSeeder extends Seeder
             'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-            'name' => 'SUWONDO',
+            'name' => 'suwondo',
+            'username' => 'suwondo',
             'email' => 'wondo@macbrame.com',
             'password' => bcrypt('12345'),
             'role' => [],
@@ -50,7 +55,8 @@ class UsersTableSeeder extends Seeder
             'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-            'name' => 'JULIAWAN',
+            'name' => 'juliawan',
+            'username' => 'juliawan',
             'email' => 'juliawan@macbrame.com',
             'password' => bcrypt('12345'),
             'role' => [],
@@ -60,7 +66,8 @@ class UsersTableSeeder extends Seeder
             'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-            'name' => 'MGT',
+            'name' => 'mgt',
+            'username' => 'mgt',
             'email' => 'mgt@macbrame.com',
             'password' => bcrypt('12345'),
             'role' => [],
@@ -70,7 +77,8 @@ class UsersTableSeeder extends Seeder
             'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-            'name' => 'INDRA',
+            'name' => 'indra',
+            'username' => 'indra',
             'email' => 'indra@macbrame.com',
             'password' => bcrypt('12345'),
             'role' => [],
@@ -80,7 +88,8 @@ class UsersTableSeeder extends Seeder
             'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-            'name' => 'DRAJAT',
+            'name' => 'drajat',
+            'username' => 'drajat',
             'email' => 'drajat@macbrame.com',
             'password' => bcrypt('12345'),
             'role' => [],
@@ -90,7 +99,8 @@ class UsersTableSeeder extends Seeder
             'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-            'name' => 'REMBRANT',
+            'name' => 'rembrant',
+            'username' => 'rembrant',
             'email' => 'rembrant@macbrame.com',
             'password' => bcrypt('12345'),
             'role' => [],
@@ -100,7 +110,8 @@ class UsersTableSeeder extends Seeder
             'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-            'name' => 'Afif',
+            'name' => 'afif',
+            'username' => 'afif',
             'email' => 'afif@macbrame.com',
             'password' => bcrypt('12345'),
             'role' => [],
@@ -110,7 +121,8 @@ class UsersTableSeeder extends Seeder
             'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-            'name' => 'Anang',
+            'name' => 'anang',
+            'username' => 'anang',
             'email' => 'anang@macbrame.com',
             'password' => bcrypt('12345'),
             'role' => [],
@@ -120,7 +132,8 @@ class UsersTableSeeder extends Seeder
             'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-            'name' => 'Rohim',
+            'name' => 'rohim',
+            'username' => 'rohim',
             'email' => 'rohim@macbrame.com',
             'password' => bcrypt('12345'),
             'role' => [],
@@ -130,7 +143,8 @@ class UsersTableSeeder extends Seeder
             'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-            'name' => 'Rudi',
+            'name' => 'rudi',
+            'username' => 'rudi',
             'email' => 'rudi@macbrame.com',
             'password' => bcrypt('12345'),
             'role' => [],
@@ -140,7 +154,8 @@ class UsersTableSeeder extends Seeder
             'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-            'name' => 'Sarah',
+            'name' => 'sarah',
+            'username' => 'sarah',
             'email' => 'sarah@macbrame.com',
             'password' => bcrypt('12345'),
             'role' => [],
@@ -150,7 +165,8 @@ class UsersTableSeeder extends Seeder
             'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-            'name' => 'Heru',
+            'name' => 'heru',
+            'username' => 'heru',
             'email' => 'heru@macbrame.com',
             'password' => bcrypt('12345'),
             'role' => [],
