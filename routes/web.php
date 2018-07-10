@@ -51,6 +51,22 @@ Route::middleware('auth')->group(function() {
 	Route::post('promo/find', 'DiscountManagement\PromoController@find');
 	/* END Master deal */
 
+	/* Master sales */
+	Route::resource('sales-staff', 'SalesManagement\SalesController');
+	Route::post('sales-staff/find', 'SalesManagement\SalesController@find');
+
+	/* END Master sales */
+
+	/* Master production */
+	Route::resource('productions-staff', 'ProductionsManagement\ProductionsController');
+	Route::post('productions-staff/find', 'ProductionsManagement\ProductionsController@find');
+	/* END Master production */
+
+	/* Master qc */
+	Route::resource('qc-staff', 'QCManagement\QCController');
+	Route::post('qc-staff/find', 'QCManagement\QCController@find');
+	/* END Master production */
+
     /* transaction */
     Route::resource('buat-so', 'TransactionManagement\OrderCreateController');
 
@@ -64,6 +80,10 @@ Route::middleware('auth')->group(function() {
 	Route::post('production/find', 'TransactionManagement\ProductionController@find');
 	Route::get('production/proses/{id}', 'TransactionManagement\ProductionController@proses')->name('production.proses');
 	Route::get('production/selesai/{id}', 'TransactionManagement\ProductionController@selesai')->name('production.selesai');
+
+	Route::resource('qc','TransactionManagement\QcController');
+	Route::get('production/pass/{id}', 'TransactionManagement\QcController@pass')->name('qc.pass');
+	Route::get('production/reject/{id}', 'TransactionManagement\QcController@reject')->name('qc.reject');
 	/* END Transaction  */
 
 	/* Master home */
@@ -152,8 +172,13 @@ Route::middleware('auth')->group(function() {
 	Route::resource('segment-attributes', 'FooterManagement\SegmentAttributesController');
 	Route::post('segment-attributes/find', 'FooterManagement\SegmentAttributesController@find');
 
-	Route::resource('footer', 'FooterManagement\FooterController');
-	Route::post('footer/find', 'FooterManagement\FooterController@find');
+	//warehouse
+	Route::resource('warehouse-rack', 'WarehouseManagement\WarehouseRackController');
+	Route::post('warehouse-rack/find', 'WarehouseManagement\WarehouseRackController@find');
+
+	Route::resource('warehouse-branch', 'WarehouseManagement\WarehouseBranchController');
+	Route::post('warehouse-branch/find', 'WarehouseManagement\WarehouseBranchController@find');
+	//end
 
     Route::resource('image-upload', 'ImageManagement\ImageUploadController');
 

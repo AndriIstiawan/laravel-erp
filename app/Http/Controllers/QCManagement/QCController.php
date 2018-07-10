@@ -1,0 +1,212 @@
+<?php
+
+namespace App\Http\Controllers\QCManagement;
+
+use App\Http\Controllers\Controller;
+use App\Permission;
+use App\Role;
+use App\User;
+use App\Member;
+use App\SalesOrder;
+use Auth;
+use File;
+use Illuminate\Http\Request;
+use Yajra\Datatables\Datatables;
+
+class QCController extends Controller
+{
+    //Protected module master-user by slug
+    public function __construct()
+    {
+        $this->middleware('perm.acc:sales');
+    }
+
+    //Public index master-user
+    public function index()
+    {
+        return view('panel.qc-management.qc.index');
+    }
+
+    //For find email if already use
+    public function find(Request $request)
+    {
+
+        if ($request->id) {
+            $user = User::where('email', $request->email)->where('role', 'elemMatch', array('name' => 'QC'))->first();
+            if (count($user) > 0) {
+                return ($request->id == $user->id ? 'true' : 'false');
+            } else {
+                return 'true';
+            }
+        } else {
+            return (User::where('email', $request->email)->where('role', 'elemMatch', array('name' => 'QC'))->first() ? 'false' : 'true');
+        }
+    }
+
+    //View Form create
+    public function create()
+    {
+        $list_ap = (Auth::user()->email == env('ROOT_USERNAME') ? Auth::user()->accPermissions() : Auth::user()->accessPermissions);
+        $list_mp = (Auth::user()->email == env('ROOT_USERNAME') ? Auth::user()->modPermissions() : Auth::user()->modulePermissions);
+        $roles = Role::where('name', 'QC')->get();
+        return view('panel.qc-management.qc.form-create')->with([
+            'list_ap' => $list_ap,
+            'list_mp' => $list_mp,
+            'roles' => $roles,
+        ]);
+    }
+
+    //Store data user Create & Edit
+    public function store(Request $request)
+    {
+        //if id != '' => user edit, else => user create new
+        if ($request->id != '') {
+            $user = User::find($request->id);
+            Member::where('sales', 'elemMatch', array('_id' => $request->id))->update(array('sales.0.name' => $request->name));
+            /*$arrKemasan = [];
+            if ($request->kemasan != null) {
+                foreach ($request->kemasan as $kemasan_list){
+                    $arrKemasan[] = [
+                        'jenis_kemasan' => $kemasan_list,
+                    ];  
+                }
+            }
+            $user->kemasan = $arrKemasan;*/
+            // SalesOrder::where('sales', 'elemMatch', array('_id' => $request->id))->update(array('sales.0.name' => $request->name));
+        } else {
+            $user = new User();
+
+            /*$arrKemasan = [];
+            if ($request->kemasan != null) {
+                foreach ($request->kemasan as $kemasan_list){
+                    $arrKemasan[] = [
+                        'jenis_kemasan' => $kemasan_list,
+                    ];  
+                }
+            }
+            $user->kemasan = $arrKemasan;*/
+        }
+
+        if ($request->email) {
+            //INSERT USER GENERAL ( TAB GENERAL )
+            $role = Role::find($request->role);
+            $user->name = $request->name;
+            $user->username = $request->username;
+            $user->email = $request->email;
+
+            if ($request->hasFile('picture')) {
+                $pictureFile = $request->file('picture');
+                $extension = $pictureFile->getClientOriginalExtension();
+                $destinationPath = public_path('/img/avatars');
+                if ($user->picture != '' || $user->picture != null) {
+                    File::delete(public_path('/img/avatars/' . $user->picture));
+                }
+                $pictureFile->move($destinationPath, $user->id . '.' . $extension);
+                $user->picture = $user->id . '.' . $extension;
+            }
+            $user->role = [$role->toArray()];
+            if ($request->password != '') {
+                $user->password = bcrypt($request->password);
+            }
+            $user->save();
+
+            return $user->id;
+        } else {
+			//INSERT USER PERMISSION ( TAB PERMISSION )
+			if(!$request->access){ $request->access = []; }
+			if(!$request->module){ $request->module = []; }
+
+            $accessPermissions = Permission::whereIn('_id', $request->access)->get();
+            $accessPermissions = $accessPermissions->toArray();
+            $user->accessPermissions = $accessPermissions;
+            $modulePermissions = Permission::whereIn('_id', $request->module)->where('parent', null)->get();
+
+            for ($i = 0; $i < $modulePermissions->count(); $i++) {
+                $modulePermissions[$i]->child = Permission::where('parent', $modulePermissions[$i]->id)
+                    ->whereIn('_id', $request->module)->get()->toArray();
+            }
+            $user->modulePermissions = $modulePermissions->toArray();
+
+            $user->save();
+            return "data permisssion saved";
+        }
+    }
+
+    //For getting datatable at index
+    public function show(Request $request, $action)
+    {
+        $users = User::where('role', 'elemMatch', array('name' => 'QC'))->get();
+
+        return Datatables::of($users)
+            ->addColumn('status', function ($user) {
+                return ($user->remember_token == null ?
+                    '<span class="badge badge-secondary">Inactive</span>' :
+                    '<span class="badge badge-success">Active</span>');
+            })
+            ->addColumn('action', function ($user) {
+                return
+                '<a class="btn btn-success btn-sm" href="' . route('qc-staff.edit', ['id' => $user->id]) . '">
+						<i class="fa fa-pencil-square-o"></i>&nbsp;Edit</a>' .
+                '<form style="display:inline;" method="POST" action="' .
+                route('qc-staff.destroy', ['id' => $user->id]) . '">' . method_field('DELETE') . csrf_field() .
+                    '<button type="button" onclick="removeList($(this))"  class="btn btn-danger btn-sm"><i class="fa fa-remove"></i>&nbsp;Remove</button></form>';
+            })
+            ->rawColumns(['status', 'action'])
+            ->make(true);
+    }
+
+    //View Form edit
+    public function edit($id)
+    {
+        $user = User::find($id);
+
+        //if user => root getting all module & access, else => getting user has module & access (admin who access master-user)
+        $list_ap = (Auth::user()->email == env('ROOT_USERNAME') ? Auth::user()->accPermissions() : Auth::user()->accessPermissions);
+        $list_mp = (Auth::user()->email == env('ROOT_USERNAME') ? Auth::user()->modPermissions() : Auth::user()->modulePermissions);
+        $roles = Role::where('_id', '<>', $user->role[0]['_id'])->where('name', 'QC')->get();
+
+        for ($i = 0; $i < count($list_ap); $i++) {
+            $modUser = User::where('_id', $user->id)
+                ->where('accessPermissions', 'elemMatch', array('_id' => $list_ap[$i]['_id']))->count();
+            if ($modUser > 0) {
+                $list_ap[$i]['checked'] = true;
+            }
+        }
+
+        for ($i = 0; $i < count($list_mp); $i++) {
+            $modUser = User::where('_id', $user->id)
+                ->where('modulePermissions', 'elemMatch', array('_id' => $list_mp[$i]['_id']))->count();
+            if ($modUser > 0) {
+                $list_mp[$i]['checked'] = true;
+            }
+
+            for ($j = 0; $j < count($list_mp[$i]['child']); $j++) {
+                $modUser = User::where('_id', $user->id)
+                    ->where('modulePermissions.child', 'elemMatch', array('_id' => $list_mp[$i]['child'][$j]['_id']))->count();
+                if ($modUser > 0) {
+                    $list_mp[$i]['child'][$j]['checked'] = true;
+                }
+            }
+        }
+
+        return view('panel.qc-management.qc.form-edit')->with([
+            'user' => $user,
+            'list_ap' => $list_ap,
+            'list_mp' => $list_mp,
+            'roles' => $roles,
+        ]);
+    }
+
+    public function update(Request $request, $id)
+    {
+    }
+
+    //Delete data user by id
+    public function destroy($id)
+    {
+        $user = User::find($id);
+        $user->delete();
+
+        return redirect()->route('qc-staff.index')->with('dlt', 'QC staff');
+    }
+}
