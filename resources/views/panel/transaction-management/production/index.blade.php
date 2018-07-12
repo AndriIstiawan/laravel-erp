@@ -16,7 +16,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <i class="fa fa-align-justify"> Production Order</i>
+                        <i class="fa fa-align-justify"> </i>Production Order
                     </div>
                     <div class="card-body" style="width: 100%;">
                         <div class="table-responsive">

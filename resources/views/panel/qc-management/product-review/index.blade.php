@@ -16,7 +16,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <i class="fa fa-align-justify"> </i>Quality Control
+                        <i class="fa fa-align-justify"></i> Product review
                     </div>
                     <div class="card-body" style="width: 100%;">
                         <div class="table-responsive">
@@ -35,7 +35,6 @@
                                         <th>Tgl Pass</th>
                                         <th>Tgl Reject</th>
                                         <th>Status QC</th>
-                                        <th style="width:50%; text-align:center;">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -81,7 +80,6 @@
           {data: 'tgl_pass', name: 'tgl_pass', orderable: false, searchable: false},
           {data: 'tgl_reject', name: 'tgl_reject', orderable: false, searchable: false},
           {data: 'status', name: 'status', orderable: false, searchable: true},
-          {data: 'action', name: 'action', orderable: false, searchable: false},
         ],
       });
     $('.datatable').attr('style', 'border-collapse: collapse !important');
