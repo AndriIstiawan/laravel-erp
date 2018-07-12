@@ -11,12 +11,12 @@ use File;
 class MasterSettingController extends Controller
 {
 
-	//Protected module master-setting by slug
+    //Protected module master-setting by slug
     public function __construct()
     {
         $this->middleware('perm.acc:master-setting');
-	}
-	
+    }
+    
     public function index()
     {
         $setting = Setting::first();
@@ -32,14 +32,22 @@ class MasterSettingController extends Controller
     {
         //Update setting data
         $setting = Setting::first();
-        $setting->site_title = $request->siteTitle;
-        $setting->site_status = ($request->siteStatus == 'on'?true:false);
-        $setting->meta_title = $request->metaTitle;
-        $setting->meta_description = $request->metaDesc;
-        $setting->order_expire = $request->odExpire;
-        $setting->transaction_price = str_replace(',', '.',str_replace('.', '',$request->transPrice));
-        $setting->transaction_point = $request->transPoint;
-        $setting->member_log_expire = $request->memberExpire;
+        if(isset($request->metaTitle)){
+            $setting->meta_title = $request->metaTitle;
+            $setting->meta_description = $request->metaDesc;
+            $setting->google_analytic = $request->googleAnalytic;
+        }else{
+            $setting->site_title = $request->siteTitle;
+            $setting->kurs = $request->kurs;
+            $setting->ppn = $request->ppn;
+            $setting->site_status = ($request->siteStatus == 'on'?true:false);
+            $setting->phone_number = $request->phoneNumber;
+            $setting->email_info = $request->emailInfo;
+            $setting->order_expire = $request->odExpire;
+            $setting->transaction_price = str_replace(',', '.',str_replace('.', '',$request->transPrice));
+            $setting->transaction_point = $request->transPoint;
+            $setting->member_log_expire = $request->memberExpire;
+        }
 
         //Check has logo
         if ($request->hasFile('logo')) {
