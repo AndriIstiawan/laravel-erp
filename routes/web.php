@@ -65,6 +65,9 @@ Route::middleware('auth')->group(function() {
 	/* Master qc */
 	Route::resource('qc-staff', 'QCManagement\QCController');
 	Route::post('qc-staff/find', 'QCManagement\QCController@find');
+	
+	Route::resource('product-review', 'QCManagement\ProductPriviewController');
+	Route::post('product-review/find', 'QCManagement\ProductPriviewController@find');
 	/* END Master production */
 
     /* transaction */
