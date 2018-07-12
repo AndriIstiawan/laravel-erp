@@ -17,7 +17,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CarriersTableSeeder::class);
         $this->call(CategoriesTableSeeder::class);
         $this->call(OrderStatusesTableSeeder::class);
-        $this->call(MasterSettingTableSeeder::class);
         $this->call(PaymentsTableSeeder::class);
         $this->call(OrdersTableSeeder::class);
         $this->call(LevelTableSeeder::class);
@@ -26,6 +25,7 @@ class DatabaseSeeder extends Seeder
         $this->call(FootersTableSeeder::class);
         $this->call(PaymensMethodsTableSeeder::class);*/
         $this->call(CounterTableSeeder::class);
+        $this->call(MasterSettingTableSeeder::class);
         $this->call(SalesOrderSetting::class);
         $this->call(LocationTableSeeder::class);
         $this->call(TypesTableSeeder::class);
