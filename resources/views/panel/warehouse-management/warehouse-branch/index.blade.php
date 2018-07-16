@@ -1,6 +1,7 @@
 @extends('master')
 @section('content')
 <link href="{{ asset('fiture-style/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+<link href="{{ asset('fiture-style/datatables/responsive.dataTables.min.css') }}" rel="stylesheet">
 <div class="container-fluid">
 	<div class="animate fadeIn">
 		<div class="row">
@@ -23,7 +24,8 @@
 						<i class="fa fa-align-justify"></i> Brand Table
 					</div>
 					<div class="card-body">
-						<table class="table table-responsive-sm table-bordered table-striped table-sm datatable">
+                            <table _fordragclass="table-responsive-sm" class="table table-bordered table-striped table-sm display responsive datatable"
+                                    cellspacing="0" width="100%">
 							<thead>
 								<tr>
 									<th>Name of Brand</th>
@@ -46,10 +48,9 @@
 <!-- /.container-fluid -->
 
 @section('myscript')
-<script src="{{ asset('fiture-style/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('fiture-style/datatables/dataTables.min.js') }}"></script>
 <script src="{{ asset('fiture-style/datatables/dataTables.bootstrap4.min.js') }}"></script>
-<script src="{{ asset('fiture-style/toastr/toastr.min.js') }}"></script>
-<script src="{{ asset('fiture-style/validation/jquery.validate.min.js') }}"></script>
+<script src="{{ asset('fiture-style/datatables/dataTables.responsive.min.js') }}"></script>
 
 <script>
 	//DATATABLES

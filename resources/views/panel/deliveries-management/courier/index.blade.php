@@ -23,7 +23,8 @@
 						</div>
 						<div class="card-body">
                         <div class="table-responsive">
-							<table class="table table-responsive-sm table-bordered table-striped table-sm datatable">
+                            <table _fordragclass="table-responsive-sm" class="table table-bordered table-striped table-sm display responsive datatable"
+                                    cellspacing="0" width="100%">
 								<thead>
 									<tr>
 										<th>#</th>
@@ -117,6 +118,7 @@
 	<link href="{{ asset('fiture-style/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 	<link href="{{ asset('fiture-style/toastr/toastr.min.css') }}" rel="stylesheet">
 	<link href="{{ asset('fiture-style/select2/select2.min.css') }}" rel="stylesheet">
+	<link href="{{ asset('fiture-style/datatables/responsive.dataTables.min.css') }}" rel="stylesheet">
 	<style>
 	.AlignR{
 		text-align: right;
@@ -130,6 +132,9 @@
 	<script src="{{ asset('fiture-style/validation/jquery.validate.min.js') }}"></script>
 	<script src="{{ asset('fiture-style/select2/select2.min.js') }}"></script>
 	<script src="{{ asset('js/medivh.js') }}"></script>
+	<script src="{{ asset('fiture-style/datatables/dataTables.min.js') }}"></script>
+	<script src="{{ asset('fiture-style/datatables/dataTables.bootstrap4.min.js') }}"></script>
+	<script src="{{ asset('fiture-style/datatables/dataTables.responsive.min.js') }}"></script>
 	<script>
 	$(function(){
 		var table;
