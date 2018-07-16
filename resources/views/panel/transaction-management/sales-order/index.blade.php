@@ -1,6 +1,7 @@
 @extends('master') @section('content')
 <link href="{{ asset('fiture-style/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 <link href="{{ asset('fiture-style/daterangepicker/daterangepicker.min.css') }}" rel="stylesheet">
+<link href="{{ asset('fiture-style/datatables/responsive.dataTables.min.css') }}" rel="stylesheet">
 <div class="container-fluid">
     <div class="animate fadeIn">
         <div class="row">
@@ -57,7 +58,8 @@
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table table-responsive-sm table-bordered table-striped table-sm datatable" style="width: 100%;">
+                            <table _fordragclass="table-responsive-sm" class="table table-bordered table-striped table-sm display responsive datatable"
+                                    cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
                                         <th style="padding:0 10px 5px 10px;">
@@ -88,8 +90,9 @@
 <!-- /.container-fluid -->
 
 @section('myscript')
-<script src="{{ asset('fiture-style/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('fiture-style/datatables/dataTables.min.js') }}"></script>
 <script src="{{ asset('fiture-style/datatables/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('fiture-style/datatables/dataTables.responsive.min.js') }}"></script>
 <!-- date range picker -->
 <script src="{{ asset('fiture-style/daterangepicker/moment.js') }}"></script>
 <script src="{{ asset('fiture-style/daterangepicker/daterangepicker.js') }}"></script>

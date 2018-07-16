@@ -17,7 +17,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <i class="fa fa-align-justify"> </i>Production Order
+                        <i class="fa fa-align-justify"></i> Product review
                     </div>
                     <div class="card-body" style="width: 100%;">
                         <div class="table-responsive">
@@ -34,9 +34,9 @@
                                         <th>W/Pkg</th>
                                         <th>Total</th>
                                         <th>Realisasi</th>
-                                        <th>Status</th>
-                                        <th>Waktu Proses</th>
-                                        <th style="width:50%; text-align:center;">Action</th>
+                                        <th>Tgl Pass</th>
+                                        <th>Tgl Reject</th>
+                                        <th>Status QC</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -68,7 +68,7 @@
         bFilter:true,
         searching: true,
         order: [],
-        ajax: '{{ route("production.index") }}/list-data',
+        ajax: 'qc/show',
         columns: [
           {data: 'so', name: 'so', orderable: true, searchable: true},
           {data: 'product_name', name: 'product_name', orderable: true, searchable: true},
@@ -79,9 +79,9 @@
           {data: 'weight', name: 'weight', orderable: true, searchable: true},
           {data: 'total', name: 'total', orderable: true, searchable: false},
           {data: 'realisasi', name: 'realisasi', orderable: true, searchable: false},
+          {data: 'tgl_pass', name: 'tgl_pass', orderable: false, searchable: false},
+          {data: 'tgl_reject', name: 'tgl_reject', orderable: false, searchable: false},
           {data: 'status', name: 'status', orderable: false, searchable: true},
-          {data: 'waktu', name: 'watu', orderable: false, searchable: false},
-          {data: 'action', name: 'action', orderable: false, searchable: false},
         ],
       });
     $('.datatable').attr('style', 'border-collapse: collapse !important');

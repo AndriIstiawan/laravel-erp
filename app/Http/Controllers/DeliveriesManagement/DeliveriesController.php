@@ -5,6 +5,7 @@ namespace App\Http\Controllers\DeliveriesManagement;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Deliveries;
+use App\SalesOrder;
 use Yajra\Datatables\Datatables;
 
 class DeliveriesController extends Controller
@@ -63,7 +64,7 @@ class DeliveriesController extends Controller
      */
     //for getting datatable at index
     public function show(Request $request, $action){
-        $carriers = Deliveries::all();
+        $carriers = SalesOrder::all();
         
         return Datatables::of($carriers)
             ->addColumn('action', function ($carriers) {
