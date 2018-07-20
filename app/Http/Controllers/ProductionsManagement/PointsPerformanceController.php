@@ -14,18 +14,18 @@ use File;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 
-class ProductionsController extends Controller
+class PointsPerformanceController extends Controller
 {
     //Protected module master-user by slug
     public function __construct()
     {
-        $this->middleware('perm.acc:producer');
+        $this->middleware('perm.acc:points-performance');
     }
 
     //Public index master-user
     public function index()
     {
-        return view('panel.producer-management.producer.index');
+        return view('panel.producer-management.points-performance.index');
     }
 
     //For find email if already use
@@ -63,8 +63,6 @@ class ProductionsController extends Controller
         //if id != '' => user edit, else => user create new
         if ($request->id != '') {
             $user = User::find($request->id);
-            /*$point = new PointsPerformance();*/
-            /*$point = PointsPerformance::find($request->email);*/
             Member::where('sales', 'elemMatch', array('_id' => $request->id))->update(array('sales.0.name' => $request->name));
             /*$arrKemasan = [];
             if ($request->kemasan != null) {
@@ -78,7 +76,6 @@ class ProductionsController extends Controller
             // SalesOrder::where('sales', 'elemMatch', array('_id' => $request->id))->update(array('sales.0.name' => $request->name));
         } else {
             $user = new User();
-            $point = new PointsPerformance();
 
             /*$arrKemasan = [];
             if ($request->kemasan != null) {
@@ -114,18 +111,11 @@ class ProductionsController extends Controller
             }
             $user->save();
 
-            $roles = Role::find($request->role);
-            $point->name = $request->name;
-            $point->email = $request->email;
-            $point->points = 0;
-            $point->role = [$roles->toArray()];
-            $point->save();
-
             return $user->id;
         } else {
-            //INSERT USER PERMISSION ( TAB PERMISSION )
-            if(!$request->access){ $request->access = []; }
-            if(!$request->module){ $request->module = []; }
+			//INSERT USER PERMISSION ( TAB PERMISSION )
+			if(!$request->access){ $request->access = []; }
+			if(!$request->module){ $request->module = []; }
 
             $accessPermissions = Permission::whereIn('_id', $request->access)->get();
             $accessPermissions = $accessPermissions->toArray();
@@ -146,7 +136,7 @@ class ProductionsController extends Controller
     //For getting datatable at index
     public function show(Request $request, $action)
     {
-        $users = User::where('role', 'elemMatch', array('name' => 'Production'))->get();
+        $users = PointsPerformance::where('role', 'elemMatch', array('name' => 'Production'))->get();
 
         return Datatables::of($users)
             ->addColumn('status', function ($user) {
@@ -157,7 +147,7 @@ class ProductionsController extends Controller
             ->addColumn('action', function ($user) {
                 return
                 '<a class="btn btn-success btn-sm" href="' . route('productions-staff.edit', ['id' => $user->id]) . '">
-                        <i class="fa fa-pencil-square-o"></i>&nbsp;Edit</a>' .
+						<i class="fa fa-pencil-square-o"></i>&nbsp;Edit</a>' .
                 '<form style="display:inline;" method="POST" action="' .
                 route('productions-staff.destroy', ['id' => $user->id]) . '">' . method_field('DELETE') . csrf_field() .
                     '<button type="button" onclick="removeList($(this))"  class="btn btn-danger btn-sm"><i class="fa fa-remove"></i>&nbsp;Remove</button></form>';

@@ -20,8 +20,10 @@ Route::middleware('auth')->group(function() {
 			return App::call('App\Http\Controllers\DashboardController@index');
 		}else if (Auth::user()->role[0]['name'] == 'Sales') {
 			return App::call('App\Http\Controllers\TransactionManagement\OrderCreateController@index');
+		}else if (Auth::user()->role[0]['name'] == 'Production'){
+			return App::call('App\Http\Controllers\TransactionManagement\MobileProductionController@index');
 		}else{
-			return App::call('App\Http\Controllers\TransactionManagement\ProductionController@index');
+			return App::call('App\Http\Controllers\TransactionManagement\MobilePackagingController@index');
 		}
  	});
 
@@ -60,6 +62,9 @@ Route::middleware('auth')->group(function() {
 	/* Master production */
 	Route::resource('productions-staff', 'ProductionsManagement\ProductionsController');
 	Route::post('productions-staff/find', 'ProductionsManagement\ProductionsController@find');
+	
+	Route::resource('points-performance', 'ProductionsManagement\PointsPerformanceController');
+	Route::post('points-performance/find', 'ProductionsManagement\PointsPerformanceController@find');
 	/* END Master production */
 
 	/* Master qc */
@@ -85,8 +90,30 @@ Route::middleware('auth')->group(function() {
 	Route::get('production/selesai/{id}', 'TransactionManagement\ProductionController@selesai')->name('production.selesai');
 
 	Route::resource('qc','TransactionManagement\QcController');
-	Route::get('production/pass/{id}', 'TransactionManagement\QcController@pass')->name('qc.pass');
-	Route::get('production/reject/{id}', 'TransactionManagement\QcController@reject')->name('qc.reject');
+	Route::get('qc/pass/{id}', 'TransactionManagement\QcController@pass')->name('qc.pass');
+	Route::get('qc/reject/{id}', 'TransactionManagement\QcController@reject')->name('qc.reject');
+
+	Route::resource('produksi','TransactionManagement\MobileProductionController');
+	Route::get('produksi/proses/{id}', 'TransactionManagement\MobileProductionController@proses')->name('produksi.proses');
+	Route::get('produksi/selesai/{id}', 'TransactionManagement\MobileProductionController@selesai')->name('produksi.selesai');
+	Route::get('produksi/detail/{id}', 'TransactionManagement\MobileProductionController@detail')->name('produksi.detail');
+
+	Route::resource('buat-qc','TransactionManagement\MobileQcController');
+	Route::get('buat-qc/pass/{id}', 'TransactionManagement\MobileQcController@pass')->name('buat-qc.pass');
+	Route::get('buat-qc/reject/{id}', 'TransactionManagement\MobileQcController@reject')->name('buat-qc.reject');
+	Route::get('buat-qc/detail/{id}', 'TransactionManagement\MobileQcController@detail')->name('buat-qc.detail');
+
+	Route::resource('mobile-packaging','TransactionManagement\MobilePackagingController');
+	Route::get('mobile-packaging/proses/{id}', 'TransactionManagement\MobilePackagingController@proses')->name('mobile-packaging.proses');
+	Route::get('mobile-packaging/selesai/{id}', 'TransactionManagement\MobilePackagingController@selesai')->name('mobile-packaging.selesai');
+	Route::get('mobile-packaging/detail/{id}', 'TransactionManagement\MobilePackagingController@detail')->name('mobile-packaging.detail');
+
+	Route::resource('mobile-qc-packaging','TransactionManagement\MobileQcPackagingController');
+	Route::get('mobile-qc-packaging/pass/{id}', 'TransactionManagement\MobileQcPackagingController@pass')->name('mobile-qc-packaging.pass');
+	Route::get('mobile-qc-packaging/reject/{id}', 'TransactionManagement\MobileQcPackagingController@reject')->name('mobile-qc-packaging.reject');
+	Route::get('mobile-qc-packaging/detail/{id}', 'TransactionManagement\MobileQcPackagingController@detail')->name('mobile-qc-packaging.detail');
+	Route::resource('monitor-packaging-qc','TransactionManagement\MonitoringQcPackagingController');
+	Route::resource('monitor-packaging','TransactionManagement\MonitoringPackagingController');
 	/* END Transaction  */
 
 	/* Master home */
@@ -168,9 +195,9 @@ Route::middleware('auth')->group(function() {
 
 	Route::resource('orders', 'OrderManagement\OrdersController');
 	Route::post('orders/find', 'OrderManagement\OrdersController@find');
-
+/*
 	Route::resource('segment', 'FooterManagement\SegmentController');
-	Route::post('segment/find', 'FooterManagement\SegmentController@find');
+	Route::post('segment/find', 'FooterManagement\SegmentController@find');*/
 
 	Route::resource('segment-attributes', 'FooterManagement\SegmentAttributesController');
 	Route::post('segment-attributes/find', 'FooterManagement\SegmentAttributesController@find');
@@ -194,6 +221,22 @@ Route::middleware('auth')->group(function() {
 	//notif-change-route
     Route::get('notif-erp', function () {
         return Auth::user()->countPOPending();
+    });
+
+    Route::get('notif-produksi', function () {
+        return Auth::user()->countProduksi();
+    });
+
+    Route::get('notif-qcpord', function () {
+        return Auth::user()->countSelesaiProduksi();
+    });
+
+    Route::get('notif-packaging', function () {
+        return Auth::user()->countSelesaiQc();
+    });
+
+    Route::get('notif-qcpack', function () {
+        return Auth::user()->countSelesaiPackaging();
     });
 
 	//download file from storage
