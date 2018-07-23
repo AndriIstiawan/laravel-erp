@@ -21,9 +21,9 @@ Route::middleware('auth')->group(function() {
 		}else if (Auth::user()->role[0]['name'] == 'Sales') {
 			return App::call('App\Http\Controllers\TransactionManagement\OrderCreateController@index');
 		}else if (Auth::user()->role[0]['name'] == 'Production'){
-			return App::call('App\Http\Controllers\TransactionManagement\MobileProductionController@index');
+			return App::call('App\Http\Controllers\TransactionManagement\ProductionController@index');
 		}else{
-			return App::call('App\Http\Controllers\TransactionManagement\MobilePackagingController@index');
+			return App::call('App\Http\Controllers\TransactionManagement\ProductionController@index');
 		}
  	});
 
@@ -103,7 +103,7 @@ Route::middleware('auth')->group(function() {
 	Route::get('buat-qc/reject/{id}', 'TransactionManagement\MobileQcController@reject')->name('buat-qc.reject');
 	Route::get('buat-qc/detail/{id}', 'TransactionManagement\MobileQcController@detail')->name('buat-qc.detail');
 
-	Route::resource('mobile-packaging','TransactionManagement\MobilePackagingController');
+	/*Route::resource('mobile-packaging','TransactionManagement\MobilePackagingController');
 	Route::get('mobile-packaging/proses/{id}', 'TransactionManagement\MobilePackagingController@proses')->name('mobile-packaging.proses');
 	Route::get('mobile-packaging/selesai/{id}', 'TransactionManagement\MobilePackagingController@selesai')->name('mobile-packaging.selesai');
 	Route::get('mobile-packaging/detail/{id}', 'TransactionManagement\MobilePackagingController@detail')->name('mobile-packaging.detail');
@@ -113,7 +113,7 @@ Route::middleware('auth')->group(function() {
 	Route::get('mobile-qc-packaging/reject/{id}', 'TransactionManagement\MobileQcPackagingController@reject')->name('mobile-qc-packaging.reject');
 	Route::get('mobile-qc-packaging/detail/{id}', 'TransactionManagement\MobileQcPackagingController@detail')->name('mobile-qc-packaging.detail');
 	Route::resource('monitor-packaging-qc','TransactionManagement\MonitoringQcPackagingController');
-	Route::resource('monitor-packaging','TransactionManagement\MonitoringPackagingController');
+	Route::resource('monitor-packaging','TransactionManagement\MonitoringPackagingController');*/
 	/* END Transaction  */
 
 	/* Master home */
