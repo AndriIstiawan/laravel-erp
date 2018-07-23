@@ -119,8 +119,11 @@
 
     //DATATABLES
     var table = $('.datatable').DataTable({
+        serverSide: true,
         processing: true,
         serverSide: true,
+        iDisplayLength: 10,
+        pagingType: "full_numbers",
         ajax: '{{ route("sales-order.index") }}/list-data?dateStart=' + dateStart + '&dateEnd=' + dateEnd,
         columns: [{
                 data: 'checkbox',
