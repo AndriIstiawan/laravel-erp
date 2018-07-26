@@ -88,12 +88,12 @@
                                                             <label class="col-form-label" for="transPoint">*PPN
                                                                 <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="PPN /Barang"></i>
                                                             </label>
-                                                            <div class="input-group">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text">Rp. </span>
-                                                                </div>
+                                                            <div class="input-group" style="width: 50%;">
                                                                 <input type="text" class="form-control idr-currency" id="ppn" name="ppn" aria-describedby="ppn-error"
-                                                                    placeholder="00" value="{{$setting->ppn}}">
+                                                                    placeholder="0" value="{{$setting->ppn}}">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text">%</span>
+                                                                </div>
                                                             </div>
                                                             <em id="ppn-error" class="error invalid-feedback">Please set kurs price</em>
                                                         </div>
@@ -291,7 +291,7 @@
 
     $("#jxForm1").validate({
         rules: {
-            siteTitle: {
+            ppn: {
                 required: true
             },
             kurs: {
@@ -317,8 +317,8 @@
             }
         },
         messages: {
-            siteTitle: {
-                required: 'Please enter site name'
+            ppn: {
+                required: 'Please enter ppn value'
             },
             phoneNumber: {
                 required: 'Please enter phone number'
