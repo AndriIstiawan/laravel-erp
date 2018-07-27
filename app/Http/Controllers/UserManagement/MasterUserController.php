@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Permission;
 use App\Role;
 use App\User;
+use App\PointsPerformance;
 use App\Member;
 use App\SalesOrder;
 use Auth;
@@ -75,6 +76,15 @@ class MasterUserController extends Controller
             // SalesOrder::where('sales', 'elemMatch', array('_id' => $request->id))->update(array('sales.0.name' => $request->name));
         } else {
             $user = new User();
+            if ($request->production != '') {
+                    $point = new PointsPerformance();
+                    $roles = Role::find($request->role);
+                    $point->name = $request->name;
+                    $point->email = $request->email;
+                    $point->points = 0;
+                    $point->role = [$roles->toArray()];
+                    $point->save();
+            }
 
             /*$arrKemasan = [];
             if ($request->kemasan != null) {
@@ -91,6 +101,7 @@ class MasterUserController extends Controller
             //INSERT USER GENERAL ( TAB GENERAL )
             $role = Role::find($request->role);
             $user->name = $request->name;
+            $user->username = $request->username;
             $user->email = $request->email;
 
             if ($request->hasFile('picture')) {
@@ -107,13 +118,14 @@ class MasterUserController extends Controller
             if ($request->password != '') {
                 $user->password = bcrypt($request->password);
             }
+            /*return dd($role->name);*/
             $user->save();
 
             return $user->id;
         } else {
-			//INSERT USER PERMISSION ( TAB PERMISSION )
-			if(!$request->access){ $request->access = []; }
-			if(!$request->module){ $request->module = []; }
+            //INSERT USER PERMISSION ( TAB PERMISSION )
+            if(!$request->access){ $request->access = []; }
+            if(!$request->module){ $request->module = []; }
 
             $accessPermissions = Permission::whereIn('_id', $request->access)->get();
             $accessPermissions = $accessPermissions->toArray();
@@ -145,7 +157,7 @@ class MasterUserController extends Controller
             ->addColumn('action', function ($user) {
                 return
                 '<a class="btn btn-success btn-sm" href="' . route('master-user.edit', ['id' => $user->id]) . '">
-						<i class="fa fa-pencil-square-o"></i>&nbsp;Edit User</a>' .
+                        <i class="fa fa-pencil-square-o"></i>&nbsp;Edit User</a>' .
                 '<form style="display:inline;" method="POST" action="' .
                 route('master-user.destroy', ['id' => $user->id]) . '">' . method_field('DELETE') . csrf_field() .
                     '<button type="button" onclick="removeList($(this))"  class="btn btn-danger btn-sm"><i class="fa fa-remove"></i>&nbsp;Remove</button></form>';

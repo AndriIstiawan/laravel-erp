@@ -113,9 +113,9 @@ class PointsPerformanceController extends Controller
 
             return $user->id;
         } else {
-			//INSERT USER PERMISSION ( TAB PERMISSION )
-			if(!$request->access){ $request->access = []; }
-			if(!$request->module){ $request->module = []; }
+            //INSERT USER PERMISSION ( TAB PERMISSION )
+            if(!$request->access){ $request->access = []; }
+            if(!$request->module){ $request->module = []; }
 
             $accessPermissions = Permission::whereIn('_id', $request->access)->get();
             $accessPermissions = $accessPermissions->toArray();
@@ -136,7 +136,7 @@ class PointsPerformanceController extends Controller
     //For getting datatable at index
     public function show(Request $request, $action)
     {
-        $users = PointsPerformance::where('role', 'elemMatch', array('name' => 'Production'))->get();
+        $users = PointsPerformance::all();
 
         return Datatables::of($users)
             ->addColumn('status', function ($user) {
@@ -147,7 +147,7 @@ class PointsPerformanceController extends Controller
             ->addColumn('action', function ($user) {
                 return
                 '<a class="btn btn-success btn-sm" href="' . route('productions-staff.edit', ['id' => $user->id]) . '">
-						<i class="fa fa-pencil-square-o"></i>&nbsp;Edit</a>' .
+                        <i class="fa fa-pencil-square-o"></i>&nbsp;Edit</a>' .
                 '<form style="display:inline;" method="POST" action="' .
                 route('productions-staff.destroy', ['id' => $user->id]) . '">' . method_field('DELETE') . csrf_field() .
                     '<button type="button" onclick="removeList($(this))"  class="btn btn-danger btn-sm"><i class="fa fa-remove"></i>&nbsp;Remove</button></form>';

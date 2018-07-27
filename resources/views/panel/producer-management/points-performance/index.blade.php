@@ -61,6 +61,8 @@
     $('.datatable').DataTable({
         processing: true,
         serverSide: true,
+        responsive: true,
+        autoWidth: false,
         ajax: '{{route("points-performance.index")}}/list-data',
         columns: [{
                 data: 'name',
@@ -94,10 +96,17 @@
                 width: '20%'
             }*/
         ],
-        "columnDefs": [{
-            "targets": 3,
-            "className": "text-center"
-        }],
+        columnDefs: [
+            {
+                responsivePriority: 1,
+                targets: 0,
+            },
+            {
+                responsivePriority: 2,
+                targets: 3,
+                className: "text-center"
+            }
+        ],
         "order": [
             [3, 'desc']
         ]
