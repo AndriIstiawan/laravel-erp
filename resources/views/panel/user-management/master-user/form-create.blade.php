@@ -49,6 +49,12 @@
 													<em id="name-error" class="error invalid-feedback">Please enter a name user</em>
 												</div>
 												<div class="form-group">
+													<label class="col-form-label" for="username">*Username</label>
+													<input type="text" class="form-control" id="username" name="username" placeholder="Username"
+														aria-describedby="username-error">
+													<em id="username-error" class="error invalid-feedback">Please enter a username</em>
+												</div>
+												<div class="form-group">
 													<label class="col-form-label" for="email">*Email</label>
 													<input type="text" class="form-control" id="email" name="email" placeholder="Email"
 														aria-describedby="email-error">
@@ -61,13 +67,14 @@
 														<option value=""></option>
 														@foreach($roles as $role)
 														<option value="{{$role->id}}"
-															data-description="{{$role->description}}">{{$role->name}}</option>
+															data-description="{{$role->description}}" >{{$role->name}}</option>
 														@endforeach
 													</select>
 													<em id="role-error" class="error invalid-feedback">Please select role</em>
 												</div>
 												<!-- <div class="row shipping-list">
                             					</div> -->
+                            					<input type="hidden" class="production" name="production">
 												</div>
 												<div class="col-md-6">
 												<div class="text-center">
@@ -213,22 +220,33 @@
 
     function clientChange(elm) {
         html = "";
-    $('.shipping-list').html($('.shipping-' + elm.val()).html());
-    //set select2 divisi 
-        $('.shipping-list .shipping-valid').select2({
-            theme: "bootstrap",
-            placeholder: 'Kemasan'
-        }).change(function () {
-            $(this).valid();
-        });
+        if(elm.find('option:selected').text() == 'Production'){
+        	
+        	$('.production').val('Production');
 
-        $('.shipping-list .shipping-valid').rules("add", {
-            required: true,
-            messages: {
-                required: "Mohon pilih Kemasan"
-            }
-        });
-        //-----------end setting shipping client
+        	$('.shipping-list').html($('.shipping-' + elm.val()).html());
+	    	//set select2 divisi 
+	        $('.shipping-list .shipping-valid').select2({
+	            theme: "bootstrap",
+	            placeholder: 'Kemasan'
+	        }).change(function () {
+	            $(this).valid();
+	        });
+
+	        var ex = elm.find('option:selected').text() == 'Production';
+	        $('.produ').html($('.shipping-' + elm.val()).html());
+
+	        $('.shipping-list .shipping-valid').rules("add", {
+	            required: true,
+	            messages: {
+	                required: "Mohon pilih Kemasan"
+	            }
+	        });
+	        //-----------end setting shipping client
+        }else{
+        	$('.shipping-list').html('');
+        }
+    	
 
     }
 	
@@ -244,6 +262,7 @@
 	$("#jxForm1").validate({
 		rules:{
 			name:{required:true,minlength:2},
+			username:{required:true,minlength:2},
 			role:{required:true},
 			password:{required:true,minlength:5},
 			confirm_password:{equalTo:'#password'},
@@ -267,6 +286,10 @@
 			name:{
 				required:'Please enter a name user',
 				minlength:'Name must consist of at least 2 characters'
+			},
+			username:{
+				required:'Please enter a username',
+				minlength:'Username must consist of at least 2 characters'
 			},
 			role:{ required:'Please select role' },
 			password:{
