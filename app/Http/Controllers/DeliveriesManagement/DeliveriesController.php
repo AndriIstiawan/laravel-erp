@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Deliveries;
 use App\SalesOrder;
+use App\Product;
 use Yajra\Datatables\Datatables;
 
 class DeliveriesController extends Controller
@@ -69,7 +70,7 @@ class DeliveriesController extends Controller
         return Datatables::of($carriers)
             ->addColumn('action', function ($carriers) {
                 return 
-                    '<a class="btn btn-success btn-sm"  href="'.route('deliveries.create'/*,['id' => $carriers->id]*/).'">
+                    '<a class="btn btn-success btn-sm"  href="'.route('deliveries.edit',['id' => $carriers->id]).'">
                         <i class="fa fa-search"></i>&nbsp;View</a>'.
                     '<form style="display:inline;" method="POST" action="'.
                         route('courier.destroy',['id' => $carriers->id]).'">'.method_field('DELETE').csrf_field().
@@ -88,8 +89,12 @@ class DeliveriesController extends Controller
     //view form edit
     public function edit($id)
     {
-        $carriers = Carriers::find($id);
-        return view('panel.deliveries-management.courier.form-edit')->with(['carriers'=>$carriers]);
+        $carriers = SalesOrder::find($id);
+        $product = Product::where('_id',array_column($carriers->products, 'product_id'))->get();
+        return view('panel.deliveries-management.deliveries.form-create')->with([
+            'orders'=>$carriers,
+            'product' => $product
+        ]);
     }
 
     /**
