@@ -12,9 +12,8 @@ class MasterSettingTableSeeder extends Seeder
     public function run()
     {
         DB::table('settings')->insert([
-            'logo' => '300x150.png',
-            'favicon' => '100x100.png',
-            'site_title' => env('SITE_TITLE', 'FE-B2B-Backend-WEB'),
+            'kurs' => 13.999,
+            'ppn' => 1,
             'site_status' => env('SITE_STATUS', true),
             'meta_title' => env('META_TITLE', 'FE-B2B-Backend-WEB'),
             'meta_description' => env('META_DESCRIPTION', 'FE-B2B-Backend-WEB'),
