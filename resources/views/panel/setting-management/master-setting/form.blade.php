@@ -29,48 +29,8 @@
                                             <div class="col-md-12">
                                                 {{ method_field('PUT') }} {{ csrf_field() }}
                                                 <input type="hidden" class="id" name="id">
-                                                <!-- <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <div class="text-center">
-                                                                <img class="rounded logoPrev" src="{{ asset('img/'.$setting->logo) }}" style="width: 300px; height: 150px;">
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <label class="col-md-12 col-form-label" for="file-input">Logo
-                                                                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="website logo, size in pixel(150x150)"></i>
-                                                            </label>
-                                                            <div class="col-md-12">
-                                                                <input type="file" id="logo" class="imagePrev" name="logo" accept="image/jpg, image/jpeg, image/png">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <div class="text-center">
-                                                                <img class="rounded faviconPrev" src="{{ asset('img/'.$setting->favicon) }}" style="width: 150px; height: 150px;">
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <label class="col-md-12 col-form-label" for="file-input">Favicon
-                                                                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="website favicon, size in pixel(90x90)"></i>
-                                                            </label>
-                                                            <div class="col-md-12">
-                                                                <input type="file" id="favicon" class="imagePrev" name="favicon" accept="image/jpg, image/jpeg, image/png, image/x-icon">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div> -->
                                                 <div class="row">
                                                     <div class="col-md-6">
-                                                        <!-- <div class="form-group">
-                                                            <label class="col-form-label" for="siteTitle">*Site Title
-                                                                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="Declaration of title website"></i>
-                                                            </label>
-                                                            <input type="text" class="form-control" id="siteTitle" name="siteTitle" aria-describedby="siteTitle-error" placeholder="Fiture E-Commerce"
-                                                                value="{{$setting->site_title}}">
-                                                            <em id="siteTitle-error" class="error invalid-feedback">Please enter site title</em>
-                                                        </div> -->
                                                         <div class="form-group">
                                                             <label class="col-form-label" for="transPoint">*Kurs $USD
                                                                 <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="Kurs $USD"></i>
@@ -111,44 +71,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label class="col-form-label" for="siteTitle">*Phone Number Header
-                                                                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="Phone number on top website"></i>
-                                                            </label>
-                                                            <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" aria-describedby="phoneNumber-error" placeholder="(021) 2939123"
-                                                                value="{{$setting->phone_number}}">
-                                                            <em id="phoneNumber-error" class="error invalid-feedback"></em>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label class="col-form-label" for="siteTitle">*Email Info Header
-                                                                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="Email info on top website"></i>
-                                                            </label>
-                                                            <input type="text" class="form-control" id="emailInfo" name="emailInfo" aria-describedby="emailInfo-error" placeholder="info@hoky.com"
-                                                                value="{{$setting->email_info}}">
-                                                            <em id="emailInfo-error" class="error invalid-feedback"></em>
-                                                        </div>
-                                                    </div>
-                                                </div> -->
-                                                <!-- <div class="row">
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <label class="col-form-label" for="odExpire">*Order Expire
-                                                                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="order expire"></i>
-                                                            </label>
-                                                            <div class="input-group">
-                                                                <input type="text" id="odExpire" name="odExpire" class="form-control text-right input-number" placeholder="00" value="{{$setting->order_expire}}">
-                                                                <div class="input-group-append">
-                                                                    <span class="input-group-text">Hours</span>
-                                                                </div>
-                                                                <em id="odExpire-error" class="invalid-feedback">Please set order expire</em>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div> -->
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
@@ -175,22 +97,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- <div class="row">
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <label class="col-form-label" for="odExpire">*Member Log Expire
-                                                                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="member log expire"></i>
-                                                            </label>
-                                                            <div class="input-group">
-                                                                <input type="text" id="memberExpire" name="memberExpire" class="form-control text-right input-number" placeholder="00" value="{{$setting->member_log_expire}}">
-                                                                <div class="input-group-append">
-                                                                    <span class="input-group-text">Hours</span>
-                                                                </div>
-                                                                <em id="memberExpire-error" class="invalid-feedback">Please set member log expire</em>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div> -->
                                             </div>
                                         </div>
                                         <hr>
