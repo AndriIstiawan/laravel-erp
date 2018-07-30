@@ -38,6 +38,7 @@ class DiscountSetting implements ShouldQueue
         $discount = Discounts::find($this->id);
         $discount->status = ($this->action == 'start'?'on':'off');
         $discount->save();
+        $update_products_status = false;
         
         $products = Product::where('_id', '<>', $this->id);
         if(count($discount->categories) > 0){
@@ -52,11 +53,33 @@ class DiscountSetting implements ShouldQueue
             $products = $products->whereIn('_id', $discount_products );
         }
 
+        if(count($discount->members) == 0){
+            $update_products_status = true;
+        }
+
+        $discount_type = $discount->type;
+        $discount_value = (float)$discount->value;
+        $products_update = $products;
         $discount = $discount->toArray();
+
         if($this->action == 'start'){
             $products = $products->push('discounts', $discount);
+            if($update_products_status){
+                if($discount_type == 'price'){
+                    $products_update = $products_update->increment('discount_price', $discount_value);
+                }else{
+                    $products_update = $products_update->increment('discount_percent', $discount_value);
+                }
+            }
         }else{
             $products = $products->pull('discounts', ['_id' => $this->id]);
+            if($update_products_status){
+                if($discount_type == 'price'){
+                    $products_update = $products_update->decrement('discount_price', $discount_value);
+                }else{
+                    $products_update = $products_update->decrement('discount_percent', $discount_value);
+                }
+            }
         }
     }
 }
