@@ -30,14 +30,13 @@ class WarehouseRackController extends Controller
     //find data categories
     public function find(Request $request)
     {
-        if ($request->id) {
+        if ($request->_id) {
             $wr = WarehouseRack::where('no', $request->no)->first();
-            return ($request->id == $wr->id ? 'true' : 'false');
-            /*if (count($wr) > 0) {
-                return ($request->id == $wr->id ? 'true' : 'false');
+            if ($wr) {
+                return ($request->_id == $wr->id ? 'true' : 'false');
             } else {
                 return 'true';
-            }*/
+            }
         } else {
             return (WarehouseRack::where('no', $request->no)->first() ? 'false' : 'true');
         }

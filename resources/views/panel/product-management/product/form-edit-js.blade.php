@@ -14,21 +14,7 @@
         }
         $(this).val(number);
     });
-    $('.idr-currency').on('change', function(){
-    var number = $(this).val();
-    number = number.replace('.',''); number = number.replace(',','.');
-    if(parseFloat(number)){
-        number = parseFloat(number);
-    }else{
-        number = parseFloat("0");
-    }
-    if(number == '0'){ 
-        number = ''; 
-    }else{
-        number = number.toLocaleString('id-ID')
-    }
-    $(this).val(number);
-    });
+
     $('.input-float').on('change', function () {
         var number = $(this).val();
         if (parseFloat(number)) {
@@ -87,16 +73,16 @@
                 required: true,
                 required: true,
                 remote:{
-					url: "{{ route('product.index') }}/find",
-					type: "post",
-					data:{
-						_token:'{{ csrf_token() }}',
+                    url: "{{ route('product.index') }}/find",
+                    type: "post",
+                    data:{
+                        _token:'{{ csrf_token() }}',
                         id: "{{$product->id}}",
-						code: function(){
-							return $('#jxForm :input[name="code"]').val();
-						}
-					}
-				}
+                        code: function(){
+                            return $('#jxForm :input[name="code"]').val();
+                        }
+                    }
+                }
             },
             commercial: {
                 required: true

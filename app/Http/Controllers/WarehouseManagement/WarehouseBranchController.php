@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\SegmentAttributes;
 use App\WarehouseBranch;
 use Yajra\Datatables\Datatables;
+use File;
 
 class WarehouseBranchController extends Controller
 {
@@ -67,7 +68,15 @@ class WarehouseBranchController extends Controller
     {
         $segment = new WarehouseBranch();
         $segment->name = $request->name;
-        $segment->slug = $request->slug;
+        
+        if ($request->hasFile('picture')) {
+            $pictureFile = $request->file('picture');
+            $extension = $pictureFile->getClientOriginalExtension();
+            $destinationPath = public_path('/img/avatars');
+            $pictureFile->move($destinationPath, $segment->id.'.'.$extension);
+            $segment->picture = $segment->id.'.'.$extension;
+        }
+
         $segment->save();
         
         return redirect()->route('warehouse-branch.index')->with('toastr', 'new');
@@ -86,12 +95,11 @@ class WarehouseBranchController extends Controller
         return Datatables::of($carriers)
             ->addColumn('action', function ($carriers) {
                 return 
-                    '<button class="btn btn-success btn-sm"  data-toggle="modal" data-target="#primaryModal"
-                         onclick="funcModal($(this))" data-link="'.route('warehouse-branch.edit',['id' => $carriers->id]).'">
-                        <i class="fa fa-pencil-square-o"></i>&nbsp;Edit</button>'.
+                    '<a class="btn btn-success btn-sm"  href="'.route('warehouse-branch.edit',['id' => $carriers->id]).'">
+                        <i class="fa fa-pencil-square-o"></i>&nbsp;Edit</a>'.
                     '<form style="display:inline;" method="POST" action="'.
                         route('warehouse-branch.destroy',['id' => $carriers->id]).'">'.method_field('DELETE').csrf_field().
-                    '<button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-remove"></i>&nbsp;Remove</button></form>';
+                    '<button type="button" class="btn btn-danger btn-sm" onclick="removeList($(this))"><i class="fa fa-remove"></i>&nbsp;Remove</button></form>';
             })
             ->rawColumns(['status', 'action'])
             ->make(true);
@@ -107,8 +115,7 @@ class WarehouseBranchController extends Controller
     public function edit($id)
     {
         $segment = WarehouseBranch::find($id);
-        $att = SegmentAttributes::whereNotIn('name', array_column($segment->attr,'name'))->get();
-        return view('panel.footer-management.segment.form-edit')->with(['segment'=>$segment,'att'=>$att]);
+        return view('panel.warehouse-management.warehouse-branch.form-edit')->with(['segment'=>$segment]);
     }
 
     /**
@@ -123,7 +130,17 @@ class WarehouseBranchController extends Controller
     {
         $segment = WarehouseBranch::find($id);
         $segment->name = $request->name;
-        $segment->slug = $request->slug;
+        if ($request->hasFile('picture')) {
+            $pictureFile = $request->file('picture');
+            $extension = $pictureFile->getClientOriginalExtension();
+            $destinationPath = public_path('/img/avatars');
+            if ($segment->picture != '' || $segment->picture != null) {
+                File::delete(public_path('/img/avatars/' . $segment->picture));
+            }
+            $pictureFile->move($destinationPath, $segment->id . '.' . $extension);
+            $segment->picture = $segment->id . '.' . $extension;
+        }
+        
         $segment->save();
         return redirect()->route('warehouse-branch.index')->with('update', 'warehouse branch updated!');
     }
