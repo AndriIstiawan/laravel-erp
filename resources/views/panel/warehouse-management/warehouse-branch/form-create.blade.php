@@ -14,7 +14,7 @@
         <!--start card -->
         <div class="card">
           <div class="card-header">
-            <i class="fa fa-align-justify"></i> Slider
+            <i class="fa fa-align-justify"></i> Branch
             <small></small>
           </div>
           <div class="card-body">
@@ -34,11 +34,6 @@
                           <label class="col-form-label" for="name">*Name</label>
                           <input type="text" class="form-control" id="name" name="name" placeholder="name brand" aria-describedby="name-error">
                           <em id="name-error" class="error invalid-feedback">Please enter a name of brand</em>
-                        </div>
-                        <div class="form-group">
-                          <label class="col-form-label" for="name">*slug</label>
-                          <input type="text" class="form-control" id="slug" name="slug" placeholder="name slug" aria-describedby="name-error">
-                          <em id="name-error" class="error invalid-feedback">Please enter a slug</em>
                         </div>
                         <div class="text-center">
                             <img class="rounded picturePrev" src="{{ asset('img/fiture-logo.png') }}" 
@@ -96,7 +91,7 @@
     },
     messages:{
       name:{
-        required:'Please enter a name of product',
+        required:'Please enter a name of branch',
         minlength:'fill the blank'
       },
       
@@ -140,7 +135,7 @@
     }
     
     $.ajax({
-      url : "{{ route('brands.index') }}",
+      url : "{{ route('warehouse-branch.index') }}",
       type: 'POST',
       processData: false,
           contentType: false,
@@ -173,7 +168,7 @@
   function act(action){
     switch(action) {
         case 'exit':
-            window.open("{{ route('brands.index') }}/?new=brand", "_self");
+            window.open("{{ route('warehouse-branch.index') }}/?new=branch", "_self");
     }
   }
   

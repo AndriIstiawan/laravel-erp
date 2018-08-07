@@ -19,6 +19,7 @@
 </form>
 
 <script>
+  setTimeout(function() { $('input[name="name"]').focus() }, 500);
 	$('#jxForm').validate({
 		rules:{
 			name:{

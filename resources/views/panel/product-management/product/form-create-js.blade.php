@@ -15,22 +15,6 @@
         $(this).val(number);
     });
 
-    $('.idr-currency').on('change', function(){
-    var number = $(this).val();
-    number = number.replace('.',''); number = number.replace(',','.');
-    if(parseFloat(number)){
-        number = parseFloat(number);
-    }else{
-        number = parseFloat("0");
-    }
-    if(number == '0'){ 
-        number = ''; 
-    }else{
-        number = number.toLocaleString('id-ID')
-    }
-    $(this).val(number);
-    });
-
     $('.input-float').on('change', function () {
         var number = $(this).val();
         if (parseFloat(number)) {

@@ -281,19 +281,5 @@
 <!-- /.container-fluid -->
 
 @section('myscript')
-<script src="{{ asset('js/medivh.js') }}"></script>
-<script>
-$(function(){
-  $('.input-float').keypress(validateNumber);
-  $('.idr-currency').keypress(validateNumber);
-  $('.idr-currency').priceFormat({
-         prefix:'',
-         centsSeparator:'',
-         centsLimit:'',
-         clearPrefix:true,
-         thousandsSeparator:'.'
-     });
-});
-</script>
 <script src="{{ asset('fiture-style/select2/select2.min.js') }}"></script>
 @include('panel.product-management.product.form-create-js') @endsection

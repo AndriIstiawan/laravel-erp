@@ -90,7 +90,7 @@
         e.preventDefault(); $(this).parent('div').remove(); x--;
     })
   });
-	$(document).ready(function() {
+  $(document).ready(function() {
   //here it will remove the current value of the remove button which has been pressed
       $("body").on("click",".remove",function(){ 
           $(this).closest('.option-card').remove();

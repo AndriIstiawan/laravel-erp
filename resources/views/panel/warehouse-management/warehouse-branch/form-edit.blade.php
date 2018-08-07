@@ -34,22 +34,17 @@
 										<form id="jxForm1" onsubmit="return false;" enctype="multipart/form-data">
 											{{ method_field('PUT') }}
 											{{ csrf_field() }}
-											<input type="hidden" class="id" name="id" value="{{ $brand->id }}">
+											<input type="hidden" class="id" name="id" value="{{ $segment->id }}">
 											<div class="row">
 											<div class="col-md-6">
 												<div class="form-group">
 													<label class="col-form-label" for="name">*Name</label>
-													<input type="text" class="form-control" id="name" name="name" placeholder="name brand" aria-describedby="name-error" value="{{ $brand->name }}">
+													<input type="text" class="form-control" id="name" name="name" placeholder="name brand" aria-describedby="name-error" value="{{ $segment->name }}">
 													<em id="name-error" class="error invalid-feedback">Please enter a name of brand</em>
-												</div>
-												<div class="form-group">
-													<label class="col-form-label" for="name">*Slug</label>
-													<input type="text" class="form-control" id="slug" name="slug" placeholder="code product" aria-describedby="name-error" value="{{ $brand->slug }}">
-													<em id="name-error" class="error invalid-feedback">Please enter a slug of brand</em>
 												</div>
 												<div class="text-center">
 													<img class="rounded picturePrev" 
-														src="{{(isset($brand->picture)?asset('img/brands/'.$brand->picture):asset('img/fiture-logo.png'))}}" 
+														src="{{(isset($segment->picture)?asset('img/avatars/'.$segment->picture):asset('img/fiture-logo.png'))}}" 
 														style="width: 150px; height: 150px;">
 												</div>
 												<div class="form-group">
@@ -64,8 +59,8 @@
 														onclick="save('#jxForm1','','exit')">Save and Continue</button>
 												</div>
 												<button type="button" class="btn btn-secondary" onclick="window.history.back()">
-													<i class="fa fa-times-rectangle"></i>&nbsp; Cancel
-												</button>
+						                          <i class="fa fa-times-rectangle"></i>&nbsp; Cancel
+						                        </button>
 											</p>
 										</form>
 									</div>
@@ -160,7 +155,7 @@
 		}
 		
 		$.ajax({
-			url : "{{ route('brands.update',['id' => $brand->id]) }}",
+			url : "{{ route('warehouse-branch.update',['id' => $segment->id]) }}",
 			type: 'POST',
 			processData: false,
         	contentType: false,
@@ -196,10 +191,10 @@
 		        toastr.success('Successfully saved..', '');
 		        break;
 		    case 'new':
-		        window.open("{{ route('brands.create') }}", "_self");
+		        window.open("{{ route('warehouse-branch.create') }}/?edit=branch", "_self");
 		        break;
 		    case 'exit':
-		        window.open("{{ route('brands.index') }}", "_self");
+		        window.open("{{ route('warehouse-branch.index') }}/?edit=branch", "_self");
 		}
 	}
 	
