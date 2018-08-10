@@ -8,7 +8,7 @@
         }
     }
     ?>
-    @if(count($member->divisi) > 0 && $status)
+    @if(count($member->divisi) > 0)
     <div class="divisi-{{$member->id}}">
         <div class="col-md-12">
             <div class="form-group">
@@ -23,9 +23,7 @@
                         <?php $i=-1; ?>
                         @foreach($member->divisi as $member_divisi)
                         <?php $i++; ?>
-                        @if($member_divisi['sales'][0]['detail'][0]['email'] == $user['email'])
                         <option value="{{$i}}">{{$member_divisi['divisi_name']}} - {{$member_divisi['sales'][0]['name']}}</option>
-                        @endif
                         @endforeach
                     </select>
                 </div>

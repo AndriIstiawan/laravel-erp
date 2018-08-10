@@ -905,7 +905,7 @@
                                                 <select id="divisiSales{{$i}}" class="form-control div-sales" name="divisiSales{{$i}}" aria-describedby="divisiSales{{$i}}-error">
                                                     <option value=""></option>
                                                     @foreach($sales as $sales_list)
-                                                    <option value="{{$sales_list->id}}" {{($divisi_list['sales'][0]['detail'][0]['_id']==$sales_list->id?'selected':'')}}>{{$sales_list->name}}</option>
+                                                    <option value="{{$sales_list->id}}" {{($divisi_list['sales'][0]['detail'][0]['_id']==$sales_list->id?'selected':'')}} {{($sales_selected==$sales_list->id?'disabled=true':'')}}>{{$sales_list->name}}</option>
                                                     @endforeach
                                                 </select>
                                                 <em id="divisiSales{{$i}}-error" class="error invalid-feedback div-em-sales"></em>
@@ -992,7 +992,7 @@
                     <select id="divisiSales" class="form-control div-sales" name="divisiSales" aria-describedby="divisiSales-error">
                         <option value=""></option>
                         @foreach($sales as $sales_list)
-                        <option value="{{$sales_list->id}}">{{$sales_list->name}}</option>
+                        <option value="{{$sales_list->id}}" {{($sales_selected==$sales_list->id?'disabled=true':'')}} >{{$sales_list->name}}</option>
                         @endforeach
                     </select>
                     <em id="divisiSales-error" class="error invalid-feedback div-em-sales"></em>

@@ -822,7 +822,7 @@
                 <!-- End Company Information -->
 
                 <!-- Division Information -->
-                <div class="col-md-12">
+                <!-- <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
                             <i class="fa fa-align-justify"></i> Division
@@ -839,7 +839,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- End Division Information -->
 
                 <!-- Form Button Information -->
