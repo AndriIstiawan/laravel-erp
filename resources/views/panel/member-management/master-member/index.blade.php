@@ -75,6 +75,8 @@
     $('.datatable').DataTable({
         processing: true,
         serverSide: true,
+        responsive: true,
+        autoWidth: false,
         ajax: '{{route("master-client.index")}}/list-data',
         columns: [{
                 data: 'code',
@@ -107,14 +109,16 @@
                 searchable: false,
             }
         ],
-        "columnDefs": [{
-                "targets": 5,
-                "className": "text-center"
+        columnDefs: [
+            {
+                responsivePriority: 1,
+                targets: 0,
             },
             {
-                "targets": 6,
-                "className": "text-center text-nowarp"
-            },
+                responsivePriority: 4,
+                targets: 6,
+                className: "text-center"
+            }
         ],
         "order": [
             [5, 'desc']

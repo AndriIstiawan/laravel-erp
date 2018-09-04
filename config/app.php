@@ -183,6 +183,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         SSD\Currency\CurrencyServiceProvider::class,
+        erfanbagussetiana\rajaongkirpro\RajaOngkirServiceProvider::class,
 
     ],
 
@@ -236,7 +237,7 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Currency'  => SSD\Currency\CurrencyFacade::class,
-
+        'RajaOngkir' => erfanbagussetiana\rajaongkirpro\RajaOngkirFacade::class,
     ],
 
 ];

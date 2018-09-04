@@ -12,6 +12,9 @@ use Yajra\Datatables\Datatables;
 use Excel;
 use Auth;
 use Session;
+use App\SalesOrder;
+use RajaOngkir;
+
 
 class MasterMemberController extends Controller
 {
@@ -48,9 +51,17 @@ class MasterMemberController extends Controller
     {
         $sales = User::where('role', 'elemMatch', array('name' => 'Sales'))->get();
         $product = Product::all();
+        $province = RajaOngkir::Provinsi()->all();
         return view('panel.member-management.master-member.form-create')->with([
             'sales' => $sales,
+            'province' => $province
         ]);
+    }
+
+    public function getCityList($province)
+    {
+        $cities = RajaOngkir::Kota()->byProvinsi($province)->get();
+        return response()->json($cities);
     }
 
     //Store data member
@@ -149,7 +160,7 @@ class MasterMemberController extends Controller
             ->addColumn('action', function ($member) {
                 return
                 '<div class="button-group"><a class="btn btn-success btn-sm" href="' . route('master-client.edit', ['id' => $member->id]) . '">
-						<i class="fa fa-pencil-square-o"></i>&nbsp;Edit member</a>' .
+                        <i class="fa fa-pencil-square-o"></i>&nbsp;Edit member</a>' .
                 '<form style="display:inline;" method="POST" action="' .
                 route('master-client.destroy', ['id' => $member->id]) . '">' . method_field('DELETE') . csrf_field() .
                     '<button type="button" class="btn btn-danger btn-sm" onclick="removeList($(this))"><i class="fa fa-remove"></i>&nbsp;Remove</button></form></div>';
@@ -180,8 +191,15 @@ class MasterMemberController extends Controller
     public function edit($id)
     {
         $member = Member::find($id);
+        $province = RajaOngkir::Provinsi()->all();
+        $kota = RajaOngkir::Kota()->search('province', $member->provinsi)->get();
         $sales = User::where('role', 'elemMatch', array('name' => 'Sales'))->get();
-        return view('panel.member-management.master-member.form-edit')->with(['member' => $member, 'sales' => $sales]);
+        return view('panel.member-management.master-member.form-edit')->with([
+            'member' => $member,
+            'sales' => $sales,
+            'province'=>$province,
+            'kota' => $kota
+        ]);
     }
 
     //Update data setting
@@ -268,6 +286,7 @@ class MasterMemberController extends Controller
         $member->divisi = $divisi;
         $member->save();
         return redirect()->route('master-client.index')->with('update', 'client');
+        /*return dd($member);*/
     }
 
     public function clientExport()
@@ -275,10 +294,21 @@ class MasterMemberController extends Controller
         $file = storage_path('exports/client-form-format.xlsx');
         $members = Member::all();
 
+        $orders = SalesOrder::all();
+
         //load excel form and editing row
-        $excel = Excel::selectSheetsByIndex(0,1)->load($file, function($reader) use ($members) {
+      $excel = Excel::selectSheetsByIndex(0,1)->load($file, function($reader) use ($members, $orders) {
             $data = [];
-            foreach($members as $member){
+            foreach($members as $key=>$member){
+              $total_weight = 0;
+              $total_order = 0;
+              $orders = SalesOrder::all();
+              foreach($orders as $key=>$order_detail){
+                if($member->_id== $order_detail->client[0]['_id']){
+                  $total_weight = $total_weight + $order_detail->total_kg;
+                  $total_order = $total_order + 1;
+                }
+              }
                 $data_mobile = implode(' / ', array_column($member->mobile, 'number'));
                 //if(is_numeric($data_mobile)){ $data_mobile = "`".$data_mobile; }
                 $data_phone = implode(' / ', array_column($member->phone, 'number'));
@@ -295,7 +325,7 @@ class MasterMemberController extends Controller
                     $member->email,
                     $member->limit,
                     $member->white_label,
-                    /*$member->pack_kayu,*/
+                    $member->pack_kayu,
                     /*'="'.$data_mobile.'"',
                     '="'.$data_phone.'"',*/
                     $data_mobile,
@@ -305,7 +335,10 @@ class MasterMemberController extends Controller
                     $member->provinsi,
                     $member->negara,
                     $member->segmen_pasar,
-                    $member->created_at,
+                    $total_weight/1000/12,
+                    $total_order/12,
+                    $member->created_at
+
                 ];
             }
             //editing sheet 1
@@ -313,7 +346,7 @@ class MasterMemberController extends Controller
             $sheet1 = $reader->getActiveSheet();
             $sheet1->fromArray($data, null, 'A3', false, false);
             //$reader->getActiveSheet()->setAutoSize(true);
-            
+
         })->setFilename('client-form-export['.date("H-i-s d-m-Y")."]")->download('xlsx');
     }
 
@@ -339,7 +372,7 @@ class MasterMemberController extends Controller
                 //check parent column value
                 if(!isset($listData['code'])||!isset($listData['displayname'])||!isset($listData['companyname'])||!isset($listData['title'])
                 ||!isset($listData['fullname'])||!isset($listData['salesemail'])||!isset($listData['billingaddress'])||!isset($listData['shippingaddress'])
-                ||!isset($listData['email'])||!isset($listData['limit'])||!isset($listData['white_label'])/*||!isset($listData['pack_kayu'])*/
+                ||!isset($listData['email'])||!isset($listData['limit'])||!isset($listData['white_label'])||!isset($listData['pack_kayu'])
                 ||!isset($listData['mobile'])||!isset($listData['phone'])||!isset($listData['remarks'])||!isset($listData['kota'])
                 ||!isset($listData['provinsi'])||!isset($listData['negara'])||!isset($listData['segmenpasar'])||!isset($listData['dateregister'])){
                     $data .= 'array("parent column not valid"),';
@@ -356,7 +389,7 @@ class MasterMemberController extends Controller
                     $email = trim($listData['email']);
                     $limit = trim($listData['limit']);
                     $white_label = trim($listData['white_label']);
-                    /*$pack_kayu = trim($listData['pack_kayu']);*/
+                    $pack_kayu = trim($listData['pack_kayu']);
                     $mobile = trim($listData['mobile']);
                     $phone = trim($listData['phone']);
                     $remarks = trim($listData['remarks']);
@@ -366,7 +399,7 @@ class MasterMemberController extends Controller
                     $segmenpasar = trim($listData['segmenpasar']);
                     $dateregister = trim($listData['dateregister']);
                     $data .= '"'.$code.'","'.$displayname.'","'.$companyname.'","'.$title.'","'.$fullname.'","'.$salesemail.'",';
-                    $data .= '"'.$billingaddress.'","'.$shippingaddress.'","'.$email.'","'.$limit.'","'.$white_label.'","'.$mobile.'","'.$phone.'","'.$remarks.'",';
+                    $data .= '"'.$billingaddress.'","'.$shippingaddress.'","'.$email.'","'.$limit.'","'.$white_label.'","'.$pack_kayu.'","'.$mobile.'","'.$phone.'","'.$remarks.'",';
                     $data .= '"'.$kota.'","'.$provinsi.'","'.$negara.'","'.$segmenpasar.'","'.$dateregister.'",';
 
                     if($code==""||$displayname==""||$title==""||$fullname==""||$salesemail==""||$billingaddress==""||$shippingaddress==""||$mobile==""){
@@ -393,7 +426,7 @@ class MasterMemberController extends Controller
                                 $member['email'] = $email;
                                 $member['limit'] = $limit;
                                 $member['white_label'] = $white_label;
-                                /*$member['pack_kayu'] = $pack_kayu;*/
+                                $member['pack_kayu'] = $pack_kayu;
                                 $member['company'] = $companyname;
                                 $member['segmen_pasar'] = $segmenpasar;
                                 $member['negara'] = $negara;
@@ -448,10 +481,10 @@ class MasterMemberController extends Controller
         });
 
         $result_status = eval('return ' . Session::get('result_status') . ';');
-        for($i=0; $i < count($result_status); $i++){
+        /*for($i=0; $i < count($result_status); $i++){
             $result_status[$i][12] = '="'.$result_status[$i][12].'"';
             $result_status[$i][13] = '="'.$result_status[$i][13].'"';
-        }
+        }*/
         Session::forget('result_status');
         $excel = Excel::selectSheetsByIndex(0)->load($file, function($reader) use ($filename,$result_status) {
             //editing sheet 1

@@ -188,7 +188,7 @@ class ImportClientController extends Controller
             
             if(!$sales)  {
 
-                $sales_empty[] =  $data_cat;
+                $sales_empty[] =  $data_sales;
 
             }
 

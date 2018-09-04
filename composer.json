@@ -18,7 +18,8 @@
         "pimlie/laravel-datatables-mongodb": "^1.1",
         "sebastiansulinski/laravel-currency": "^2.0",
         "spatie/laravel-permission": "^2.9",
-        "yajra/laravel-datatables-oracle": "^8.4"
+        "yajra/laravel-datatables-oracle": "^8.4",
+        "erfanbagussetiana/rajaongkirpro" : "dev-master"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
