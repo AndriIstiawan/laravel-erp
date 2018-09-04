@@ -1,5 +1,5 @@
 /*!
- * bootstrap-fileinput v4.4.9
+ * bootstrap-fileinput v4.5.1
  * http://plugins.krajee.com/file-input
  *
  * Krajee default styling for bootstrap-fileinput.
@@ -58,8 +58,8 @@
 
 .krajee-default .file-thumb-progress .progress, .krajee-default .file-thumb-progress .progress-bar {
     height: 11px;
+    font-family: Verdana, Helvetica, sans-serif;
     font-size: 9px;
-    line-height: 10px;
 }
 
 .krajee-default .file-caption-info, .krajee-default .file-size-info {
@@ -84,34 +84,6 @@
 
 .file-zoom-content > .file-object.type-pdf, .file-zoom-content > .file-object.type-html, .file-zoom-content > .file-object.type-text, .file-zoom-content > .file-object.type-default {
     width: 100%;
-}
-
-.rotate-2 {
-    transform: rotateY(180deg);
-}
-
-.rotate-3 {
-    transform: rotate(180deg);
-}
-
-.rotate-4 {
-    transform: rotate(180deg) rotateY(180deg);
-}
-
-.rotate-5 {
-    transform: rotate(270deg) rotateY(180deg);
-}
-
-.rotate-6 {
-    transform: rotate(90deg);
-}
-
-.rotate-7 {
-    transform: rotate(90deg) rotateY(180deg);
-}
-
-.rotate-8 {
-    transform: rotate(270deg);
 }
 
 .file-loading:before {
@@ -237,6 +209,10 @@
     height: 160px;
 }
 
+.krajee-default.file-preview-frame .kv-file-content.kv-pdf-rendered {
+    width: 400px;
+}
+
 .krajee-default.file-preview-frame .file-thumbnail-footer {
     height: 70px;
 }
@@ -305,14 +281,13 @@
 
 .kv-upload-progress .progress {
     height: 20px;
-    line-height: 20px;
     margin: 10px 0;
     overflow: hidden;
 }
 
 .kv-upload-progress .progress-bar {
     height: 20px;
-    line-height: 20px;
+    font-family: Verdana, Helvetica, sans-serif;
 }
 
 /*noinspection CssOverwrittenProperties*/
@@ -432,39 +407,15 @@
     opacity: 0.65;
 }
 
-@media (min-width: 576px) {
-    .file-zoom-dialog .modal-dialog {
-        max-width: 500px;
-    }
-}
-
-@media (min-width: 992px) {
-    .file-zoom-dialog .modal-lg {
-        max-width: 800px;
-    }
-}
-
-.file-zoom-fullscreen.modal {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-}
-
 .file-zoom-fullscreen .modal-dialog {
-    position: fixed;
+    min-width: 100%;
     margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    max-width: 100%;
-    max-height: 100%;
 }
 
 .file-zoom-fullscreen .modal-content {
     border-radius: 0;
     box-shadow: none;
+    min-height: 100vh;
 }
 
 .file-zoom-fullscreen .modal-body {
@@ -493,10 +444,6 @@
     max-height: 100%;
 }
 
-.file-zoom-content .is-portrait-gt4 {
-    margin-top: 60px;
-}
-
 .file-zoom-content > .file-object.type-image {
     height: auto;
     min-height: inherit;
@@ -507,7 +454,19 @@
     height: 30px;
 }
 
-@media screen and (max-width: 767px) {
+@media (min-width: 576px) {
+    .file-zoom-dialog .modal-dialog {
+        max-width: 500px;
+    }
+}
+
+@media (min-width: 992px) {
+    .file-zoom-dialog .modal-lg {
+        max-width: 800px;
+    }
+}
+
+@media (max-width: 767px) {
     .file-preview-thumbnails {
         display: flex;
         justify-content: center;
@@ -520,9 +479,15 @@
     }
 }
 
-@media screen and (max-width: 350px) {
+@media (max-width: 350px) {
     .krajee-default.file-preview-frame .kv-file-content {
         width: 160px;
+    }
+}
+
+@media (max-width: 420px) {
+    .krajee-default.file-preview-frame .kv-file-content.kv-pdf-rendered {
+        width: 100%;
     }
 }
 

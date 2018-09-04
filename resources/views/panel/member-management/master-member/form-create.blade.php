@@ -13,6 +13,7 @@
         </div>
         <form id="jxForm" novalidate="novalidate" method="POST" action="{{ route('master-client.index') }}">
             {{ csrf_field() }}
+            <meta name="csrf-token" content="{{ csrf_token() }}">
             <div class="row">
                 <!-- General information -->
                 <div class="col-md-5">
@@ -200,7 +201,13 @@
                                             <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" data-original-title="ex: Bali"></i>
                                         </span>
                                     </div>
-                                    <select id="provinsi" class="form-control" name="provinsi">
+                                    <select class="form-control province" name="provinsi" id="provinsi">
+                                        <option value=""></option>
+                                        @foreach ($province as $info)
+                                        <option value="{{ $info['province'] }}" data-prov="{{ $info['province_id'] }}">{{ $info['province'] }}</option>
+                                        @endforeach
+                                    </select>
+                                    <!-- <select id="provinsi" class="form-control" name="provinsi">
                                         <option value=""></option>
                                         <option value="Bali">Bali</option>
                                         <option value="Bangka Belitung">Bangka Belitung</option>
@@ -236,7 +243,7 @@
                                         <option value="Sumatera Barat">Sumatera Barat</option>
                                         <option value="Sumatera Selatan">Sumatera Selatan</option>
                                         <option value="Sumatera Utara">Sumatera Utara</option>
-                                    </select>
+                                    </select> -->
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -246,7 +253,10 @@
                                             <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" data-original-title="ex: Aceh Barat"></i>
                                         </span>
                                     </div>
-                                    <select id="kota" class="form-control" name="kota">
+                                    <select class="form-control city" name="kota" id="kota">
+                                        <option value=""></option>
+                                    </select>
+                                    <!-- <select id="kota" class="form-control" name="kota">
                                         <option value=""></option>
                                         <option value='Aceh Barat'>Aceh Barat</option>
                                         <option value='Aceh Barat Daya'>Aceh Barat Daya</option>
@@ -738,7 +748,7 @@
                                         <option value='Yalimo'>Yalimo</option>
                                         <option value='Yogyakarta'>Yogyakarta</option>
                                         <option value='Selangor'>Selangor</option>
-                                    </select>
+                                    </select> -->
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -849,7 +859,7 @@
                             <button type="submit" class="btn btn-primary">
                                 <i class="fa fa-save"></i>&nbsp; Save
                             </button>
-                            <a class="btn btn-secondary" href="{{route('master-client.index')}}"	>
+                            <a class="btn btn-secondary" href="{{route('master-client.index')}}"    >
                                 <i class="fa fa-remove"></i>&nbsp; Cancel
                             </a>
                         </div>
@@ -919,6 +929,47 @@
 @endsection @section('myscript')
 <script src="{{ asset('fiture-style/select2/select2.min.js') }}"></script>
 <script>
+    $('.province').select2({
+        theme: "bootstrap",
+        placeholder: 'Location'
+    }).change(function () {
+        $(this).valid();
+    });
+
+    $('.city').select2({
+        theme: "bootstrap",
+        placeholder: 'Location'
+    }).change(function () {
+        $(this).valid();
+    });
+    $(document).ready(function() {
+    $('select[name="provinsi"]').on('change', function() {
+        var element = $(this).find('option:selected');
+        var provinceID = element.attr('data-prov');
+        /*console.log(provinceID);*/
+            if(provinceID) {
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                  },
+                url: '{{ route("master-client.index") }}/get-city-list/'+ provinceID,
+                type: "POST",
+                dataType: "json",
+                data: {},
+                success:function(data) {
+                $('select[name="kota"]').empty();
+                $.each(data, function(key, value) {
+                    /*console.log(value);*/
+                    $('select[name="kota"]').append('<option value="'+ (value['city_name']) +'">'+ (value['type']) + '  ' +(value['city_name']) +'</option>');
+                    });
+                }
+            });
+            }else{
+            $('select[name="kota"]').empty();
+              }
+           });
+        });
+
     var count = 0;
     var arrDiv = [];
 

@@ -1,5 +1,5 @@
 /*!
- * bootstrap-fileinput v4.4.9
+ * bootstrap-fileinput v4.5.1
  * http://plugins.krajee.com/file-input
  *
  * Krajee RTL (Right To Left) default styling for bootstrap-fileinput.
@@ -85,7 +85,7 @@
     padding-right: 15px;
 }
 
-.kv-rtl .input-group-btn:last-child > .btn {
+.kv-rtl .input-group-btn > .btn:last-child {
     border-radius: 4px 0 0 4px;
 }
 

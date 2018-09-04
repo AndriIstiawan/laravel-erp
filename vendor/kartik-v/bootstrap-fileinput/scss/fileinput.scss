@@ -1,5 +1,5 @@
 /*!
- * bootstrap-fileinput v4.4.9
+ * bootstrap-fileinput v4.5.1
  * http://plugins.krajee.com/file-input
  *
  * Krajee default styling for bootstrap-fileinput.
@@ -90,7 +90,6 @@ $border: 1px !default;
 %set-progress {
     height: multiply($pad, 2.2);
     font-size: multiply($pad, 1.8);
-    line-height: multiply($pad, 2);
 }
 
 %set-caption {
@@ -124,34 +123,6 @@ $border: 1px !default;
 
 .hide-content .kv-file-content {
     @extend %set-hidden;
-}
-
-.rotate-2 {
-    transform: rotateY(180deg);
-}
-
-.rotate-3 {
-    transform: rotate(180deg);
-}
-
-.rotate-4 {
-    transform: rotate(180deg) rotateY(180deg);
-}
-
-.rotate-5 {
-    transform: rotate(270deg) rotateY(180deg);
-}
-
-.rotate-6 {
-    transform: rotate(90deg);
-}
-
-.rotate-7 {
-    transform: rotate(90deg) rotateY(180deg);
-}
-
-.rotate-8 {
-    transform: rotate(270deg);
 }
 
 .file-input {
@@ -310,6 +281,9 @@ input[type=file].file-loading {
         .kv-file-content {
             width: multiply($pad, 42.6);
             height: multiply($pad, 32);
+            &.kv-pdf-rendered {
+                width: 400px;
+            }
         }
         .file-thumbnail-footer {
             height: multiply($pad, 14);
@@ -373,6 +347,7 @@ input[type=file].file-loading {
         }
         .progress-bar {
             @extend %set-progress;
+            font-family: Verdana, Helvetica, sans-serif;
         }
     }
     .file-thumbnail-footer {
@@ -405,7 +380,7 @@ input[type=file].file-loading {
     }
     .progress-bar {
         height: multiply($pad, 4);
-        line-height: multiply($pad, 4);
+        font-family: Verdana, Helvetica, sans-serif;
     }
 }
 
@@ -563,38 +538,15 @@ input[type=file].file-loading {
     opacity: 0.65;
 }
 
-@media(min-width: 576px) {
-    .file-zoom-dialog .modal-dialog {
-        max-width: 500px;
-    }
-}
-
-@media(min-width: 992px) {
-    .file-zoom-dialog .modal-lg {
-        max-width: 800px;
-    }
-}
-
 .file-zoom-fullscreen {
-    &.modal {
-        position: fixed;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-    }
     .modal-dialog {
-        position: fixed;
+        min-width: 100%;
         margin: 0;
-        padding: 0;
-        width: 100%;
-        height: 100%;
-        max-width: 100%;
-        max-height: 100%;
     }
     .modal-content {
         border-radius: 0;
         box-shadow: none;
+        min-height: 100vh;
     }
     .modal-body {
         overflow-y: auto;
@@ -617,9 +569,6 @@ input[type=file].file-loading {
     }
     .file-preview-video {
         max-height: 100%;
-    }
-    .is-portrait-gt4 {
-        margin-top: multiply($pad, 12);
     }
     > .file-object {
         &.type-image {
@@ -652,7 +601,19 @@ input[type=file].file-loading {
     }
 }
 
-@media screen and(max-width: 767px) {
+@media(min-width: 576px) {
+    .file-zoom-dialog .modal-dialog {
+        max-width: 500px;
+    }
+}
+
+@media(min-width: 992px) {
+    .file-zoom-dialog .modal-lg {
+        max-width: 800px;
+    }
+}
+
+@media(max-width: 767px) {
     .file-preview-thumbnails {
         display: flex;
         justify-content: center;
@@ -664,9 +625,15 @@ input[type=file].file-loading {
     }
 }
 
-@media screen and(max-width: 350px) {
+@media(max-width: 350px) {
     .krajee-default.file-preview-frame .kv-file-content {
         width: multiply($pad, 32);
+    }
+}
+
+@media(max-width: 420px) {
+    .krajee-default.file-preview-frame .kv-file-content.kv-pdf-rendered {
+        width: 100%;
     }
 }
 

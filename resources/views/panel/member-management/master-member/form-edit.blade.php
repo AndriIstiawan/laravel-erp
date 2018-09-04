@@ -14,6 +14,7 @@
         <form id="jxForm" novalidate="novalidate" method="POST" action="{{ route('master-client.update',['id' => $member->id]) }}">
             {{ method_field('PUT') }}
             {{ csrf_field() }}
+            <meta name="csrf-token" content="{{ csrf_token() }}">
             <div class="row">
                 <!-- General information -->
                 <div class="col-md-5">
@@ -196,7 +197,14 @@
                                             <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" data-original-title="ex: Bali"></i>
                                         </span>
                                     </div>
-                                    <select id="provinsi" class="form-control" name="provinsi">
+                                    <select class="form-control province" name="provinsi" id="provinsi">
+                                        <option value=""></option>
+                                        @foreach ($province as $info)
+                                        <option value="{{ $info['province'] }}" data-prov="{{ $info['province_id'] }}" {{($member->provinsi==$info['province']?'selected':'')}}>{{ $info['province'] }}</option>
+                                        @endforeach
+                                    </select>
+
+                                    <!-- <select id="provinsi" class="form-control" name="provinsi">
                                         <option value=""></option>
                                         <option value="Bali">Bali</option>
                                         <option value="Bangka Belitung">Bangka Belitung</option>
@@ -232,8 +240,8 @@
                                         <option value="Sumatera Barat">Sumatera Barat</option>
                                         <option value="Sumatera Selatan">Sumatera Selatan</option>
                                         <option value="Sumatera Utara">Sumatera Utara</option>
-                                    </select>
-                                    <script>
+                                    </select> -->
+                                    <!-- <script>
                                         var x = document.getElementById("provinsi");
                                         var btrue = true;
                                         for (i = 0; i < x.options.length; i++) {
@@ -245,7 +253,7 @@
                                         if(btrue === true){
                                             x.insertAdjacentHTML('beforeend', '<option value="{{$member->provinsi}}" selected>{{$member->provinsi}}</option>');
                                         }
-                                    </script>
+                                    </script> -->
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -255,7 +263,13 @@
                                             <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" data-original-title="ex: Aceh Barat"></i>
                                         </span>
                                     </div>
-                                    <select id="kota" class="form-control" name="kota">
+                                    <select class="form-control city" name="kota" id="kota">
+                                        <option value=""></option>
+                                        @foreach ($kota as $infok)
+                                        <option value="{{ $infok['city_name'] }}" {{($member->kota==$infok['city_name']?'selected':'')}}>{{ $infok['type'] }} {{ $infok['city_name'] }}</option>
+                                        @endforeach
+                                    </select>
+                                    <!-- <select id="kota" class="form-control" name="kota">
                                         <option value=""></option>
                                         <option value='Aceh Barat'>Aceh Barat</option>
                                         <option value='Aceh Barat Daya'>Aceh Barat Daya</option>
@@ -760,7 +774,7 @@
                                         if(btrue === true){
                                             x.insertAdjacentHTML('beforeend', '<option value="{{$member->kota}}" selected>{{$member->kota}}</option>');
                                         }
-                                    </script>
+                                    </script> -->
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -1009,6 +1023,34 @@
 @endsection @section('myscript')
 <script src="{{ asset('fiture-style/select2/select2.min.js') }}"></script>
 <script>
+
+    $(document).ready(function() {
+    $('select[name="provinsi"]').on('change', function() {
+        var element = $(this).find('option:selected');
+        var provinceID = element.attr('data-prov');
+        console.log(provinceID);
+            if(provinceID) {
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                  },
+                url: '{{ route("master-client.index") }}/get-city-list/'+ provinceID,
+                type: "POST",
+                dataType: "json",
+                data: {},
+                success:function(data) {
+                $('select[name="kota"]').empty();
+                $.each(data, function(key, value) {
+                    console.log(value);
+                    $('select[name="kota"]').append('<option value="'+ (value['city_name']) +'">'+ (value['type']) + '  ' +(value['city_name']) +'</option>');
+                    });
+                }
+            });
+            }else{
+            $('select[name="kota"]').empty();
+              }
+           });
+        });
 
     var count = {{count($member->divisi)}};
     var arrDiv = [];
