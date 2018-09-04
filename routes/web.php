@@ -186,6 +186,8 @@ Route::middleware('auth')->group(function() {
     /* Master CLient */
 	Route::resource('master-client', 'MemberManagement\MasterMemberController');
     Route::post('master-client/find', 'MemberManagement\MasterMemberController@find');
+    
+    Route::post('master-client/import', 'MemberManagement\ImportClientController@importData');
     Route::post('master-client/import-data', 'MemberManagement\MasterMemberController@ImportData');
 
     Route::resource('location', 'MemberManagement\LocationController');
