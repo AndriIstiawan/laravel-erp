@@ -12,11 +12,9 @@
 					<i class="fa fa-refresh"></i>
 				</button>
 				<button type="button" class="btn btn-primary" data-toggle="modal"
-					 data-target="#primaryModal" data-link="{{ route('category.create') }}" 
+					 data-target="#primaryModal" data-link="{{route('commercial-status.create')}}" 
 					 onclick="funcModal($(this))">
-						<i class="fa fa-plus">
-						</i>&nbsp;
-							New Category
+					 <i class="fa fa-plus"></i>&nbsp; New Commercial Status
 				</button>
 				</p>
 			</div>
@@ -26,7 +24,7 @@
 			<div class="col-lg-12">
 				<div class="card">
 					<div class="card-header">
-						<i class="fa fa-align-justify"></i> Category Table
+						<i class="fa fa-align-justify"></i> Commercial Status Table
 					</div>
 					<div class="card-body">
 						<div class="table-responsive">
@@ -41,14 +39,14 @@
 								</thead>
 								<tbody>
 								</tbody>
-							</table>
-						</div>		
+							</table>	
+						</div>			
 					</div>
 				</div>
 			</div>
 		</div>
-
-		<div class="modal fade" id="primaryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		
+	    <div class="modal fade" id="primaryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-primary" role="document">
 				<div class="modal-content">
 					<div class="modal-body"><i class="fa fa-gear fa-spin"></i></div>
@@ -76,7 +74,7 @@
 	        serverSide: true,
 	        responsive: true,
 	        autoWidth: false,
-	        ajax: '{!! url()->current() !!}/data',
+	        ajax: '{{route('commercial-status.index')}}/list-data',
 	        columns: [
 	            {data: 'name', name: 'name'},
 	            {data: 'created_at', name: 'created_at'},

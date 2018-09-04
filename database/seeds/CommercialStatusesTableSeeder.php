@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class CategoriesTableSeeder extends Seeder
+class CommercialStatusesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,30 +11,25 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('categories')->truncate();
-        DB::table('categories')->insert([
+        DB::table('commercial_statuses')->truncate();
+        DB::table('commercial_statuses')->insert([
             [
-                'name' => 'VFM',
+                'name' => 'Reguler',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),
             ],
             [
-                'name' => 'FM',
+                'name' => 'New',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),
             ],
             [
-                'name' => 'MOD',
+                'name' => 'Stop',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),
             ],
             [
-                'name' => 'SM',
-                'created_at' => date("Y-m-d H:i:s"),
-                'updated_at' => date("Y-m-d H:i:s"),
-            ],
-            [
-                'name' => 'NM',
+                'name' => 'Promo',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),
             ]

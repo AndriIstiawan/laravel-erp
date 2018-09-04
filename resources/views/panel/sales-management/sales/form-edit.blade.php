@@ -149,15 +149,16 @@
 													@foreach ($list_mp as $lmp)
 													<div class="col-md-6">
 													<div class="form-check form-check-inline mr-1">
-													<input class="form-check-input" type="checkbox" value="{{$lmp['_id']}}" name="module[]"
-														{{ (isset($lmp['checked'])?'checked':'') }}>
+													<input class="form-check-input pm-{{$lmp['_id']}}" type="checkbox" value="{{$lmp['_id']}}" name="module[]"
+														{{ (isset($lmp['checked'])?'checked':'') }} data-count="0" onchange="checklistParent($(this))">
 													<label class="form-check-label" for="inline-checkbox1">{{$lmp['name']}}</label>
 													</div>
 													<div class="col-md-12 col-form-label">
 														@foreach($lmp['child'] as $lmp2)
 														<div class="form-check form-check-inline mr-1">
 														<input class="form-check-input" type="checkbox" value="{{$lmp2['_id']}}" name="module[]"
-															{{ (isset($lmp2['checked'])?'checked':'') }}>
+															{{ (isset($lmp2['checked'])?'checked':'') }} 
+														data-parent="{{$lmp['_id']}}" onchange="checklist($(this))">
 														<label class="form-check-label" for="inline-checkbox1">{{$lmp2['name']}}</label>
 														</div>
 														@endforeach
@@ -221,6 +222,36 @@
 		}
 	}
 	$("#picture").change(function (){ readURL(this); });
+
+	function checklistParent(elm){
+    	var pmChild = $('input[data-parent="'+elm.val()+'"]');
+
+    	if(elm.is(':checked')){
+    		elm.attr('data-count',pmChild.length);
+    		pmChild.prop('checked', true);
+    	}else{
+    		elm.attr('data-count',0);
+    		pmChild.prop('checked', false);
+    	}
+    }
+
+    function checklist(elm){
+    	var pmParent = $('.pm-' + elm.attr('data-parent'));
+    	var pmCounter =  parseInt(pmParent.attr('data-count'));
+
+    	if(elm.is(':checked')){
+    		pmCounter++;
+    	}else{
+    		pmCounter--;
+    	}
+
+    	if(pmCounter > 0){
+    		pmParent.prop('checked', true);
+    	}else{
+    		pmParent.prop('checked', false);
+    	}
+    	pmParent.attr('data-count',pmCounter);
+    }
 	
 	$("#jxForm1").validate({
 		rules:{

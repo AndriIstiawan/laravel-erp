@@ -40,59 +40,26 @@
                                 <p class="input-group col-md-3">
                                     <select id="category" name="category" class="form-control" aria-describedby="category-error">
                                         <option value=""></option>
-                                        <option value="VFM">VFM</option>
-                                        <option value="FM">FM</option>
-                                        <option value="MOD">MOD</option>
-                                        <option value="SM">SM</option>
-                                        <option value="NM">NM</option>
+                                        @foreach($category as $category)
+                                        <option value="{{$category->name}}" {{($product->category==$category->name?'selected':'')}}>{{$category->name}}</option>
+                                        @endforeach
                                     </select>
                                     <em id="category-error" class="error invalid-feedback"></em>
-                                    <script>
-                                        var x = document.getElementById("category");
-                                        var btrue = true;
-                                        for (i = 0; i < x.options.length; i++) {
-                                            if (x.options[i].value == "{{$product->category}}") {
-                                                x.options[i].selected = true;
-                                                btrue = false;
-                                            }
-                                        }
-                                        if (btrue === true) {
-                                            x.insertAdjacentHTML('beforeend',
-                                                '<option value="{{$product->category}}" selected>{{$product->category}}</option>'
-                                            );
-                                        }
-                                    </script>
                                 </p>
                                 <p class="input-group col-md-3">
                                     <select id="commercial" name="commercial" class="form-control" aria-describedby="commercial-error">
                                         <option value=""></option>
-                                        <option value="Reguler">Reguler</option>
-                                        <option value="New">New</option>
-                                        <option value="Stop">Stop</option>
-                                        <option value="Promo">Promo</option>
+                                        @foreach($commercialstatus as $commercialstatus)
+                                        <option value="{{$commercialstatus->name}}" {{($product->commercial==$commercialstatus->name?'selected':'')}}>{{$commercialstatus->name}}</option>
+                                        @endforeach
                                     </select>
                                     <em id="commercial-error" class="error invalid-feedback"></em>
-                                    <script>
-                                        var x = document.getElementById("commercial");
-                                        var btrue = true;
-                                        for (i = 0; i < x.options.length; i++) {
-                                            if (x.options[i].value == "{{$product->commercial}}") {
-                                                x.options[i].selected = true;
-                                                btrue = false;
-                                            }
-                                        }
-                                        if (btrue === true) {
-                                            x.insertAdjacentHTML('beforeend',
-                                                '<option value="{{$product->commercial}}" selected>{{$product->commercial}}</option>'
-                                            );
-                                        }
-                                    </script>
                                 </p>
                                 <p class="input-group col-md-2">
                                     <select id="currency" name="currency" class="form-control" aria-describedby="currency-error">
                                         <option value=""></option>
-                                        <option value="Reguler">USD</option>
-                                        <option value="New">IDR</option>
+                                        <option value="USD">USD</option>
+                                        <option value="IDR">IDR</option>
                                     </select>
                                     <em id="currency-error" class="error invalid-feedback"></em>
                                     <script>

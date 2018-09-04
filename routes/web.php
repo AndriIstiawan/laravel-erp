@@ -46,11 +46,11 @@ Route::middleware('auth')->group(function() {
 	/* END Master User */
 
 	/* Master deal */
-	Route::resource('discount', 'DiscountManagement\DiscountController');
-	Route::post('discount/find', 'DiscountManagement\DiscountController@find');
+	Route::resource('promo', 'DiscountManagement\DiscountController');
+	Route::post('promo/find', 'DiscountManagement\DiscountController@find');
 
-	Route::resource('promo', 'DiscountManagement\PromoController');
-	Route::post('promo/find', 'DiscountManagement\PromoController@find');
+	Route::resource('tipe-promosi', 'DiscountManagement\TipePromoController');
+	Route::post('tipe-promosi/find', 'DiscountManagement\TipePromoController@find');
 	/* END Master deal */
 
 	/* Master sales */
@@ -65,6 +65,9 @@ Route::middleware('auth')->group(function() {
 	
 	Route::resource('points-performance', 'ProductionsManagement\PointsPerformanceController');
 	Route::post('points-performance/find', 'ProductionsManagement\PointsPerformanceController@find');
+
+	Route::resource('master-reject', 'ProductionsManagement\MasterRejectController');
+	Route::post('master-reject/find', 'ProductionsManagement\MasterRejectController@find');
 	/* END Master production */
 
 	/* Master qc */
@@ -145,6 +148,8 @@ Route::middleware('auth')->group(function() {
 
 	Route::resource('product', 'ProductManagement\ProductController');
     Route::post('product/find', 'ProductManagement\ProductController@find');
+    
+    Route::post('product/import', 'ProductManagement\ImportProductController@importData');
     Route::post('product/import-data', 'ProductManagement\ProductController@ImportData');
 
 	Route::resource('type', 'ProductManagement\TypeController');
@@ -153,8 +158,8 @@ Route::middleware('auth')->group(function() {
 	Route::resource('category', 'ProductManagement\CategoriesController');
 	Route::post('category/find', 'ProductManagement\CategoriesController@find');
 
-	Route::resource('attribute-sets', 'ProductManagement\AttributeSetsController');
-	Route::post('attribute-sets/find', 'ProductManagement\AttributeSetsController@find');
+	Route::resource('commercial-status', 'ProductManagement\CommercialStatusesController');
+	Route::post('commercial-status/find', 'ProductManagement\CommercialStatusesController@find');
 
 	Route::resource('variant', 'ProductManagement\VariantController');
 	Route::post('variant/find', 'ProductManagement\VariantController@find');

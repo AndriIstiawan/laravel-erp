@@ -110,26 +110,37 @@
                     }, false);
                     return xhr;
                 },
-                url: "{{route('product.index')}}/import-data",
+                url: "{{route('product.index')}}/import",
                 type: 'POST',
                 processData: false,
                 contentType: false,
                 data: new FormData($('#jxForm')[0]),
                 success: function (response) {
                     $('.btn').removeClass('disabled');
-                    toastr.success('Please check download file for detail data input', 'Import file success..');
+                    //toastr.success('Please check download file for detail data input', 'Import file success..');
                     $('.progress-modal').addClass('d-none');
-                    window.open("{{url('/download-storage')}}/true/"+response, "_blank");
+                    //window.open("{{url('/download-storage')}}/true/"+response, "_blank");
                     setTimeout(function(){
-						window.open("{{route('product.index')}}", "_self");
-					}, 3000);
+                        //window.open("{{route('product.index')}}", "_self");
+                        act(response);
+                    }, {{env('SET_TIMEOUT', '500')}});
                 },
                 error: function (e) { 
-                    $('.btn').removeClass('disabled');
+                    /*$('.btn').removeClass('disabled');
                     toastr.warning('Please check download file for detail data input', 'Import file failed..');
-                    $('.progress-modal').addClass('d-none');
+                    $('.progress-modal').addClass('d-none');*/
                 }
             });
+        }
+    }
+
+    function act(response) {
+        switch (response.alert) {
+            case 'warning':
+                toastr.warning(response.message, 'Warning');
+                break;
+            default:
+                toastr.success(response.message,  'Success');
         }
     }
 </script>

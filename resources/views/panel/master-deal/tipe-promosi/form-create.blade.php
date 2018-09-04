@@ -1,11 +1,23 @@
-<form id="jxForm" novalidate="novalidate" method="POST" action="{{ route('category.index') }}">
-  <div class="modal-header"><h4 class="modal-title">Create New Category</h4>
+<link href="{{ asset('fiture-style/select2/select2.min.css') }}" rel="stylesheet">
+<form id="jxForm" novalidate="novalidate" method="POST" action="{{ route('tipe-promosi.index') }}">
+  <div class="modal-header"><h4 class="modal-title">Create New Tipe Promosi</h4>
   </div>
   <div class="modal-body">
     {{ csrf_field() }}
     <div class="form-group">
-      <input type="text" class="form-control" id="name" name="name" placeholder="Name Category" aria-describedby="name-error">
+      <input type="text" class="form-control" id="name" name="name" placeholder="Name Tipe Promosi" aria-describedby="name-error">
       <em id="name-error" class="error invalid-feedback">Please enter a name taxes</em>
+    </div>
+    <div class="form-group">
+      <select class="form-control" name="satuan" aria-describedby="satuan-error" id="satuan" style="width: 100%;">
+        <option value=""></option>
+        <option value="%">Percent</option>
+        <option value=".00">Currency</option>
+        <option value="hari">Day</option>
+        <option value="kg">Weight</option>
+        <option value="free-ongkir">Free ongkir</option>
+      </select>
+      <em id="satuan-error" class="error invalid-feedback">Please pilih satuan</em>
     </div>
   </div>
   <div class="modal-footer">
@@ -16,7 +28,15 @@
   </div>
 </form>
 
+<script src="{{ asset('fiture-style/select2/select2.min.js') }}"></script>
 <script>
+  $('#satuan').select2({
+        theme: "bootstrap",
+        placeholder: 'Satuan'
+    }).change(function () {
+        $(this).parent('.form-group').find('.select2-selection');
+    });
+
   setTimeout(function() { $('input[name="name"]').focus() }, 500);
   $('#jxForm').validate({
     rules:{
@@ -24,7 +44,7 @@
         required:true,
         minlength:2,
         remote:{
-          url: '{{ route('category.index') }}/find',
+          url: '{{ route('tipe-promosi.index') }}/find',
           type: "post",
           data:{
             _token:'{{ csrf_token() }}',
@@ -34,13 +54,19 @@
             }
           }
         }
+      },
+      satuan:{
+        required:true
       }
     },
     messages:{
       name:{
-        required:'Please enter a name category',
+        required:'Please enter a name tipe promosi',
         minlength:'Name must consist of at least 2 characters',
         remote:'Name already in use. Please use other name.'
+      },
+      satuan:{
+        required:'Please select a satuan tipe'
       }
     },
     errorElement:'em',

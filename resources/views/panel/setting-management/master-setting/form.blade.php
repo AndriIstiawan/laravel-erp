@@ -16,7 +16,7 @@
                                 <a class="nav-link active show" id="general-tab" data-toggle="tab" href="#general" role="tab" aria-controls="home" aria-selected="false">General Setting</a>
                             </li>
                             <!-- <li class="nav-item">
-                                <a class="nav-link" id="web-tab" data-toggle="tab" href="#web" role="tab" aria-controls="home" aria-selected="false">Web Setting</a>
+                                <a class="nav-link" id="web-tab" data-toggle="tab" href="#web" role="tab" aria-controls="home" aria-selected="false">Bank Setting</a>
                             </li> -->
                         </ul>
                         <div class="tab-content" id="myTab1Content">
@@ -29,8 +29,48 @@
                                             <div class="col-md-12">
                                                 {{ method_field('PUT') }} {{ csrf_field() }}
                                                 <input type="hidden" class="id" name="id">
+                                                <!-- <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <div class="text-center">
+                                                                <img class="rounded logoPrev" src="{{ asset('img/'.$setting->logo) }}" style="width: 300px; height: 150px;">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label class="col-md-12 col-form-label" for="file-input">Logo
+                                                                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="website logo, size in pixel(150x150)"></i>
+                                                            </label>
+                                                            <div class="col-md-12">
+                                                                <input type="file" id="logo" class="imagePrev" name="logo" accept="image/jpg, image/jpeg, image/png">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <div class="text-center">
+                                                                <img class="rounded faviconPrev" src="{{ asset('img/'.$setting->favicon) }}" style="width: 150px; height: 150px;">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label class="col-md-12 col-form-label" for="file-input">Favicon
+                                                                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="website favicon, size in pixel(90x90)"></i>
+                                                            </label>
+                                                            <div class="col-md-12">
+                                                                <input type="file" id="favicon" class="imagePrev" name="favicon" accept="image/jpg, image/jpeg, image/png, image/x-icon">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div> -->
                                                 <div class="row">
                                                     <div class="col-md-6">
+                                                        <!-- <div class="form-group">
+                                                            <label class="col-form-label" for="siteTitle">*Site Title
+                                                                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="Declaration of title website"></i>
+                                                            </label>
+                                                            <input type="text" class="form-control" id="siteTitle" name="siteTitle" aria-describedby="siteTitle-error" placeholder="Fiture E-Commerce"
+                                                                value="{{$setting->site_title}}">
+                                                            <em id="siteTitle-error" class="error invalid-feedback">Please enter site title</em>
+                                                        </div> -->
                                                         <div class="form-group">
                                                             <label class="col-form-label" for="transPoint">*Kurs $USD
                                                                 <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="Kurs $USD"></i>
@@ -69,8 +109,54 @@
                                                                 <span class="switch-handle"></span>
                                                             </label>
                                                         </div>
+                                                        <div class="form-group">
+                                                            <label class="col-form-label" for="siteTitle">*Phone Number Office
+                                                                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="Phone number on top website"></i>
+                                                            </label>
+                                                            <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" aria-describedby="phoneNumber-error" placeholder="(021) 2939123"
+                                                                value="{{$setting->phone_number}}">
+                                                            <em id="phoneNumber-error" class="error invalid-feedback"></em>
+                                                        </div>
                                                     </div>
                                                 </div>
+                                                <!-- <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="col-form-label" for="siteTitle">*Phone Number Header
+                                                                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="Phone number on top website"></i>
+                                                            </label>
+                                                            <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" aria-describedby="phoneNumber-error" placeholder="(021) 2939123"
+                                                                value="{{$setting->phone_number}}">
+                                                            <em id="phoneNumber-error" class="error invalid-feedback"></em>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="col-form-label" for="siteTitle">*Email Info Header
+                                                                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="Email info on top website"></i>
+                                                            </label>
+                                                            <input type="text" class="form-control" id="emailInfo" name="emailInfo" aria-describedby="emailInfo-error" placeholder="info@hoky.com"
+                                                                value="{{$setting->email_info}}">
+                                                            <em id="emailInfo-error" class="error invalid-feedback"></em>
+                                                        </div>
+                                                    </div>
+                                                </div> -->
+                                                <!-- <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label class="col-form-label" for="odExpire">*Order Expire
+                                                                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="order expire"></i>
+                                                            </label>
+                                                            <div class="input-group">
+                                                                <input type="text" id="odExpire" name="odExpire" class="form-control text-right input-number" placeholder="00" value="{{$setting->order_expire}}">
+                                                                <div class="input-group-append">
+                                                                    <span class="input-group-text">Hours</span>
+                                                                </div>
+                                                                <em id="odExpire-error" class="invalid-feedback">Please set order expire</em>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div> -->
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
@@ -87,7 +173,7 @@
                                                                     <span class="input-group-text"> / </span>
                                                                 </div>
                                                                 <input type="text" class="form-control text-right col-md-3 input-number" id="transPoint" name="transPoint" aria-describedby="transPoint-error"
-                                                                    placeholder="00" value="{{$setting->transaction_point}}">
+                                                                    placeholder="00" value="{{number_format($setting->transaction_point, 0, ',', '.')}}">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text"> Point </span>
                                                                 </div>
@@ -96,9 +182,110 @@
                                                             <em id="transPoint-error" class="error invalid-feedback">Please set transaction point</em>
                                                         </div>
                                                     </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label class="col-form-label" for="siteTitle">*Phone Number WA
+                                                                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="Phone number wa"></i>
+                                                            </label>
+                                                            <input type="text" class="form-control" id="phoneWa" name="phoneWa" aria-describedby="phoneWa-error" placeholder="0813 6363 9292"
+                                                                value="{{$setting->phone_wa}}">
+                                                            <em id="phoneWa-error" class="error invalid-feedback"></em>
+                                                        </div>
+                                                    </div>
                                                 </div>
+                                                <!-- <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label class="col-form-label" for="odExpire">*Member Log Expire
+                                                                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="member log expire"></i>
+                                                            </label>
+                                                            <div class="input-group">
+                                                                <input type="text" id="memberExpire" name="memberExpire" class="form-control text-right input-number" placeholder="00" value="{{$setting->member_log_expire}}">
+                                                                <div class="input-group-append">
+                                                                    <span class="input-group-text">Hours</span>
+                                                                </div>
+                                                                <em id="memberExpire-error" class="invalid-feedback">Please set member log expire</em>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div> -->
                                             </div>
                                         </div>
+                                        <hr>
+                                        <!--start Product order-->
+                                                    <div class="row">
+                                                        <div class="col-md-12 product-order-list">
+                                                            <?php $i=0; ?>
+                                                            @foreach($setting['bank'] as $product_list)
+                                                            <?php $i++; ?>
+                                                            <div class="row div-items">
+                                                                <input type="hidden" name="arrProduct[]" value="{{$i}}">
+                                                                <div class="row col-md-12">
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label class="col-form-label" for="transPoint">*Nama Bank
+                                                                                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="Nama Bank"></i>
+                                                                            </label>
+                                                                            <input type="text" class="form-control names" name="name{{$i}}" aria-describedby="name{{$i}}-error" placeholder="Nama Bank" value="{{$product_list['name']}}">
+                                                                            <em id="name{{$i}}-error" class="error invalid-feedback names-em">Please set nama bank</em>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label class="col-form-label" for="norek">*No Rek
+                                                                                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="No Rek (086-8096979)"></i>
+                                                                            </label>
+                                                                            <input type="text" class="form-control noreks" name="norek{{$i}}" aria-describedby="norek{{$i}}-error" placeholder="00" value="{{$product_list['norek']}}">
+                                                                            <em id="norek{{$i}}-error" class="error invalid-feedback noreks-em">Please set nomor rekening</em>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row col-md-12">
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label class="col-form-label" for="pemilik">*Nama Pemilik Rekening
+                                                                                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="Nama Pemilik Rekening (PT. Macbrame Indonesia)"></i>
+                                                                            </label>
+                                                                            <input type="text" class="form-control pemiliks" name="pemilik{{$i}}" aria-describedby="pemilik{{$i}}-error" placeholder="Nama Pemilik" value="{{$product_list['pemilik']}}">
+                                                                            <em id="pemilik{{$i}}-error" class="error invalid-feedback pemiliks-em">Please set nama pemilik</em>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="row">
+                                                                            <div class="form-group col-md-12">
+                                                                                <label class="col-form-label" for="cabang">*Kantor Cabang Rekening
+                                                                                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="Kantor Cabang Rekening"></i>
+                                                                                </label>
+                                                                                <div class="input-group">
+                                                                                    <input type="text" class="form-control cabangs" name="cabang{{$i}}" aria-describedby="cabang{{$i}}-error" placeholder="Kantor Cabang" value="{{$product_list['cabang']}}"s>
+                                                                                    <span class="input-group-btn" 
+                                                                                    <?php if ($i==1): ?>
+                                                                                        style="display: none;"
+                                                                                    <?php endif ?>
+                                                                                    >
+                                                                                        <button type="button" class="btn btn-danger" style="margin:0 20px 0 25px; {{($i==1?'cursor: default;':'')}}" onclick="$(this).closest('.div-items'){{($i!=1?'.remove()':'')}}">
+                                                                                            <i class="fa fa-remove"></i>
+                                                                                        </button>
+                                                                                    </span>
+                                                                                </div>
+                                                                                <em id="cabang{{$i}}-error" class="error invalid-feedback cabangs-em">Please set kantor cabang</em>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <hr>
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <button type="button" class="btn btn-primary pull-right" onclick="addProduct()">
+                                                                <i class="fa fa-plus"></i>&nbsp; Add Bank
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                <!--end Product order-->
                                         <hr>
                                         <div class="btn-group">
                                             <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -117,42 +304,66 @@
                                             <div class="col-md-12">
                                                 {{ method_field('PUT') }} {{ csrf_field() }}
                                                 <input type="hidden" class="id" name="id">
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label class="col-form-label" for="metaTitle">*meta-title
-                                                                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="meta-title for SEO"></i>
-                                                            </label>
-                                                            <input type="text" class="form-control" id="metaTitle" name="metaTitle" aria-describedby="metaTitle-error" placeholder="Fiture E-Commerce"
-                                                                value="{{$setting->meta_title}}">
-                                                            <em id="metaTitle-error" class="error invalid-feedback">Please enter meta title</em>
+                                                <!--start Product order-->
+                                                    <div class="row">
+                                                        <div class="col-md-12 product-order-list">
+                                                            <div class="row div-items">
+                                                                <input type="hidden" name="arrProduct[]" value="1">
+                                                                <div class="row col-md-12">
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label class="col-form-label" for="transPoint">*Nama Bank
+                                                                                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="Nama Bank"></i>
+                                                                            </label>
+                                                                            <input type="text" class="form-control names" name="name1" aria-describedby="name1-error" placeholder="Nama Bank">
+                                                                            <em id="name1-error" class="error invalid-feedback names-em">Please set nama bank</em>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label class="col-form-label" for="norek">*No Rek
+                                                                                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="No Rek (086-8096979)"></i>
+                                                                            </label>
+                                                                            <input type="text" class="form-control noreks" name="norek1" aria-describedby="norek1-error" placeholder="00">
+                                                                            <em id="norek1-error" class="error invalid-feedback noreks-em">Please set nomor rekening</em>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row col-md-12">
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label class="col-form-label" for="pemilik">*Nama Pemilik Rekening
+                                                                                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="Nama Pemilik Rekening (PT. Macbrame Indonesia)"></i>
+                                                                            </label>
+                                                                            <input type="text" class="form-control pemiliks" name="pemilik1" aria-describedby="pemilik1-error" placeholder="Nama Pemilik">
+                                                                            <em id="pemilik1-error" class="error invalid-feedback pemiliks-em">Please set nama pemilik</em>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="row">
+                                                                            <div class="form-group col-md-12">
+                                                                                <label class="col-form-label" for="cabang">*Kantor Cabang Rekening
+                                                                                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="Kantor Cabang"></i>
+                                                                            </label>
+                                                                            <input type="text" class="form-control cabangs" name="cabang1" aria-describedby="cabang1-error" placeholder="Kantor Cabang">
+                                                                            <em id="cabang1-error" class="error invalid-feedback cabangs-em">Please set kantor cabang</em>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <hr>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label class="col-form-label" for="metaDesc">*meta-description
-                                                                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="meta-description for SEO"></i>
-                                                            </label>
-                                                            <input type="text" class="form-control" id="metaDesc" name="metaDesc" aria-describedby="metaDesc-error" placeholder="Fiture E-Commerce B2B"
-                                                                value="{{$setting->meta_description}}">
-                                                            <em id="metaDesc-error" class="error invalid-feedback">Please enter meta description</em>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <button type="button" class="btn btn-primary pull-right" onclick="addProduct()">
+                                                                <i class="fa fa-plus"></i>&nbsp; Add Product
+                                                            </button>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label class="col-form-label" for="odExpire">Google Analytic Script
-                                                                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="Google tracks and reports website traffic."></i>
-                                                            </label>
-                                                            <textarea id="googleAnalytic" class="form-control" name="googleAnalytic" rows="5">{{ (isset($setting->google_analytic)?$setting->google_analytic:'')
-                                                                }}
-                                                            </textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <!--end Product order-->
+
                                             </div>
                                         </div>
                                         <hr>
@@ -163,6 +374,7 @@
                                         <button type="button" class="btn btn-secondary" onclick="window.history.back()">
                                             <i class="fa fa-times-rectangle"></i>&nbsp; Cancel
                                         </button>
+                                        @include('panel.setting-management.master-setting.fade-form')
                                     </form>
                                 </div>
                                 <!-- end tab 2 -->
@@ -195,6 +407,60 @@
         readURL(this, $(this).attr('id'));
     });
 
+    var count = 1;
+    function addProduct(){
+        count++;
+        $('.product-order-items .arrProduct').val(count);
+        //set product items
+        $('.product-order-items .names').attr('name','name'+count).attr('aria-describedby','name'+count+'-error');
+        $('.product-order-items .names-em').attr('id','name'+count+'-error');
+
+        //set package items
+        $('.product-order-items .cabangs').attr('name','cabang'+count).attr('aria-describedby','cabang'+count+'-error');
+        $('.product-order-items .cabangs-em').attr('id','cabang'+count+'-error');
+
+        //set weight items
+        $('.product-order-items .noreks').attr('name','norek'+count).attr('aria-describedby','norek'+count+'-error');
+        $('.product-order-items .noreks-em').attr('id','norek'+count+'-error');
+
+        //set total value items
+        $('.product-order-items .pemiliks').attr('name','pemilik'+count).attr('aria-describedby','pemilik'+count+'-error');
+        $('.product-order-items .pemiliks-em').attr('id','pemilik'+count+'-error');
+
+        //set to product list
+        $('.product-order-list').append($('.product-order-items').html());
+
+        //validate new product order
+        $('.product-order-list input[name="name'+count+'"]').rules("add", {
+            required: true,
+            messages: {
+                required: "Mohon isi nama bank"
+            }
+        });
+        $('.product-order-list input[name="pemilik'+count+'"]').rules("add", {
+            required: true,
+            messages: {
+                required: "Mohon isi nama pemilik"
+            }
+        });
+        $('.product-order-list input[name="cabang'+count+'"]').rules("add", {
+            required: true,
+            messages: {
+                required: "Mohon nama kantor cabang"
+            }
+        });
+        $('.product-order-list input[name="norek'+count+'"]').rules("add", {
+            required: true,
+            number:true,
+            messages: {
+                required: "Mohon isi nomor rekening",
+                number: 'Mohon isi dengan nomor yang valid'
+            }
+        });
+
+        $('.fa-info-circle').tooltip();
+    }
+
     $("#jxForm1").validate({
         rules: {
             ppn: {
@@ -204,6 +470,9 @@
                 required: true
             },
             phoneNumber: {
+                required: true
+            },
+            phoneWa: {
                 required: true
             },
             emailInfo: {
@@ -220,13 +489,28 @@
             },
             memberExpire: {
                 required: true
-            }
+            },
+            name1: {
+                required: true
+            },
+            cabang1: {
+                required: true
+            },
+            norek1: {
+                required: true
+            },
+            pemilik1: {
+                required: true
+            },
         },
         messages: {
             ppn: {
                 required: 'Please enter ppn value'
             },
             phoneNumber: {
+                required: 'Please enter phone number'
+            },
+            phoneWa: {
                 required: 'Please enter phone number'
             },
             emailInfo: {
@@ -246,7 +530,19 @@
             },
             memberExpire: {
                 required: 'Please set member log expire'
-            }
+            },
+            name1: {
+                required: 'Mohon isi nama bank'
+            },
+            cabang1: {
+                required: 'Mohon isi kantor cabang'
+            },
+            pemilik1: {
+                required: 'Mohon isi nama pemilik'
+            },
+            norek1: {
+                required: 'Mohon isi nomor rekening'
+            },
         },
         errorElement: 'em',
         errorPlacement: function (error, element) {
@@ -262,19 +558,33 @@
 
     $("#jxForm2").validate({
         rules: {
-            metaTitle: {
+            name1: {
                 required: true
             },
-            metaDesc: {
+            cabang1: {
+                required: true
+            },
+            norek1: {
+                required: true,
+                number:true,
+            },
+            pemilik1: {
                 required: true
             },
         },
         messages: {
-            metaTitle: {
-                required: 'Please enter meta title'
+            name1: {
+                required: 'Mohon isi nama bank'
             },
-            metaDesc: {
-                required: 'Please enter meta description'
+            cabang1: {
+                required: 'Mohon isi kantor cabang'
+            },
+            pemilik1: {
+                required: 'Mohon isi nama pemilik'
+            },
+            norek1: {
+                required: 'Mohon isi nomor rekening',
+                number: 'Mohon isi dengan nomor yang valid'
             },
         },
         errorElement: 'em',
@@ -374,5 +684,6 @@
             });
         }
     }
+    
 </script>
 @endsection

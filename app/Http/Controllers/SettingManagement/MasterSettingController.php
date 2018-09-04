@@ -4,6 +4,7 @@ namespace App\Http\Controllers\SettingManagement;
 
 use App\Http\Controllers\Controller;
 use App\Setting;
+use App\Product;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use File;
@@ -20,7 +21,9 @@ class MasterSettingController extends Controller
     public function index()
     {
         $setting = Setting::first();
-        return view('panel.setting-management.master-setting.form')->with('setting', $setting);
+        return view('panel.setting-management.master-setting.form')->with([
+            'setting'=> $setting,
+        ]);
     }
     
     public function show()
@@ -32,22 +35,27 @@ class MasterSettingController extends Controller
     {
         //Update setting data
         $setting = Setting::first();
-        if(isset($request->metaTitle)){
-            $setting->meta_title = $request->metaTitle;
-            $setting->meta_description = $request->metaDesc;
-            $setting->google_analytic = $request->googleAnalytic;
-        }else{
-            $setting->site_title = $request->siteTitle;
-            $setting->kurs = $request->kurs;
-            $setting->ppn = $request->ppn;
-            $setting->site_status = ($request->siteStatus == 'on'?true:false);
-            $setting->phone_number = $request->phoneNumber;
-            $setting->email_info = $request->emailInfo;
-            $setting->order_expire = $request->odExpire;
-            $setting->transaction_price = str_replace(',', '.',str_replace('.', '',$request->transPrice));
-            $setting->transaction_point = $request->transPoint;
-            $setting->member_log_expire = $request->memberExpire;
+        $setting->site_title = $request->siteTitle;
+        $setting->kurs = $request->kurs;
+        $setting->ppn = $request->ppn;
+        $setting->site_status = ($request->siteStatus == 'on'?true:false);
+        $setting->phone_number = $request->phoneNumber;
+        $setting->phone_wa = $request->phoneWa;
+        $setting->email_info = $request->emailInfo;
+        $setting->order_expire = $request->odExpire;
+        $setting->transaction_price = str_replace(',', '.',str_replace('.', '',$request->transPrice));
+        $setting->transaction_point = $request->transPoint;
+        $setting->member_log_expire = $request->memberExpire;
+        $arrProduct = [];
+        foreach ($request->arrProduct as $key) {
+            $arrProduct[] = [
+            "name" => $request->input('name' . $key),
+            "norek" => $request->input('norek' . $key),
+            "cabang" => $request->input('cabang' . $key),
+            "pemilik" => $request->input('pemilik' . $key),
+            ];
         }
+        $setting->bank = $arrProduct;
 
         //Check has logo
         if ($request->hasFile('logo')) {

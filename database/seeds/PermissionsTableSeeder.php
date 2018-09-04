@@ -146,6 +146,28 @@ class PermissionsTableSeeder extends Seeder
 				'updated_at' => date("Y-m-d H:i:s")
 			],
 			[
+	        	'name' => 'Commercial Status',
+	        	'slug' => 'commercial-status',
+	        	'type' => 'module-menu',
+				'icon' => 'icon-cursor',
+				'parent' => null,
+				'description' => 'Module Menu',
+				'guard_name' => 'web',
+				'created_at' => date("Y-m-d H:i:s"),
+				'updated_at' => date("Y-m-d H:i:s")
+			],
+			[
+	         	'name' => 'Category',
+	         	'slug' => 'category',
+	         	'type' => 'module-menu',
+			 	'icon' => 'icon-cursor',
+			 	'parent' => null,
+			 	'description' => 'Module Menu',
+			 	'guard_name' => 'web',
+			 	'created_at' => date("Y-m-d H:i:s"),
+			 	'updated_at' => date("Y-m-d H:i:s")
+			],
+			[
 	        	'name' => 'Master Client',
 	        	'slug' => null,
 	        	'type' => 'module-menu',
@@ -168,7 +190,7 @@ class PermissionsTableSeeder extends Seeder
 				'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-	        	'name' => 'Master-Deal',
+	        	'name' => 'Master-Promo',
 	        	'slug' => null,
 	        	'type' => 'module-menu',
 				'icon' => 'fa fa-credit-card-alt',
@@ -179,8 +201,19 @@ class PermissionsTableSeeder extends Seeder
 				'updated_at' => date("Y-m-d H:i:s")
 			],
 			[
-	        	'name' => 'Discount',
-	        	'slug' => 'discount',
+	        	'name' => 'Promo',
+	        	'slug' => 'promo',
+	        	'type' => 'module-menu',
+				'icon' => 'icon-cursor',
+				'parent' => null,
+				'description' => 'Module Menu',
+				'guard_name' => 'web',
+				'created_at' => date("Y-m-d H:i:s"),
+				'updated_at' => date("Y-m-d H:i:s")
+			],
+			[
+	        	'name' => 'Tipe Promosi',
+	        	'slug' => 'tipe-promosi',
 	        	'type' => 'module-menu',
 				'icon' => 'icon-cursor',
 				'parent' => null,
@@ -291,6 +324,17 @@ class PermissionsTableSeeder extends Seeder
 			[
 	        	'name' => 'Points Performance',
 	        	'slug' => 'points-performance',
+	        	'type' => 'module-menu',
+				'icon' => 'icon-cursor',
+				'parent' => null,
+				'description' => 'Module Menu',
+				'guard_name' => 'web',
+				'created_at' => date("Y-m-d H:i:s"),
+				'updated_at' => date("Y-m-d H:i:s")
+			],
+			[
+	        	'name' => 'Master Reject',
+	        	'slug' => 'master-reject',
 	        	'type' => 'module-menu',
 				'icon' => 'icon-cursor',
 				'parent' => null,
@@ -674,8 +718,8 @@ $parent = DB::table('permissions')->where('name','Transaction')->first();
 DB::table('permissions')->whereIn('slug', ['sales-order','production','buat-so','qc'])
 ->update(['parent' => (string)$parent['_id']]);
 
-$parent = DB::table('permissions')->where('name','Master-Deal')->first();
-DB::table('permissions')->whereIn('slug', ['discount','promo'])
+$parent = DB::table('permissions')->where('name','Master-Promo')->first();
+DB::table('permissions')->whereIn('slug', ['promo','tipe-promosi'])
 ->update(['parent' => (string)$parent['_id']]);
 
 $parent = DB::table('permissions')->where('name','Master Deliveries')->first();
@@ -687,7 +731,7 @@ DB::table('permissions')->whereIn('slug', ['sales-staff','dispatch-bonuses','rew
 ->update(['parent' => (string)$parent['_id']]);
 
 $parent = DB::table('permissions')->where('name','Master Productions')->first();
-DB::table('permissions')->whereIn('slug', ['productions-staff','points-performance'])
+DB::table('permissions')->whereIn('slug', ['productions-staff','points-performance','master-reject'])
 ->update(['parent' => (string)$parent['_id']]);
 
 $parent = DB::table('permissions')->where('name','Master QC')->first();
@@ -695,7 +739,7 @@ DB::table('permissions')->whereIn('slug', ['qc-staff','product-review'])
 ->update(['parent' => (string)$parent['_id']]);
 
 $parent = DB::table('permissions')->where('name','Product Management')->first();
-DB::table('permissions')->whereIn('slug', ['product','type'])
+DB::table('permissions')->whereIn('slug', ['product','type','commercial-status','category'])
 ->update(['parent' => (string)$parent['_id']]);
 
 $parent = DB::table('permissions')->where('name','Payment')->first();

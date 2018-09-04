@@ -12,11 +12,9 @@
 					<i class="fa fa-refresh"></i>
 				</button>
 				<button type="button" class="btn btn-primary" data-toggle="modal"
-					 data-target="#primaryModal" data-link="{{ route('category.create') }}" 
+					 data-target="#primaryModal" data-link="{{ route('master-reject.create') }}" 
 					 onclick="funcModal($(this))">
-						<i class="fa fa-plus">
-						</i>&nbsp;
-							New Category
+				<i class="fa fa-plus"></i>&nbsp; New Master Reject
 				</button>
 				</p>
 			</div>
@@ -26,7 +24,7 @@
 			<div class="col-lg-12">
 				<div class="card">
 					<div class="card-header">
-						<i class="fa fa-align-justify"></i> Category Table
+						<i class="fa fa-align-justify"></i> Master Reject Table
 					</div>
 					<div class="card-body">
 						<div class="table-responsive">
@@ -35,20 +33,21 @@
 								<thead>
 									<tr>
 										<th>Name</th>
+										<th>Type</th>
 										<th>Date registered</th>
 										<th></th>
 									</tr>
 								</thead>
 								<tbody>
 								</tbody>
-							</table>
-						</div>		
+							</table>	
+						</div>	
 					</div>
 				</div>
 			</div>
 		</div>
-
-		<div class="modal fade" id="primaryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		
+	    <div class="modal fade" id="primaryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-primary" role="document">
 				<div class="modal-content">
 					<div class="modal-body"><i class="fa fa-gear fa-spin"></i></div>
@@ -74,29 +73,17 @@
 		$('.datatable').DataTable({
 			processing: true,
 	        serverSide: true,
-	        responsive: true,
-	        autoWidth: false,
 	        ajax: '{!! url()->current() !!}/data',
 	        columns: [
 	            {data: 'name', name: 'name'},
+	            {data: 'type', name: 'type'},
 	            {data: 'created_at', name: 'created_at'},
 	            {data: 'action', name: 'action', orderable: false, searchable: false, width:'20%'}
 	        ],
-			columnDefs: [{
-                responsivePriority: 1,
-                targets: 0,
-            },
-            {
-                targets: 2,
-                className: "text-center"
-            },
-            {
-                responsivePriority: 2,
-                targets: 2,
-                className: "text-center"
-            }
-        ],
-			"order":[[1, 'desc']]
+			"columnDefs": [
+				{"targets": 3,"className": "text-center"}
+			],
+			"order":[[2, 'desc']]
 		});
 		$('.datatable').attr('style','border-collapse: collapse !important');
 		
