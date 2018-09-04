@@ -1,7 +1,6 @@
 @extends('master') @section('content')
 <link href="{{ asset('fiture-style/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 <link href="{{ asset('fiture-style/datatables/responsive.dataTables.min.css') }}" rel="stylesheet">
-<div class="container-fluid">
     <div class="animate fadeIn">
         <div class="row">
             <div class="col-sm-6">
@@ -9,8 +8,8 @@
                     <button type="button" class="btn btn-primary" onclick="refresh()">
                         <i class="fa fa-refresh"></i>
                     </button>
-                    <a class="btn btn-primary" href="{{route('discount.create')}}">
-                        <i class="fa fa-plus"></i>&nbsp; New Discount
+                    <a class="btn btn-primary" href="{{route('promo.create')}}">
+                        <i class="fa fa-plus"></i>&nbsp; New Promo
                     </a>
                 </p>
             </div>
@@ -20,7 +19,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <i class="fa fa-align-justify"></i> Products Table
+                        <i class="fa fa-align-justify"></i> Promo Table
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -28,9 +27,12 @@
                                 cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
-                                        <th class="text-nowrap">Discount :</th>
+                                        <th class="text-nowrap">Promo :</th>
                                         <th class="text-nowrap">Value :</th>
+                                        <th class="text-nowrap">Costumer</th>
+                                        <th class="text-nowrap">Tipe Promosi</th>
                                         <th class="text-nowrap">Unique Modifier :</th>
+                                        <th class="text-nowrap">Start Date :</th>
                                         <th class="text-nowrap">Expired Date :</th>
                                         <th class="text-nowrap">Date registered :</th>
                                         <th class="text-nowrap">Status :</th>
@@ -47,7 +49,6 @@
         </div>
 
     </div>
-</div>
 @endsection
 <!-- /.container-fluid -->
 
@@ -63,7 +64,7 @@
         serverSide: true,
         responsive: true,
         autoWidth: false,
-        ajax: '{{ route("discount.index")}}/list-data',
+        ajax: '{{ route("promo.index")}}/list-data',
         columns: [
             {
                 data: 'title',
@@ -74,8 +75,20 @@
                 name: 'value_set'
             },
             {
+                data: 'members.[0].display_name',
+                name: 'value_set'
+            },
+            {
+                data: 'tipe_promosi.[0].name',
+                name: 'value_set'
+            },
+            {
                 data: 'unique_modifier',
                 name: 'unique_modifier'
+            },
+            {
+                data: 'start_date',
+                name: 'expired_date'
             },
             {
                 data: 'expired_date',
@@ -102,17 +115,17 @@
                 targets: 0,
             },
             {
-                targets: 5,
+                targets: 8,
                 className: "text-center"
             },
             {
-                responsivePriority: 2,
-                targets: 6,
+                responsivePriority: 4,
+                targets: 9,
                 className: "text-center"
             }
         ],
         "order": [
-            [4, 'desc']
+            [7, 'desc']
         ]
     });
     $('.datatable').attr('style', 'border-collapse: collapse !important');
@@ -127,7 +140,7 @@
                 var action = elm.is(":checked");
                 var id = elm.attr('data-id');
                 $.ajax({
-                    url: '{{ route("discount.index")}}/discount-setting',
+                    url: '{{ route("promo.index")}}/discount-setting',
                     type: 'GET',
                     data:{action:action, id:id},
                     success: function (response) {

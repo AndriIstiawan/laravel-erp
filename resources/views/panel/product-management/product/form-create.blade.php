@@ -40,21 +40,19 @@
                                 <p class="input-group col-md-3">
                                     <select id="category" name="category" class="form-control" aria-describedby="category-error">
                                         <option value=""></option>
-                                        <option value="VFM">VFM</option>
-                                        <option value="FM">FM</option>
-                                        <option value="MOD">MOD</option>
-                                        <option value="SM">SM</option>
-                                        <option value="NM">NM</option>
+                                        <option value=""></option>
+                                        @foreach($category as $category)
+                                        <option value="{{$category->name}}">{{$category->name}}</option>
+                                        @endforeach
                                     </select>
                                     <em id="category-error" class="error invalid-feedback"></em>
                                 </p>
                                 <p class="input-group col-md-3">
                                     <select id="commercial" name="commercial" class="form-control" aria-describedby="commercial-error">
                                         <option value=""></option>
-                                        <option value="Reguler">Reguler</option>
-                                        <option value="New">New</option>
-                                        <option value="Stop">Stop</option>
-                                        <option value="Promo">Promo</option>
+                                        @foreach($commercialstatus as $commercialstatus)
+                                        <option value="{{$commercialstatus->name}}">{{$commercialstatus->name}}</option>
+                                        @endforeach
                                     </select>
                                     <em id="commercial-error" class="error invalid-feedback"></em>
                                 </p>

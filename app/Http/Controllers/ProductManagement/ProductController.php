@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Product;
 use App\Type;
 use App\Variant;
+use App\CommercialStatus;
 use Auth;
 use Excel;
 use Illuminate\Http\Request;
@@ -59,7 +60,13 @@ class ProductController extends Controller
     public function create()
     {
         $types = Type::all();
-        return view('panel.product-management.product.form-create', ['types' => $types]);
+        $category = Categories::all();
+        $commercialstatus = CommercialStatus::all();
+        return view('panel.product-management.product.form-create', [
+            'types' => $types,
+            'category' => $category,
+            'commercialstatus' => $commercialstatus
+        ]);
     }
     public function form()
     {
@@ -231,7 +238,14 @@ class ProductController extends Controller
     {
         $product = product::find($id);
         $types = Type::all();
-        return view('panel.product-management.product.form-edit')->with(['product' => $product, 'types' => $types]);
+        $category = Categories::all();
+        $commercialstatus = CommercialStatus::all();
+        return view('panel.product-management.product.form-edit')->with([
+            'product' => $product, 
+            'types' => $types,
+            'category' => $category,
+            'commercialstatus' => $commercialstatus
+        ]);
     }
 
     //update data product

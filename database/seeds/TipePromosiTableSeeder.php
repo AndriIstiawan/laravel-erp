@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class CategoriesTableSeeder extends Seeder
+class TipePromosiTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,30 +11,35 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('categories')->truncate();
-        DB::table('categories')->insert([
+        DB::table('tipe_promos')->truncate();
+        DB::table('tipe_promos')->insert([
             [
-                'name' => 'VFM',
+                'name' => 'ITEM TERTENTU HARGA KHUSUS',
+                'satuan' => '.00',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),
             ],
             [
-                'name' => 'FM',
+                'name' => 'HARGA LIST',
+                'satuan' => '.00',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),
             ],
             [
-                'name' => 'MOD',
+                'name' => 'DISCOUNT KHUSUS',
+                'satuan' => '%',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),
             ],
             [
-                'name' => 'SM',
+                'name' => 'TOP KHUSUS',
+                'satuan' => 'hari',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),
             ],
             [
-                'name' => 'NM',
+                'name' => 'FREE ONGKIR',
+                'satuan' => 'free-ongkir',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),
             ]

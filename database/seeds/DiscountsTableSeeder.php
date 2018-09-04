@@ -11,13 +11,17 @@ class DiscountsTableSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('discounts')->truncate();
         DB::table('discounts')->insert([
             [
-                'title' => 'Discount Percentage',
-                'description' => 'Discount Percentage',
+                'title' => 'Promo Percentage',
+                'description' => 'Promo Percentage',
                 'status' => 'off',
+                'currency' => 'USD',
+                'tipe_promosi' => [],
                 'value' => '20',
                 'type' => 'percent',
+                'start_date' => '2018-10-31 00:00:00',
                 'expired_date' => '2019-07-31 00:00:00',
                 'categories' => [],
                 'products' => [],
@@ -26,11 +30,14 @@ class DiscountsTableSeeder extends Seeder
                 'updated_at' => date("Y-m-d H:i:s"),
             ],
             [
-                'title' => 'Discount cut price',
-                'description' => 'Discount cut price',
+                'title' => 'Promo cut price',
+                'description' => 'Promo cut price',
                 'status' => 'off',
+                'currency' => 'USD',
+                'tipe_promosi' => [],
                 'value' => '100000',
                 'type' => 'price',
+                'start_date' => '2018-10-31 00:00:00',
                 'expired_date' => '2019-07-31 00:00:00',
                 'categories' => [],
                 'products' => [],
@@ -39,5 +46,22 @@ class DiscountsTableSeeder extends Seeder
                 'updated_at' => date("Y-m-d H:i:s"),
             ],
         ]);
+
+        $parent = DB::table('tipe_promos')->whereIn('name',['DISCOUNT KHUSUS'])->get();
+        DB::table('discounts')->whereIn('title', ['Promo Percentage'])
+        ->update(['tipe_promosi' => $parent->toArray()]);
+
+        $parent = DB::table('tipe_promos')->whereIn('name',['ITEM TERTENTU HARGA KHUSUS'])->get();
+        DB::table('discounts')->whereIn('title', ['Promo cut price'])
+        ->update(['tipe_promosi' => $parent->toArray()]);
+
+        $parent = DB::table('members')->whereIn('email', ['member@ecommerce.com'])->get();
+        DB::table('discounts')->whereIn('title', ['Promo cut price'])
+        ->update(['members' => $parent->toArray()]);
+
+        $parent = DB::table('members')->whereIn('email', ['member@ecommerce.com'])->get();
+        DB::table('discounts')->whereIn('title', ['Promo Percentage'])
+        ->update(['members' => $parent->toArray()]);
+
     }
 }

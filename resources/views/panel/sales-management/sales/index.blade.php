@@ -60,6 +60,8 @@
     $('.datatable').DataTable({
         processing: true,
         serverSide: true,
+        responsive: true,
+        autoWidth: false,
         ajax: '{{route("sales-staff.index")}}/list-data',
         columns: [{
                 data: 'name',
@@ -89,12 +91,19 @@
                 width: '20%'
             }
         ],
-        "columnDefs": [{
-            "targets": 4,
-            "className": "text-center"
-        }],
+        columnDefs: [
+            {
+                responsivePriority: 1,
+                targets: 0,
+            },
+            {
+                responsivePriority: 4,
+                targets: 5,
+                className: "text-center"
+            }
+        ],
         "order": [
-            [3, 'desc']
+            [4, 'desc']
         ]
     });
     $('.datatable').attr('style', 'border-collapse: collapse !important');

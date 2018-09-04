@@ -60,6 +60,8 @@
     $('.datatable').DataTable({
         processing: true,
         serverSide: true,
+        responsive: true,
+        autoWidth: false,
         ajax: '{{route("productions-staff.index")}}/list-data',
         columns: [{
                 data: 'name',
@@ -89,10 +91,17 @@
                 width: '20%'
             }
         ],
-        "columnDefs": [{
-            "targets": 5,
-            "className": "text-center"
-        }],
+        columnDefs: [
+            {
+                responsivePriority: 1,
+                targets: 0,
+            },
+            {
+                responsivePriority: 4,
+                targets: 5,
+                className: "text-center"
+            }
+        ],
         "order": [
             [4, 'desc']
         ]

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Jobs\DiscountSetting;
 use App\Discounts;
 use App\Product;
+use App\TipePromo;
 use App\Levels;
 use App\Member;
 use App\Type;
@@ -17,7 +18,7 @@ class DiscountController extends Controller
     //Protected module discount by slug
     public function __construct()
     {
-        $this->middleware('perm.acc:discount');
+        $this->middleware('perm.acc:promo');
     }
 
     //public index discount
@@ -49,11 +50,13 @@ class DiscountController extends Controller
         $level=Levels::all();
         $member=Member::all();
         $category=Type::all();
+        $tipe=TipePromo::all();
         return view('panel.master-deal.discount.form-create')->with([
             'product'=>$product,
             'level'=>$level,
             'member'=>$member,
-            'category'=>$category
+            'category'=>$category,
+            'tipe'=>$tipe
             ]);
 
     }
@@ -61,7 +64,6 @@ class DiscountController extends Controller
     //store data discount
     public function store(Request $request)
     {
-        $members=[];
         $categorys=[];
         $products=[];
 
@@ -71,7 +73,9 @@ class DiscountController extends Controller
         $discount->status = ($request->status == 'on' ? 'on' : 'off');
         $discount->value = $request->value;
         $discount->type = $request->type;
+        $discount->currency = $request->currency;
         $discount->expired_date = $request->expiredDate;
+        $discount->start_date = $request->startDate;
 
 
         if (isset($request->category)) {
@@ -84,30 +88,31 @@ class DiscountController extends Controller
         }
         $discount->level=$levels;*/
 
-        if (isset($request->member)) {
-        $members=Member::whereIn('_id', $request->member)->get()->toArray();
-        }
-        $discount->members=$members;
+        $members=Member::where('_id', $request->member)->get();
+        $discount->members=$members->toArray();
+
+        $tipe_promo = TipePromo::where('_id', $request->tipe_promosi)->get();
+        $discount->tipe_promosi = $tipe_promo->toArray();
 
         if (isset($request->product)) {
         $products=Product::whereIn('_id', $request->product)->get()->toArray();
         }
         $discount->products=$products;
 
-        $discount->disExpire = $request->disExpire;
         $discount->save();
 
         //set discount if status on
         if (isset($request->status)) {
             $this->dispatch(new DiscountSetting('start', $discount->id));
 
-            $delay = strtotime($discount->expired_date) - strtotime(date("Y-m-d H:i:s"));
+            $delay = strtotime($discount->start_date) - strtotime(date("Y-m-d H:i:s"));
             if($delay > 0){
                 $this->dispatch((new DiscountSetting('stop', $discount->id))->delay($delay));
             }
         }
 
-        return redirect()->route('discount.index')->with('new', 'Discount');
+        return redirect()->route('promo.index')->with('new', 'Promo');
+        /*return dd($discount);*/
     }
 
     //for getting datatable at index
@@ -132,9 +137,6 @@ class DiscountController extends Controller
                 if (count($discount->products) > 0) {
                     $value .= '<span class="badge badge-success">Product : ' . count($discount->products) . '</span>';
                 }
-                if (count($discount->members) > 0) {
-                    $value .= '<span class="badge badge-dark">Member : ' . count($discount->members) . '</span>';
-                }
                 return $value;
             })
             ->addColumn('status_set', function ($discount) {
@@ -148,10 +150,10 @@ class DiscountController extends Controller
             })
             ->addColumn('action', function ($discount) {
                 return
-                '<a class="btn btn-success btn-sm"  href="' . route('discount.edit', ['id' => $discount->id]) . '">
+                '<a class="btn btn-success btn-sm"  href="' . route('promo.edit', ['id' => $discount->id]) . '">
                         <i class="fa fa-pencil-square-o"></i>&nbsp;Edit</a>' .
                 '<form style="display:inline;" method="POST" action="' .
-                route('discount.destroy', ['id' => $discount->id]) . '">' . method_field('DELETE') . csrf_field() .
+                route('promo.destroy', ['id' => $discount->id]) . '">' . method_field('DELETE') . csrf_field() .
                     '<button type="button" class="btn btn-danger btn-sm" onclick="removeList($(this))"><i class="fa fa-remove"></i>&nbsp;Remove</button></form>';
             })
             ->rawColumns(['value_set', 'unique_modifier', 'status_set', 'action'])
@@ -196,18 +198,19 @@ class DiscountController extends Controller
         $category = Type::all();
         $member = Member::all();
         $product = Product::all();
+        $tipe=TipePromo::all();
         return view('panel.master-deal.discount.form-edit')->with([
             'discount'=>$discount,
             'categories'=>$category,
             'members'=>$member,
-            'products'=>$product
+            'products'=>$product,
+            'tipe'=>$tipe
         ]);
     }
 
     //update data discount
     public function update(Request $request, $id)
     {
-        $members=[];
         $categorys=[];
         $products=[];
 
@@ -217,7 +220,9 @@ class DiscountController extends Controller
         $discount->status = ($request->status == 'on' ? 'on' : 'off');
         $discount->value = $request->value;
         $discount->type = $request->type;
+        $discount->currency = $request->currency;
         $discount->expired_date = $request->expiredDate;
+        $discount->start_date = $request->startDate;
 
         if (isset($request->category)) {
         $categorys=Type::whereIn('_id', $request->category)->get()->toArray();
@@ -229,10 +234,11 @@ class DiscountController extends Controller
         }
         $discount->level=$levels;*/
 
-        if (isset($request->member)) {
-        $members=Member::whereIn('_id', $request->member)->get()->toArray();
-        }
-        $discount->members=$members;
+        $tipe_promo = TipePromo::where('_id', $request->tipe_promosi)->get();
+        $discount->tipe_promosi = $tipe_promo->toArray();
+
+        $members=Member::where('_id', $request->member)->get();
+        $discount->members=$members->toArray();
 
         if (isset($request->product)) {
         $products=Product::whereIn('_id', $request->product)->get()->toArray();
@@ -254,7 +260,7 @@ class DiscountController extends Controller
                 $this->dispatch((new DiscountSetting('stop', $discount->id))->delay($delay));
             }
         }
-        return redirect()->route('discount.index')->with('edit', 'Discount');
+        return redirect()->route('promo.index')->with('edit', 'Promo');
     }
 
     //delete data discount
@@ -266,6 +272,6 @@ class DiscountController extends Controller
 
         $discount = Discounts::find($id);
         $discount->delete();
-        return redirect()->route('discount.index')->with('dlt', 'discount');
+        return redirect()->route('promo.index')->with('dlt', 'promo');
     }
 }

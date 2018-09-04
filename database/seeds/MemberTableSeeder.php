@@ -11,38 +11,54 @@ class MemberTableSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('members')->truncate();
         DB::table('members')->insert([
-	        	'name' => 'Member',
+                'code' => 1,
+                'display_name' => 'member',
+                'fullname' => 'member',
+                'title' => 'Bapak',
                 'email' => 'member@ecommerce.com',
-                'phone' => '081363916262',/*
-                'point' => null,
-	        	'level' => [],
-                'status' => 'on',*/
-                'address' => [
-                    '0' => 'jl bedugul 14',
-                ],/*
-                'dompet' => null,
-                'koin' => null,*/
-                'subDivision' => [
+                'limit' => '100.000.000.000',
+                'white_label' => 'Tidak',
+                'pack_kayu' => 'Tidak',
+                'mobile' => [
                     [
-                        'type' => 'BP',
-                        'code' => '5006',
-                        'sales' => 'Sales',
-                        'email' => 'sales@gmail.com',
-                        'nameSub' => 'HR',
-                    ]
-
+                        'number' => '081363916262',
+                    ],
                 ],
-				'created_at' => date("Y-m-d H:i:s"),
-				'updated_at' => date("Y-m-d H:i:s")
+                'company' => null,
+                'segmen_pasar' => null,
+                'negara' => null,
+                'provinsi' => null,
+                'kota' => null,
+                'phone'=>[],
+                'sales'=>[
+                    [
+                        '_id' => null,
+                        'name'=> null,
+                        'detail' => [],
+                    ]
+                ],
+                'remarks' => null,
+                'billing_address' => 'Test',
+                'shipping_address' => [
+                    [
+                        'address' => 'Test'
+                    ]
+                ],
+                'divisi' => [],
+                'created_at' => date("Y-m-d H:i:s"),
+                'updated_at' => date("Y-m-d H:i:s")
         ]);
 
-        /*$parent = DB::table('users')->whereIn('email',['sales@gmail.com'])->get();
+        $parents = DB::table('users')->where('email','wondo@macbrame.com')->first();
+        $parent = DB::table('users')->whereIn('email',['wondo@macbrame.com'])->get();
         DB::table('members')->whereIn('email', ['member@ecommerce.com'])
-            ->update(['sales' => $parent->toArray()]);
-        
-        $kk = DB::table('levels')->whereIn('point',[1000])->get();
-        DB::table('members')->whereIn('email', ['member@ecommerce.com'])
-            ->update(['level' => $kk->toArray()]);*/
+            ->update(['sales'=> [[
+                '_id' => (string)$parents['_id'],
+                'name'=> (string)$parents['name'],
+                'detail' => $parent->toArray()
+                ]]
+            ]);        
     }
 }
