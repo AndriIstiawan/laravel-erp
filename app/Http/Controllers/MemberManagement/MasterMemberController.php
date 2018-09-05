@@ -325,7 +325,6 @@ class MasterMemberController extends Controller
                     $member->email,
                     $member->limit,
                     $member->white_label,
-                    $member->pack_kayu,
                     /*'="'.$data_mobile.'"',
                     '="'.$data_phone.'"',*/
                     $data_mobile,
@@ -335,10 +334,10 @@ class MasterMemberController extends Controller
                     $member->provinsi,
                     $member->negara,
                     $member->segmen_pasar,
+                    $member->created_at,
+                    $member->pack_kayu,
                     $total_weight/1000/12,
-                    $total_order/12,
-                    $member->created_at
-
+                    $total_order/12
                 ];
             }
             //editing sheet 1
