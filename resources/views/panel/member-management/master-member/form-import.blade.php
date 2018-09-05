@@ -123,7 +123,7 @@
                     setTimeout(function(){
                         //window.open("{{route('master-client.index')}}", "_self");
                         act(response);
-                    }, 3000);
+                    }, {{env('SET_TIMEOUT', '500')}});
                 },
                 error: function (e) { 
                     /*$('.btn').removeClass('disabled');
