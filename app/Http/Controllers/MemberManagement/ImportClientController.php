@@ -133,11 +133,11 @@ class ImportClientController extends Controller
         $salesemail         = $collection->pluck('salesemail');
         $billingaddress     = $collection->pluck('billingaddress');
         $shippingaddress    = $collection->pluck('shippingaddress');
-        $mobile             = $collection->pluck('mobile');
+        //$mobile             = $collection->pluck('mobile');
         $dateregister       = $collection->pluck('dateregister');
 
         #check if column mandotary is null return warning
-        if( $code->contains(null) == true || $displayname->contains(null) == true || $title->contains(null) == true || $fullname->contains(null) == true || $salesemail->contains(null) == true || $billingaddress->contains(null) == true || $shippingaddress->contains(null) == true || $mobile->contains(null) == true ) {
+        if( $code->contains(null) == true || $displayname->contains(null) == true || $title->contains(null) == true || $fullname->contains(null) == true || $salesemail->contains(null) == true || $billingaddress->contains(null) == true || $shippingaddress->contains(null) == true /*|| $mobile->contains(null) == true*/ ) {
 
             $response = array(
                 'alert' => 'warning',
