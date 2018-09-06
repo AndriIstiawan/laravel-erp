@@ -49,7 +49,7 @@ class ImportClientController extends Controller
            foreach ($member_collection->chunk(100) as  $valid_file) {
 
                 foreach ($valid_file as  $value) {
-                    $member = Member::firstOrNew([ 'code' => $value['code']]);
+                    $member = Member::firstOrCreate([ 'code' => $value['code']]);
                     $member->code = $value['code'];
                     $member->display_name = $value['displayname'];
                     $member->fullname = $value['fullname'];
@@ -104,7 +104,7 @@ class ImportClientController extends Controller
                     $member->phone = $arrNumber;
 
                     if($value['dateregister'] != ""){
-                        $value['dateregister'] = date("Y-m-d H:i:s", strtotime($dateregister));
+                        $value['dateregister'] = date("Y-m-d H:i:s", strtotime($value['dateregister']));
                     }else{
                         $value['dateregister'] = date("Y-m-d H:i:s");
                     }
@@ -134,10 +134,12 @@ class ImportClientController extends Controller
         $billingaddress     = $collection->pluck('billingaddress');
         $shippingaddress    = $collection->pluck('shippingaddress');
         $mobile             = $collection->pluck('mobile');
+        $pack_kayu          = $collection->pluck('pack_kayu');
+        $white_label        = $collection->pluck('white_label');
         $dateregister       = $collection->pluck('dateregister');
 
         #check if column mandotary is null return warning
-        if( $code->contains(null) == true || $displayname->contains(null) == true || $title->contains(null) == true || $fullname->contains(null) == true || $salesemail->contains(null) == true || $billingaddress->contains(null) == true || $shippingaddress->contains(null) == true || $mobile->contains(null) == true ) {
+        if( $code->contains(null) == true || $displayname->contains(null) == true || $title->contains(null) == true || $fullname->contains(null) == true || $salesemail->contains(null) == true || $billingaddress->contains(null) == true || $shippingaddress->contains(null) == true || $mobile->contains(null) == true || $pack_kayu->contains(null) == true || $white_label->contains(null) == true ) {
 
             $response = array(
                 'alert' => 'warning',
