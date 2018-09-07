@@ -38,10 +38,10 @@ class ImportProductController extends Controller
                         ->getRealPath();
 
         $product_excel       = Excel::selectSheetsByIndex(0)->load($path)->get();
-        $product_variation   = Excel::selectSheetsByIndex(1)->load($path)->get();
+        //$product_variation   = Excel::selectSheetsByIndex(1)->load($path)->get();
 
         $product_collection = collect($product_excel->toArray());
-        $product_variation_collection = collect($product_variation->toArray());
+        //$product_variation_collection = collect($product_variation->toArray());
 
        //\Log::info($this->checkCategory());
         
@@ -54,7 +54,7 @@ class ImportProductController extends Controller
            foreach ($product_collection->chunk(100) as  $valid_file) {
 
                 foreach ($valid_file as  $value) {
-                    $product = Product::firstOrNew([ 'code' => $value['code']]);
+                    $product = Product::firstOrCreate([ 'code' => $value['code']]);
                     $product->name = $value['product'];
                     $product->type = $value['type'];
                     $product->category = $value['category'];
@@ -164,11 +164,11 @@ class ImportProductController extends Controller
         $name         = $collection->pluck('product');
         $type         = $collection->pluck('type');
         $category     = $collection->pluck('category');
-        $commercial   = $collection->pluck('commercialstatus');
-        $currency     = $collection->pluck('currency');
+        //$commercial   = $collection->pluck('commercialstatus');
+        //$currency     = $collection->pluck('currency');
 
         #check if column mandotary is null return warning
-        if( $code->contains(null) == true || $name->contains(null) == true || $category->contains(null) == true || $type->contains(null) == true || $commercial->contains(null) == true || $currency->contains(null) == true  ) {
+        if( $code->contains(null) == true || $name->contains(null) == true || $category->contains(null) == true || $type->contains(null) == true /*|| $commercial->contains(null) == true || $currency->contains(null) == true*/  ) {
 
             $response = array(
                 'alert' => 'warning',
@@ -204,7 +204,7 @@ class ImportProductController extends Controller
 
                 } else {
 
-                    if( count($this->checkCommercial($commercial)) > 0 ) {
+                    /*if( count($this->checkCommercial($commercial)) > 0 ) {
 
                     $commercial_empty = implode(', ', $this->checkCommercial($commercial));
 
@@ -213,7 +213,7 @@ class ImportProductController extends Controller
                         'message' => 'Sorry commercial status '. $commercial_empty. ' not found in database, please check first your list brand in system'
                     );
 
-                }else{
+                }else{*/
 
 
                     #PROSES VALID
@@ -221,7 +221,7 @@ class ImportProductController extends Controller
                         'alert'   => 'success',
                         'message' => 'Success Import Product...'
                     );
-                    }
+                    //}
                 }
             }
         }
