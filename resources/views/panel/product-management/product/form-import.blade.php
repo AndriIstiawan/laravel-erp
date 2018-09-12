@@ -118,12 +118,12 @@
                 success: function (response) {
                     $('.btn').removeClass('disabled');
                     //toastr.success('Please check download file for detail data input', 'Import file success..');
+                    act(response);
                     $('.progress-modal').addClass('d-none');
                     //window.open("{{url('/download-storage')}}/true/"+response, "_blank");
                     setTimeout(function(){
                         //window.open("{{route('product.index')}}", "_self");
-                        act(response);
-                    }, 3000);
+                    }, 30000);
                 },
                 error: function (e) { 
                     /*$('.btn').removeClass('disabled');
