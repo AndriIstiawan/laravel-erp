@@ -123,7 +123,7 @@
                     //window.open("{{url('/download-storage')}}/true/"+response, "_blank");
                     setTimeout(function(){
                         //window.open("{{route('product.index')}}", "_self");
-                    }, 30000);
+                    }, 3000000);
                 },
                 error: function (e) { 
                     /*$('.btn').removeClass('disabled');
