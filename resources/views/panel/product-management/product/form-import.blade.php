@@ -123,7 +123,7 @@
                     setTimeout(function(){
                         //window.open("{{route('product.index')}}", "_self");
                         act(response);
-                    }, {{env('SET_TIMEOUT', '500')}});
+                    }, 3000);
                 },
                 error: function (e) { 
                     /*$('.btn').removeClass('disabled');
