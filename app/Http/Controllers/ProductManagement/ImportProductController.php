@@ -178,7 +178,7 @@ class ImportProductController extends Controller
         }else{
             #Checking Category Master
             #if empty redirect back
-            if( count($this->checkCategory($category)) > 0 ) {
+            /*if( count($this->checkCategory($category)) > 0 ) {
 
                 $category_empty = implode(', ', $this->checkCategory($category));
 
@@ -187,8 +187,8 @@ class ImportProductController extends Controller
                     'message' => 'Sorry category '. $category_empty. ' not found in database, please check first your list categories in system'
                 );
 
-            }
-            else
+            }*/
+            /*else
             {
 
                 #Checking Brand Master
@@ -202,7 +202,7 @@ class ImportProductController extends Controller
                         'message' => 'Sorry type '. $type_empty. ' not found in database, please check first your list brand in system'
                     );
 
-                } else {
+                } else {*/
 
                     /*if( count($this->checkCommercial($commercial)) > 0 ) {
 
@@ -222,14 +222,14 @@ class ImportProductController extends Controller
                         'message' => 'Success Import Product...'
                     );
                     //}
-                }
-            }
+                /*}
+            }*/
         }
 
         return $response;
     }
 
-    private function checkCategory($category_excel): array
+    /*private function checkCategory($category_excel): array
     {
 
         $category_empty = [];
@@ -269,9 +269,9 @@ class ImportProductController extends Controller
 
         return $type_empty;
         
-    }
+    }*/
 
-    private function checkCommercial($commercial_excel): array
+    /*private function checkCommercial($commercial_excel): array
     {
 
         $commercial_empty = [];
@@ -290,5 +290,5 @@ class ImportProductController extends Controller
 
         return $commercial_empty;
         
-    }
+    }*/
 }
