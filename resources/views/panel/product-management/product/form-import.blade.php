@@ -121,9 +121,7 @@
                     act(response);
                     $('.progress-modal').addClass('d-none');
                     //window.open("{{url('/download-storage')}}/true/"+response, "_blank");
-                    setTimeout(function(){
-                        //window.open("{{route('product.index')}}", "_self");
-                    }, 3000000);
+                    ini_set('max_execution_time', 20*60);
                 },
                 error: function (e) { 
                     /*$('.btn').removeClass('disabled');
