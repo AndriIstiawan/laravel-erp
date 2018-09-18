@@ -146,7 +146,7 @@ foreach (new RecursiveIteratorIterator(
         continue;
     }
 
-    set_time_limit(10);
+    set_time_limit(300);
 
     ++$count;
 
