@@ -118,11 +118,11 @@
                 success: function (response) {
                     $('.btn').removeClass('disabled');
                     //toastr.success('Please check download file for detail data input', 'Import file success..');
+                        act(response);
                     $('.progress-modal').addClass('d-none');
                     //window.open("{{url('/download-storage')}}/true/"+response, "_blank");
                     setTimeout(function(){
                         //window.open("{{route('master-client.index')}}", "_self");
-                        act(response);
                     }, {{env('SET_TIMEOUT', '500')}});
                 },
                 error: function (e) { 
