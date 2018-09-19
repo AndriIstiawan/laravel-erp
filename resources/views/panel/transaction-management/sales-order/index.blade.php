@@ -268,7 +268,7 @@
             	type: 'GET',
             	data : {arrList: arrList},
             	success : function(response){
-                    window.open("{{url('/download-storage')}}/true/"+response, "_blank");
+                    window.open("{{url('/download-storage')}}/true/"+response, "_self");
             	},
             	error : function(e){
                     toastr.warning('Error processing export, please report technical..', 'Export selected failed..');
