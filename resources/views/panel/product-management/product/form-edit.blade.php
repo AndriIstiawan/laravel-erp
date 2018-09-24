@@ -50,7 +50,7 @@
                                     <select id="commercial" name="commercial" class="form-control" aria-describedby="commercial-error">
                                         <option value=""></option>
                                         @foreach($commercialstatus as $commercialstatus)
-                                        <option value="{{$commercialstatus->name}}" {{($product->commercial==$commercialstatus->name?'selected':'')}}>{{$commercialstatus->name}}</option>
+                                        <option value="{{$commercialstatus->name}}" {{($product->commercialstatus==$commercialstatus->name?'selected':'')}}>{{$commercialstatus->name}}</option>
                                         @endforeach
                                     </select>
                                     <em id="commercial-error" class="error invalid-feedback"></em>
