@@ -58,7 +58,7 @@ class ImportProductController extends Controller
                     $product->name = $value['product'];
                     $product->type = $value['type'];
                     $product->category = $value['category'];
-                    $product->commercial = $value['commercialstatus'];
+                    $product->commercialstatus = $value['commercialstatus'];
                     $product->currency = $value['currency'];
                     $product->price = [
                             [

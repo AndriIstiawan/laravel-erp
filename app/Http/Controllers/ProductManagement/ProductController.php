@@ -81,7 +81,7 @@ class ProductController extends Controller
         $product->code = $request->code;
         $product->type = $request->type;
         $product->category = $request->category;
-        $product->commercial = $request->commercial;
+        $product->commercialstatus = $request->commercial;
         $product->currency = $request->currency;
         $product->price = [
             [
@@ -256,7 +256,7 @@ class ProductController extends Controller
         $product->code = $request->code;
         $product->type = $request->type;
         $product->category = $request->category;
-        $product->commercial = $request->commercial;
+        $product->commercialstatus = $request->commercial;
         $product->currency = $request->currency;
         $product->price = [
             [
