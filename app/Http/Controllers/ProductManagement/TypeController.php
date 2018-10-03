@@ -4,7 +4,7 @@ namespace App\Http\Controllers\ProductManagement;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Type;
+use App\Types;
 use Yajra\Datatables\Datatables;
 
 class TypeController extends Controller
@@ -20,14 +20,14 @@ class TypeController extends Controller
     {
 
         if ($request->id) {
-            $type = Type::where('name', $request->name)->first();
+            $type = Types::where('name', $request->name)->first();
             if ($type) {
                 return ($request->id == $type->id ? 'true' : 'false');
             } else {
                 return 'true';
             }
         } else {
-            return (Type::where('name', $request->name)->first() ? 'false' : 'true');
+            return (Types::where('name', $request->name)->first() ? 'false' : 'true');
         }
     }
 
@@ -62,7 +62,7 @@ class TypeController extends Controller
     //store data type
     public function store(Request $request)
     {
-        $type = new Type();
+        $type = new Types();
         $type->name = $request->name;
         $type->save();
         
@@ -77,7 +77,7 @@ class TypeController extends Controller
      */
     //for getting datatable at index
     public function show(Request $request, $action){
-        $type = type::select(['name', 'created_at']);
+        $type = Types::select(['name', 'created_at']);
         
         return Datatables::of($type)
             ->addColumn('action', function ($type) {
@@ -102,7 +102,7 @@ class TypeController extends Controller
     //view form edit
     public function edit($id)
     {
-        $type = Type::find($id);
+        $type = Types::find($id);
         return view('panel.product-management.type.form-edit')->with(['type'=>$type]);
     }
 
@@ -116,7 +116,7 @@ class TypeController extends Controller
     //update data type
     public function update(Request $request, $id)
     {
-        $type = Type::find($id);
+        $type = Types::find($id);
         $type->name = $request->name;
         
         $type->save();

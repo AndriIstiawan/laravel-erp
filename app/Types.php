@@ -6,7 +6,7 @@ use Moloquent;
 use Illuminate\Notifications\Notifiable;
 use Jenssegers\Mongodb\Eloquent\SoftDeletes;
 
-class Type extends Moloquent
+class Types extends Moloquent
 {
     use Notifiable;
 	use SoftDeletes;

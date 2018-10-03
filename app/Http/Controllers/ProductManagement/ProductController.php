@@ -5,7 +5,7 @@ namespace App\Http\Controllers\ProductManagement;
 use App\Categories;
 use App\Http\Controllers\Controller;
 use App\Product;
-use App\Type;
+use App\Types;
 use App\Variant;
 use App\CommercialStatus;
 use Auth;
@@ -59,7 +59,7 @@ class ProductController extends Controller
     //view form create
     public function create()
     {
-        $types = Type::all();
+        $types = Types::all();
         $category = Categories::all();
         $commercialstatus = CommercialStatus::all();
         return view('panel.product-management.product.form-create', [
@@ -237,7 +237,7 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = product::find($id);
-        $types = Type::all();
+        $types = Types::all();
         $category = Categories::all();
         $commercialstatus = CommercialStatus::all();
         return view('panel.product-management.product.form-edit')->with([
@@ -451,7 +451,7 @@ class ProductController extends Controller
                     if ($code == "" || $product_name == "" || $type == "" /*|| $commercialstatus == ""*/ || $currency == "") {
                         $data .= '"error import => require data is empty [code,product,type,commercialstatus,currency]"),';
                     }else{
-                        $type = Type::where('name', $type)->first();
+                        $type = Types::where('name', $type)->first();
                         if (!$type) {
                             $data .= '"error import => type product not found"),';
                         }else{
