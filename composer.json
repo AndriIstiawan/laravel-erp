@@ -6,6 +6,8 @@
     "type": "project",
     "require": {
         "php": ">=7.0.0",
+        "box/spout": "^2.7",
+        "erfanbagussetiana/rajaongkirpro": "dev-master",
         "fideloper/proxy": "~3.3",
         "intervention/image": "^2.4",
         "itsjavi/bootstrap-colorpicker": "^2.5",
@@ -18,8 +20,7 @@
         "pimlie/laravel-datatables-mongodb": "^1.1",
         "sebastiansulinski/laravel-currency": "^2.0",
         "spatie/laravel-permission": "^2.9",
-        "yajra/laravel-datatables-oracle": "^8.4",
-        "erfanbagussetiana/rajaongkirpro" : "dev-master"
+        "yajra/laravel-datatables-oracle": "^8.4"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

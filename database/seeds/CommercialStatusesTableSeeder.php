@@ -14,22 +14,22 @@ class CommercialStatusesTableSeeder extends Seeder
         DB::table('commercial_statuses')->truncate();
         DB::table('commercial_statuses')->insert([
             [
-                'name' => 'Reguler',
+                'name' => 'REGULAR',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),
             ],
             [
-                'name' => 'New',
+                'name' => 'NEW',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),
             ],
             [
-                'name' => 'Stop',
+                'name' => 'STOP',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),
             ],
             [
-                'name' => 'Promo',
+                'name' => 'PROMO',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),
             ]

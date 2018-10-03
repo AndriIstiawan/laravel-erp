@@ -257,6 +257,16 @@ Route::middleware('auth')->group(function() {
             return redirect('/');
         }
     });
+
+    //download file from storage
+    Route::get('download-storage/{filename}', function () {
+        $filename = Route::current()->filename;
+        if(file_exists(storage_path('exports/'.$filename))){
+            return response()->download(storage_path('exports/'.$filename))->deleteFileAfterSend(true);
+        }else{
+            return redirect('/');
+        }
+    });
 });
 // Section Pages
 Route::view('/sample/error404','errors.404')->name('error404');

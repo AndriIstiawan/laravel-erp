@@ -1,59 +1,57 @@
-@extends('master') @section('content')
+@extends('master') 
+@section('content')
 <div class="container-fluid">
     <div class="animate fadeIn">
         <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-9">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8">
+                <div class="alert alert-success" role="alert">
+                    <h4 class="alert-heading">Import product!</h4>
+                    <p>Before import the product, make sure the product is in accordance with {{env('APP_NAME','FITURE')}} terms
+                        and conditions.</p>
+                </div>
+                <div id="response" class="alert alert-warning" role="alert" style="display: none">
+                    <h4 class="alert-heading"></h4>
+                    <p></p>
+                </div>
                 <p>
                     <a class="btn btn-primary" href="{{route('product.index')}}">
                         <i class="fa fa-backward"></i>&nbsp; Back to List
                     </a>
+                    <a class="btn btn-primary" href="{{url('/download-storage')}}/false/product-form-format.xlsx">
+                        <i class="fa fa-download"></i>&nbsp; Download Form
+                    </a>
                 </p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-6">
-                <div class="alert alert-success" role="alert">
-                    <h4 class="alert-heading">Import product!</h4>
-                    <p>Before import the product, make sure product is in accordance with {{env('APP_NAME','FITURE')}} terms and
-                        conditions.
-                    </p>
-                </div>
-                <form id="jxForm" novalidate="novalidate" enctype="multipart/form-data">
-                    <div class="card">
-                        <div class="card-header">
-                            <i class="fa fa-align-justify"></i> Import
-                            <small>Form</small>
-                        </div>
-                        <div class="card-body">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fa fa-align-justify"></i> Import
+                        <small>Form</small>
+                    </div>
+                    <div class="card-body">
+                        <form id="jxForm" method="POST" enctype="multipart/form-data" action="{{ route('product.index') }}/import">
                         {{ csrf_field() }}
-                            <div class="form-group">
-                                <label class="col-form-label" for="name">*Files
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label" for="name">*Files
                                     <br>
                                     <small class="text-muted">Please download form file before import product data.</small>
                                 </label>
+                                <div class="col-md-9">
+                                    <input type="file" name="import" class="form-control" aria-describedby="import-error" accept=".xls, .xlsx">
+                                    <em id="import-error" class="error invalid-feedback"></em>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <input id="import" type="file" name="import" class="form-control" aria-describedby="import-error" accept=".xls, .xlsx" onchange="$(this).valid()">
-                                <em id="import-error" class="error invalid-feedback"></em>
-                            </div>
-                            <div class="form-group progress-modal d-none">
+                            <!-- <div class="form-group progress-modal d-none">
                                 <i class="fa fa-gear fa-spin"></i>
                                 <div class="progress">
                                     <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width:0%"></div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                        <a class="btn btn-primary" href="{{url('/download-storage')}}/false/product-form-format.xlsx">
-                            <i class="fa fa-download"></i>&nbsp; Download Form
-                        </a>
-                        <button type="button" class="btn btn-primary" name="signup" value="Sign up" onclick="save()">Import Data</button>
-                        <a class="btn btn-secondary" href="{{route('product.index')}}"><i class="fa fa-remove"></i>&nbsp;Close</a>
-                        </div>
+                            </div> -->
+                        </form>
                     </div>
-                </form>
+                    <div class="card-footer">
+                        <button type="button" class="btn btn-success pull-right" onclick="save('continue')">Proccess Import Data</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -69,7 +67,7 @@
         },
         messages: {
             import: {
-                required: 'Please input form',
+                required: 'Please select file',
             },
         },
         errorElement: 'em',
@@ -77,17 +75,22 @@
             error.addClass('invalid-feedback');
         },
         highlight: function (element, errorClass, validClass) {
-            $(element).addClass('is-invalid').removeClass('is-valid');
+            $('#jxForm input[name="' + $(element).attr('name') + '"]').addClass('is-invalid').removeClass(
+                'is-valid');
+            $('#jxForm select[name="' + $(element).attr('name') + '"]').addClass('is-invalid').removeClass(
+                'is-valid');
         },
         unhighlight: function (element, errorClass, validClass) {
-            $(element).addClass('is-valid').removeClass('is-invalid');
+            $('#jxForm input[name="' + $(element).attr('name') + '"]').addClass('is-valid').removeClass(
+                'is-invalid');
+            $('#jxForm select[name="' + $(element).attr('name') + '"]').addClass('is-valid').removeClass(
+                'is-invalid');
         }
     });
 
-    function save() {
+    function save(action) {
         if ($('#jxForm').valid()){
-            $('.progress-modal').removeClass('d-none');
-            $('.btn').addClass('disabled');
+            $('.showProgress').click();
             $.ajax({
                 xhr: function () {
                     var xhr = new window.XMLHttpRequest();
@@ -110,37 +113,31 @@
                     }, false);
                     return xhr;
                 },
-                url: "{{route('product.index')}}/import",
+                url: "{{ route('product.index') }}/import",
                 type: 'POST',
                 processData: false,
                 contentType: false,
                 data: new FormData($('#jxForm')[0]),
                 success: function (response) {
-                    $('.btn').removeClass('disabled');
-                    //toastr.success('Please check download file for detail data input', 'Import file success..');
-                    act(response);
-                    $('.progress-modal').addClass('d-none');
-                    //window.open("{{url('/download-storage')}}/true/"+response, "_blank");
-                    setTimeout(function(){
-                        //window.open("{{route('product.index')}}", "_self");
-                    }, 30000);
+                    setTimeout(function () {
+                        $('.showProgress').click();
+                        toastr.success('Please check download file for detail data input', 'Import file success..');
+                        // window.location.href = '{{ route("product.index") }}';
+                        window.open("{{url('/download-storage')}}/"+response, "_self");
+                        setTimeout(function () {
+                            window.location.href = '{{ route("product.index") }}';
+                        }, 10000);
+                    }, {{env('SET_TIMEOUT', '500')}});
                 },
-                error: function (e) { 
-                    /*$('.btn').removeClass('disabled');
-                    toastr.warning('Please check download file for detail data input', 'Import file failed..');
-                    $('.progress-modal').addClass('d-none');*/
+                error: function (e) {
+                    setTimeout(function () {
+                        $('.showProgress').click();
+                        $('#response').css('display', 'block');
+                        $('#response h4').text('Import Product failed!');
+                        $('#response p').text('Please contact technical for more information.');
+                    }, {{env('SET_TIMEOUT', '500')}});
                 }
             });
-        }
-    }
-
-    function act(response) {
-        switch (response.alert) {
-            case 'warning':
-                toastr.warning(response.message, 'Warning');
-                break;
-            default:
-                toastr.success(response.message,  'Success');
         }
     }
 </script>
