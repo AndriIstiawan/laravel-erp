@@ -369,7 +369,7 @@ class ProductController extends Controller
                     $product->name,
                     $product->type,
                     $product->category,
-                    $product->commercial,
+                    $product->commercialstatus,
                     $product->currency,
                     $product->price[0]['price'],
                     $product->price[1]['price'],
