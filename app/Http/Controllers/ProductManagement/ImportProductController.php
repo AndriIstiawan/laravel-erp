@@ -70,7 +70,7 @@ class ImportProductController extends Controller
                                 $product = new Product();
                             }
 
-                            $product->code = $idx[0];
+                            $product->code = (string)trim($idx[0]);
                             $product->name = $idx[1];
                             $product->type = $idx[2];
                             $product->category = $idx[3];
