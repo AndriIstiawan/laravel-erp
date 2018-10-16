@@ -40,7 +40,7 @@ class ImportProductController extends Controller
 
         $reader = ReaderFactory::create(Type::XLSX); // for XLSX files
         $reader->open(storage_path('exports/'.$filename));
-        $sheet1[] = ['Code', 'Product', 'Type', 'Category', 'CommercialStatus', 'Currency', '250g Plastik Price', '250g Aluminium Price', '500g Plastik Price','500g Aluminium Price', '1kg Plastik Price','1kg Aluminium Price', '5kg Jerigen Price', '25kg Jerigen Price', '25kg Drum Price', '30kg Jerigen Price','250g Plastik Stock', '250g Aluminium Stock', '500g Plastik Stock', '500g Aluminium Stock', '1kg Plastik Stock', '1kg Aluminium Stock', '5kg Jerigen Stock', '25kg Jerigen Stock', '25kg Drum Stock', '30kg Jerigen Stock'];
+        $sheet1[] = ['Code', 'Product', 'Type', 'Category', 'CommercialStatus', 'Currency'/*, '250g Plastik Price', '250g Aluminium Price', '500g Plastik Price','500g Aluminium Price', '1kg Plastik Price','1kg Aluminium Price', '5kg Jerigen Price', '25kg Jerigen Price', '25kg Drum Price', '30kg Jerigen Price','250g Plastik Stock', '250g Aluminium Stock', '500g Plastik Stock', '500g Aluminium Stock', '1kg Plastik Stock', '1kg Aluminium Stock', '5kg Jerigen Stock', '25kg Jerigen Stock', '25kg Drum Stock', '30kg Jerigen Stock'*/];
 
         // loop semua sheet dan dapatkan sheet orders
         foreach ($reader->getSheetIterator() as $sheet) {
@@ -53,7 +53,7 @@ class ImportProductController extends Controller
                 $total_product_proccess_invalid = 0;
                 foreach ($sheet->getRowIterator() as $idx) {
                     $i++;
-                    if($i > 5){
+                    if($i > 2){
                         $statusValidasi = $this->validasiDataRow($idx);
                         $data_feedback = $statusValidasi['data'];
 
@@ -76,7 +76,7 @@ class ImportProductController extends Controller
                             $product->category = $idx[3];
                             $product->commercialstatus = $idx[4];
                             $product->currency = $idx[5];
-                            $product->price = [
+                            /*$product->price = [
                                 [
                                     'name' => '250g Plastik',
                                     'price' => (double)trim($idx[6]),
@@ -159,7 +159,7 @@ class ImportProductController extends Controller
                                     'name' => '30kg Jerigen',
                                     'quantity' => ((double) trim($idx[25])) * 1000,
                                 ],
-                            ];
+                            ];*/
                             $exec = $product->save();
                             if($exec){
                                 if($product_status == 'update'){
@@ -200,7 +200,7 @@ class ImportProductController extends Controller
 
     //validasi data
     public function validasiDataRow($idx){
-        $data = [$idx[0], $idx[1], $idx[2], $idx[3], $idx[4], $idx[5], $idx[6], $idx[7], $idx[8], $idx[9], $idx[10], $idx[11], $idx[12], $idx[13], $idx[14], $idx[15], $idx[16], $idx[17], $idx[18], $idx[19], $idx[20], $idx[21], $idx[22], $idx[23], $idx[24], $idx[25]];
+        $data = [$idx[0], $idx[1], $idx[2], $idx[3], $idx[4], $idx[5]/*, $idx[6], $idx[7], $idx[8], $idx[9], $idx[10], $idx[11], $idx[12], $idx[13], $idx[14], $idx[15], $idx[16], $idx[17], $idx[18], $idx[19], $idx[20], $idx[21], $idx[22], $idx[23], $idx[24], $idx[25]*/];
 
         $msg = '';
         $statusValidasi = false;

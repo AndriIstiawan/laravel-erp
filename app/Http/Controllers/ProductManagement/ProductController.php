@@ -371,7 +371,7 @@ class ProductController extends Controller
                     $product->category,
                     $product->commercialstatus,
                     $product->currency,
-                    $product->price[0]['price'],
+                    /*$product->price[0]['price'],
                     $product->price[1]['price'],
                     $product->price[2]['price'],
                     $product->price[3]['price'],
@@ -390,7 +390,7 @@ class ProductController extends Controller
                     ((double) $product->stock[6]['quantity'] / 1000 != 0 ? (double) $product->stock[6]['quantity'] / 1000 : ''),
                     ((double) $product->stock[7]['quantity'] / 1000 != 0 ? (double) $product->stock[7]['quantity'] / 1000 : ''),
                     ((double) $product->stock[8]['quantity'] / 1000 != 0 ? (double) $product->stock[8]['quantity'] / 1000 : ''),
-                    ((double) $product->stock[9]['quantity'] / 1000 != 0 ? (double) $product->stock[9]['quantity'] / 1000 : ''),
+                    ((double) $product->stock[9]['quantity'] / 1000 != 0 ? (double) $product->stock[9]['quantity'] / 1000 : ''),*/
                 ];
             }
 
