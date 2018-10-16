@@ -165,7 +165,7 @@ class SalesOrderController extends Controller
     public function list_data(Request $request)
     {
         if($request->dateStart == null){
-            $orders = SalesOrder::limit(100, 'desc')->get();
+            $orders = SalesOrder::latest()->take(100)->get();
         }else{
             $orders = SalesOrder::where('created_at','>=',new DateTime($request->dateStart))
                 ->where('created_at','<=',new DateTime($request->dateEnd." 23:59:59"))->get();
