@@ -165,7 +165,7 @@ class SalesOrderController extends Controller
     public function list_data(Request $request)
     {
         if($request->dateStart == null){
-            $orders = SalesOrder::all();
+            $orders = SalesOrder::select('_id', 'code','client','sales','TOP','notes','status','created_at');
         }else{
             $orders = SalesOrder::where('created_at','>=',new DateTime($request->dateStart))
                 ->where('created_at','<=',new DateTime($request->dateEnd." 23:59:59"))->get();
@@ -179,7 +179,16 @@ class SalesOrderController extends Controller
                 return ((double)$order->total_kg/1000)." KG";
             })
             ->addColumn('status', function ($order) {
-                    return '<span class="badge badge-success" style="padding:9px;">&nbsp;&nbsp;'.$order->status.'&nbsp;&nbsp;</span>';
+                switch($order->status){
+                    case "order":
+                        return '<span class="badge badge-success" style="padding:9px;">&nbsp;&nbsp;'.$order->status.'&nbsp;&nbsp;</span>';
+                        break;
+                    case "production":
+                        return '<span class="badge badge-warning" style="padding:9px;">&nbsp;&nbsp;'.$order->status.'&nbsp;&nbsp;</span>';
+                        break;
+                    default:
+                        return '<span class="badge badge-success" style="padding:9px;">&nbsp;&nbsp;'.$order->status.'&nbsp;&nbsp;</span>';
+                }
             })
             ->addColumn('action', function ($order) {
                 $edit = '';
