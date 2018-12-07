@@ -25,7 +25,7 @@ To be able to run Laravel Boilerplate you have to meet the following requirement
 
 3. Clone repository
 ```
-$ git clone https://lawhite@bitbucket.org/fituredevelopment/fe-b2b-backend-web.git
+$ git clone https://github.com/sasori69/laravel-erp.git
 ```
 4. Checkout from branch master
 ```
@@ -33,7 +33,7 @@ $ git checkout -b sasori
 ```
 5. Change into the working directory
 ```
-$ cd fe-b2b-backend-web
+$ cd laravel-erp
 ```
 6. Copy `.env.example` to `.env` and modify according to your environment
 ```
