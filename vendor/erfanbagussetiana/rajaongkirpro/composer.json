@@ -1,0 +1,24 @@
+{
+    "name": "erfanbagussetiana/rajaongkirpro",
+    "description": "Raja Ongkir API Laravel 5",
+    "keywords": [
+        "rajaongkir", "application programming interface", "laravel"
+    ],
+    "license": "MIT",
+    "type": "package",
+    "authors": [
+        {
+            "name": "M. Erfan Bagus Setiana",
+            "email": "erfanbagussetiana@gmail.com"
+        }
+    ],
+    "autoload": {
+    	"psr-4": {
+    		"erfanbagussetiana\\rajaongkirpro\\": "src/"
+    	}
+    },
+    "require": {
+    	"illuminate/support": "~5"
+    }
+	
+}
