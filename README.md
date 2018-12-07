@@ -1,4 +1,4 @@
-# FITURE E-COMMERCE B2B [Laravel 5.5]
+# Laravel ERP [Laravel 5.5]
 
 ## Features
 - Administration Dashboard 
@@ -58,11 +58,6 @@ $ php artisan migrate --seed
 ```
 If you get an error like a `PDOException` try editing your `.env` file and change `DB_HOST=127.0.0.1` to `DB_HOST=localhost` or `DB_HOST=mysql` (for *docker-compose* environment).
 
-## User Login
-1. Root login
-
-- username : ```root@fiture.id```
-- password : ```asdasd```
 
 ## Run
 
