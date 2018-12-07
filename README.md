@@ -29,7 +29,7 @@ $ git clone https://lawhite@bitbucket.org/fituredevelopment/fe-b2b-backend-web.g
 ```
 4. Checkout from branch master
 ```
-$ git checkout -b faishal
+$ git checkout -b sasori
 ```
 5. Change into the working directory
 ```
