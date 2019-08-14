@@ -7,7 +7,6 @@ use Jenssegers\Mongodb\Eloquent\SoftDeletes;
 
 use Illuminate\Auth\Authenticatable;
 use Moloquent;
-use App\User;
 use App\SalesOrder;
 use App\Permission;
 use Auth;
