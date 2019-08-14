@@ -1,4 +1,4 @@
-# FITURE E-COMMERCE B2B [Laravel 5.5]
+# ERP [Laravel 5.5]
 
 ## Features
 - Administration Dashboard 
@@ -25,15 +25,15 @@ To be able to run Laravel Boilerplate you have to meet the following requirement
 
 3. Clone repository
 ```
-$ git clone https://lawhite@bitbucket.org/fituredevelopment/fe-b2b-backend-web.git
+$ git clone https://github.com/AndriIstiawan/laravel-erp.git
 ```
 4. Checkout from branch master
 ```
-$ git checkout -b faishal
+$ git checkout -b develop
 ```
 5. Change into the working directory
 ```
-$ cd fe-b2b-backend-web
+$ cd laravel-erp
 ```
 6. Copy `.env.example` to `.env` and modify according to your environment
 ```
@@ -61,8 +61,8 @@ If you get an error like a `PDOException` try editing your `.env` file and chang
 ## User Login
 1. Root login
 
-- username : ```root@fiture.id```
-- password : ```asdasd```
+- username : ```admin```
+- password : ```admin```
 
 ## Run
 
