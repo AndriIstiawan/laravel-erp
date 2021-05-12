@@ -12,7 +12,7 @@
     "devDependencies": {
         "axios": "^0.16.2",
         "browser-sync": "2.18.13",
-        "chart.js": "2.7.1",
+        "chart.js": "2.9.4",
         "cross-env": "^5.0.1",
         "del": "3.0.0",
         "font-awesome": "4.7.0",
